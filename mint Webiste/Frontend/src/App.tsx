@@ -51,7 +51,6 @@ function App() {
                 <Navbar />
               </div>
             </div>
-
             <div className={`bg-capsule ${styles.flexCenter}`}>
               <div className={`${styles.boxWidth}`}>
                 <Capsules />

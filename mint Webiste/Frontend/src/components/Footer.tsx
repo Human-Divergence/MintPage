@@ -21,16 +21,16 @@ const Footer = () => {
     <div className=" flex flex-col justify-center items-center ">
       <img src={logo} alt="img" className="w-[200px] h-40" />
       <div className="flex mb-10">
-        <a href="">
+        <a href="https://www.instagram.com/human_divergence">
             <BsInstagram size={40} className=" text-black mr-10" />
         </a>
-        <a href="">
+        <a href="https://twitter.com/HumanDivergence">
             <BsTwitter size={40} className=" text-black mr-10" />
         </a>
-        <a href="">
+        <a href="https://discord.gg/human-divergence">
             <BsDiscord size={40} className=" text-black mr-10" />
         </a>
-        <a href="">
+        <a href="https://www.linkedin.com/company/human-divergence/">
             <BsLinkedin size={40} className=" text-black mr-10" />
         </a>
         <a href="">
