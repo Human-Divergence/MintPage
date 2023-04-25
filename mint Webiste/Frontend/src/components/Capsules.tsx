@@ -7,11 +7,12 @@ import { capsulesDatas,  } from "../constants";
 
 const Capsules = () => {
   const [buyCount, setBuyCount] = useState(capsulesDatas);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(0)
 
   return (
     <div className="mt-32 ">
       {capsulesDatas.map((cap, index) => (
-        <div className="flex justify-center" key={index}>
+        <div className="flex justify-center" key={index} >
           <div className="relative h-[350px]">
             <img src={cap.background} alt="bg" className="w-[200px] absolute" />
             <div className="border-solid border-r-[1px] border-b-[1px] border-t-[1px] border-black w-[708px] h-[220px] mt-4 rounded-md  flex justify-center ">
@@ -96,7 +97,16 @@ const Capsules = () => {
                     >
                       Offer ends in {cap.time}
                     </p>
-                  </div>
+                    </div>
+                  {selectedItemIndex === index && (
+                   <div className="flex flex-wrap font-bold">
+                     <button onClick={() => setSelectedItemIndex(-1)}>
+                       <h1 className="2xl">
+                        Hide Detail
+                        </h1>
+                     </button>
+                   </div>
+                 )}
                 </div>
               )}
             </div>
@@ -104,7 +114,7 @@ const Capsules = () => {
               src={cap.image}
               alt="img"
               className="w-[480px] relative right-24 bottom-80 mt-5"
-            />
+              onClick={() => setSelectedItemIndex(index)}/>
           </div>
         </div>
       ))}

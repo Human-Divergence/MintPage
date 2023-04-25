@@ -10,15 +10,16 @@ import {
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { polygonMumbai, polygon } from "wagmi/chains";
 import { Web3Modal } from "@web3modal/react";
-
+import { ethers  } from "ethers";
+import { coinbasewallet } from "web3modal/dist/providers/connectors";
 // Temporary Wagmi config
-
 export const projectId = "67a7534c23a607b73d823c05af89594a"; // process.env.PROJECT_ID
 // 2. Configure wagmi client
 export const chains = [polygonMumbai, polygon];
 export const { provider } = configureChains(chains, [
   w3mProvider({ projectId }),
 ]);
+
 
 export const wagmiClient = createClient({
   autoConnect: true,
@@ -34,8 +35,11 @@ export const ethereumClient = new EthereumClient(wagmiClient, chains); // accoun
 
 //
 
+
+
 function App() {
   const [ready, setReady] = useState(false);
+  
 
   useEffect(() => {
     setReady(true);

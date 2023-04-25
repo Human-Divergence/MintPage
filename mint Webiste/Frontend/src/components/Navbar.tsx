@@ -14,12 +14,14 @@ const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
   const [account, setAccount] = useState<string | undefined>();
+  const [ShowWallet, setShowWallet] = useState(false);
 
   return (
     <nav className="w-full flex justify-between items-center navbar mt-5">
       <ArrowLongLeftIcon className="w-[30px] text-black mr-20" />
       <ul className="list-none sm:flex hidden items-center flex-1 ">
         <div className="flex flex-row bg-[#00FFAE] items-center rounded-[10px] mr-2">
+        <button onClick={() => {setShowWallet(!ShowWallet)}}>
           <div className="">
             <img
               src={met}
@@ -27,18 +29,25 @@ const Navbar = () => {
               className=" w-[40px] mr bg-black rounded-[10px] "
             />
           </div>
-          <button
-            className="py-2 px-4 font-poppins font-medium text-[18px]  outline-none"
-            onClick={() => {
-              if (!ethereumClient.getAccount().isConnected) {
-                ethereumClient.connectConnector("injected");
-              }
-            }}
-          >
-            {ethereumClient.getAccount().isConnected
-              ? shortenAddress(ethereumClient.getAccount().address)
-              : "CONNEXION"}
           </button>
+          {
+            ShowWallet && (
+              <div className="bg-black-900">
+                <button
+                className="py-2 px-4 font-poppins font-medium text-[18px]  outline-none"
+                onClick={() => {
+                  if (!ethereumClient.getAccount().isConnected) {
+                    ethereumClient.connectConnector("injected");
+                  }
+                }}
+                >
+                {ethereumClient.getAccount().isConnected
+                  ? shortenAddress(ethereumClient.getAccount().address)
+                  : "CONNEXION"}
+                </button>
+              </div>
+            )
+          }
           <div className="">
             <ArrowUpRightIcon className="w-[20px] text-black mr-2" />
           </div>
