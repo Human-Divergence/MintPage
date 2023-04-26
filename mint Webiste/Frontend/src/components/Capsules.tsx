@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import  axios  from "axios"
 import {
   lock,
   polygon,
@@ -7,8 +8,17 @@ import { capsulesDatas,  } from "../constants";
 
 const Capsules = () => {
   const [buyCount, setBuyCount] = useState(capsulesDatas);
-  const [selectedItemIndex, setSelectedItemIndex] = useState(0)
+  const [pricePolygon, setPrice] = useState(0);
+  
 
+  useEffect(() => {
+    const res  = axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd`)
+    .then((response) => {
+      setPrice(response.data["matic-network"].usd);
+    }
+    )
+
+  }, []);
   return (
     <div className="mt-32 ">
       {capsulesDatas.map((cap, index) => (
@@ -37,7 +47,7 @@ const Capsules = () => {
                   </div>
                   <div className=" flex justify-around">
                     <p className=""></p>
-                    <p className="ml-50 ml-60">~= 28$</p>
+                    <p className="ml-50 ml-60">~= {(cap.price * pricePolygon).toFixed(2)} $</p>
                   </div>
                   <center>
                     <div className="flex flex-row justify-between rounded-[5px] bg-[#00FFAE] ml-48  mt-5 w-[20%] h-[30%]">
@@ -98,23 +108,13 @@ const Capsules = () => {
                       Offer ends in {cap.time}
                     </p>
                     </div>
-                  {selectedItemIndex === index && (
-                   <div className="flex flex-wrap font-bold">
-                     <button onClick={() => setSelectedItemIndex(-1)}>
-                       <h1 className="2xl">
-                        Hide Detail
-                        </h1>
-                     </button>
-                   </div>
-                 )}
                 </div>
               )}
             </div>
             <img
               src={cap.image}
               alt="img"
-              className="w-[480px] relative right-24 bottom-80 mt-5"
-              onClick={() => setSelectedItemIndex(index)}/>
+              className="w-[480px] relative right-24 bottom-80 mt-5"/>
           </div>
         </div>
       ))}

@@ -35,8 +35,6 @@ export const ethereumClient = new EthereumClient(wagmiClient, chains); // accoun
 
 //
 
-
-
 function App() {
   const [ready, setReady] = useState(false);
   
