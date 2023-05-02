@@ -5,6 +5,7 @@ import {
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/solid";
 import { close, met, menu, divg } from "../assets";
+import Owner from "./Owner";
 import { navLinks } from "../constants";
 import { IoInformation } from "react-icons/io5";
 import { ethereumClient, wagmiClient } from "../App";
@@ -16,7 +17,6 @@ import {
   useEnsAvatar,
   useEnsName,
 } from 'wagmi'
-
 const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
@@ -47,9 +47,9 @@ const Navbar = () => {
         <button onClick={() => {setShowWallet(!ShowWallet)}}>
           <div className="align-items">
             <img
-              src={met}
+              src="../assets/meta.png"
               alt="metamask"
-              className=" w-[40px] mr bg-black rounded-[10px] "
+              className=" w-[60px] h-[60px] mr bg-black rounded-[10px] "
             />
             <h1>Connect wallet</h1>
           </div>
@@ -84,23 +84,17 @@ const Navbar = () => {
           {
             isConnected && (
               <div>
-              <img src={ensAvatar} alt="ENS Avatar" />
               <div>{ensName ? `${ensName} (${address})` : address}</div>
               <div>Connected to {connector.name}</div>
               <button onClick={disconnect}>Disconnect</button>
             </div>
             )
           }
-        <div className="flex flex-row  items-center mr-2">
-          <button className="py-2 px-2 font-poppins font-medium text-[18px] bg-[#00FFAE] rounded-full mr-3 ">
-            <IoInformation className=" w-[30px] text-[30px] text-black" />
-          </button>
-          <button className="py-2 px-2 font-poppins font-medium  bg-black  rounded-full">
-            <BuildingStorefrontIcon className="w-[30px] text-white " />
-          </button>
+        <div className="flex flex-row  items-center mr-2] bg-[#00FFAE]">
           <button className="py-2 px-2 rounded-full mr-2 ">
-            <img src={divg} alt="metamask" className="w-[60px] text-black" />
+            <img src={divg} alt="HD" className=" w-full h-full bg-black" style={{ width: "60px", height: "60px" }} />
           </button>
+          <a href="/mydivergence" className="font-bold">MY DIVERGENT</a>
         </div>
       </ul>
       <div className="flex flex-col">

@@ -1,5 +1,4 @@
-import { Darksule, Diaground, Diamond, Or, Orground, Unground } from "../assets";
-
+import { Darksule, Diaground, Diamond, Or, Orground, Unground} from "../assets";
 export const navLinks = [
   {
     id: "products",
@@ -100,6 +99,100 @@ export const capsulesDatas = [
     price: 25,
     count:1,
     open: true,
+    character: [
+      {
+        title: "Marsio",
+        image: "../src/assets/Character/character1.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: false,
+        percent: 10,
+      },
+      {
+        title: "Character 2",
+        image: "../src/assets/Character/character2.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: false,
+        percent: 10,
+    
+      },
+      {
+        title: "Character 3",
+        image: "../src/assets/Character/character3.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: false,
+        percent: 10,
+      }
+      // {
+      //   title: "Character 4",
+      //   image: "../src/assets/Character/character4.png",
+      //   description:"QUELOZ UNKNOWN CAPSULE",
+      //   lock: false,
+      //   percent: 10,
+      // },
+      // {
+      //   title: "Character 5",
+      //   image: "../src/assets/Character/character5.png",
+      //   description:"QUELOZ UNKNOWN CAPSULE",
+      //   lock: false,
+      //   percent: 10,
+      // },
+      // {
+      //   title: "Character 5",
+      //   image: "../src/assets/Character/character5.png",
+      //   description:"QUELOZ UNKNOWN CAPSULE",
+      //   lock: false,
+      //   percent: 10,
+      // },
+      // {
+      //   title: "Character 5",
+      //   image: "../src/assets/Character/character5.png",
+      //   description:"QUELOZ UNKNOWN CAPSULE",
+      //   lock: false,
+      //   percent: 10,
+      // },
+      // {
+      //   title: "Character 5",
+      //   image: "../src/assets/Character/character5.png",
+      //   description:"QUELOZ UNKNOWN CAPSULE",
+      //   lock: false,
+      //   percent: 10,
+      // },
+      // {
+      //   title: "Character 5",
+      //   image: "../src/assets/Character/character5.png",
+      //   description:"QUELOZ UNKNOWN CAPSULE",
+      //   lock: false,
+      //   percent: 10,
+      // },
+      // {
+      //   title: "Character 5",
+      //   image: "../src/assets/Character/character5.png",
+      //   description:"QUELOZ UNKNOWN CAPSULE",
+      //   lock: false,
+      //   percent: 10,
+      // },
+      // {
+      //   title: "Character 5",
+      //   image: "../src/assets/Character/character5.png",
+      //   description:"QUELOZ UNKNOWN CAPSULE",
+      //   lock: false,
+      //   percent: 10,
+      // },
+      // {
+      //   title: "Character 5",
+      //   image: "../src/assets/Character/character5.png",
+      //   description:"QUELOZ UNKNOWN CAPSULE",
+      //   lock: false,
+      //   percent: 10,
+      // },
+      // {
+      //   title: "Character 5",
+      //   image: "../src/assets/Character/character5.png",
+      //   description:"QUELOZ UNKNOWN CAPSULE",
+      //   lock: false,
+      //   percent: 10,
+      // }
+    ]
   },
   {
     title: "Diamond",
@@ -110,7 +203,52 @@ export const capsulesDatas = [
     background: Diaground,
     price: 130,
     count:1,
-    open:true
+    open:true,
+    character: [
+      {
+        title: "Character 1",
+        image: "../src/assets/Character/character1.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 0,
+      },
+      {
+        title: "Character 2",
+        image: "../src/assets/Character/character2.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 0,
+    
+      },
+      {
+        title: "Character 3",
+        image: "../src/assets/Character/character3.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 0,
+      },
+      {
+        title: "Character 4",
+        image: "../src/assets/Character/character4.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 0,
+      },
+      {
+        title: "Character 4",
+        image: "../src/assets/Character/character4.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 0,
+      },
+      {
+        title: "Character 5",
+        image: "../src/assets/Character/character5.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 0,
+      }
+    ]
   },
   {
     title: "unOpen",
@@ -121,6 +259,83 @@ export const capsulesDatas = [
     background: Unground,
     price: 130,
     count:1,
-    open:false
+    open:false,
+    character: [
+      {
+        title: "Character 1",
+        image: "../src/assets/Character/character1.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 10,
+      },
+      {
+        title: "Character 2",
+        image: "../src/assets/Character/character2.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 10,
+    
+      },
+      {
+        title: "Character 3",
+        image: "../src/assets/Character/character3.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 10,
+      },
+      {
+        title: "Character 4",
+        image: "../src/assets/Character/character4.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 10,
+      },
+      {
+        title: "Character 5",
+        image: "../src/assets/Character/character5.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 10,
+      }
+    ]
   },
+];
+
+export const CharacterDatas = [
+  {
+    title: "Marsio",
+    image: "../src/assets/Character/character1.png",
+    description:"QUELOZ UNKNOWN CAPSULE",
+    status: true,
+    percent: 10,
+  },
+  {
+    title: "Character 2",
+    image: "../src/assets/Character/character2.png",
+    description:"QUELOZ UNKNOWN CAPSULE",
+    status: true,
+    percent: 10,
+
+  },
+  {
+    title: "Character 3",
+    image: "../src/assets/Character/character3.png",
+    description:"QUELOZ UNKNOWN CAPSULE",
+    status: true,
+    percent: 10,
+  },
+  {
+    title: "Character 4",
+    image: "../src/assets/Character/character4.png",
+    description:"QUELOZ UNKNOWN CAPSULE",
+    status: true,
+    percent: 10,
+  },
+  {
+    title: "Character 5",
+    image: "../src/assets/Character/character5.png",
+    description:"QUELOZ UNKNOWN CAPSULE",
+    status: true,
+    percent: 10,
+  }
 ];

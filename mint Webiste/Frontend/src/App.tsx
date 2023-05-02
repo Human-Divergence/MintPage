@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { Navbar, Capsules, Footer } from "./components";
+import { Navbar, Capsules, Footer, Droprate } from "./components";
 import styles from "./styles/style";
 import {
   EthereumClient,
   w3mConnectors,
   w3mProvider,
 } from "@web3modal/ethereum";
+import { Routes, Route } from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Mydivergence from './mydivergence';
+
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { polygonMumbai, polygon } from "wagmi/chains";
 import { Web3Modal } from "@web3modal/react";
@@ -37,7 +41,6 @@ export const ethereumClient = new EthereumClient(wagmiClient, chains); // accoun
 
 function App() {
   const [ready, setReady] = useState(false);
-  
 
   useEffect(() => {
     setReady(true);
@@ -47,6 +50,10 @@ function App() {
     <>
       {ready ? (
         <WagmiConfig client={wagmiClient}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/mydivergence" element={<Mydivergence />} />
+        </Routes>
           <div className=" w-full overflow-hidden">
             <div className={`${styles.paddingX} ${styles.flexCenter}`}>
               <div className={`${styles.boxWidth}`}>
@@ -56,6 +63,7 @@ function App() {
             <div className={`bg-capsule ${styles.flexCenter}`}>
               <div className={`${styles.boxWidth}`}>
                 <Capsules />
+                <Droprate />
                 <Footer />
               </div>
             </div>
@@ -63,7 +71,12 @@ function App() {
         </WagmiConfig>
       ) : null}
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
-    </>
+      </>
+  );
+}
+
+function Home() {
+  return (<></>
   );
 }
 
