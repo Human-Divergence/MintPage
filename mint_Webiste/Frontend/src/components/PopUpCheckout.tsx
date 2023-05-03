@@ -20,15 +20,15 @@ import {
                     </div>
                 </div> */}
               </h2>
-              <div className=" flex justify-around ">
-                <p className="mt-5 font-bold ml-52 "> Price </p>
+              <div className="flex justify-around">
+                {/* <p className="mt-5 font-bold ml-52 "> Price </p>
                 <div className="mt-5 flex flex ">
                 <img src={polygon} alt="bg" className="w-[50px]" />
                 <p className="font-bold text-lg mr-2">
                 {cap.price} MATIC{" "}
                 </p>{" "}
                 <p className="ml-50 ml-60">~= {(cap.price * pricePolygon).toFixed(2)} $</p>
-                </div>
+                </div> */}
               </div>
               <button className="px-4 py-2 bg-[#00FFAE] text-white mr-4" onClick={() => onClose(false)}>Close</button>
               <button className="px-4 py-2 bg-[#00FFAE] text-white" onClick={() => console.log("Buy here")}>Buy</button>

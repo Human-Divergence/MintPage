@@ -187,6 +187,7 @@ body {
 /*
   CARDS
   @dev Shaan - CSN
+
 */
 .card:hover {
   border-color: #ff005f;
@@ -273,3 +274,10 @@ body {
 .cap-description {
   height: calc(20% - 50px); /* 50px is the combined height of the two paragraphs inside the div */
 }
+
+/* .description-container {
+  height: 800px;
+} */
+.description-wrapper {
+  height: 800px;
+} 

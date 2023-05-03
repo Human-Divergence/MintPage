@@ -4,19 +4,20 @@ import {
   ArrowUpRightIcon,
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/solid";
-import { close, met, menu, divg } from "../assets";
+import { close, meta, menu, divg } from "../assets";
 import Owner from "./Owner";
 import { navLinks } from "../constants";
 import { IoInformation } from "react-icons/io5";
 import { ethereumClient, wagmiClient } from "../App";
 import { shortenAddress } from "../utils/short";
-import { useConnect } from 'wagmi'
+import { useConnect } from 'wagmi';
 import {
   useAccount,
   useDisconnect,
   useEnsAvatar,
   useEnsName,
-} from 'wagmi'
+} from 'wagmi';
+
 const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
@@ -41,23 +42,23 @@ const Navbar = () => {
   // }
   return (
     <nav className="w-full flex justify-between items-center navbar mt-5">
-      <ArrowLongLeftIcon className="w-[30px] text-black mr-20" />
+      <a href="/">
+        <ArrowLongLeftIcon className="w-[30px] text-black mr-20" />
+      </a>
       <ul className="list-none sm:flex hidden items-center flex-1 ">
-        <div className="flex flex-row bg-[#00FFAE] items-center rounded-[10px] mr-2">
         <button onClick={() => {setShowWallet(!ShowWallet)}}>
-          <div className="align-items">
+          <div className="flex flex-row bg-[#00FFAE] items-center  mr-2">
             <img
-              src="../assets/meta.png"
+              src={meta}
               alt="metamask"
-              className=" w-[60px] h-[60px] mr bg-black rounded-[10px] "
+              className=" w-[60px] h-[60px] bg-black"
             />
-            <h1>Connect wallet</h1>
+            <h1 className="font-bold ml-2">Connect wallet</h1>
+            <div className="">
+              <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
+            </div>
           </div>
-          </button>
-          <div className="">
-            <ArrowUpRightIcon className="w-[20px] text-black mr-2" />
-          </div>
-        </div>
+        </button>
           {
             ShowWallet && (
               <div>
@@ -90,12 +91,17 @@ const Navbar = () => {
             </div>
             )
           }
-        <div className="flex flex-row  items-center mr-2] bg-[#00FFAE]">
-          <button className="py-2 px-2 rounded-full mr-2 ">
+        <button className="py-2 px-2 rounded-full mr-2 ">
+          <a href="/mydivergent" className="">
+          <div className="flex flex-row  items-center mr-2] bg-[#00FFAE]">
             <img src={divg} alt="HD" className=" w-full h-full bg-black" style={{ width: "60px", height: "60px" }} />
-          </button>
-          <a href="/mydivergence" className="font-bold">MY DIVERGENT</a>
-        </div>
+              <p className="ml-2 font-bold">MY DIVERGENT</p>
+            <div className="">
+              <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
+            </div>
+          </div>
+          </a>
+        </button>
       </ul>
       <div className="flex flex-col">
         <p className="px-6 font-poppins font-medium text-[28px] text-black">

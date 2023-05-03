@@ -1,4 +1,5 @@
-import { Darksule, Diaground, Diamond, Or, Orground, Unground} from "../assets";
+import { Darksule, Diaground, Diamond, Or, Orground, Unground,
+  character1, character2, character3, character4, character5} from "../assets";
 export const navLinks = [
   {
     id: "products",
@@ -102,7 +103,7 @@ export const capsulesDatas = [
     character: [
       {
         title: "Marsio",
-        image: "../src/assets/Character/character1.png",
+        image: character1,
         description:"QUELOZ UNKNOWN CAPSULE",
         lock: false,
         percent: 10,
@@ -304,14 +305,14 @@ export const capsulesDatas = [
 export const CharacterDatas = [
   {
     title: "Marsio",
-    image: "../src/assets/Character/character1.png",
+    image: character1,
     description:"QUELOZ UNKNOWN CAPSULE",
     status: true,
     percent: 10,
   },
   {
     title: "Character 2",
-    image: "../src/assets/Character/character2.png",
+    image: character2,
     description:"QUELOZ UNKNOWN CAPSULE",
     status: true,
     percent: 10,
@@ -319,21 +320,21 @@ export const CharacterDatas = [
   },
   {
     title: "Character 3",
-    image: "../src/assets/Character/character3.png",
+    image: character3,
     description:"QUELOZ UNKNOWN CAPSULE",
     status: true,
     percent: 10,
   },
   {
     title: "Character 4",
-    image: "../src/assets/Character/character4.png",
+    image: character4,
     description:"QUELOZ UNKNOWN CAPSULE",
     status: true,
     percent: 10,
   },
   {
     title: "Character 5",
-    image: "../src/assets/Character/character5.png",
+    image: character5,
     description:"QUELOZ UNKNOWN CAPSULE",
     status: true,
     percent: 10,

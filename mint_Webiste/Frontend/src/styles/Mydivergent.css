@@ -1,0 +1,81 @@
+.my-divergence-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.capsule-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 200px;
+  background-color: #f5f5f5;
+}
+
+.capsule-image {
+  width: 100%;
+  height: auto;
+}
+
+
+.capsule-title {
+  margin: 1rem 0;
+}
+
+.capsule-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.capsule-button {
+  background-color: #333;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.selected-capsule-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selected-capsule-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.selected-capsule-image {
+  width: 350px;
+  height: auto;
+}
+
+.selected-capsule-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.selected-capsule-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+
+.put-on-sale-button {
+  background-color: #00FFAE;
+}
+
+.put-on-sale-button:hover {
+  background-color: #009dff;
+}

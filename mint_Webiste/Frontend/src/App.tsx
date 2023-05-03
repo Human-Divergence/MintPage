@@ -7,23 +7,22 @@ import {
   w3mProvider,
 } from "@web3modal/ethereum";
 import { Routes, Route } from 'react-router-dom';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Mydivergence from './mydivergence';
-
+import Mydivergent from './mydivergent';
+import Home from './Home';
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { polygonMumbai, polygon } from "wagmi/chains";
 import { Web3Modal } from "@web3modal/react";
 import { ethers  } from "ethers";
 import { coinbasewallet } from "web3modal/dist/providers/connectors";
+
 // Temporary Wagmi config
 export const projectId = "67a7534c23a607b73d823c05af89594a"; // process.env.PROJECT_ID
 // 2. Configure wagmi client
+
 export const chains = [polygonMumbai, polygon];
 export const { provider } = configureChains(chains, [
   w3mProvider({ projectId }),
 ]);
-
 
 export const wagmiClient = createClient({
   autoConnect: true,
@@ -37,7 +36,12 @@ export const wagmiClient = createClient({
 
 export const ethereumClient = new EthereumClient(wagmiClient, chains); // accounts et tout
 
-//
+/*
+  ** @dev Shaan/CSN and Victor
+  ** @desc: mint site with 2 routes {Home and mydivergent}
+    - Home: Capsule
+    - mydivergent: Capsule or Nft owned
+*/
 
 function App() {
   const [ready, setReady] = useState(false);
@@ -50,33 +54,23 @@ function App() {
     <>
       {ready ? (
         <WagmiConfig client={wagmiClient}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/mydivergence" element={<Mydivergence />} />
-        </Routes>
-          <div className=" w-full overflow-hidden">
+          <div className="w-full overflow-hidden min-h-screen flex flex-col">
             <div className={`${styles.paddingX} ${styles.flexCenter}`}>
               <div className={`${styles.boxWidth}`}>
                 <Navbar />
               </div>
             </div>
-            <div className={`bg-capsule ${styles.flexCenter}`}>
-              <div className={`${styles.boxWidth}`}>
-                <Capsules />
-                <Droprate />
-                <Footer />
-              </div>
+            <div className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/mydivergent" element={<Mydivergent />} />
+              </Routes>
             </div>
           </div>
         </WagmiConfig>
       ) : null}
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
-      </>
-  );
-}
-
-function Home() {
-  return (<></>
+    </>
   );
 }
 
