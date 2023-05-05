@@ -5,6 +5,7 @@ import met from "./met.svg";
 import meta from "./meta.png";
 import divg from "./divg.svg";
 import Or from "./CapsuleOr.png";
+import Silver from "./CapsuleSilver.png";
 import Diamond from "./diamcap.svg";
 import Orground from "./orground.svg";
 import Diaground from "./diaground.svg";
@@ -27,6 +28,7 @@ export {
   meta,
   divg,
   Or,
+  Silver,
   Darksule,
   Diamond,
   Orground,

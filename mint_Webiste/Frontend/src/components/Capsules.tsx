@@ -6,21 +6,57 @@ import {
 } from "../assets";
 import { capsulesDatas,  } from "../constants";
 import  PopUpCheckout  from "./PopUpCheckout";
+import { ethers } from "ethers" 
+import NotWhitelist from "./NoWhitelist";
 
 const Capsules = () => {
   const [buyCount, setBuyCount] = useState(capsulesDatas);
   const [pricePolygon, setPrice] = useState(0);
   const [popupOpen, setPopupOpen] = useState(false);
-  const [selectedCap, setSelectedCap] = useState(null)
+  const [selectedCap, setSelectedCap] = useState(null);
+  const [isWhitelisted, setIsWhitelisted] = useState(false);
 
   useEffect(() => {
     const res  = axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd`)
     .then((response) => {
       setPrice(response.data["matic-network"].usd);
+
     }
     )
 
   }, []);
+
+  useEffect(() => {
+    checkWhitelistedStatus();
+  }, []);
+  
+  async function checkWhitelistedStatus() {
+    // try {
+    //   // Replace with your provider or use the browser's injected provider
+    //   const provider = new ethers.providers.Web3Provider(window.ethereum);
+  
+    //   // Replace with the user's Ethereum address
+    //   const userAddress = "0x...";
+  
+    //   // Replace with the smart contract address that manages whitelisting
+    //   const contractAddress = "0x...";
+  
+    //   // Replace with the ABI for the smart contract
+    //   const contractAbi = [/* ABI JSON array */];
+  
+    //   // Create a contract instance
+    //   const contract = new ethers.Contract(contractAddress, contractAbi, provider);
+  
+    //   // Call the 'isWhitelisted' function from the smart contract (replace with the actual function name)
+    //   const isUserWhitelisted = await contract.isWhitelisted(userAddress);
+  
+    //   setIsWhitelisted(isUserWhitelisted);
+    // } catch (error) {
+    //   console.error("Error checking whitelisted status:", error);
+    // }
+    setIsWhitelisted(true);
+  }
+
   const handleOpenPopup = (cap:any) => { // receive cap as parameter
     setSelectedCap(cap); // set the selected cap in state
     setPopupOpen(true);
@@ -34,43 +70,51 @@ const Capsules = () => {
     console.log("Confirmed!");
     setPopupOpen(false);
   };
+
   return (
     <div className="mt-20">
-      {capsulesDatas.map((cap, index) => (
-        <div className="flex justify-center mb-8" key={index} >
+      {!isWhitelisted 
+      ? (<NotWhitelist/>) : (<>
+
+        {capsulesDatas.map((cap, index) => (
+          <div className="flex justify-center mb-8" key={index} >
           <div>
             <div className="border-solid border-r-
             [1px] border-b-[1px] border-t-[1px] border-black 
             w-full sm:w-[640px] md:w-[768px] lg:w-[1024px] h-[300px] mt-4 rounded-md  flex justify-center ">
               <div className="relative">
-                <img src={cap.background} alt="bg" className=" absolute" />
+                <img src={cap.background} alt="bg" className=" absolute w-full h-full" />
                 <img
                   src={cap.image}
                   alt="img"
-                  className="w-[330px] mt-20 relative"/>
+                  className="relative w-[830px] max-w-full h-auto top-20 z-10
+                  left-1/2 transform -translate-x-1/2 bottom-1/2
+                  sm:w-[280px] md:w-[330px] lg:w-[330px]"/>
               </div>
-              {popupOpen && 
-              <PopUpCheckout  
-              cap={selectedCap}
-              pricePolygon={pricePolygon}
-              onClose={handleClosePopup}
-              onConfirm={handleConfirm} />}
+              {
+                popupOpen && 
+                <PopUpCheckout  
+                cap={selectedCap}
+                pricePolygon={pricePolygon}
+                onClose={handleClosePopup}
+                onConfirm={handleConfirm} />
+              }
               {!cap.open ? (
-                <center>
-                  <img
-                    src={lock}
-                    alt="bg"
-                    className={`w-[100px] mt-28 ml-32`}
+              <center>
+                <img
+                  src={lock}
+                  alt="bg"
+                  className={`w-[100px] mt-28 ml-32`}
                   />
-                </center>
-              ) : (
+              </center>
+                    ) : (
                 <div className="flex flex-col  w-full">
                   <div className="description-wrapper">
                   <div className=" flex justify-around ">
                     <p className="mt-5 font-bold text-[22px]"> Price </p>
                     <div className="mt-5 flex">
                       <img src={polygon} alt="bg" className="w-[50px]" />
-                      <p className="font-bold text-lg mr-2">
+                      <p className="font-bold text-lg mr-2 ">
                         {cap.price} MATIC{" "}
                       </p>{" "}
                     </div>
@@ -91,7 +135,7 @@ const Capsules = () => {
                               setBuyCount([...buyCount]);
                             }
                           }}
-                        >
+                          >
                           {"-"}
                         </button>
                       </div>
@@ -133,23 +177,24 @@ const Capsules = () => {
                       rgba(146, 83, 9, 0) 0%,
                       ${cap.color} 49.95%,
                       rgba(146, 83, 9, 0) 100%
-                    )
+                      )
                     `,
                   }}
-                >
+                  >
                   Offer ends in {cap.time}
                 </p>
               </div>
-                </div>
+            </div>
               )}
             </div>
             {/* <img
-              src={cap.image}
-              alt="img"
-              className="w-[480px] relative right-24 bottom-40 mt-5"/> */}
+            src={cap.image}
+            alt="img"
+          className="w-[480px] relative right-24 bottom-40 mt-5"/> */}
           </div>
         </div>
       ))}
+    </>)}
     </div>
   );
 };

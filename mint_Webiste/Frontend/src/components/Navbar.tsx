@@ -24,73 +24,51 @@ const Navbar = () => {
   const [account, setAccount] = useState<string | undefined>();
   const [ShowWallet, setShowWallet] = useState(false);
   const { address, connector, isConnected } = useAccount()
-  const { data: ensAvatar } = useEnsAvatar({ address })
-  const { data: ensName } = useEnsName({ address })
   const { connect, connectors, error, isLoading, pendingConnector } =
     useConnect()
-  const { disconnect } = useDisconnect()
  
-  // if (isConnected) {
-  //   return (
-  //     <div>
-  //       <img src={ensAvatar} alt="ENS Avatar" />
-  //       <div>{ensName ? `${ensName} (${address})` : address}</div>
-  //       <div>Connected to {connector.name}</div>
-  //       <button onClick={disconnect}>Disconnect</button>
-  //     </div>
-  //   )
-  // }
+  function handleConnection() {
+    if (!ethereumClient.getAccount().isConnected) {
+      try {
+
+        ethereumClient.connectConnector("injected");
+      }
+      catch (error)
+      {
+        console.log(error);
+      }
+      // setAccount(account);
+      // console.log(account);
+    }
+    else{
+      console.log("No wallet found or already connected");
+    }
+  }
+
   return (
     <nav className="w-full flex justify-between items-center navbar mt-5">
       <a href="/">
         <ArrowLongLeftIcon className="w-[30px] text-black mr-20" />
       </a>
       <ul className="list-none sm:flex hidden items-center flex-1 ">
-        <button onClick={() => {setShowWallet(!ShowWallet)}}>
+        <button>
           <div className="flex flex-row bg-[#00FFAE] items-center  mr-2">
             <img
               src={meta}
               alt="metamask"
               className=" w-[60px] h-[60px] bg-black"
             />
-            <h1 className="font-bold ml-2">Connect wallet</h1>
+            <button className="py-2 px-4 font-poppins font-medium text-[18px]  outline-none"
+              onClick={() => {handleConnection()}}>
+            {ethereumClient.getAccount().isConnected
+              ? shortenAddress(ethereumClient.getAccount().address)
+              : "Connect wallet"}
+          </button>
             <div className="">
               <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
             </div>
           </div>
         </button>
-          {
-            ShowWallet && (
-              <div>
-              {connectors.map((connector) => (
-                <ul>
-                <button
-                  disabled={!connector.ready}
-                  key={connector.id}
-                  onClick={() => connect({ connector })}
-                >
-                  {connector.name}
-                  {!connector.ready && ' (unsupported)'}
-                  {isLoading &&
-                    connector.id === pendingConnector?.id &&
-                    ' (connecting)'}
-                </button>
-                  </ul>
-              ))}
-         
-              {error && <div>{error.message}</div>}
-            </div>
-            )
-          }
-          {
-            isConnected && (
-              <div>
-              <div>{ensName ? `${ensName} (${address})` : address}</div>
-              <div>Connected to {connector.name}</div>
-              <button onClick={disconnect}>Disconnect</button>
-            </div>
-            )
-          }
         <button className="py-2 px-2 rounded-full mr-2 ">
           <a href="/mydivergent" className="">
           <div className="flex flex-row  items-center mr-2] bg-[#00FFAE]">
@@ -102,6 +80,9 @@ const Navbar = () => {
           </div>
           </a>
         </button>
+        <button className="py-2 px-2 font-poppins font-medium text-[18px] bg-[#00FFAE] rounded-full mr-3 ">
+            <IoInformation className=" w-[30px] text-[30px] text-black" />
+          </button>
       </ul>
       <div className="flex flex-col">
         <p className="px-6 font-poppins font-medium text-[28px] text-black">
