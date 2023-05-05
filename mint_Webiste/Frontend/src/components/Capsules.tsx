@@ -143,10 +143,6 @@ const Capsules = () => {
                 </div>
               )}
             </div>
-            {/* <img
-              src={cap.image}
-              alt="img"
-              className="w-[480px] relative right-24 bottom-40 mt-5"/> */}
           </div>
         </div>
       ))}

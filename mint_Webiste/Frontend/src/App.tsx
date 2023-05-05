@@ -14,7 +14,8 @@ import { polygonMumbai, polygon } from "wagmi/chains";
 import { Web3Modal } from "@web3modal/react";
 import { ethers  } from "ethers";
 import { coinbasewallet } from "web3modal/dist/providers/connectors";
-
+import HDNFT from "./artifacts/contracts/HD.sol/HD.json";
+import { AccountProvider } from './AccountContext';
 // Temporary Wagmi config
 export const projectId = "67a7534c23a607b73d823c05af89594a"; // process.env.PROJECT_ID
 // 2. Configure wagmi client
@@ -49,11 +50,19 @@ function App() {
   useEffect(() => {
     setReady(true);
   }, []);
-
+	// async function checkUser {
+	// 	const [account] = await ethereum.request({ method: 'eth_requestAccounts' });
+	// 	const provider = new ethers.providers.Web3Provider(window.ethereum);
+	// 	const signer = provider.getSigner();
+	// 	const contract = new ethers.Contract(HDNFT.address, HDNFT.abi, signer);
+	// 	const userCapsules = await contract.balanceOf(account);
+	// 	console.log(userCapsules);
+	// }
   return (
     <>
       {ready ? (
         <WagmiConfig client={wagmiClient}>
+          <AccountProvider>
           <div className="w-full overflow-hidden min-h-screen flex flex-col">
             <div className={`${styles.paddingX} ${styles.flexCenter}`}>
               <div className={`${styles.boxWidth}`}>
@@ -67,6 +76,7 @@ function App() {
               </Routes>
             </div>
           </div>
+          </AccountProvider>
         </WagmiConfig>
       ) : null}
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />

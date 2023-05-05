@@ -18,7 +18,7 @@ const Footer = () => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <div className=" flex flex-col justify-center items-center ">
+    <div className="flex flex-col justify-center items-center ">
       <img src={logo} alt="img" className="w-[200px] h-40" />
       <div className="flex mb-10">
         <a href="https://www.instagram.com/human_divergence">

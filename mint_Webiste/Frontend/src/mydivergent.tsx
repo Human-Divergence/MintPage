@@ -3,6 +3,10 @@ import { Navbar, Capsules, Footer, Droprate } from "./components";
 import styles from "./styles/style";
 import "./styles/Mydivergent.css"
 import { capsulesDatas,  } from "./constants";
+import { ethers } from "ethers";
+import HDNFT from "./artifacts/contracts/HD.sol/HD.json";
+
+const addressContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 function mydivergent() {
   const [selectedCapsule, setSelectedCapsule] = useState(null);
@@ -10,6 +14,21 @@ function mydivergent() {
   const handleViewClick = (capsule: any) => {
     setSelectedCapsule(capsule);
   };
+
+  const nftOwner = () => {
+		if (window.ethereum) {
+			const provider = new ethers.providers.Web3Provider(window.ethereum);
+			const signer = provider.getSigner();
+			const contract = new ethers.Contract(addressContract, HDNFT.abi, signer);
+			try {
+				const result =  contract.balanceOf(account);
+				console.log(result);
+			}
+			catch (err) {
+				console.log(err);
+			}
+		};
+	}
 
 	return (
 		<div className="flex-grow">
@@ -51,7 +70,7 @@ function mydivergent() {
                 </div>
               </div>
             </div>
-            <Droprate />
+            <Droprate CharacterData={selectedCapsule.character}/>
           </div>
         )}
 				</div>

@@ -10,36 +10,29 @@ import { navLinks } from "../constants";
 import { IoInformation } from "react-icons/io5";
 import { ethereumClient, wagmiClient } from "../App";
 import { shortenAddress } from "../utils/short";
-import { useConnect } from 'wagmi';
-import {
-  useAccount,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-} from 'wagmi';
+import { useAccount } from '../AccountContext';
 
+/**
+ * @dev Shaan - CSN
+ * @description Navbar component with connecton with a wallet and the redirection to the mydivergent page
+ */
 const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
-  const [account, setAccount] = useState<string | undefined>();
   const [ShowWallet, setShowWallet] = useState(false);
-  const { address, connector, isConnected } = useAccount()
-  const { data: ensAvatar } = useEnsAvatar({ address })
-  const { data: ensName } = useEnsName({ address })
-  const { connect, connectors, error, isLoading, pendingConnector } =
-    useConnect()
-  const { disconnect } = useDisconnect()
- 
-  // if (isConnected) {
-  //   return (
-  //     <div>
-  //       <img src={ensAvatar} alt="ENS Avatar" />
-  //       <div>{ensName ? `${ensName} (${address})` : address}</div>
-  //       <div>Connected to {connector.name}</div>
-  //       <button onClick={disconnect}>Disconnect</button>
-  //     </div>
-  //   )
-  // }
+  // const { account, setAccount } = useAccount();
+
+  function handleConnection() {
+    if (!ethereumClient.getAccount().isConnected) {
+      ethereumClient.connectConnector("injected");
+      // setAccount(account);
+      // console.log(account);
+    }
+    else{
+      console.log("KO");
+    }
+  }
+
   return (
     <nav className="w-full flex justify-between items-center navbar mt-5">
       <a href="/">
@@ -53,44 +46,18 @@ const Navbar = () => {
               alt="metamask"
               className=" w-[60px] h-[60px] bg-black"
             />
-            <h1 className="font-bold ml-2">Connect wallet</h1>
+            <button className="py-2 px-4 font-poppins font-medium text-[18px]  outline-none"
+            onClick={() => {
+            handleConnection()}}>
+            {ethereumClient.getAccount().isConnected
+              ? shortenAddress(ethereumClient.getAccount().address)
+              : "CONNEXION"}
+          </button>
             <div className="">
               <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
             </div>
           </div>
         </button>
-          {
-            ShowWallet && (
-              <div>
-              {connectors.map((connector) => (
-                <ul>
-                <button
-                  disabled={!connector.ready}
-                  key={connector.id}
-                  onClick={() => connect({ connector })}
-                >
-                  {connector.name}
-                  {!connector.ready && ' (unsupported)'}
-                  {isLoading &&
-                    connector.id === pendingConnector?.id &&
-                    ' (connecting)'}
-                </button>
-                  </ul>
-              ))}
-         
-              {error && <div>{error.message}</div>}
-            </div>
-            )
-          }
-          {
-            isConnected && (
-              <div>
-              <div>{ensName ? `${ensName} (${address})` : address}</div>
-              <div>Connected to {connector.name}</div>
-              <button onClick={disconnect}>Disconnect</button>
-            </div>
-            )
-          }
         <button className="py-2 px-2 rounded-full mr-2 ">
           <a href="/mydivergent" className="">
           <div className="flex flex-row  items-center mr-2] bg-[#00FFAE]">
@@ -126,9 +93,9 @@ const Navbar = () => {
           } p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
         >
           <ul className="list-none flex justify-end items-start flex-1 flex-col">
-            {navLinks.map((nav, index) => (
+            {/* {navLinks.map((nav, index) => (
               <p key={index}></p>
-            ))}
+            ))} */}
           </ul>
         </div>
       </div>
