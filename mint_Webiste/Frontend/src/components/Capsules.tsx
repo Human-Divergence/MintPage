@@ -20,10 +20,8 @@ const Capsules = () => {
     const res  = axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd`)
     .then((response) => {
       setPrice(response.data["matic-network"].usd);
-
-    }
+      }
     )
-
   }, []);
 
   useEffect(() => {
@@ -78,19 +76,18 @@ const Capsules = () => {
 
         {capsulesDatas.map((cap, index) => (
           <div className="flex justify-center mb-8" key={index} >
-          <div>
+          <div className="w-full sm:w-[640px] md:w-[768px] lg:w-[1024px]">
             <div className="border-solid border-r-
             [1px] border-b-[1px] border-t-[1px] border-black 
             w-full sm:w-[640px] md:w-[768px] lg:w-[1024px] h-[300px] mt-4 rounded-md  flex justify-center ">
-              <div className="relative">
-                <img src={cap.background} alt="bg" className=" absolute w-full h-full" />
-                <img
-                  src={cap.image}
-                  alt="img"
-                  className="relative w-[830px] max-w-full h-auto top-20 z-10
-                  left-1/2 transform -translate-x-1/2 bottom-1/2
-                  sm:w-[280px] md:w-[330px] lg:w-[330px]"/>
-              </div>
+            <div className="relative">
+              <img src={cap.background} alt="bg" className="absolute w-full h-auto lg:w-auto lg:h-auto" />
+              <img
+                src={cap.image}
+                alt="img"
+                className="relative w-[830px] max-w-full h-auto top-20 z-10 left-1/2 transform -translate-x-1/2 bottom-1/2 sm:w-[280px] md:w-[330px] lg:w-[330px]"
+              />
+            </div>
               {
                 popupOpen && 
                 <PopUpCheckout  

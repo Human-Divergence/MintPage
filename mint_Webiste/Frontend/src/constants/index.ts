@@ -1,5 +1,6 @@
-import { Darksule, Diaground, Diamond, Or, Orground, Unground, Silver,
+import { Darksule, Diaground, Diamond, Or, Orground, Unground, Silver, OrBG, SilverBG, DiamondBG,
   character1, character2, character3, character4, character5} from "../assets";
+
 export const navLinks = [
   {
     id: "products",
@@ -93,6 +94,7 @@ export const capsulesDatas = [
   {
     title: "unOpen",
     image: Silver,
+    imageBG: SilverBG,
     description:"QUELOZ ONYX CAPSULE",
     time: "23H:59M:59S",
     color: "#C6C9DC",
@@ -142,6 +144,7 @@ export const capsulesDatas = [
   {
     title: "Or",
     image: Or,
+    imageBG: OrBG,
     description:"MELT GOLD CAPSULE",
     time: "23H:59M:59S",
     color: "#8f4d00",
@@ -247,6 +250,7 @@ export const capsulesDatas = [
   {
     title: "Diamond",
     image: Diamond,
+    imageBG: DiamondBG,
     description:"TRIA DIAMOND CAPSULE",
     time: "23H:59M:59S",
     color: "#004A8F",

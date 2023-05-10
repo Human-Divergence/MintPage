@@ -30,8 +30,7 @@ const Navbar = () => {
       catch (error) {
         console.log(error);
       }
-      // setAccount(account);
-      // console.log(account);
+
     }
     else{
       console.log("No wallet found or already connected");
@@ -44,38 +43,38 @@ const Navbar = () => {
         <ArrowLongLeftIcon className="w-[30px] text-black mr-20" />
       </a>
       <ul className="list-none sm:flex hidden items-center flex-1 ">
-        <button>
-          <div className="flex flex-row bg-[#00FFAE] items-center  mr-2">
-            <img
-              src={meta}
-              alt="metamask"
-              className=" w-[60px] h-[60px] bg-black"
-            />
-            <button className="py-2 px-4 font-poppins font-medium text-[18px]  outline-none"
-              onClick={() => {handleConnection()}}>
-            {ethereumClient.getAccount().isConnected
-              ? shortenAddress(ethereumClient.getAccount().address)
-              : "Connect wallet"}
-          </button>
-            <div className="">
-              <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
-            </div>
-          </div>
+      <div>
+        <div className="flex flex-row bg-[#00FFAE] items-center  mr-2">
+          <img
+            src={meta}
+            alt="metamask"
+            className=" w-[60px] h-[60px] bg-black"
+          />
+          <button className="py-2 px-4 font-poppins font-medium text-[18px]  outline-none"
+            onClick={() => {handleConnection()}}>
+          {ethereumClient.getAccount().isConnected
+            ? shortenAddress(ethereumClient.getAccount().address)
+            : "Connect wallet"}
         </button>
-        <button className="py-2 px-2 rounded-full mr-2 ">
-          <a href="/mydivergent" className="">
-          <div className="flex flex-row  items-center mr-2] bg-[#00FFAE]">
-            <img src={divg} alt="HD" className=" w-full h-full bg-black" style={{ width: "60px", height: "60px" }} />
-              <p className="ml-2 font-bold">MY DIVERGENT</p>
-            <div className="">
-              <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
-            </div>
+          <div className="">
+            <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
           </div>
-          </a>
+        </div>
+      </div> 
+      <div className="py-2 px-2 rounded-full mr-2 "> {/* Change button to div here */}
+        <a href="/mydivergent" className="">
+        <div className="flex flex-row  items-center mr-2] bg-[#00FFAE]">
+          <img src={divg} alt="HD" className=" w-full h-full bg-black" style={{ width: "60px", height: "60px" }} />
+            <p className="ml-2 font-bold">MY DIVERGENT</p>
+          <div className="">
+            <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
+          </div>
+        </div>
+        </a>
+      </div>
+      <button className="py-2 px-2 font-poppins font-medium text-[18px] bg-[#00FFAE] rounded-full mr-3 ">
+          <IoInformation className=" w-[30px] text-[30px] text-black" />
         </button>
-        <button className="py-2 px-2 font-poppins font-medium text-[18px] bg-[#00FFAE] rounded-full mr-3 ">
-            <IoInformation className=" w-[30px] text-[30px] text-black" />
-          </button>
       </ul>
       <div className="flex flex-col">
         <p className="px-6 font-poppins font-medium text-[28px] text-black">

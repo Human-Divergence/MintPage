@@ -1,8 +1,8 @@
 import logo from "./Logo.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
-import met from "./met.svg";
-import meta from "./meta.png";
+import met from "./logo/met.svg";
+import meta from "./logo/meta.png";
 import divg from "./divg.svg";
 import Or from "./CapsuleOr.png";
 import Silver from "./CapsuleSilver.png";
@@ -11,8 +11,13 @@ import Orground from "./orground.svg";
 import Diaground from "./diaground.svg";
 import Unground from "./unground.svg";
 import Darksule from "./DarkCapsule.png";
-import lock from "./lock.png";
+import lock from "./logo/lock.png";
 import polygon from "./Polygon.png";
+import Minted from "./Minted.jpg"
+
+import OrBG from "./CapsuleGoldBG.png"
+import SilverBG from "./CapsuleSilverBG.png"
+import DiamondBG from "./CapsuleDiamondBG.png"
 
 import character1 from "./Character/Character1.png";
 import character2 from "./Character/Character2.png";
@@ -28,14 +33,18 @@ export {
   meta,
   divg,
   Or,
+  OrBG,
   Silver,
+  SilverBG,
   Darksule,
   Diamond,
+  DiamondBG,
   Orground,
   Diaground,
   lock,
   polygon,
   Unground,
+  Minted,
   character1,
   character2,
   character3,

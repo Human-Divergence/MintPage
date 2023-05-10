@@ -2,7 +2,7 @@ import { capsulesDatas, CharacterDatas } from "../constants";
 
 const Droprate = ({ CharacterData }) => {
   return (
-    <div className="">
+    <div className="mt-16">
       <h1 className="text-center text-4xl font-bold font-poppins bg-[#FF005F] mb-4">Droprate</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {CharacterData.map((Character, i) => (

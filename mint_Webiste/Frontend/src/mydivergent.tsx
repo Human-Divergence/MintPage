@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Footer, Droprate } from "./components";
 import styles from "./styles/style";
 import "./styles/Mydivergent.css"
 import { capsulesDatas,  } from "./constants";
-import { ethers } from "ethers";
 import {
-  ArrowLongLeftIcon,
   ArrowUpRightIcon,
-  BuildingStorefrontIcon,
 } from "@heroicons/react/24/solid";
-import { close, meta, menu, divg } from "./assets";
+import { divg } from "./assets";
 
 import { checkUserHasNFT } from './utils/nft_check/hasNft';
+
+import NoDivergent from './components/MyDivergent/NoDivergent';
 
 function mydivergent() {
   const [selectedCapsule, setSelectedCapsule] = useState(null);
@@ -35,8 +34,7 @@ function mydivergent() {
       alert("Please connect your wallet!");
       return;
     }
-  
-    // Get the user's address
+    // // Get the user's address
     // const [userAddress] = await window.ethereum.request({ method: "eth_accounts" });
   
     // // Create a new instance of the ethers.js library
@@ -50,7 +48,6 @@ function mydivergent() {
   
     // // Connect the contract to the signer
     // const signedContract = contract.connect(signer);
-  
     try {
       // Call the reveal function on the contract
       // const tx = await signedContract.reveal();
@@ -74,7 +71,7 @@ function mydivergent() {
 
   }
 	return (
-  <div className="min-h-screen flex flex-col">
+  <div className="flex flex-col">
 		<div className="flex-grow">
 			<div className={`bg-capsule ${styles.flexCenter}`}>
 				<div className={`${styles.boxWidth}`}>
@@ -86,10 +83,10 @@ function mydivergent() {
           <div className="my-divergence-container">
           {!selectedCapsule && capsulesDatas.map((capsule, index) => (
               <div key={index} className="capsule-container small-capsule-container">
-                <img src={capsule.image} alt={capsule.title} className="capsule-image" />
-                <p className="capsule-title text-center mt-1 font-bold text-xl">
-                      {capsule.description}
-                    </p>
+                <img src={capsule.imageBG} alt={capsule.title} className="capsule-image" />
+                <p className="capsule-title text-center mt-4 font-bold text-xl">
+                  {capsule.description}
+                </p>
                 <div className="capsule-buttons">
                   <button className="capsule-button reveal-button rounded-[10px] bg-[#00FFAE] text-black font-bold" onClick={reveal}>
                     Reveal</button>
@@ -99,17 +96,22 @@ function mydivergent() {
                   </button>
                 </div>
               </div>
-            ))}
+              )
+            )
+          }
           </div>
           {selectedCapsule && (
-            <div>
-              <div className="selected-capsule-wrapper">
-                <div className="selected-capsule-container">
-                  <img src={selectedCapsule.image} alt={selectedCapsule.title} className="selected-capsule-image" />
-                  <div className="selected-capsule-details">
-                  <button onClick={() => handleViewClick(null)}>Close</button>
+          <div>
+            <div className="flex flex-col items-center">
+              <div className="flex flex-col lg:flex-row items-start justify-between w-full h-full lg:w-auto lg:h-auto">
+                <div className="flex items-center justify-center w-full lg:w-auto">
+                  <img src={selectedCapsule.imageBG} alt={selectedCapsule.title} className="w-full h-auto object-cover lg:w-auto" />
+                </div>
+                <div className="selected-capsule-details w-full lg:w-1/2 flex flex-col justify-between p-4 lg:pl-8">
+                  <button onClick={() => handleViewClick(null)} className="self-start">Close</button>
+                  <div className="flex flex-col h-full justify-between">
                     <h2 className="font-bold">{selectedCapsule.description}</h2>
-                    <div className="selected-capsule-buttons">
+                    <div className="selected-capsule-buttons space-x-2 self-end">
                       <button
                         className="capsule-button put-on-sale-button text-black font-bold"
                         onClick={() => window.open('https://polygon.nftically.com/', '_blank')} >
@@ -120,34 +122,13 @@ function mydivergent() {
                   </div>
                 </div>
               </div>
-              <Droprate CharacterData={selectedCapsule.character} />
             </div>
+            <Droprate CharacterData={selectedCapsule.character} />
+          </div>
           )}
           </>
           ) : (
-            <div className="flex flex-col items-center">
-            <div>
-              <p className="mt-20 text-[50px] font-bold">You don't have a divergent yet</p>
-              <a href="/" className="">
-                <div className="flex flex-row items-center mr-2 mt-8 bg-[#00FFAE] w-48">
-                  <img src={divg} alt="HD" className="w-full h-full bg-black" style={{ width: "60px", height: "60px" }} />
-                  <p className="ml-2 font-bold">GET MY DIVERGENT</p>
-                  <div className="">
-                    <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
-                  </div>
-                </div>
-              </a>
-              <div className="pyramid-loader">
-                <div className="wrapper">
-                  <span className="side side1"></span>
-                  <span className="side side2"></span>
-                  <span className="side side3"></span>
-                  <span className="side side4"></span>
-                  <span className="shadow"></span>
-                </div>
-              </div>
-            </div>
-          </div>
+            <NoDivergent/>
           )}
 				</div>
 			</div>
