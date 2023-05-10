@@ -281,3 +281,23 @@ body {
 .description-wrapper {
   height: 800px;
 } 
+
+.responsive-image {
+  width: 530px;
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+/* Adjust the width for smaller screens */
+@media screen and (max-width: 768px) {
+  .responsive-image {
+    width: 280px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .responsive-image {
+    width: 200px;
+  }
+}

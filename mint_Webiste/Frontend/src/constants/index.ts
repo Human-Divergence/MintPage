@@ -1,4 +1,4 @@
-import { Darksule, Diaground, Diamond, Or, Orground, Unground,
+import { Darksule, Diaground, Diamond, Or, Orground, Unground, Silver,
   character1, character2, character3, character4, character5} from "../assets";
 export const navLinks = [
   {
@@ -91,13 +91,62 @@ export const footerLinks = [
 
 export const capsulesDatas = [
   {
+    title: "unOpen",
+    image: Silver,
+    description:"QUELOZ ONYX CAPSULE",
+    time: "23H:59M:59S",
+    color: "#C6C9DC",
+    background: Unground,
+    price: 35,
+    count:1,
+    open:true,
+    character: [
+      {
+        title: "Character 1",
+        image: "../src/assets/Character/character1.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 10,
+      },
+      {
+        title: "Character 2",
+        image: "../src/assets/Character/character2.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 10,
+    
+      },
+      {
+        title: "Character 3",
+        image: "../src/assets/Character/character3.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 10,
+      },
+      {
+        title: "Character 4",
+        image: "../src/assets/Character/character4.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 10,
+      },
+      {
+        title: "Character 5",
+        image: "../src/assets/Character/character5.png",
+        description:"QUELOZ UNKNOWN CAPSULE",
+        lock: true,
+        percent: 10,
+      }
+    ]
+  },
+  {
     title: "Or",
     image: Or,
-    description:"QUELOZ ONYX CAPSULE",
+    description:"MELT GOLD CAPSULE",
     time: "23H:59M:59S",
     color: "#8f4d00",
     background: Orground,
-    price: 25,
+    price: 70,
     count:1,
     open: true,
     character: [
@@ -251,55 +300,7 @@ export const capsulesDatas = [
       }
     ]
   },
-  {
-    title: "unOpen",
-    image: Darksule,
-    description:"QUELOZ UNKNOWN CAPSULE",
-    time: "23H:59M:59S",
-    color: "",
-    background: Unground,
-    price: 130,
-    count:1,
-    open:false,
-    character: [
-      {
-        title: "Character 1",
-        image: "../src/assets/Character/character1.png",
-        description:"QUELOZ UNKNOWN CAPSULE",
-        lock: true,
-        percent: 10,
-      },
-      {
-        title: "Character 2",
-        image: "../src/assets/Character/character2.png",
-        description:"QUELOZ UNKNOWN CAPSULE",
-        lock: true,
-        percent: 10,
-    
-      },
-      {
-        title: "Character 3",
-        image: "../src/assets/Character/character3.png",
-        description:"QUELOZ UNKNOWN CAPSULE",
-        lock: true,
-        percent: 10,
-      },
-      {
-        title: "Character 4",
-        image: "../src/assets/Character/character4.png",
-        description:"QUELOZ UNKNOWN CAPSULE",
-        lock: true,
-        percent: 10,
-      },
-      {
-        title: "Character 5",
-        image: "../src/assets/Character/character5.png",
-        description:"QUELOZ UNKNOWN CAPSULE",
-        lock: true,
-        percent: 10,
-      }
-    ]
-  },
+
 ];
 
 export const CharacterDatas = [

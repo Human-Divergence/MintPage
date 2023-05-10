@@ -16,20 +16,25 @@ import { useAccount } from '../AccountContext';
  * @dev Shaan - CSN
  * @description Navbar component with connecton with a wallet and the redirection to the mydivergent page
  */
+
 const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
   const [ShowWallet, setShowWallet] = useState(false);
-  // const { account, setAccount } = useAccount();
-
+ 
   function handleConnection() {
     if (!ethereumClient.getAccount().isConnected) {
-      ethereumClient.connectConnector("injected");
+      try {
+        ethereumClient.connectConnector("injected");
+      }
+      catch (error) {
+        console.log(error);
+      }
       // setAccount(account);
       // console.log(account);
     }
     else{
-      console.log("KO");
+      console.log("No wallet found or already connected");
     }
   }
 
@@ -39,7 +44,7 @@ const Navbar = () => {
         <ArrowLongLeftIcon className="w-[30px] text-black mr-20" />
       </a>
       <ul className="list-none sm:flex hidden items-center flex-1 ">
-        <button onClick={() => {setShowWallet(!ShowWallet)}}>
+        <button>
           <div className="flex flex-row bg-[#00FFAE] items-center  mr-2">
             <img
               src={meta}
@@ -47,11 +52,10 @@ const Navbar = () => {
               className=" w-[60px] h-[60px] bg-black"
             />
             <button className="py-2 px-4 font-poppins font-medium text-[18px]  outline-none"
-            onClick={() => {
-            handleConnection()}}>
+              onClick={() => {handleConnection()}}>
             {ethereumClient.getAccount().isConnected
               ? shortenAddress(ethereumClient.getAccount().address)
-              : "CONNEXION"}
+              : "Connect wallet"}
           </button>
             <div className="">
               <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
@@ -69,6 +73,9 @@ const Navbar = () => {
           </div>
           </a>
         </button>
+        <button className="py-2 px-2 font-poppins font-medium text-[18px] bg-[#00FFAE] rounded-full mr-3 ">
+            <IoInformation className=" w-[30px] text-[30px] text-black" />
+          </button>
       </ul>
       <div className="flex flex-col">
         <p className="px-6 font-poppins font-medium text-[28px] text-black">

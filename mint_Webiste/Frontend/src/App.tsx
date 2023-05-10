@@ -12,9 +12,6 @@ import Home from './Home';
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { polygonMumbai, polygon } from "wagmi/chains";
 import { Web3Modal } from "@web3modal/react";
-import { ethers  } from "ethers";
-import { coinbasewallet } from "web3modal/dist/providers/connectors";
-import HDNFT from "./artifacts/contracts/HD.sol/HD.json";
 import { AccountProvider } from './AccountContext';
 // Temporary Wagmi config
 export const projectId = "67a7534c23a607b73d823c05af89594a"; // process.env.PROJECT_ID

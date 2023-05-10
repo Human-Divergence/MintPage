@@ -1,6 +1,6 @@
 import { capsulesDatas, CharacterDatas } from "../constants";
 
-const Droprate = (CharacterData: any) => {
+const Droprate = ({ CharacterData }) => {
   return (
     <div className="">
       <h1 className="text-center text-4xl font-bold font-poppins bg-[#FF005F] mb-4">Droprate</h1>

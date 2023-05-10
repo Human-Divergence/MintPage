@@ -38,9 +38,8 @@ function Home () {
 		<div className="flex-grow">
 			<div className={`bg-capsule ${styles.flexCenter}`}>
 				<div className={`${styles.boxWidth}`}>
-					<button onClick={balanceOf}>Check User</button>
+					{/* <button onClick={balanceOf}>Check User</button> */}
 					<Capsules />
-					{/* <Droprate /> */}
 				</div>
 			</div>
 			<Footer />
