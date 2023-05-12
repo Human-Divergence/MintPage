@@ -13,6 +13,5 @@ export function AccountProvider({ children }) {
     account,
     setAccount,
   };
-
   return <AccountContext.Provider value={value}>{children}</AccountContext.Provider>;
 }

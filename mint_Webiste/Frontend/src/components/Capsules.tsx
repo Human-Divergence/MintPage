@@ -9,6 +9,11 @@ import  PopUpCheckout  from "./PopUpCheckout";
 import { ethers } from "ethers" 
 import NotWhitelist from "./NoWhitelist";
 
+/**
+ * @dev Shaan - CSN
+ * @notice This component is used to display the capsules set if the user is whitelisted
+ */
+
 const Capsules = () => {
   const [buyCount, setBuyCount] = useState(capsulesDatas);
   const [pricePolygon, setPrice] = useState(0);

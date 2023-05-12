@@ -12,7 +12,7 @@ const NotWhitelist = () => {
     return(
 			<>
 				{capsulesDatas.map((cap, index) => (
-          <div className="flex justify-center mb-8" key={index} >
+        <div className="flex justify-center mb-8" key={index} >
           <div>
             <div className="border-solid border-r-
             [1px] border-b-[1px] border-t-[1px] border-black 
@@ -64,8 +64,10 @@ const NotWhitelist = () => {
             </div>
           </div>
         </div>
-      ))}
-        </>
+          )
+        )
+      }
+      </>
     );
 }
 

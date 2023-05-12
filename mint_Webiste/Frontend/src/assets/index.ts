@@ -13,6 +13,7 @@ import Unground from "./unground.svg";
 import Darksule from "./DarkCapsule.png";
 import lock from "./logo/lock.png";
 import polygon from "./Polygon.png";
+import eth from "./logo/Ethereum.png";
 import Minted from "./Minted.jpg"
 
 import OrBG from "./CapsuleGoldBG.png"
@@ -42,6 +43,7 @@ export {
   Orground,
   Diaground,
   lock,
+  eth,
   polygon,
   Unground,
   Minted,

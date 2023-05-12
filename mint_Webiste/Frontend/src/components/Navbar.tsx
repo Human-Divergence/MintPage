@@ -1,27 +1,45 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   ArrowLongLeftIcon,
   ArrowUpRightIcon,
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/solid";
 import { close, meta, menu, divg } from "../assets";
-import Owner from "./Owner";
-import { navLinks } from "../constants";
 import { IoInformation } from "react-icons/io5";
 import { ethereumClient, wagmiClient } from "../App";
 import { shortenAddress } from "../utils/short";
-import { useAccount } from '../AccountContext';
 
 /**
  * @dev Shaan - CSN
- * @description Navbar component with connecton with a wallet and the redirection to the mydivergent page
+ * @description Navbar component with connecton with a wallet and 
+ * the redirection to the mydivergent page
  */
 
 const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
   const [ShowWallet, setShowWallet] = useState(false);
- 
+  const [isPopupOpen, setIsPopupOpen] = useState(true); // Add this state variable
+  const popupContentRef = useRef();
+
+  // This function will toggle the pop-up
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
+  // This function will close the pop-up when clicked outside the image
+  const closePopupOnClickOutside = (event) => {
+    if (popupContentRef.current && !popupContentRef.current.contains(event.target)) {
+      setIsPopupOpen(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", closePopupOnClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", closePopupOnClickOutside);
+    };
+  }, []);
+  
   function handleConnection() {
     if (!ethereumClient.getAccount().isConnected) {
       try {
@@ -38,6 +56,7 @@ const Navbar = () => {
   }
 
   return (
+    <>
     <nav className="w-full flex justify-between items-center navbar mt-5">
       <a href="/">
         <ArrowLongLeftIcon className="w-[30px] text-black mr-20" />
@@ -72,7 +91,8 @@ const Navbar = () => {
         </div>
         </a>
       </div>
-      <button className="py-2 px-2 font-poppins font-medium text-[18px] bg-[#00FFAE] rounded-full mr-3 ">
+        <button className="py-2 px-2 font-poppins font-medium 
+          text-[18px] bg-[#00FFAE] rounded-full mr-3 " onClick={togglePopup}>
           <IoInformation className=" w-[30px] text-[30px] text-black" />
         </button>
       </ul>
@@ -106,7 +126,31 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+      {isPopupOpen && (
+        <div
+          className="popup-overlay fixed inset-0 bg-opacity-50 bg-black z-10"
+          onClick={closePopupOnClickOutside}
+        >
+          <div ref={popupContentRef} className="popup-content w-[300px] h-auto p-4 bg-white mx-auto my-20 rounded-lg relative">
+            <img
+              src="../src/assets/DarkCapsule.png"
+              alt="Popup Image"
+              className="w-full h-auto object-cover"/>
+            <button
+              className="absolute top-2 right-2 text-red-500"
+              onClick={togglePopup}
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
 export default Navbar;
+function handleClickOutside(this: Document, ev: MouseEvent) {
+  throw new Error("Function not implemented.");
+}
+

@@ -1,7 +1,6 @@
 import {
     polygon
   } from "../assets";
-  import React from "react";
 
   function PopUpCheckout(props: { cap: any; pricePolygon: number; onClose: any; onConfirm: any; }) {
     const {cap, pricePolygon, onClose, onConfirm } = props;
