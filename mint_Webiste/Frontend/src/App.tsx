@@ -69,6 +69,7 @@ function App() {
           </AccountProvider>
         </WagmiConfig>
       ) : null}
+      <Footer/>
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </>
   );
