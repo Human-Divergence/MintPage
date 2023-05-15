@@ -12,27 +12,31 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { polygonMumbai, polygon } from "wagmi/chains";
 import { Web3Modal } from "@web3modal/react";
 import { AccountProvider } from "./context/AccountContext";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+import { publicProvider } from "wagmi/providers/public";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+
 import MyDivergent from "./pages/MyDivergent/MyDivergent";
 // Temporary Wagmi config
 export const projectId = "67a7534c23a607b73d823c05af89594a"; // process.env.PROJECT_ID
 // 2. Configure wagmi client
 
-export const chains = [polygonMumbai, polygon];
-export const { provider } = configureChains(chains, [
-  w3mProvider({ projectId }),
-]);
+const { chains, provider, webSocketProvider } = configureChains(
+  [polygonMumbai],
+  [
+    alchemyProvider({ apiKey: "IqzQnrs653IZafcYRxu894cvMbGdVO7x" }),
+    publicProvider(),
+  ]
+);
 
-export const wagmiClient = createClient({
+const client = createClient({
   autoConnect: true,
-  connectors: w3mConnectors({
-    projectId,
-    version: 1,
-    chains,
-  }),
+  connectors: [new MetaMaskConnector({ chains })],
   provider,
+  webSocketProvider,
 });
 
-export const ethereumClient = new EthereumClient(wagmiClient, chains); // accounts et tout
+// export const ethereumClient = new EthereumClient(wagmiClient, chains); // accounts et tout
 
 /*
   ** @dev Shaan/CSN and Victor
@@ -51,7 +55,7 @@ function App() {
   return (
     <>
       {ready ? (
-        <WagmiConfig client={wagmiClient}>
+        <WagmiConfig client={client}>
           <AccountProvider>
             <div className="w-full overflow-hidden min-h-screen flex flex-col">
               <div className={`${styles.paddingX} ${styles.flexCenter}`}>
@@ -69,8 +73,8 @@ function App() {
           </AccountProvider>
         </WagmiConfig>
       ) : null}
-      <Footer/>
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+      <Footer />
+      {/* <Web3Modal projectId={projectId} ethereumClient={ethereumClient} /> */}
     </>
   );
 }

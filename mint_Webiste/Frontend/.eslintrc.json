@@ -24,7 +24,7 @@
   "rules": {
     "react/react-in-tsx-scope": "off",
     "no-unsafe-finally": 1,
-    // "no-unused-vars": "off",
+    "no-unused-vars": "off",
     "no-console": "error",
     "no-duplicate-imports": "error",
     "no-empty": "error",
