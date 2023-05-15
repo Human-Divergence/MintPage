@@ -15,7 +15,7 @@ export const NFTContext = createContext<NFTContextProps>({
   nftBalance: 0,
   setHasNFT: () => {},
   setIsWhitelisted: () => {},
-setNFTBalance: () => {},
+  setNFTBalance: () => {},
 });
 
 interface NFTProviderProps {
@@ -25,11 +25,20 @@ interface NFTProviderProps {
 export const NFTProvider: React.FC<NFTProviderProps> = ({ children }) => {
   const [hasNFT, setHasNFT] = useState(false);
   const [isWhitelisted, setIsWhitelisted] = useState(false);
-	const [nftBalance, setNFTBalance] = useState(0);    
+  const [nftBalance, setNFTBalance] = useState(0);
 
   return (
-    <NFTContext.Provider value={{ hasNFT, isWhitelisted, nftBalance, setHasNFT, setIsWhitelisted, setNFTBalance }}>
-			{children}
+    <NFTContext.Provider
+      value={{
+        hasNFT,
+        isWhitelisted,
+        nftBalance,
+        setHasNFT,
+        setIsWhitelisted,
+        setNFTBalance,
+      }}
+    >
+      {children}
     </NFTContext.Provider>
   );
 };
