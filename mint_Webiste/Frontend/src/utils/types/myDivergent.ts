@@ -1,9 +1,9 @@
 export type Character = {
-  title: string;
+  nom: string;
+  faction: "Venus" | "Mars" | "Uranus" | "Jupiter" | "Neptune";
+  tier: 1 | 2 | 3 | 4 | 5;
   image: string;
-  description: string;
-  lock: boolean;
-  percent: number;
+  order: number;
 };
 
 export type Capsule = {
