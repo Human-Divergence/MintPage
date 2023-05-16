@@ -15,6 +15,7 @@ import {
   character4,
   character5,
 } from "../assets";
+import { Character } from "../utils/types/myDivergent";
 import { Capsule } from "../utils/types/myDivergent";
 
 export const navLinks = [
@@ -103,6 +104,44 @@ export const footerLinks = [
         link: "https://www.hoobank.com/become-a-partner/",
       },
     ],
+  },
+];
+
+export const character_silver: Character[] = [
+  {
+    title: "Character 1",
+    image: character1,
+    description: "QUELOZ UNKNOWN CAPSULE",
+    lock: true,
+    percent: 10,
+  },
+  {
+    title: "Character 2",
+    image: character2,
+    description: "QUELOZ UNKNOWN CAPSULE",
+    lock: true,
+    percent: 10,
+  },
+  {
+    title: "Character 3",
+    image: character3,
+    description: "QUELOZ UNKNOWN CAPSULE",
+    lock: true,
+    percent: 10,
+  },
+  {
+    title: "Character 4",
+    image: character4,
+    description: "QUELOZ UNKNOWN CAPSULE",
+    lock: true,
+    percent: 10,
+  },
+  {
+    title: "Character 5",
+    image: character5,
+    description: "QUELOZ UNKNOWN CAPSULE",
+    lock: true,
+    percent: 10,
   },
 ];
 

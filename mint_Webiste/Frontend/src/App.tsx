@@ -69,7 +69,7 @@ function App() {
                   <Route path="/mydivergent" element={<MyDivergent />} />
                 </Routes>
               </div>
-          <Footer />
+              <Footer />
             </div>
           </AccountProvider>
         </WagmiConfig>

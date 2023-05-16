@@ -15,11 +15,11 @@ import lock from "./logo/lock.png";
 import HDlogo from "./logo/HDlogo.png";
 import polygon from "./Polygon.png";
 import eth from "./logo/Ethereum.png";
-import Minted from "./Minted.jpg"
+import Minted from "./Minted.jpg";
 
-import OrBG from "./CapsuleGoldBG.png"
-import SilverBG from "./CapsuleSilverBG.png"
-import DiamondBG from "./CapsuleDiamondBG.png"
+import OrBG from "./CapsuleGoldBG.png";
+import SilverBG from "./CapsuleSilverBG.png";
+import DiamondBG from "./CapsuleDiamondBG.png";
 
 import character1 from "./Character/Character1.png";
 import character2 from "./Character/Character2.png";

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
 const AccountContext = createContext();
 
@@ -13,5 +13,7 @@ export function AccountProvider({ children }) {
     account,
     setAccount,
   };
-  return <AccountContext.Provider value={value}>{children}</AccountContext.Provider>;
+  return (
+    <AccountContext.Provider value={value}>{children}</AccountContext.Provider>
+  );
 }

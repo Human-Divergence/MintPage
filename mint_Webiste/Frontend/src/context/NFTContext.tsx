@@ -36,7 +36,8 @@ export const NFTProvider: React.FC<NFTProviderProps> = ({ children }) => {
         setHasNFT,
         setIsWhitelisted,
         setNFTBalance,
-      }}>
+      }}
+    >
       {children}
     </NFTContext.Provider>
   );
