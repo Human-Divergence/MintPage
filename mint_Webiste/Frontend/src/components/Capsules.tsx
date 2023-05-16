@@ -56,7 +56,7 @@ const Capsules = () => {
     // } catch (error) {
     //   console.error("Error checking whitelisted status:", error);
     // }
-    setIsWhitelisted(true);
+    setIsWhitelisted(false);
   }
 
   const handleOpenPopup = (cap: any) => {
@@ -97,7 +97,8 @@ const Capsules = () => {
                     <img
                       src={cap.image}
                       alt="img"
-                      className="relative w-[830px] max-w-full h-auto top-20 z-10 left-1/2 transform -translate-x-1/2 bottom-1/2 sm:w-[280px] md:w-[330px] lg:w-[330px]"
+                      className="relative w-[830px] max-w-full h-auto top-20 z-10 left-1/2 
+                      transform -translate-x-1/2 bottom-1/2 xs:w-[280px] md:w-[330px] lg:w-[330px]"
                     />
                   </div>
                   {popupOpen && (
@@ -138,7 +139,7 @@ const Capsules = () => {
                         <center>
                           <div
                             className="flex flex-row items-center justify-between rounded-[5px] bg-[#00FFAE] 
-                      mt-5 w-[20%] h-[30%]"
+                      mt-5 w-[25%] h-[25%]"
                           >
                             <div>
                               <button
@@ -167,15 +168,6 @@ const Capsules = () => {
                               +
                             </button>
                           </div>
-                          <button
-                            className=" px-4 font-poppins bg-[#00FFAE] font-medium text-[22px] rounded-[5px] mt-2 w-[20%] hover:text-white"
-                            onClick={() => {
-                              handleOpenPopup(cap);
-                            }}
-                          >
-                            {" "}
-                            BUY
-                          </button>
                         </center>
                       </div>
                       <div className="bg-white mt-2 h-full border-solid rounded-br-lg border-t-[1px] border-black description-container">
