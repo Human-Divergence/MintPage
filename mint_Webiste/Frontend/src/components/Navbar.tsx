@@ -19,7 +19,7 @@ const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
   const [ShowWallet, setShowWallet] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(true); // Add this state variable
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const popupContentRef = useRef();
 
   // This function will toggle the pop-up

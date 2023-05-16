@@ -7,7 +7,6 @@ import {
   w3mProvider,
 } from "@web3modal/ethereum";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { polygonMumbai, polygon } from "wagmi/chains";
 import { Web3Modal } from "@web3modal/react";
@@ -16,6 +15,7 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
+import Home from "./pages/Home";
 import MyDivergent from "./pages/MyDivergent/MyDivergent";
 // Temporary Wagmi config
 export const projectId = "67a7534c23a607b73d823c05af89594a"; // process.env.PROJECT_ID
@@ -63,17 +63,17 @@ function App() {
                   <Navbar />
                 </div>
               </div>
-              <div className="flex-grow">
+              <div className="flex-grow mb-16">
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/mydivergent" element={<MyDivergent />} />
                 </Routes>
               </div>
+          <Footer />
             </div>
           </AccountProvider>
         </WagmiConfig>
       ) : null}
-      <Footer />
       {/* <Web3Modal projectId={projectId} ethereumClient={ethereumClient} /> */}
     </>
   );

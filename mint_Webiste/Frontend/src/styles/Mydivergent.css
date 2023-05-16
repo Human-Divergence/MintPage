@@ -40,9 +40,10 @@
   cursor: pointer;
   transition: 0.3s;
 }
-
 .selected-capsule-custom {
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 565px;
   height: 699px;
   border-radius: 16px;
@@ -53,7 +54,6 @@
 
 .selected-capsule-container {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
 }
 

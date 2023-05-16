@@ -3,6 +3,7 @@ import  axios  from "axios"
 import {
   lock,
   polygon,
+  eth,
 } from "../assets";
 import { capsulesDatas,  } from "../constants";
 import  PopUpCheckout  from "./PopUpCheckout";
@@ -22,9 +23,9 @@ const Capsules = () => {
   const [isWhitelisted, setIsWhitelisted] = useState(false);
 
   useEffect(() => {
-    const res  = axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd`)
+    const res  = axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd`)
     .then((response) => {
-      setPrice(response.data["matic-network"].usd);
+      setPrice(response.data["ethereum"].usd);
       }
     )
   }, []);
@@ -115,9 +116,9 @@ const Capsules = () => {
                   <div className=" flex justify-around ">
                     <p className="mt-5 font-bold text-[22px]"> Price </p>
                     <div className="mt-5 flex">
-                      <img src={polygon} alt="bg" className="w-[50px]" />
-                      <p className="font-bold text-lg mr-2 ">
-                        {cap.price} MATIC{" "}
+                      <img src={eth} alt="bg" className="w-[20px]" />
+                      <p className="font-bold text-lg ml-4 ">
+                        {cap.price} ETH{" "}
                       </p>{" "}
                     </div>
                   </div>
