@@ -63,7 +63,7 @@ body {
   scroll-behavior: smooth;
 }
 
-.heigth-footer {
+.height-page {
   height: calc(100vh - 132px);
 }
 

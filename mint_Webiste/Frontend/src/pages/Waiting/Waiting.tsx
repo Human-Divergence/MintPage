@@ -3,7 +3,7 @@ import React from "react";
 const Waiting = () => {
   var countDownDate = new Date("Jun 5, 2023 15:37:25").getTime();
   return (
-    <div className="heigth-footer  flex items-center justify-center font-extrabold">
+    <div className="height-page  flex items-center justify-center font-extrabold">
       <div className="flex-col space-y-4 text-[40px]">
         <p>YOUR DIVERGENTS</p>
         <p>ARE NOT READY YET</p>

@@ -10,10 +10,17 @@ import ItemPreview from "./ItemPreview/ItemPreview";
 
 const MyDivergent = () => {
   const [selectedCapsule, setSelectedCapsule] = useState<Capsule | undefined>();
+  const [selectedCharacter, setSelectedCharacter] = useState<
+    Character | undefined
+  >();
   const [hasNFT, setHasNFT] = useState<boolean>(false);
 
-  const handleViewClick = (capsule: Capsule | undefined) => {
+  const handleViewClick = (
+    capsule: Capsule | undefined,
+    character: Character | undefined
+  ) => {
     setSelectedCapsule(capsule);
+    setSelectedCharacter(character);
   };
 
   useEffect(() => {
@@ -24,35 +31,45 @@ const MyDivergent = () => {
   }, []);
 
   return (
-    <div className={` bg-capsule flex justify-center  `}>
+    <div className={`height-page bg-capsule flex justify-center pt-10  `}>
       {hasNFT ? (
         <>
           <div className="flex flex-col">
-            {!selectedCapsule && (
-              <p className="ml-10 text-[40px] font-medium">Owned</p>
-            )}
+            {selectedCapsule === undefined &&
+              selectedCharacter === undefined && (
+                <p className=" ml-10 text-[40px] font-medium">Owned</p>
+              )}
             <div className="flex flex-wrap items-center ">
-              {!selectedCapsule &&
+              {selectedCapsule === undefined &&
+                selectedCharacter === undefined &&
                 capsulesDatas.map((capsule: Capsule, index) => (
                   <Card
                     capsule={capsule}
                     onClick={() => {
-                      handleViewClick(capsule);
+                      handleViewClick(capsule, undefined);
                     }}
                     key={index}
                   />
                 ))}
-              {!selectedCapsule &&
+              {selectedCapsule === undefined &&
+                selectedCharacter === undefined &&
                 characters_silver.map((character: Character, index) => (
-                  <Card character={character} onClick={() => {}} key={index} />
+                  <Card
+                    character={character}
+                    onClick={() => {
+                      handleViewClick(undefined, character);
+                    }}
+                    key={index}
+                  />
                 ))}
             </div>
           </div>
-          {selectedCapsule && (
+          {(selectedCapsule || selectedCharacter) && (
             <ItemPreview
               selectedCapsule={selectedCapsule}
+              selectedCharacter={selectedCharacter}
               onClick={() => {
-                handleViewClick(undefined);
+                handleViewClick(undefined, undefined);
               }}
             />
           )}
