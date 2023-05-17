@@ -11,6 +11,7 @@ import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
 import Home from "./pages/Home";
 import MyDivergent from "./pages/MyDivergent/MyDivergent";
+import Waiting from "./pages/Waiting/Waiting";
 // Temporary Wagmi config
 export const projectId = "67a7534c23a607b73d823c05af89594a"; // process.env.PROJECT_ID
 // 2. Configure wagmi client
@@ -61,6 +62,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/mydivergent" element={<MyDivergent />} />
+                  <Route path="/Waiting" element={<Waiting />} />
                 </Routes>
               </div>
               <Footer />

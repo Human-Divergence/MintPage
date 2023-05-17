@@ -61,20 +61,36 @@ const Navbar = () => {
           <ArrowLongLeftIcon className="mr-20 w-[30px] text-black" />
         </a>
         <div className="flex flex-col font-extrabold">
-          <p className="font-poppins text-[40px] font-medium text-black">
-            CAPSULES
-          </p>
-          <p className="font-poppins text-[40px] font-medium text-[#00FFAE]">
-            OPENING
-          </p>
-          {/* <li className={location.pathname === '/mydivergent' ? 'active' : ''}>
-            <p className="font-poppins font-medium text-[40px] text-black">
-              MY
-            </p>
-            <p className="font-poppins font-medium text-[40px] text-[#00FFAE]">
-              DIVERGENTS
-            </p>
-          </li> */}
+          {location.pathname === '/' &&
+            <div>
+              <p className="font-poppins font-medium text-[56px] text-black m-0 leading-none">
+                CAPSULES
+              </p>
+              <p className="font-poppins font-medium text-[56px] text-[#00FFAE] m-0 leading-none">
+                OPENING
+              </p>
+            </div>
+          }
+          {location.pathname === '/mydivergent' &&
+            <div>
+              <p className="font-poppins font-medium text-[56px] text-black m-0 leading-none">
+                MY
+              </p>
+              <p className="font-poppins font-medium text-[56px] text-[#00FFAE] m-0 leading-none">
+                DIVERGENTS
+              </p>
+            </div>
+          }
+          {location.pathname === '/waiting' &&
+            <div>
+              <p className="font-poppins font-medium text-[56px] text-black m-0 leading-none">
+                CAPSULE
+              </p>
+              <p className="font-poppins font-medium text-[56px] text-[#00FFAE] m-0 leading-none">
+                PURCHASE
+              </p>
+            </div>
+          }
         </div>
         <ul className="hidden flex-1 list-none items-center justify-end sm:flex">
           <button
@@ -117,6 +133,7 @@ const Navbar = () => {
               {/* {ethereumClient.getAccount().isConnected
                   ? shortenAddress(ethereumClient.getAccount().address)
                   : "Connect wallet"} */}
+              Connect wallet
             </button>
             <div className="">
               <ArrowUpRightIcon className="ml-2 mr-2 w-[20px] font-bold text-black" />
