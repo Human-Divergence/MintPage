@@ -1,9 +1,6 @@
-import { useState, useRef, useEffect } from "react";
-import {
-  ArrowLongLeftIcon,
-  ArrowUpRightIcon,
-  BuildingStorefrontIcon,
-} from "@heroicons/react/24/solid";
+/* eslint-disable react/react-in-jsx-scope */
+import { useState } from "react";
+import { ArrowLongLeftIcon, ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { useLocation } from "react-router-dom";
 import { close, meta, menu, divg } from "../assets";
 import { IoInformation } from "react-icons/io5";
@@ -17,9 +14,7 @@ import { IoInformation } from "react-icons/io5";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const [ShowWallet, setShowWallet] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const popupContentRef = useRef();
   const location = useLocation();
   // This function will toggle the pop-up
   const togglePopup = () => {
@@ -61,36 +56,36 @@ const Navbar = () => {
           <ArrowLongLeftIcon className="mr-20 w-[30px] text-black" />
         </a>
         <div className="flex flex-col font-extrabold">
-          {location.pathname === '/' &&
+          {location.pathname === "/" && (
             <div>
-              <p className="font-poppins font-medium text-[56px] text-black m-0 leading-none">
+              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-black">
                 CAPSULES
               </p>
-              <p className="font-poppins font-medium text-[56px] text-[#00FFAE] m-0 leading-none">
+              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-[#00FFAE]">
                 OPENING
               </p>
             </div>
-          }
-          {location.pathname === '/mydivergent' &&
+          )}
+          {location.pathname === "/mydivergent" && (
             <div>
-              <p className="font-poppins font-medium text-[56px] text-black m-0 leading-none">
+              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-black">
                 MY
               </p>
-              <p className="font-poppins font-medium text-[56px] text-[#00FFAE] m-0 leading-none">
+              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-[#00FFAE]">
                 DIVERGENTS
               </p>
             </div>
-          }
-          {location.pathname === '/waiting' &&
+          )}
+          {location.pathname === "/waiting" && (
             <div>
-              <p className="font-poppins font-medium text-[56px] text-black m-0 leading-none">
+              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-black">
                 CAPSULE
               </p>
-              <p className="font-poppins font-medium text-[56px] text-[#00FFAE] m-0 leading-none">
-                PURCHASE
+              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-[#00FFAE]">
+                PRE SALE
               </p>
             </div>
-          }
+          )}
         </div>
         <ul className="hidden flex-1 list-none items-center justify-end sm:flex">
           <button
@@ -188,6 +183,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-function handleClickOutside(this: Document, ev: MouseEvent) {
-  throw new Error("Function not implemented.");
-}
