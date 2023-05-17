@@ -1,5 +1,9 @@
-import React, { useState, useRef } from "react";
-import { ArrowLongLeftIcon, ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import { useState, useRef, useEffect } from "react";
+import {
+  ArrowLongLeftIcon,
+  ArrowUpRightIcon,
+  BuildingStorefrontIcon,
+} from "@heroicons/react/24/solid";
 import { useLocation } from "react-router-dom";
 import { close, meta, menu, divg } from "../assets";
 import { IoInformation } from "react-icons/io5";
@@ -56,27 +60,21 @@ const Navbar = () => {
         <a href="/">
           <ArrowLongLeftIcon className="mr-20 w-[30px] text-black" />
         </a>
-        <div className="m-8 flex flex-col font-extrabold">
-          {location.pathname === "/" && (
-            <div>
-              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-black">
-                CAPSULES
-              </p>
-              <p className="m-0 font-poppins text-[56px] font-medium  leading-none text-[#00FFAE]">
-                OPENING
-              </p>
-            </div>
-          )}
-          {location.pathname === "/mydivergent" && (
-            <div>
-              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-black">
-                MY
-              </p>
-              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-[#00FFAE]">
-                DIVERGENTS
-              </p>
-            </div>
-          )}
+        <div className="flex flex-col font-extrabold">
+          <p className="font-poppins text-[40px] font-medium text-black">
+            CAPSULES
+          </p>
+          <p className="font-poppins text-[40px] font-medium text-[#00FFAE]">
+            OPENING
+          </p>
+          {/* <li className={location.pathname === '/mydivergent' ? 'active' : ''}>
+            <p className="font-poppins font-medium text-[40px] text-black">
+              MY
+            </p>
+            <p className="font-poppins font-medium text-[40px] text-[#00FFAE]">
+              DIVERGENTS
+            </p>
+          </li> */}
         </div>
         <ul className="hidden flex-1 list-none items-center justify-end sm:flex">
           <button
@@ -119,7 +117,6 @@ const Navbar = () => {
               {/* {ethereumClient.getAccount().isConnected
                   ? shortenAddress(ethereumClient.getAccount().address)
                   : "Connect wallet"} */}
-              {"Connect wallet"}
             </button>
             <div className="">
               <ArrowUpRightIcon className="ml-2 mr-2 w-[20px] font-bold text-black" />
@@ -138,7 +135,11 @@ const Navbar = () => {
               !toggle ? "hidden" : "flex"
             } bg-black-gradient sidebar absolute right-0 top-20 mx-4 my-2 min-w-[140px] rounded-xl p-6`}
           >
-            <ul className="flex flex-1 list-none flex-col items-start justify-end"></ul>
+            <ul className="flex flex-1 list-none flex-col items-start justify-end">
+              {/* {navLinks.map((nav, index) => (
+              <p key={index}></p>
+            ))} */}
+            </ul>
           </div>
         </div>
       </nav>
