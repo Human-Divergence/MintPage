@@ -12,6 +12,7 @@ import Diaground from "./diaground.svg";
 import Unground from "./unground.svg";
 import Darksule from "./DarkCapsule.png";
 import lock from "./logo/lock.png";
+import Back from "./logo/Back.png";
 import HDlogo from "./logo/HDlogo.png";
 import polygon from "./Polygon.png";
 import eth from "./logo/Ethereum.png";
@@ -29,6 +30,7 @@ import character5 from "./Character/Character5.png";
 
 export {
   logo,
+  Back,
   HDlogo,
   close,
   menu,

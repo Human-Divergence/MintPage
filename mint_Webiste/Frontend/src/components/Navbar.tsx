@@ -1,8 +1,8 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useState } from "react";
-import { ArrowLongLeftIcon, ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { useLocation } from "react-router-dom";
-import { close, meta, menu, divg } from "../assets";
+import { close, meta, menu, divg, Back } from "../assets";
 import { IoInformation } from "react-icons/io5";
 // import { ethereumClient, wagmiClient } from "../App";
 
@@ -52,8 +52,8 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar mt-5 flex w-full items-center justify-between">
-        <a href="/">
-          <ArrowLongLeftIcon className="mr-20 w-[30px] text-black" />
+        <a href="/" className=" absolute left-0 flex">
+          <img src={Back} className=" text-black" />
         </a>
         <div className="flex flex-col font-extrabold">
           {location.pathname === "/" && (
