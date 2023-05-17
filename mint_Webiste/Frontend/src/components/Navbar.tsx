@@ -1,9 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { useLocation } from "react-router-dom";
 import { close, meta, menu, divg, Back } from "../assets";
 import { IoInformation } from "react-icons/io5";
+import { getNavigationNames } from "../utils/helpers/global.helpers";
 // import { ethereumClient, wagmiClient } from "../App";
 
 /**
@@ -49,71 +50,51 @@ const Navbar = () => {
   //     console.log("No wallet found or already connected");
   //   }
   // }
+  const pathName = useMemo(() => {
+    return location.pathname;
+  }, [location.pathname]);
+
+  const navigationNames = useMemo(() => {
+    return getNavigationNames(pathName) || "";
+  }, [pathName]);
+
   return (
     <>
-      <nav className="navbar mt-5 flex w-full items-center justify-between">
-        <a href="/" className=" absolute left-0 flex">
-          <img src={Back} className=" text-black" />
-        </a>
-        <div className="flex flex-col font-extrabold">
-          {location.pathname === "/" && (
-            <div>
-              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-black">
-                CAPSULES
-              </p>
-              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-[#00FFAE]">
-                OPENING
-              </p>
-            </div>
-          )}
-          {location.pathname === "/mydivergent" && (
-            <div>
-              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-black">
-                MY
-              </p>
-              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-[#00FFAE]">
-                DIVERGENTS
-              </p>
-            </div>
-          )}
-          {location.pathname === "/waiting" && (
-            <div>
-              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-black">
-                CAPSULE
-              </p>
-              <p className="m-0 font-poppins text-[56px] font-medium leading-none text-[#00FFAE]">
-                PRE SALE
-              </p>
-            </div>
-          )}
+      <nav className="mt-5 flex  justify-between">
+        <div className="absolute">
+          <a href="/" className=" ">
+            <img src={Back} className="h-[60px] text-black" />
+          </a>
+          <p className=" m-0 font-poppins text-[56px] font-medium leading-none text-black">
+            {navigationNames[0]}
+            <br />
+            <span className="text-[#00FFAE]"> {navigationNames[1]}</span>
+          </p>
         </div>
-        <ul className="hidden flex-1 list-none items-center justify-end sm:flex">
+
+        <ul className="hidden h-[60px] flex-1 list-none items-center justify-end gap-3 sm:flex">
           <button
-            className="mr-3 rounded-full bg-[#00FFAE] px-2 
-          py-2 font-poppins text-[18px] font-medium "
+            className="rounded-full bg-[#00FFAE] px-2 py-2 font-poppins text-[18px] font-medium "
             onClick={togglePopup}
           >
-            <IoInformation className=" w-[30px] text-[30px] text-black" />
+            <IoInformation className=" h-[30px] w-[30px] text-[30px] text-black" />
           </button>
-          <div></div>
-          <div className="mr-2 rounded-full px-2 py-2 ">
-            {" "}
+
+          <div className="rounded-full ">
             <a href="/mydivergent" className="">
-              <div className="mr-2] flex  flex-row items-center bg-[#00FFAE]">
+              <div className="flex  flex-row items-center bg-[#00FFAE]">
                 <img
                   src={divg}
                   alt="HD"
-                  className=" h-full w-full bg-black"
-                  style={{ width: "60px", height: "60px" }}
+                  className="h-[60px] w-[60px] bg-black"
                 />
                 <p className="ml-2 font-bold">MY DIVERGENT</p>
-                <div className="">
-                  <ArrowUpRightIcon className="ml-2 mr-2 w-[20px] font-bold text-black" />
-                </div>
+                <ArrowUpRightIcon className="ml-2 mr-2 w-[20px] font-bold text-black" />
               </div>
             </a>
           </div>
-          <div className="mr-2 flex flex-row items-center  bg-[#00FFAE]">
+
+          <div className=" flex flex-row items-center  bg-[#00FFAE]">
             <img
               src={meta}
               alt="metamask"
@@ -135,6 +116,7 @@ const Navbar = () => {
             </div>
           </div>
         </ul>
+
         <div className="flex flex-1 items-center justify-end sm:hidden">
           <img
             src={toggle ? close : menu}
@@ -155,6 +137,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
       {isPopupOpen && (
         <div
           className="popup-overlay fixed inset-0 z-10 bg-black bg-opacity-50"

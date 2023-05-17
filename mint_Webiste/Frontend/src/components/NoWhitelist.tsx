@@ -1,6 +1,6 @@
 import React from "react";
 import { lock } from "../assets";
-import { capsulesDatas } from "../constants/mockData";
+import { capsulesDatas } from "../utils/constants/mockData";
 
 const NotWhitelist = () => {
   return (

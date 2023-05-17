@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { lock, eth } from "../assets";
-import { capsulesDatas } from "../constants/mockData";
+import { capsulesDatas } from "../utils/constants/mockData";
 import PopUpCheckout from "./PopUpCheckout";
 import NotWhitelist from "./NoWhitelist";
 

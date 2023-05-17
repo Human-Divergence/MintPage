@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Capsule, Character } from "../../utils/types/myDivergent";
 import { checkUserHasNFT } from "../../utils/ethers/hasNft";
-import { capsulesDatas, characters_silver } from "../../constants/mockData";
+import {
+  capsulesDatas,
+  characters_silver,
+} from "../../utils/constants/mockData";
 import NoDivergent from "../../components/MyDivergent/NoDivergent";
 
 import "../../styles/Mydivergent.css";
@@ -31,7 +34,7 @@ const MyDivergent = () => {
   }, []);
 
   return (
-    <div className={`height-page bg-capsule flex justify-center pt-10  `}>
+    <div className={`height-page bg-capsule flex justify-center pt-32  `}>
       {hasNFT ? (
         <>
           <div className="flex flex-col">

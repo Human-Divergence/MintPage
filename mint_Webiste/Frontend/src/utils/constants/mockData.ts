@@ -13,8 +13,8 @@ import {
   character3,
   character4,
   character5,
-} from "../assets";
-import { Character, Capsule } from "../utils/types/myDivergent";
+} from "../../assets";
+import { Character, Capsule } from "../types/myDivergent";
 
 export const navLinks = [
   {
@@ -112,6 +112,7 @@ export const characters_silver: Character[] = [
     tier: 5,
     image: character1,
     order: 11,
+    percentage: 100,
   },
 ];
 
@@ -134,6 +135,7 @@ export const capsulesDatas: Capsule[] = [
         tier: 5,
         image: character1,
         order: 11,
+        percentage: 100,
       },
       {
         nom: "Herborist",
@@ -141,6 +143,7 @@ export const capsulesDatas: Capsule[] = [
         tier: 5,
         image: character2,
         order: 11,
+        percentage: 100,
       },
       {
         nom: "Herborist",
@@ -148,6 +151,7 @@ export const capsulesDatas: Capsule[] = [
         tier: 5,
         image: character3,
         order: 11,
+        percentage: 100,
       },
     ],
   },
@@ -169,6 +173,7 @@ export const capsulesDatas: Capsule[] = [
         tier: 5,
         image: character1,
         order: 11,
+        percentage: 100,
       },
       {
         nom: "Herborist",
@@ -176,6 +181,7 @@ export const capsulesDatas: Capsule[] = [
         tier: 5,
         image: character2,
         order: 11,
+        percentage: 100,
       },
     ],
   },
@@ -197,6 +203,7 @@ export const capsulesDatas: Capsule[] = [
         tier: 5,
         image: character1,
         order: 11,
+        percentage: 100,
       },
       {
         nom: "Herborist",
@@ -204,6 +211,7 @@ export const capsulesDatas: Capsule[] = [
         tier: 5,
         image: character2,
         order: 11,
+        percentage: 100,
       },
     ],
   },

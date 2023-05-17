@@ -64,7 +64,7 @@ body {
 }
 
 .height-page {
-  height: calc(100vh - 132px);
+  height: calc(100vh - 60px);
 }
 
 .text-gradient {
