@@ -4,6 +4,7 @@ import {
   ArrowUpRightIcon,
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/solid";
+import { useLocation } from 'react-router-dom';
 import { close, meta, menu, divg } from "../assets";
 import { IoInformation } from "react-icons/io5";
 // import { ethereumClient, wagmiClient } from "../App";
@@ -21,7 +22,7 @@ const Navbar = () => {
   const [ShowWallet, setShowWallet] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const popupContentRef = useRef();
-
+  const location = useLocation();
   // This function will toggle the pop-up
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
@@ -55,16 +56,55 @@ const Navbar = () => {
   //     console.log("No wallet found or already connected");
   //   }
   // }
-
+  console.log(location)
   return (
     <>
       <nav className="w-full flex justify-between items-center navbar mt-5">
         <a href="/">
           <ArrowLongLeftIcon className="w-[30px] text-black mr-20" />
         </a>
-        <ul className="list-none sm:flex hidden items-center flex-1 ">
+        <div className="flex flex-col font-extrabold">
+          <p className="font-poppins font-medium text-[40px] text-black">
+            CAPSULES
+          </p>
+          <p className="font-poppins font-medium text-[40px] text-[#00FFAE]">
+            OPENING
+          </p>
+          {/* <li className={location.pathname === '/mydivergent' ? 'active' : ''}>
+            <p className="font-poppins font-medium text-[40px] text-black">
+              MY
+            </p>
+            <p className="font-poppins font-medium text-[40px] text-[#00FFAE]">
+              DIVERGENTS
+            </p>
+          </li> */}
+        </div>
+        <ul className="list-none sm:flex hidden items-center flex-1 justify-end">
+        <button className="py-2 px-2 font-poppins font-medium 
+          text-[18px] bg-[#00FFAE] rounded-full mr-3 "
+            onClick={togglePopup} >
+            <IoInformation className=" w-[30px] text-[30px] text-black" />
+          </button>
           <div>
-            <div className="flex flex-row bg-[#00FFAE] items-center  mr-2">
+          </div>
+          <div className="py-2 px-2 rounded-full mr-2 ">
+            {" "}
+            <a href="/mydivergent" className="">
+              <div className="flex flex-row  items-center mr-2] bg-[#00FFAE]">
+                <img
+                  src={divg}
+                  alt="HD"
+                  className=" w-full h-full bg-black"
+                  style={{ width: "60px", height: "60px" }}
+                />
+                <p className="ml-2 font-bold">MY DIVERGENT</p>
+                <div className="">
+                  <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div className="flex flex-row bg-[#00FFAE] items-center  mr-2">
               <img
                 src={meta}
                 alt="metamask"
@@ -84,43 +124,7 @@ const Navbar = () => {
                 <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
               </div>
             </div>
-          </div>
-          <div className="py-2 px-2 rounded-full mr-2 ">
-            {" "}
-            {/* Change button to div here */}
-            <a href="/mydivergent" className="">
-              <div className="flex flex-row  items-center mr-2] bg-[#00FFAE]">
-                <img
-                  src={divg}
-                  alt="HD"
-                  className=" w-full h-full bg-black"
-                  style={{ width: "60px", height: "60px" }}
-                />
-                <p className="ml-2 font-bold">MY DIVERGENT</p>
-                <div className="">
-                  <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
-                </div>
-              </div>
-            </a>
-          </div>
-          <button
-            className="py-2 px-2 font-poppins font-medium 
-          text-[18px] bg-[#00FFAE] rounded-full mr-3 "
-            onClick={togglePopup}
-          >
-            <IoInformation className=" w-[30px] text-[30px] text-black" />
-          </button>
         </ul>
-        <div className="flex flex-col">
-          <p className="px-6 font-poppins font-medium text-[28px] text-black">
-            {" "}
-            CAPSULES
-          </p>
-          <p className="px-6 font-poppins font-medium text-[28px] text-[#00FFAE]">
-            {" "}
-            OPENING
-          </p>
-        </div>
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <img
             src={toggle ? close : menu}
