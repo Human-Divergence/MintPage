@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Capsule, Character } from "../../utils/types/myDivergent";
 import { checkUserHasNFT } from "../../utils/ethers/hasNft";
-import { capsulesDatas, characters_silver } from "../../constants";
-import { Droprate } from "../../components";
+import { capsulesDatas, characters_silver } from "../../constants/mockData";
 import NoDivergent from "../../components/MyDivergent/NoDivergent";
 
 import "../../styles/Mydivergent.css";
-import { IoMdClose } from "react-icons/io";
 import Card from "./Card/Card";
-import { reveal } from "../../utils/ethers/ethers.utils";
 import ItemPreview from "./ItemPreview/ItemPreview";
 
 const MyDivergent = () => {
@@ -25,13 +22,6 @@ const MyDivergent = () => {
     };
     fetchUserNFTStatus();
   }, []);
-
-  const PutOnSale = async () => {
-    if (!window.ethereum) {
-      alert("Please connect your wallet!");
-      return;
-    }
-  };
 
   return (
     <div className={` bg-capsule flex justify-center  `}>

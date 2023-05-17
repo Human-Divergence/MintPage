@@ -1,15 +1,9 @@
-import { useEffect, useState } from "react";
-import { Navbar, Capsules, Footer, Droprate } from "./components";
+import React, { useEffect, useState } from "react";
+import { Navbar, Footer } from "./components";
 import styles from "./styles/style";
-import {
-  EthereumClient,
-  w3mConnectors,
-  w3mProvider,
-} from "@web3modal/ethereum";
 import { Routes, Route } from "react-router-dom";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { polygonMumbai, polygon } from "wagmi/chains";
-import { Web3Modal } from "@web3modal/react";
+import { polygonMumbai } from "wagmi/chains";
 import { AccountProvider } from "./context/AccountContext";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -57,13 +51,13 @@ function App() {
       {ready ? (
         <WagmiConfig client={client}>
           <AccountProvider>
-            <div className="w-full overflow-hidden min-h-screen flex flex-col">
+            <div className="flex min-h-screen w-full flex-col overflow-hidden">
               <div className={`${styles.paddingX} ${styles.flexCenter}`}>
                 <div className={`${styles.boxWidth}`}>
                   <Navbar />
                 </div>
               </div>
-              <div className="flex-grow mb-16">
+              <div className="mb-16 flex-grow">
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/mydivergent" element={<MyDivergent />} />

@@ -4,6 +4,7 @@ export type Character = {
   tier: 1 | 2 | 3 | 4 | 5;
   image: string;
   order: number;
+  percentage: number;
 };
 
 export type Capsule = {

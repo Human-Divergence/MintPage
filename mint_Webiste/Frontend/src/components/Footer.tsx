@@ -1,11 +1,12 @@
+import React from "react";
 import { HDlogo } from "../assets";
 import { BsDiscord, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <div className="flex flex-col relative bottom-0 w-full px-16 py-12 bg-[#313131]">
-      <div className="flex justify-start mb-4 border-b">
-        <img src={HDlogo} alt="img" className="w-[200px] h-[120px]" />
+    <div className="relative bottom-0 flex w-full flex-col bg-[#313131] px-16 py-12">
+      <div className="mb-4 flex justify-start border-b">
+        <img src={HDlogo} alt="img" className="h-[120px] w-[200px]" />
       </div>
       <div className="flex justify-between">
         <div className="flex">
@@ -14,37 +15,37 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <BsInstagram size={30} className=" text-white mr-10" />
+            <BsInstagram size={30} className=" mr-10 text-white" />
           </a>
           <a
             href="https://twitter.com/HumanDivergence"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <BsTwitter size={30} className=" text-white mr-10" />
+            <BsTwitter size={30} className=" mr-10 text-white" />
           </a>
           <a
             href="https://discord.gg/human-divergence"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <BsDiscord size={30} className=" text-white mr-10" />
+            <BsDiscord size={30} className=" mr-10 text-white" />
           </a>
           <a
             href="https://www.linkedin.com/company/human-divergence/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <BsLinkedin size={30} className=" text-white mr-10" />
+            <BsLinkedin size={30} className=" mr-10 text-white" />
           </a>
         </div>
         <div className="flex flex-col md:flex-row">
-          <div className="flex flex-col mr-4 mb-4 md:mb-0">
+          <div className="mb-4 mr-4 flex flex-col md:mb-0">
             <a
               href="https://www.humandivergence.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mb-2 text-white text-[20px] underline"
+              className="mb-2 text-[20px] text-white underline"
             >
               Website
             </a>
@@ -52,7 +53,7 @@ const Footer = () => {
               href="https://www.humandivergence-comics.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mb-2 text-white text-[20px] underline"
+              className="mb-2 text-[20px] text-white underline"
             >
               Manga
             </a>
@@ -62,7 +63,7 @@ const Footer = () => {
               href="https://humandivergence-marketplace.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mb-2 text-white text-[20px] underline"
+              className="mb-2 text-[20px] text-white underline"
             >
               Marketplace
             </a>
@@ -70,7 +71,7 @@ const Footer = () => {
               href=""
               target="_blank"
               rel="noopener noreferrer"
-              className="mb-2 text-white text-[20px] underline"
+              className="mb-2 text-[20px] text-white underline"
             >
               Whitepaper
             </a>
@@ -78,14 +79,14 @@ const Footer = () => {
               href=""
               target="_blank"
               rel="noopener noreferrer"
-              className="mb-2 text-white text-[20px] underline"
+              className="mb-2 text-[20px] text-white underline"
             >
               Newsletter
             </a>
           </div>
         </div>
       </div>
-      <h1 className="text-white mt-4">
+      <h1 className="mt-4 text-white">
         HUMAN DIVERGENCE @ 2022 ALL RIGHTS RESERVED
       </h1>
     </div>

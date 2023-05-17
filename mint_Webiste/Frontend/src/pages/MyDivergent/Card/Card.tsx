@@ -9,7 +9,6 @@ type CardProps = {
 };
 
 const Card: FC<CardProps> = ({ capsule, character, onClick }) => {
-  const test = 0;
   return (
     <div className="capsule-container small-capsule-container ">
       <img
@@ -18,23 +17,23 @@ const Card: FC<CardProps> = ({ capsule, character, onClick }) => {
         className="capsule-image"
       />
       {capsule !== undefined && (
-        <p className="text-center py-8 font-extrabold text-lg">
+        <p className="py-8 text-center text-lg font-extrabold">
           {capsule?.description}
         </p>
       )}
       {character !== undefined && (
-        <div className="flex flex-row pt-3 pb-4 w-full px-5 justify-between">
+        <div className="flex w-full flex-row justify-between px-5 pb-4 pt-3">
           <div>
-            <div className="text-[#FF005F] text-xs font-extrabold">
+            <div className="text-xs font-extrabold text-[#FF005F]">
               {character.faction}
             </div>
-            <div className=" text-lg text-[#FAB63B] font-extrabold">
+            <div className=" text-lg font-extrabold text-[#FAB63B]">
               {character.nom}
             </div>
             <div className="text-xs ">#{character.order}</div>
           </div>
           <div className="flex">
-            <div className="flex self-center justify-center font-extrabold  items-center w-[87px] h-[17px] rounded-3xl text-white bg-[#FFAF36]">
+            <div className="flex h-[17px] w-[87px] items-center  justify-center self-center rounded-3xl bg-[#FFAF36] font-extrabold text-white">
               Tier {character.tier}
             </div>
           </div>

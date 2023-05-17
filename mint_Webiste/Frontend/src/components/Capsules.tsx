@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { lock, polygon, eth } from "../assets";
-import { capsulesDatas } from "../constants";
+import React, { useState, useEffect } from "react";
+import { lock, eth } from "../assets";
+import { capsulesDatas } from "../constants/mockData";
 import PopUpCheckout from "./PopUpCheckout";
-import { ethers } from "ethers";
 import NotWhitelist from "./NoWhitelist";
 
 /**
@@ -70,7 +68,6 @@ const Capsules = () => {
   };
 
   const handleConfirm = () => {
-    console.log("Confirmed!");
     setPopupOpen(false);
   };
 
@@ -81,24 +78,24 @@ const Capsules = () => {
       ) : (
         <>
           {capsulesDatas.map((cap, index) => (
-            <div className="flex justify-center mb-8" key={index}>
+            <div className="mb-8 flex justify-center" key={index}>
               <div className="w-full sm:w-[640px] md:w-[768px] lg:w-[1024px]">
                 <div
-                  className="border-solid border-r-
-            [1px] border-b-[1px] border-t-[1px] border-black 
-            w-full sm:w-[640px] md:w-[768px] lg:w-[1024px] h-[300px] mt-4 rounded-md  flex justify-center "
+                  className="border-r- [1px]
+            mt-4 flex h-[300px] w-full 
+            justify-center rounded-md border-b-[1px] border-t-[1px] border-solid border-black sm:w-[640px]  md:w-[768px] lg:w-[1024px] "
                 >
                   <div className="relative">
                     <img
                       src={cap.background}
                       alt="bg"
-                      className="absolute w-full h-auto lg:w-auto lg:h-auto"
+                      className="absolute h-auto w-full lg:h-auto lg:w-auto"
                     />
                     <img
                       src={cap.image}
                       alt="img"
-                      className="relative w-[830px] max-w-full h-auto top-20 z-10 left-1/2 
-                      transform -translate-x-1/2 bottom-1/2 xs:w-[280px] md:w-[330px] lg:w-[330px]"
+                      className="relative bottom-1/2 left-1/2 top-20 z-10 h-auto w-[830px] 
+                      max-w-full -translate-x-1/2 transform xs:w-[280px] md:w-[330px] lg:w-[330px]"
                     />
                   </div>
                   {popupOpen && (
@@ -114,17 +111,17 @@ const Capsules = () => {
                       <img
                         src={lock}
                         alt="bg"
-                        className={`w-[100px] mt-28 ml-32`}
+                        className={`ml-32 mt-28 w-[100px]`}
                       />
                     </center>
                   ) : (
-                    <div className="flex flex-col  w-full">
+                    <div className="flex w-full  flex-col">
                       <div className="description-wrapper">
                         <div className=" flex justify-around ">
-                          <p className="mt-5 font-bold text-[22px]"> Price </p>
+                          <p className="mt-5 text-[22px] font-bold"> Price </p>
                           <div className="mt-5 flex">
                             <img src={eth} alt="bg" className="w-[20px]" />
-                            <p className="font-bold text-lg ml-4 ">
+                            <p className="ml-4 text-lg font-bold ">
                               {cap.price} ETH{" "}
                             </p>{" "}
                           </div>
@@ -138,12 +135,12 @@ const Capsules = () => {
                         </div>
                         <center>
                           <div
-                            className="flex flex-row items-center justify-between rounded-[5px] bg-[#00FFAE] 
-                      mt-5 w-[25%] h-[25%]"
+                            className="mt-5 flex h-[25%] w-[25%] flex-row items-center 
+                      justify-between rounded-[5px] bg-[#00FFAE]"
                           >
                             <div>
                               <button
-                                className=" px-3 bg-black rounded-[5px] text-white text-[22px] "
+                                className=" rounded-[5px] bg-black px-3 text-[22px] text-white "
                                 onClick={() => {
                                   if (buyCount[index].count > 0) {
                                     buyCount[index].count -= 1;
@@ -154,12 +151,12 @@ const Capsules = () => {
                                 {"-"}
                               </button>
                             </div>
-                            <p className="font-poppins font-medium text-[22px]   ">
+                            <p className="font-poppins text-[22px] font-medium   ">
                               {" "}
                               {buyCount[index].count}{" "}
                             </p>
                             <button
-                              className="px-3 bg-black rounded-[5px] text-white text-[22px]"
+                              className="rounded-[5px] bg-black px-3 text-[22px] text-white"
                               onClick={() => {
                                 buyCount[index].count += 1;
                                 setBuyCount([...buyCount]);
@@ -170,8 +167,8 @@ const Capsules = () => {
                           </div>
                         </center>
                       </div>
-                      <div className="bg-white mt-2 h-full border-solid rounded-br-lg border-t-[1px] border-black description-container">
-                        <p className="text-center mt-1 font-bold text-xl">
+                      <div className="description-container mt-2 h-full rounded-br-lg border-t-[1px] border-solid border-black bg-white">
+                        <p className="mt-1 text-center text-xl font-bold">
                           {cap.description}
                         </p>
                         <p

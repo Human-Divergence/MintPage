@@ -54,15 +54,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.selected-capsule-buttons {
-  gap: 2rem;
-}
-
-.put-on-sale-button {
-  background-color: #00ffae;
-}
-
-.put-on-sale-button:hover {
-  background-color: #009dff;
-}

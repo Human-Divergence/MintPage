@@ -27,6 +27,6 @@ export const reveal = async () => {
     // Successfully revealed the NFT
     alert("Revealed successfully!");
   } catch (error) {
-    console.error("Error revealing NFT:", error);
+    throw new Error("Error reveal function : " + error);
   }
 };

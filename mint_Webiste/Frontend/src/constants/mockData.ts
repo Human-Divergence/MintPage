@@ -1,5 +1,4 @@
 import {
-  Darksule,
   Diaground,
   Diamond,
   Or,
@@ -15,8 +14,7 @@ import {
   character4,
   character5,
 } from "../assets";
-import { Character } from "../utils/types/myDivergent";
-import { Capsule } from "../utils/types/myDivergent";
+import { Character, Capsule } from "../utils/types/myDivergent";
 
 export const navLinks = [
   {

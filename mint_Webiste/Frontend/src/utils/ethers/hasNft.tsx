@@ -1,6 +1,6 @@
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 
-export async function checkUserHasNFT(updateHasNFT) {
+export async function checkUserHasNFT(updateHasNFT: Function) {
   // try {
   //   // Replace with your provider or use the browser's injected provider
   //   const provider = new ethers.providers.Web3Provider(window.ethereum);

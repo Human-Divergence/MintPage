@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import React, { FC, ReactNode, createContext, useState } from "react";
 
 interface NFTContextProps {
   hasNFT: boolean;
@@ -19,10 +19,12 @@ export const NFTContext = createContext<NFTContextProps>({
 });
 
 interface NFTProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export const NFTProvider: React.FC<NFTProviderProps> = ({ children }) => {
+export const NFTProvider: FC<NFTProviderProps> = ({
+  children,
+}: NFTProviderProps) => {
   const [hasNFT, setHasNFT] = useState(false);
   const [isWhitelisted, setIsWhitelisted] = useState(false);
   const [nftBalance, setNFTBalance] = useState(0);

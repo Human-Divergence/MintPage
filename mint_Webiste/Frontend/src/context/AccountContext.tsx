@@ -1,12 +1,14 @@
-import { createContext, useContext, useState } from "react";
+import React, { ReactNode, createContext, useState } from "react";
 
-const AccountContext = createContext();
+type AccountContextProps = {};
 
-export function useAccount() {
-  return useContext(AccountContext);
-}
+type AccountProviderProps = {
+  children: ReactNode;
+};
 
-export function AccountProvider({ children }) {
+const AccountContext = createContext<AccountContextProps>({});
+
+export function AccountProvider({ children }: AccountProviderProps) {
   const [account, setAccount] = useState(null);
 
   const value = {

@@ -1,12 +1,16 @@
 import { ethers } from "ethers";
 
-const getUserNFTBalance = async (contract, userAddress) => {
+const getUserNFTBalance = async (
+  contract: ethers.Contract,
+  userAddress: string
+) => {
   try {
     const balance = await contract.balanceOf(userAddress);
 
     return balance.toNumber();
   } catch (error) {
-    console.error("Error getting NFT balance:", error);
+    throw new Error("Error getting NFT balance : " + error);
+
     return 0;
   }
 };
@@ -38,7 +42,7 @@ const canUserBuyNFT = async () => {
 		check if the user have already 2 NFT of the collection
 */
 
-export const buyNFT = async () => {
+export const buyNFT = async (contract: ethers.Contract) => {
   const isAllowedToBuy = await canUserBuyNFT();
 
   if (isAllowedToBuy) {
@@ -58,7 +62,8 @@ export const buyNFT = async () => {
 
       alert("NFT successfully minted!");
     } catch (error) {
-      console.error("Error buying NFT:", error);
+      throw new Error("Error buying NFT : " + error);
+
       alert(
         "Error buying NFT. Please make sure you are whitelisted and have sufficient funds."
       );
