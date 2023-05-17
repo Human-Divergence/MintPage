@@ -18,15 +18,15 @@ const Capsules = () => {
   const [selectedCap, setSelectedCap] = useState(null);
   const [isWhitelisted, setIsWhitelisted] = useState(false);
 
-  useEffect(() => {
-    const res = axios
-      .get(
-        `https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd`
-      )
-      .then((response) => {
-        setPrice(response.data["ethereum"].usd);
-      });
-  }, []);
+  // useEffect(() => {
+  //   const res = axios
+  //     .get(
+  //       `https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd`
+  //     )
+  //     .then((response) => {
+  //       setPrice(response.data["ethereum"].usd);
+  //     });
+  // }, []);
 
   useEffect(() => {
     checkWhitelistedStatus();
@@ -56,7 +56,7 @@ const Capsules = () => {
     // } catch (error) {
     //   console.error("Error checking whitelisted status:", error);
     // }
-    setIsWhitelisted(false);
+    setIsWhitelisted(true);
   }
 
   const handleOpenPopup = (cap: any) => {

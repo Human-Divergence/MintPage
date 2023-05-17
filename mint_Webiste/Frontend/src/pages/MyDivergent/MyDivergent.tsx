@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Capsule, Character } from "../../utils/types/myDivergent";
 import { checkUserHasNFT } from "../../utils/ethers/hasNft";
 import { capsulesDatas, characters_silver } from "../../constants";
@@ -6,8 +6,7 @@ import { Droprate } from "../../components";
 import NoDivergent from "../../components/MyDivergent/NoDivergent";
 
 import "../../styles/Mydivergent.css";
-import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
-import { divg } from "../../assets";
+import { IoMdClose } from "react-icons/io"
 import Card from "./Card/Card";
 import { reveal } from "../../utils/ethers/ethers.utils";
 
@@ -50,10 +49,9 @@ const MyDivergent = () => {
                     key={index}
                   />
                 ))}
-
               {!selectedCapsule &&
                 characters_silver.map((character: Character, index) => (
-                  <Card character={character} onClick={() => {}} />
+                  <Card character={character} onClick={() => {}} key={index} />
                 ))}
             </div>
           </div>
@@ -74,9 +72,9 @@ const MyDivergent = () => {
                   <div className="w-full lg:w-1/2 flex flex-col justify-between p-4 lg:pl-8 ">
                     <button
                       onClick={() => handleViewClick(undefined)}
-                      className="self-start"
+                      className="self-end"
                     >
-                      Close
+                      <IoMdClose/>
                     </button>
                     <div>
                       <div className="flex flex-col h-full justify-between mt-auto items-center">
