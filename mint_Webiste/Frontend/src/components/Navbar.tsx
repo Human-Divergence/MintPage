@@ -1,8 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import {
   ArrowLongLeftIcon,
   ArrowUpRightIcon,
-  BuildingStorefrontIcon,
 } from "@heroicons/react/24/solid";
 import { useLocation } from 'react-router-dom';
 import { close, meta, menu, divg } from "../assets";
@@ -17,7 +16,6 @@ import { shortenAddress } from "../utils/short";
  */
 
 const Navbar = () => {
-  const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
   const [ShowWallet, setShowWallet] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -63,22 +61,28 @@ const Navbar = () => {
         <a href="/">
           <ArrowLongLeftIcon className="w-[30px] text-black mr-20" />
         </a>
-        <div className="flex flex-col font-extrabold">
-          <p className="font-poppins font-medium text-[40px] text-black">
-            CAPSULES
-          </p>
-          <p className="font-poppins font-medium text-[40px] text-[#00FFAE]">
-            OPENING
-          </p>
-          {/* <li className={location.pathname === '/mydivergent' ? 'active' : ''}>
-            <p className="font-poppins font-medium text-[40px] text-black">
+        <div className="flex flex-col font-extrabold m-8">
+        {location.pathname === '/' &&
+          <div>
+            <p className="font-poppins font-medium text-[56px] text-black m-0 leading-none">
+              CAPSULES
+            </p>
+            <p className="font-poppins font-medium text-[56px] text-[#00FFAE]  m-0 leading-none">
+              OPENING
+            </p>
+          </div>
+        }
+        {location.pathname === '/mydivergent' &&
+          <div>
+            <p className="font-poppins font-medium text-[56px] text-black m-0 leading-none">
               MY
             </p>
-            <p className="font-poppins font-medium text-[40px] text-[#00FFAE]">
+            <p className="font-poppins font-medium text-[56px] text-[#00FFAE] m-0 leading-none">
               DIVERGENTS
             </p>
-          </li> */}
-        </div>
+          </div>
+        }
+      </div>
         <ul className="list-none sm:flex hidden items-center flex-1 justify-end">
         <button className="py-2 px-2 font-poppins font-medium 
           text-[18px] bg-[#00FFAE] rounded-full mr-3 "
@@ -119,6 +123,9 @@ const Navbar = () => {
                 {/* {ethereumClient.getAccount().isConnected
                   ? shortenAddress(ethereumClient.getAccount().address)
                   : "Connect wallet"} */}
+                {
+                  "Connect wallet"
+                }
               </button>
               <div className="">
                 <ArrowUpRightIcon className="w-[20px] text-black ml-2 mr-2 font-bold" />
@@ -138,9 +145,6 @@ const Navbar = () => {
             } p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col">
-              {/* {navLinks.map((nav, index) => (
-              <p key={index}></p>
-            ))} */}
             </ul>
           </div>
         </div>
