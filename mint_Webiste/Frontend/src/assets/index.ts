@@ -27,6 +27,9 @@ import character2 from "./Character/Character2.png";
 import character3 from "./Character/Character3.png";
 import character4 from "./Character/Character4.png";
 import character5 from "./Character/Character5.png";
+import AvatarWaiting from "./Character/AvatarWaiting.png";
+import MetamaskLogo from "./logo/MetamaskLogo.png";
+import Cross from "./icons/Cross.svg";
 
 export {
   logo,
@@ -56,4 +59,7 @@ export {
   character3,
   character4,
   character5,
+  AvatarWaiting,
+  MetamaskLogo,
+  Cross,
 };

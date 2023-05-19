@@ -35,14 +35,8 @@ const Modal: React.FC<ModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
-      <div ref={modalRef} className="relative rounded-lg bg-white p-6">
-        <button
-          className="absolute right-2 top-0 p-2 text-black"
-          onClick={closeFunction}
-        >
-          X
-        </button>
+    <div className="fixed inset-0 flex items-center justify-center  bg-gray-800 bg-opacity-75">
+      <div ref={modalRef} className={`$ relative `}>
         {children}
       </div>
     </div>
