@@ -54,9 +54,7 @@ function App() {
           <AccountProvider>
             <div className="flex min-h-screen w-full flex-col overflow-hidden">
               <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-                <div className={`${styles.boxWidth}`}>
-                  <Navbar />
-                </div>
+                <Navbar />
               </div>
               <div className="mb-16 flex-grow">
                 <Routes>

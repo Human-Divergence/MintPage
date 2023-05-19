@@ -22,13 +22,13 @@ const ItemPreview: FC<ItemPreviewProps> = ({
         <div className="text-[#FF005F]">EMBODY NOW!</div>
       </div>
       <div
-        className="flex w-[750px]  transform 
+        className="flex w-[750px]  
                 justify-between rounded-xl bg-[#FFFFFF40] lg:h-auto lg:flex-row"
       >
         <img
           src={selectedCapsule?.imageBG || selectedCharacter?.image}
           alt={selectedCapsule?.title}
-          className="h-[400px] scale-110 rounded-3xl object-cover lg:w-auto"
+          className="h-[415px] scale-110 rounded-3xl object-cover lg:w-auto"
         />
 
         <div className="flex w-full flex-col lg:w-1/2 ">

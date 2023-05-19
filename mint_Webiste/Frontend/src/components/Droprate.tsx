@@ -7,8 +7,8 @@ type DroprateProps = {
 
 const Droprate: FC<DroprateProps> = ({ CharacterData }) => {
   return (
-    <div className="mt-16 px-12 py-12">
-      <div className="flex items-center justify-between border-b">
+    <>
+      <div className="mt-32 flex items-center justify-between border-b">
         <div className=" relative h-[20px] w-full bg-[#FF005F]">
           <h1
             className="absolute left-0 top-0 flex h-[32px]  w-[342px]  
@@ -35,7 +35,7 @@ const Droprate: FC<DroprateProps> = ({ CharacterData }) => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

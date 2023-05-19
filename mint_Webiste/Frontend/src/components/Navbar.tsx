@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { close, meta, menu, divg, Back } from "../assets";
 import { IoInformation } from "react-icons/io5";
 import { getNavigationNames } from "../utils/helpers/global.helpers";
-// import { ethereumClient, wagmiClient } from "../App";
+import Modal from "./Modal/Modal";
 
 /**
  * @dev Shaan - CSN
@@ -15,12 +15,9 @@ import { getNavigationNames } from "../utils/helpers/global.helpers";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const location = useLocation();
   // This function will toggle the pop-up
-  const togglePopup = () => {
-    setIsPopupOpen(!isPopupOpen);
-  };
 
   // This function will close the pop-up when clicked outside the image
   // const closePopupOnClickOutside = (event) => {
@@ -60,7 +57,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="mt-5 flex  justify-between">
+      <nav className="mt-5 flex w-full justify-between">
         <div className="absolute">
           <a href="/" className=" ">
             <img src={Back} className="h-[60px] text-black" />
@@ -75,7 +72,7 @@ const Navbar = () => {
         <ul className="hidden h-[60px] flex-1 list-none items-center justify-end gap-3 sm:flex">
           <button
             className="rounded-full bg-[#00FFAE] px-2 py-2 font-poppins text-[18px] font-medium "
-            onClick={togglePopup}
+            onClick={() => setShowModal(true)}
           >
             <IoInformation className=" h-[30px] w-[30px] text-[30px] text-black" />
           </button>
@@ -138,29 +135,9 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {isPopupOpen && (
-        <div
-          className="popup-overlay fixed inset-0 z-10 bg-black bg-opacity-50"
-          // onClick={closePopupOnClickOutside}
-        >
-          <div
-            // ref={popupContentRef}
-            className="popup-content relative mx-auto my-20 h-auto w-[300px] rounded-lg bg-white p-4"
-          >
-            <img
-              src="../src/assets/DarkCapsule.png"
-              alt="Popup Image"
-              className="h-auto w-full object-cover"
-            />
-            <button
-              className="absolute right-2 top-2 text-red-500"
-              onClick={togglePopup}
-            >
-              &times;
-            </button>
-          </div>
-        </div>
-      )}
+      <Modal showModal={showModal} closeFunction={() => setShowModal(false)}>
+        <div className="pt-6  text-black">Hello I am a modal</div>
+      </Modal>
     </>
   );
 };
