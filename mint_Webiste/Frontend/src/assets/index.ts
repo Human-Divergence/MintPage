@@ -13,6 +13,7 @@ import Unground from "./unground.svg";
 import Darksule from "./DarkCapsule.png";
 import lock from "./logo/lock.png";
 import Back from "./logo/Back.png";
+import Purchase from "./logo/Purchase.png";
 import HDlogo from "./logo/HDlogo.png";
 import polygon from "./Polygon.png";
 import eth from "./logo/Ethereum.png";
@@ -28,12 +29,13 @@ import character3 from "./Character/Character3.png";
 import character4 from "./Character/Character4.png";
 import character5 from "./Character/Character5.png";
 import AvatarWaiting from "./Character/AvatarWaiting.png";
-import MetamaskLogo from "./logo/MetamaskLogo.png";
+// import MetamaskLogo from "./logo/MetamaskLogo.png";
 import Cross from "./icons/Cross.svg";
 
 export {
   logo,
   Back,
+  Purchase,
   HDlogo,
   close,
   menu,
@@ -60,6 +62,6 @@ export {
   character4,
   character5,
   AvatarWaiting,
-  MetamaskLogo,
+  // MetamaskLogo,
   Cross,
 };
