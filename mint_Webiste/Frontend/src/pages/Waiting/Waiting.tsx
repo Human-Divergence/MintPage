@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Modal from "../../components/Modal/Modal";
-import { AvatarWaiting, Cross } from "../../assets";
+import {
+  AvatarWaiting,
+  ArrowWhiteBGBlack,
+  MetaMaskLogo,
+  CoinbaseLogo,
+  WalletConnectLogo,
+} from "../../assets";
+import ModalConnection from "../../components/Modals/ModalConnection";
+import { useAccount } from "wagmi";
 
 type TimeLeft = {
   days: number;
@@ -17,6 +24,7 @@ const Waiting = () => {
     minutes: 0,
     seconds: 0,
   });
+  const { address, connector, isConnected } = useAccount();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,41 +65,44 @@ const Waiting = () => {
           timeLeft?.seconds +
           "s"
         }`}</h1>
-        <button
-          className="flex h-[60px] w-[400px] items-center justify-center bg-[#00FFAE] text-3xl font-bold"
+        <div
+          className="flex flex-row bg-red hover:cursor-pointer"
           onClick={() => {
-            setShowModal(true);
+            !isConnected && setShowModal(true);
           }}
         >
-          CONNECT MY WALLET
-        </button>
+          {!isConnected ? (
+            <img src={ArrowWhiteBGBlack} />
+          ) : connector?.name === "MetaMask" ? (
+            <img src={MetaMaskLogo} className="h–[70px] w-[70px] bg-black" />
+          ) : connector?.name === "Coinbase Wallet" ? (
+            <img src={CoinbaseLogo} className="h–[70px] w-[70px] bg-black" />
+          ) : (
+            <img
+              src={WalletConnectLogo}
+              className="h–[70px]  w-[70px] bg-black"
+            />
+          )}
+          <button
+            className={`flex  w-[400px] items-center justify-center  text-3xl font-bold ${
+              isConnected ? "h-[70px]" : "h-[60px]"
+            }`}
+          >
+            {!isConnected ? "CONNECT MY WALLET" : "YOUR WALLET IS CONNECTED"}
+          </button>
+        </div>
+        <div className=" text-3xl font-bold">
+          {isConnected && address?.slice(0, 6) + "..." + address?.slice(38)}
+        </div>
         <img src={AvatarWaiting} className="absolute right-0 h-[700px]" />
       </div>
 
-      <Modal showModal={showModal} closeFunction={() => setShowModal(false)}>
-        <div className="h-[280px] w-[469px] rounded-3xl bg-[#161618] px-8 py-4  font-bold">
-          <div className=" flex items-center justify-between text-2xl text-white">
-            <div>Choose Your wallet</div>
-            <img
-              src={Cross}
-              onClick={() => setShowModal(false)}
-              className="h-8 p-2 hover:cursor-pointer"
-            />
-          </div>
-
-          <div className="mt-5 flex flex-col gap-3 text-xl text-white">
-            <div className=" flex h-[50px] items-center rounded-lg bg-[#232326] hover:cursor-pointer">
-              Metamask
-            </div>
-            <div className="flex h-[50px] items-center rounded-lg bg-[#232326] hover:cursor-pointer">
-              Coinbase Wallet
-            </div>
-            <div className="flex  h-[50px] items-center rounded-lg bg-[#232326] hover:cursor-pointer">
-              WalletConnect
-            </div>
-          </div>
-        </div>
-      </Modal>
+      <ModalConnection
+        showModal={showModal}
+        onClick={() => {
+          setShowModal(false);
+        }}
+      />
     </>
   );
 };

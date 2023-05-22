@@ -2,36 +2,46 @@ import React, { useEffect, useState } from "react";
 import { Navbar, Footer } from "./components";
 import styles from "./styles/style";
 import { Routes, Route } from "react-router-dom";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { polygonMumbai } from "wagmi/chains";
 import { AccountProvider } from "./context/AccountContext";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-
+import { CoinbaseWalletConnector } from "@wagmi/core/connectors/coinbaseWallet";
+import { WalletConnectConnector } from "@wagmi/core/connectors/walletConnect";
 import Home from "./pages/Home";
 import MyDivergent from "./pages/MyDivergent/MyDivergent";
 import Waiting from "./pages/Waiting/Waiting";
-// Temporary Wagmi config
-export const projectId = "67a7534c23a607b73d823c05af89594a"; // process.env.PROJECT_ID
-// 2. Configure wagmi client
 
-const { chains, provider, webSocketProvider } = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
   [polygonMumbai],
   [
-    alchemyProvider({ apiKey: "IqzQnrs653IZafcYRxu894cvMbGdVO7x" }),
+    alchemyProvider({ apiKey: import.meta.env.VITE_API_KEY || "" }),
     publicProvider(),
   ]
 );
 
-const client = createClient({
+const config = createConfig({
   autoConnect: true,
-  connectors: [new MetaMaskConnector({ chains })],
-  provider,
-  webSocketProvider,
+  connectors: [
+    new MetaMaskConnector({ chains }),
+    new CoinbaseWalletConnector({
+      chains,
+      options: {
+        appName: "wagmi",
+      },
+    }),
+    new WalletConnectConnector({
+      chains,
+      options: {
+        projectId: "...",
+      },
+    }),
+  ],
+  publicClient,
+  webSocketPublicClient,
 });
-
-// export const ethereumClient = new EthereumClient(wagmiClient, chains); // accounts et tout
 
 /*
   ** @dev Shaan/CSN and Victor
@@ -50,7 +60,7 @@ function App() {
   return (
     <>
       {ready ? (
-        <WagmiConfig client={client}>
+        <WagmiConfig config={config}>
           <AccountProvider>
             <div className="flex min-h-screen w-full flex-col overflow-hidden">
               <div className={`${styles.paddingX} ${styles.flexCenter}`}>
@@ -68,7 +78,6 @@ function App() {
           </AccountProvider>
         </WagmiConfig>
       ) : null}
-      {/* <Web3Modal projectId={projectId} ethereumClient={ethereumClient} /> */}
     </>
   );
 }

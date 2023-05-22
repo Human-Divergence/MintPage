@@ -28,7 +28,11 @@ import character3 from "./Character/Character3.png";
 import character4 from "./Character/Character4.png";
 import character5 from "./Character/Character5.png";
 import AvatarWaiting from "./Character/AvatarWaiting.png";
-import MetamaskLogo from "./logo/MetamaskLogo.png";
+import MetaMaskLogo from "./logo/MetaMaskLogo.svg";
+import WalletConnectLogo from "./logo/wallet-connect-logo.svg";
+import CoinbaseLogo from "./logo/coinbase-wallet-logo.svg";
+import ArrowWhiteBGBlack from "./icons/ArrowWhiteBGBlack.svg";
+import PopupWhiteListed from "./texts/popupWhiteListed.png";
 import Cross from "./icons/Cross.svg";
 
 export {
@@ -60,6 +64,10 @@ export {
   character4,
   character5,
   AvatarWaiting,
-  MetamaskLogo,
+  MetaMaskLogo,
+  CoinbaseLogo,
+  WalletConnectLogo,
+  ArrowWhiteBGBlack,
   Cross,
+  PopupWhiteListed,
 };
