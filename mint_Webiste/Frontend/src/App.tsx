@@ -17,7 +17,7 @@ import Waiting from "./pages/Waiting/Waiting";
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [polygonMumbai],
   [
-    alchemyProvider({ apiKey: import.meta.env.VITE_API_KEY || "" }),
+    alchemyProvider({ apiKey: import.meta.env.VITE_API_KEY_ALCHEMY || "" }),
     publicProvider(),
   ]
 );
@@ -35,7 +35,7 @@ const config = createConfig({
     new WalletConnectConnector({
       chains,
       options: {
-        projectId: "...",
+        projectId: import.meta.env.VITE_API_KEY_WALLETCONNECT,
       },
     }),
   ],
