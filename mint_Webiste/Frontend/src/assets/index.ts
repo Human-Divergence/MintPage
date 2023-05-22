@@ -13,6 +13,7 @@ import Unground from "./unground.svg";
 import Darksule from "./DarkCapsule.png";
 import lock from "./logo/lock.png";
 import Back from "./logo/Back.png";
+import Purchase from "./logo/Purchase.png";
 import HDlogo from "./logo/HDlogo.png";
 import polygon from "./Polygon.png";
 import eth from "./logo/Ethereum.png";
@@ -38,6 +39,7 @@ import Cross from "./icons/Cross.svg";
 export {
   logo,
   Back,
+  Purchase,
   HDlogo,
   close,
   menu,
