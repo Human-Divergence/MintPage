@@ -35,6 +35,9 @@ import CoinbaseLogo from "./logo/coinbase-wallet-logo.svg";
 import ArrowWhiteBGBlack from "./icons/ArrowWhiteBGBlack.svg";
 import PopupWhiteListed from "./texts/popupWhiteListed.png";
 import Cross from "./icons/Cross.svg";
+import HDHeaderLogo from "./logo/HDHeaderLogo.png";
+import ArrowHeader from "./icons/arrowHeader.svg";
+import MarketPlace from "./icons/MarketPlace.png";
 
 export {
   logo,
@@ -72,4 +75,7 @@ export {
   ArrowWhiteBGBlack,
   Cross,
   PopupWhiteListed,
+  HDHeaderLogo,
+  ArrowHeader,
+  MarketPlace,
 };

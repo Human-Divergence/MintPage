@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Footer } from "./components";
-import styles from "./styles/style";
 import { Routes, Route } from "react-router-dom";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { polygonMumbai } from "wagmi/chains";
@@ -63,9 +62,7 @@ function App() {
         <WagmiConfig config={config}>
           <AccountProvider>
             <div className="flex min-h-screen w-full flex-col overflow-hidden">
-              <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-                <Navbar />
-              </div>
+              <Navbar />
               <div className="mb-16 flex-grow">
                 <Routes>
                   <Route path="/" element={<Home />} />

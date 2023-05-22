@@ -1,11 +1,8 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { useMemo, useState } from "react";
-import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
-import { useLocation } from "react-router-dom";
-import { close, meta, menu, divg, Back } from "../assets";
-import { IoInformation } from "react-icons/io5";
+import React, { useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { divg, Back, HDHeaderLogo, ArrowHeader, MarketPlace } from "../assets";
 import { getNavigationNames } from "../utils/helpers/global.helpers";
-import Modal from "./Modal/Modal";
+import { useAccount } from "wagmi";
 
 /**
  * @dev Shaan - CSN
@@ -14,39 +11,11 @@ import Modal from "./Modal/Modal";
  */
 
 const Navbar = () => {
-  const [toggle, setToggle] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const location = useLocation();
-  // This function will toggle the pop-up
+  const { address, isConnected } = useAccount();
 
-  // This function will close the pop-up when clicked outside the image
-  // const closePopupOnClickOutside = (event) => {
-  //   if (
-  //     popupContentRef.current &&
-  //     !popupContentRef.current.contains(event.target)
-  //   ) {
-  //     setIsPopupOpen(false);
-  //   }
-  // };
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", closePopupOnClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", closePopupOnClickOutside);
-  //   };
-  // }, []);
-
-  // function handleConnection() {
-  //   if (!ethereumClient.getAccount().isConnected) {
-  //     try {
-  //       ethereumClient.connectConnector("injected");
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   } else {
-  //     console.log("No wallet found or already connected");
-  //   }
-  // }
   const pathName = useMemo(() => {
     return location.pathname;
   }, [location.pathname]);
@@ -56,11 +25,11 @@ const Navbar = () => {
   }, [pathName]);
 
   return (
-    <>
-      <nav className="mt-5 flex w-full justify-between">
+    <div className=" mt-[42px] grid grid-cols-3 px-7">
+      <div className="col-span-1">
         <div className="absolute">
           <a href="/" className=" ">
-            <img src={Back} className="h-[60px] text-black" />
+            <img src={Back} className="h-[52px] w-[215px] text-black" />
           </a>
           <p className=" m-0 font-poppins text-[56px] font-medium leading-none text-black">
             {navigationNames[0]}
@@ -68,77 +37,51 @@ const Navbar = () => {
             <span className="text-[#00FFAE]"> {navigationNames[1]}</span>
           </p>
         </div>
+      </div>
 
-        <ul className="hidden h-[60px] flex-1 list-none items-center justify-end gap-3 sm:flex">
-          <button
-            className="rounded-full bg-[#00FFAE] px-2 py-2 font-poppins text-[18px] font-medium "
-            onClick={() => setShowModal(true)}
+      <div className="col-span-1 flex items-center justify-center">
+        <img src={HDHeaderLogo} className="absolute top-5" />
+      </div>
+
+      <div className="col-span-1 flex justify-end">
+        <div className="flex flex-col gap-3">
+          <div
+            onClick={() => window.open("https://opensea.io/", "_blank")}
+            className="flex flex-row hover:cursor-pointer"
           >
-            <IoInformation className=" h-[30px] w-[30px] text-[30px] text-black" />
-          </button>
-
-          <div className="rounded-full ">
-            <a href="/mydivergent" className="">
-              <div className="flex  flex-row items-center bg-[#00FFAE]">
+            <div className="flex h-[52px] w-[52px] items-center justify-center bg-black">
+              <img src={MarketPlace} alt="HD" className="h-[38px] w-[38px] " />
+            </div>
+            <div className=" flex h-[52px] w-[286px] flex-row items-center justify-center  gap-2  bg-[#00FFAE] ">
+              <p className=" text-2xl font-bold">MARKETPLACE</p>
+              <img src={ArrowHeader} className="w-[20px] " />
+            </div>
+          </div>
+          {pathName !== "/waiting" && isConnected && (
+            <>
+              <div
+                onClick={() => navigate("/mydivergent")}
+                className="flex flex-row hover:cursor-pointer"
+              >
                 <img
                   src={divg}
                   alt="HD"
-                  className="h-[60px] w-[60px] bg-black"
+                  className="h-[52px] w-[52px] bg-black"
                 />
-                <p className="ml-2 font-bold">MY DIVERGENT</p>
-                <ArrowUpRightIcon className="ml-2 mr-2 w-[20px] font-bold text-black" />
+                <div className=" flex h-[52px] w-[286px] flex-row items-center justify-center  gap-2  bg-[#00FFAE] ">
+                  <p className=" text-2xl font-bold">MY DIVERGENT</p>
+                  <img src={ArrowHeader} className="w-[20px] " />
+                </div>
               </div>
-            </a>
-          </div>
-
-          <div className=" flex flex-row items-center  bg-[#00FFAE]">
-            <img
-              src={meta}
-              alt="metamask"
-              className=" h-[60px] w-[60px] bg-black"
-            />
-            <button
-              className="px-4 py-2 font-poppins text-[18px] font-medium  outline-none"
-              onClick={() => {
-                // handleConnection();
-              }}
-            >
-              {/* {ethereumClient.getAccount().isConnected
-                  ? shortenAddress(ethereumClient.getAccount().address)
-                  : "Connect wallet"} */}
-              Connect wallet
-            </button>
-            <div className="">
-              <ArrowUpRightIcon className="ml-2 mr-2 w-[20px] font-bold text-black" />
-            </div>
-          </div>
-        </ul>
-
-        <div className="flex flex-1 items-center justify-end sm:hidden">
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="h-[28px] w-[28px] object-contain"
-            onClick={() => setToggle(!toggle)}
-          />
-          <div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } bg-black-gradient sidebar absolute right-0 top-20 mx-4 my-2 min-w-[140px] rounded-xl p-6`}
-          >
-            <ul className="flex flex-1 list-none flex-col items-start justify-end">
-              {/* {navLinks.map((nav, index) => (
-              <p key={index}></p>
-            ))} */}
-            </ul>
-          </div>
+              <div className=" text-center text-2xl font-bold">
+                {isConnected &&
+                  address?.slice(0, 6) + "..." + address?.slice(38)}
+              </div>
+            </>
+          )}
         </div>
-      </nav>
-
-      <Modal showModal={showModal} closeFunction={() => setShowModal(false)}>
-        <div className="pt-6  text-black">Hello I am a modal</div>
-      </Modal>
-    </>
+      </div>
+    </div>
   );
 };
 
