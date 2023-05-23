@@ -1,4 +1,4 @@
-import React, { useState, FC } from "react";
+import React, { useState, FC, useContext } from "react";
 import { lock, eth } from "../assets";
 import { capsulesDatas } from "../utils/constants/mockData";
 import PopUpCheckout from "./PopUpCheckout";
@@ -6,6 +6,7 @@ import NotWhitelist from "./NoWhitelist";
 import { Capsule } from "../utils/types/myDivergent";
 import { ShoppingCart } from "../utils/types/home";
 import { amountCapsuleCart } from "../utils/helpers/global.helpers";
+import { NFTContext } from "../context/NFTContext";
 
 /**
  * @dev Shaan - CSN
@@ -22,6 +23,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
   const [popupOpen, setPopupOpen] = useState(false);
   const [selectedCap, setSelectedCap] = useState(null);
   const [isWhitelisted, setIsWhitelisted] = useState(true);
+  const { pricesCapsules, priceEth } = useContext(NFTContext);
 
   const handleOpenPopup = (cap: any) => {
     // receive cap as parameter
@@ -109,15 +111,21 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                           <div className="mt-5 flex">
                             <img src={eth} alt="bg" className="w-[20px]" />
                             <p className="ml-4 text-lg font-bold ">
-                              {cap.price} ETH{" "}
-                            </p>{" "}
+                              {pricesCapsules[cap.title as keyof ShoppingCart]}
+                              ETH
+                            </p>
                           </div>
                         </div>
                         <div className=" flex justify-around">
                           <p className=""></p>
                           <p className="text-[20px]">
                             {" "}
-                            = {(cap.price * pricePolygon).toFixed(2)} $
+                            ={" "}
+                            {(
+                              pricesCapsules[cap.title as keyof ShoppingCart] *
+                              priceEth
+                            ).toFixed(2)}{" "}
+                            $
                           </p>
                         </div>
                         <center>
