@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Capsules } from "../components";
-import styles from "../styles/style";
 import Amount from "../components/web3/Amount";
+import { ShoppingCart } from "../utils/types/home";
+
 function Home() {
+  const [capsuleCart, setCapsuleCart] = useState<ShoppingCart>({
+    onyx: 0,
+    gold: 0,
+    diamond: 0,
+  });
+
   return (
-    <div className="flex-grow">
-      <div className={`bg-capsule ${styles.flexCenter}`}>
-        <div className={`${styles.boxWidth}`}>
-          <div className="flex w-full flex-col items-center">
-            <div className="mb-4 flex w-full flex-col items-end justify-end pr-4">
-              <Amount />
-            </div>
-            <Capsules />
-          </div>
-        </div>
+    <div className={`bg-capsule`}>
+      <div className="flex flex-col ">
+        <Amount capsuleCart={capsuleCart} />
+        <Capsules capsuleCart={capsuleCart} setCapsuleCart={setCapsuleCart} />
       </div>
     </div>
   );

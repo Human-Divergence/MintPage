@@ -1,61 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, FC } from "react";
 import { lock, eth } from "../assets";
 import { capsulesDatas } from "../utils/constants/mockData";
 import PopUpCheckout from "./PopUpCheckout";
 import NotWhitelist from "./NoWhitelist";
+import { Capsule } from "../utils/types/myDivergent";
+import { ShoppingCart } from "../utils/types/home";
+import { amountCapsuleCart } from "../utils/helpers/global.helpers";
 
 /**
  * @dev Shaan - CSN
  * @notice This component is used to display the capsules set if the user is whitelisted
  */
 
-const Capsules = () => {
-  const [buyCount, setBuyCount] = useState(capsulesDatas);
+type CapsulesProps = {
+  setCapsuleCart: Function;
+  capsuleCart: ShoppingCart;
+};
+
+const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
   const [pricePolygon, setPrice] = useState(0);
   const [popupOpen, setPopupOpen] = useState(false);
   const [selectedCap, setSelectedCap] = useState(null);
-  const [isWhitelisted, setIsWhitelisted] = useState(false);
-
-  // useEffect(() => {
-  //   const res = axios
-  //     .get(
-  //       `https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd`
-  //     )
-  //     .then((response) => {
-  //       setPrice(response.data["ethereum"].usd);
-  //     });
-  // }, []);
-
-  useEffect(() => {
-    checkWhitelistedStatus();
-  }, []);
-
-  async function checkWhitelistedStatus() {
-    // try {
-    //   // Replace with your provider or use the browser's injected provider
-    //   const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-    //   // Replace with the user's Ethereum address
-    //   const userAddress = "0x...";
-
-    //   // Replace with the smart contract address that manages whitelisting
-    //   const contractAddress = "0x...";
-
-    //   // Replace with the ABI for the smart contract
-    //   const contractAbi = [/* ABI JSON array */];
-
-    //   // Create a contract instance
-    //   const contract = new ethers.Contract(contractAddress, contractAbi, provider);
-
-    //   // Call the 'isWhitelisted' function from the smart contract (replace with the actual function name)
-    //   const isUserWhitelisted = await contract.isWhitelisted(userAddress);
-
-    //   setIsWhitelisted(isUserWhitelisted);
-    // } catch (error) {
-    //   console.error("Error checking whitelisted status:", error);
-    // }
-    setIsWhitelisted(true);
-  }
+  const [isWhitelisted, setIsWhitelisted] = useState(true);
 
   const handleOpenPopup = (cap: any) => {
     // receive cap as parameter
@@ -71,8 +37,33 @@ const Capsules = () => {
     setPopupOpen(false);
   };
 
+  const addCapsule = (cap: Capsule) => {
+    if (amountCapsuleCart(capsuleCart) < 4) {
+      if (cap.title === "onyx") {
+        setCapsuleCart({ ...capsuleCart, onyx: capsuleCart.onyx + 1 });
+      }
+      if (cap.title === "gold") {
+        setCapsuleCart({ ...capsuleCart, gold: capsuleCart.gold + 1 });
+      }
+      if (cap.title === "diamond") {
+        setCapsuleCart({ ...capsuleCart, diamond: capsuleCart.diamond + 1 });
+      }
+    }
+  };
+  const removeCapsule = (cap: Capsule) => {
+    if (cap.title === "onyx" && capsuleCart.onyx > 0) {
+      setCapsuleCart({ ...capsuleCart, onyx: capsuleCart.onyx - 1 });
+    }
+    if (cap.title === "gold" && capsuleCart.gold > 0) {
+      setCapsuleCart({ ...capsuleCart, gold: capsuleCart.gold - 1 });
+    }
+    if (cap.title === "diamond" && capsuleCart.diamond > 0) {
+      setCapsuleCart({ ...capsuleCart, diamond: capsuleCart.diamond - 1 });
+    }
+  };
+
   return (
-    <div className="mt-20">
+    <div className="mt-16 flex flex-col self-start pl-11 ">
       {!isWhitelisted ? (
         <NotWhitelist />
       ) : (
@@ -80,11 +71,7 @@ const Capsules = () => {
           {capsulesDatas.map((cap, index) => (
             <div className="mb-8 flex justify-center" key={index}>
               <div className="w-full sm:w-[640px] md:w-[768px] lg:w-[1024px]">
-                <div
-                  className="border-r- [1px]
-            mt-4 flex h-[300px] w-full 
-            justify-center rounded-md border-b-[1px] border-t-[1px] border-solid border-black sm:w-[640px]  md:w-[768px] lg:w-[1024px] "
-                >
+                <div className="mt-4 flex h-[300px] w-full justify-center rounded-md border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black sm:w-[640px]  md:w-[768px] lg:w-[1024px] ">
                   <div className="relative">
                     <img
                       src={cap.background}
@@ -142,24 +129,19 @@ const Capsules = () => {
                               <button
                                 className=" rounded-[5px] bg-black px-3 text-[22px] text-white "
                                 onClick={() => {
-                                  if (buyCount[index].count > 0) {
-                                    buyCount[index].count -= 1;
-                                    setBuyCount([...buyCount]);
-                                  }
+                                  removeCapsule(cap);
                                 }}
                               >
                                 {"-"}
                               </button>
                             </div>
                             <p className="font-poppins text-[22px] font-medium   ">
-                              {" "}
-                              {buyCount[index].count}{" "}
+                              {capsuleCart[cap.title as keyof ShoppingCart]}
                             </p>
                             <button
                               className="rounded-[5px] bg-black px-3 text-[22px] text-white"
                               onClick={() => {
-                                buyCount[index].count += 1;
-                                setBuyCount([...buyCount]);
+                                addCapsule(cap);
                               }}
                             >
                               +

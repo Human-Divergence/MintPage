@@ -28,10 +28,12 @@ const Navbar = () => {
     <div className=" mt-[42px] grid grid-cols-3 px-7">
       <div className="col-span-1">
         <div className="absolute">
-          <a href="/" className=" ">
-            <img src={Back} className="h-[52px] w-[215px] text-black" />
-          </a>
-          <p className=" m-0 font-poppins text-[56px] font-medium leading-none text-black">
+          <img
+            src={Back}
+            onClick={() => navigate(-1)}
+            className="h-[52px] w-[215px] text-black hover:cursor-pointer"
+          />
+          <p className="  mt-5 pl-8 font-poppins text-[56px] font-medium leading-none text-black">
             {navigationNames[0]}
             <br />
             <span className="text-[#00FFAE]"> {navigationNames[1]}</span>

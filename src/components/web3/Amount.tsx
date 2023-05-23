@@ -1,63 +1,77 @@
-import React from "react";
+import React, { FC, useContext, useMemo } from "react";
 import { eth, Purchase } from "../../assets";
+import { ShoppingCart } from "../../utils/types/home";
+import { NFTContext } from "../../context/NFTContext";
+import { getPriceCart } from "../../utils/helpers/global.helpers";
 
-const Amount = () => {
-  const totalAmount = 100;
+type AmountProps = {
+  capsuleCart: ShoppingCart;
+};
 
-  const handleCheckOut = () => {
-    alert("Checkout");
-  };
+const Amount: FC<AmountProps> = ({ capsuleCart }) => {
+  const { pricesCapsules, priceEth } = useContext(NFTContext);
+
+  const priceEthCart: number = useMemo(() => {
+    return getPriceCart(capsuleCart, pricesCapsules);
+  }, [capsuleCart]);
+
+  const priceUSDCart: number = useMemo(() => {
+    return priceEth * priceEthCart;
+  }, [priceEth, priceEthCart]);
 
   return (
     <>
-      <div className="relative">
-        <div className="bg-opacity-45 z-10 border border-black">
-          <div className="grid w-[312px] grid-cols-2 items-center">
+      <div className="absolute right-0 mt-10 flex  flex-col gap-1">
+        <div className=" bg-opacity-45 z-10 min-h-[300px] w-[312px] rounded-bl-xl  border-y-[1px]  border-l-[1px]  border-black p-4 ">
+          <div className="flex justify-between">
             <span className="text-[14px] font-bold">Capsules</span>
-            <span className="ml-8 text-[14px] font-bold">Quantity</span>
-            <div className="flex items-center">
-              <span className="text-[24px] font-bold text-[#999999]">
+            <span className="text-[14px] font-bold">Quantity</span>
+          </div>
+          <div className="flex flex-col gap-3 pl-3 pt-7">
+            <div className="flex flex-row items-center justify-between">
+              <span className=" text-[24px] font-bold text-[#999999]">
                 QUELOZ ONYX
               </span>
+              <span className="text-[40px]">x {capsuleCart.onyx}</span>
             </div>
-            <div className="flex items-center justify-center">
-              <span className="text-[40px]">x X</span>
-            </div>
-            <div className="flex items-center">
+
+            <div className="flex items-center justify-between">
               <span className="text-[24px] font-bold text-[#AD7000]">
                 MELT GOLD
               </span>
+              <span className="text-[40px]">x {capsuleCart.gold}</span>
             </div>
-            <div className="flex items-center justify-center">
-              <span className="text-[40px]">x X</span>
-            </div>
-            <div className="flex items-center">
+
+            <div className="flex flex-row items-center justify-between">
               <span className="text-[24px] font-bold text-[#2B1E74]">
                 TRIA DIAMOND
               </span>
-            </div>
-            <div className="flex items-center justify-center">
-              <span className="text-[40px]">x X</span>
+              <span className="text-[40px]">x {capsuleCart.diamond}</span>
             </div>
           </div>
         </div>
-        <div className=" bg-opacity-45 w-[312px] border border-black">
+
+        <div className=" bg-opacity-45 w-[312px] rounded-tl-xl border-y-[1px] border-l-[1px] border-black p-5">
           <div className="flex items-start">
             <span className="text-[24px] font-bold">Total</span>
           </div>
           <div className="flex items-center justify-end">
             <img src={eth} alt="ETH Logo" className="mr-2" />
-            <span className="text-2xl font-bold">{totalAmount} ETH</span>
+            <span className="text-2xl font-bold">
+              {priceEthCart.toFixed(3)} ETH
+            </span>
           </div>
           <div className="mt-2 flex items-center justify-end">
-            <span className="text-xl font-bold text-[#999999]">XXXX USD</span>
+            <span className="text-xl font-bold text-[#999999]">
+              {priceUSDCart.toFixed(3)} USD
+            </span>
           </div>
-          <div className="flex items-start"> 
-            <span className="text-[24px] font-bold">Fees</span>
+          <div className="flex items-start">
+            <span className="text-[14px] font-bold">Fees</span>
           </div>
           <div className="flex items-center justify-end">
             <img src={eth} alt="ETH Logo" className="mr-2" />
-            <span className="text-2xl font-bold">{totalAmount} ETH</span>
+            <span className="text-2xl font-bold">{0} ETH</span>
           </div>
           <div className="mt-2 flex items-center justify-end">
             <span className="text-xl font-bold text-[#999999]">XXXX USD</span>

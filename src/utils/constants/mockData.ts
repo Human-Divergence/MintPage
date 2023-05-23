@@ -118,7 +118,7 @@ export const characters_silver: Character[] = [
 
 export const capsulesDatas: Capsule[] = [
   {
-    title: "unOpen",
+    title: "onyx",
     image: Silver,
     imageBG: SilverBG,
     description: "QUELOZ ONYX CAPSULE",
@@ -126,7 +126,7 @@ export const capsulesDatas: Capsule[] = [
     color: "#C6C9DC",
     background: Unground,
     price: 0.03,
-    count: 1,
+    count: 0,
     open: true,
     character: [
       {
@@ -156,7 +156,7 @@ export const capsulesDatas: Capsule[] = [
     ],
   },
   {
-    title: "Or",
+    title: "gold",
     image: Or,
     imageBG: OrBG,
     description: "MELT GOLD CAPSULE",
@@ -164,7 +164,7 @@ export const capsulesDatas: Capsule[] = [
     color: "#8f4d00",
     background: Orground,
     price: 0.055,
-    count: 1,
+    count: 0,
     open: true,
     character: [
       {
@@ -186,7 +186,7 @@ export const capsulesDatas: Capsule[] = [
     ],
   },
   {
-    title: "Diamond",
+    title: "diamond",
     image: Diamond,
     imageBG: DiamondBG,
     description: "TRIA DIAMOND CAPSULE",
@@ -194,7 +194,7 @@ export const capsulesDatas: Capsule[] = [
     color: "#004A8F",
     background: Diaground,
     price: 0.1,
-    count: 1,
+    count: 0,
     open: true,
     character: [
       {
