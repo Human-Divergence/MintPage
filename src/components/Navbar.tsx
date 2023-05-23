@@ -42,7 +42,11 @@ const Navbar = () => {
       </div>
 
       <div className="col-span-1 flex items-center justify-center">
-        <img src={HDHeaderLogo} className="absolute top-5" />
+        <img
+          src={HDHeaderLogo}
+          onClick={() => navigate("/human")}
+          className="absolute top-5 hover:cursor-pointer"
+        />
       </div>
 
       <div className="col-span-1 flex justify-end">

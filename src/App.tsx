@@ -63,7 +63,8 @@ function App() {
           <AccountProvider>
             <Navbar />
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Waiting />} />
+              <Route path="/human" element={<Home />} />
               <Route path="/mydivergent" element={<MyDivergent />} />
               <Route path="/Waiting" element={<Waiting />} />
             </Routes>
