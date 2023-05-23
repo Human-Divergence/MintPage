@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Capsule, Character } from "../../utils/types/myDivergent";
 import { checkUserHasNFT } from "../../utils/ethers/hasNft";
 import {
@@ -10,6 +10,8 @@ import NoDivergent from "../../components/MyDivergent/NoDivergent";
 import "../../styles/Mydivergent.css";
 import Card from "./Card/Card";
 import ItemPreview from "./ItemPreview/ItemPreview";
+import { NFTContext } from "../../context/NFTContext";
+import ModalMinted from "../../components/Modals/ModalMinted";
 
 const MyDivergent = () => {
   const [selectedCapsule, setSelectedCapsule] = useState<Capsule | undefined>();
@@ -17,6 +19,8 @@ const MyDivergent = () => {
     Character | undefined
   >();
   const [hasNFT, setHasNFT] = useState<boolean>(false);
+
+  const { showModalMinted, setShowModalMinted } = useContext(NFTContext);
 
   const handleViewClick = (
     capsule: Capsule | undefined,
@@ -31,6 +35,10 @@ const MyDivergent = () => {
       await checkUserHasNFT(setHasNFT);
     };
     fetchUserNFTStatus();
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -80,6 +88,12 @@ const MyDivergent = () => {
       ) : (
         <NoDivergent />
       )}
+      <ModalMinted
+        showModal={showModalMinted}
+        onClick={() => {
+          setShowModalMinted(false);
+        }}
+      />
     </div>
   );
 };
