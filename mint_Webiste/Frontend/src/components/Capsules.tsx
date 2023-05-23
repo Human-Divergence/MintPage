@@ -59,6 +59,7 @@ const Capsules = () => {
 
   const handleOpenPopup = (cap: any) => {
     // receive cap as parameter
+    // eslint-disable-next-line no-inline-comments
     setSelectedCap(cap); // set the selected cap in state
     setPopupOpen(true);
   };
@@ -115,77 +116,76 @@ const Capsules = () => {
                       />
                     </center>
                   ) : (
-                    <div className="flex w-full  flex-col">
-                      <div className="description-wrapper">
-                        <div className=" flex justify-around ">
-                          <p className="mt-5 text-[22px] font-bold"> Price </p>
-                          <div className="mt-5 flex">
-                            <img src={eth} alt="bg" className="w-[20px]" />
-                            <p className="ml-4 text-lg font-bold ">
-                              {cap.price} ETH{" "}
-                            </p>{" "}
-                          </div>
-                        </div>
-                        <div className=" flex justify-around">
-                          <p className=""></p>
-                          <p className="text-[20px]">
-                            {" "}
-                            = {(cap.price * pricePolygon).toFixed(2)} $
+                    <div className="flex w-full flex-col">
+                      <div className="description-container flex h-full flex-col items-center rounded-tr-lg border-solid border-black bg-white">
+                        <div className="">
+                          <p className="text-center text-xl font-bold">
+                            {cap.description}
+                          </p>
+                          <p
+                            className="text-center text-[13px]"
+                            style={{
+                              background: `
+                                linear-gradient(
+                                  270deg,
+                                  rgba(146, 83, 9, 0) 0%,
+                                  ${cap.color} 49.95%,
+                                  rgba(146, 83, 9, 0) 100%
+                                )
+                              `,
+                            }}
+                          >
+                            Offer ends in {cap.time}
                           </p>
                         </div>
-                        <center>
-                          <div
-                            className="mt-5 flex h-[25%] w-[25%] flex-row items-center 
-                      justify-between rounded-[5px] bg-[#00FFAE]"
-                          >
-                            <div>
+                      </div>
+                      <div className="description-wrapper">
+                        <div className="flex justify-around">
+                          <div className="flex">
+                            <img src={eth} alt="bg" className="w-[30px]" />
+                            <p className="text-2xl font-bold">
+                              = {cap.price} ETH
+                            </p>
+                          </div>
+                          <p className="text-2xl font-bold text-[#999999]">
+                            ≈ {(cap.price * pricePolygon).toFixed(2)} $
+                          </p>
+                        </div>
+                        <div className="flex flex-row">
+                          <center>
+                            <h1 className="text-[# font-poppins text-[22px] font-bold text-[#999999]">
+                              STILL XXXX AVAILABLE
+                            </h1>
+                            <div className=" flex h-[30px] w-[200px] flex-row items-center justify-between rounded-[5px] bg-[#00FFAE]">
+                              <div>
+                                <button
+                                  className="rounded-[5px] bg-black px-3 text-[22px] text-white"
+                                  onClick={() => {
+                                    if (buyCount[index].count > 0) {
+                                      buyCount[index].count -= 1;
+                                      setBuyCount([...buyCount]);
+                                    }
+                                  }}
+                                >
+                                  -
+                                </button>
+                              </div>
+                              <p className="font-poppins text-[22px] font-medium">
+                                {buyCount[index].count}
+                              </p>
                               <button
-                                className=" rounded-[5px] bg-black px-3 text-[22px] text-white "
+                                className="rounded-[5px] bg-black px-3 text-[22px] text-white hover:text-[#00FFAE]"
                                 onClick={() => {
-                                  if (buyCount[index].count > 0) {
-                                    buyCount[index].count -= 1;
-                                    setBuyCount([...buyCount]);
-                                  }
+                                  buyCount[index].count += 1;
+                                  setBuyCount([...buyCount]);
                                 }}
                               >
-                                {"-"}
+                                +
                               </button>
                             </div>
-                            <p className="font-poppins text-[22px] font-medium   ">
-                              {" "}
-                              {buyCount[index].count}{" "}
-                            </p>
-                            <button
-                              className="rounded-[5px] bg-black px-3 text-[22px] text-white"
-                              onClick={() => {
-                                buyCount[index].count += 1;
-                                setBuyCount([...buyCount]);
-                              }}
-                            >
-                              +
-                            </button>
-                          </div>
-                        </center>
+                            <p className="font-bold text-[#999999]">/ X</p>
+                          </center>
                       </div>
-                      <div className="description-container mt-2 h-full rounded-br-lg border-t-[1px] border-solid border-black bg-white">
-                        <p className="mt-1 text-center text-xl font-bold">
-                          {cap.description}
-                        </p>
-                        <p
-                          className="text-center text-[13px] "
-                          style={{
-                            background: `
-                    linear-gradient(
-                      270deg,
-                      rgba(146, 83, 9, 0) 0%,
-                      ${cap.color} 49.95%,
-                      rgba(146, 83, 9, 0) 100%
-                      )
-                    `,
-                          }}
-                        >
-                          Offer ends in {cap.time}
-                        </p>
                       </div>
                     </div>
                   )}

@@ -22,16 +22,15 @@ const ItemPreview: FC<ItemPreviewProps> = ({
         <div className="text-[#FF005F]">EMBODY NOW!</div>
       </div>
       <div
-        className="flex w-[750px]  
+        className="flex w-[1050px]  
                 justify-between rounded-xl bg-[#FFFFFF40] lg:h-auto lg:flex-row"
       >
         <img
           src={selectedCapsule?.imageBG || selectedCharacter?.image}
           alt={selectedCapsule?.title}
-          className="h-[415px] scale-110 rounded-3xl object-cover lg:w-auto"
+          className="h-[415px] scale-100 rounded-3xl object-cover lg:w-auto"
         />
-
-        <div className="flex w-full flex-col lg:w-1/2 ">
+        <div className="flex w-full flex-col ">
           {selectedCharacter !== undefined && (
             <div className="mt-8 flex w-full flex-row justify-between px-10">
               <div>
@@ -50,21 +49,23 @@ const ItemPreview: FC<ItemPreviewProps> = ({
               </div>
             </div>
           )}
-          <div className="flex h-full flex-col  items-center justify-end">
-            {selectedCapsule && (
-              <h2 className=" text-2xl font-bold">
-                {selectedCapsule.description}
-              </h2>
-            )}
-            <div className="flex h-[62px] w-full items-center justify-center  gap-8 bg-[#ffffff40] ">
+          <div className="flex h-[138px] w-full flex-row items-center gap-8 bg-[#FFFFFF]">
+            <div>
+              {selectedCapsule && (
+                <h2 className=" text-2xl font-bold">
+                  {selectedCapsule.description}
+                </h2>
+              )}
+            </div>
+            <div className="flex w-64 flex-col justify-end gap-4">
               <button
-                className="capsule-button bg-[#00ffae]   font-bold text-black hover:bg-[#009dff]"
+                className="capsule-button h-[38px] bg-[#00ffae] font-bold text-black hover:text-white"
                 onClick={() => window.open("https://opensea.io/", "_blank")}
               >
                 Put on sale
               </button>
               <button
-                className="capsule-button font-bold hover:bg-[#009dff]"
+                className="capsule-button h-[54px] bg-[#FF2273] font-bold hover:text-white"
                 onClick={reveal}
               >
                 Reveal
@@ -73,9 +74,9 @@ const ItemPreview: FC<ItemPreviewProps> = ({
           </div>
         </div>
       </div>
-      {selectedCapsule && (
+      {/* {selectedCapsule && (
         <Droprate CharacterData={selectedCapsule?.character} />
-      )}
+      )} */}
     </div>
   );
 };
