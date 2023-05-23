@@ -1,5 +1,5 @@
 import React, { FC, useContext, useMemo } from "react";
-import { eth, Purchase } from "../../assets";
+import { eth, ArrowWhiteBGBlack } from "../../assets";
 import { ShoppingCart } from "../../utils/types/home";
 import { NFTContext } from "../../context/NFTContext";
 import { getPriceCart } from "../../utils/helpers/global.helpers";
@@ -76,8 +76,12 @@ const Amount: FC<AmountProps> = ({ capsuleCart }) => {
           <div className="mt-2 flex items-center justify-end">
             <span className="text-xl font-bold text-[#999999]">XXXX USD</span>
           </div>
-          <div className="mt-2 flex justify-center">
-            <img src={Purchase} alt="Purchase" className="w-[270px]" />
+
+          <div className="mt-2 flex bg-red">
+            <img src={ArrowWhiteBGBlack} alt="Purchase" />
+            <div className="flex w-full items-center justify-center text-[24px] font-bold">
+              PURCHASE
+            </div>
           </div>
         </div>
       </div>
