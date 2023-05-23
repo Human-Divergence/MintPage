@@ -61,17 +61,14 @@ function App() {
       {ready ? (
         <WagmiConfig config={config}>
           <AccountProvider>
-            <div className="flex min-h-screen w-full flex-col overflow-hidden">
-              <Navbar />
-              <div className="mb-16 flex-grow">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/mydivergent" element={<MyDivergent />} />
-                  <Route path="/Waiting" element={<Waiting />} />
-                </Routes>
-              </div>
-              <Footer />
-            </div>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Waiting />} />
+              <Route path="/human" element={<Home />} />
+              <Route path="/mydivergent" element={<MyDivergent />} />
+              <Route path="/Waiting" element={<Waiting />} />
+            </Routes>
+            <Footer />
           </AccountProvider>
         </WagmiConfig>
       ) : null}
