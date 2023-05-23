@@ -57,7 +57,7 @@ const Navbar = () => {
               <img src={ArrowHeader} className="w-[20px] " />
             </div>
           </div>
-          {pathName !== "/waiting" && isConnected && (
+          {pathName !== "/waiting" && (
             <>
               <div
                 onClick={() => navigate("/mydivergent")}
