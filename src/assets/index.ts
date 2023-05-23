@@ -38,7 +38,8 @@ import Cross from "./icons/Cross.svg";
 import HDHeaderLogo from "./logo/HDHeaderLogo.png";
 import ArrowHeader from "./icons/arrowHeader.svg";
 import MarketPlace from "./icons/MarketPlace.png";
-
+import PopupMinted from "./PopupMinted.png";
+import CrossPurchase from "./icons/crossPurchase.svg";
 export {
   logo,
   Back,
@@ -78,4 +79,6 @@ export {
   HDHeaderLogo,
   ArrowHeader,
   MarketPlace,
+  PopupMinted,
+  CrossPurchase,
 };

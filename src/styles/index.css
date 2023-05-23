@@ -307,3 +307,11 @@ body {
     width: 200px;
   }
 }
+
+.bg-ModalPurchase {
+  background: radial-gradient(
+    149.64% 149.64% at 49.9% 199.64%,
+    #ff005f 0%,
+    #000000 100%
+  );
+}

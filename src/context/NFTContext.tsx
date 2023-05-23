@@ -17,6 +17,8 @@ interface NFTContextProps {
   setNFTBalance: (value: number) => void;
   pricesCapsules: CapsulePrices;
   priceEth: number;
+  setShowModalMinted: Function;
+  showModalMinted: boolean;
 }
 
 export const NFTContext = createContext({} as NFTContextProps);
@@ -32,6 +34,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
   const [isWhitelisted, setIsWhitelisted] = useState(false);
   const [nftBalance, setNFTBalance] = useState(0);
   const [priceEth, setPriceEth] = useState<number>(0);
+  const [showModalMinted, setShowModalMinted] = useState<boolean>(false);
 
   const pricesCapsules: CapsulePrices = {
     onyx: 0.03,
@@ -59,6 +62,8 @@ export const NFTProvider: FC<NFTProviderProps> = ({
         setNFTBalance,
         pricesCapsules,
         priceEth,
+        showModalMinted,
+        setShowModalMinted,
       }}
     >
       {children}
