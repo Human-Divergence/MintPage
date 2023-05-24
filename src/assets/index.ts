@@ -23,6 +23,10 @@ import OrBG from "./CapsuleGoldBG.png";
 import SilverBG from "./CapsuleSilverBG.png";
 import DiamondBG from "./CapsuleDiamondBG.png";
 
+import CapsuleDiamond from "./CapsuleDiamond1.png";
+import CapsuleSilver from "./CapsuleSilver1.png";
+import CapsuleOr from "./CapsuleGold1.png";
+
 import character1 from "./Character/Character1.png";
 import character2 from "./Character/Character2.png";
 import character3 from "./Character/Character3.png";
@@ -41,6 +45,9 @@ import MarketPlace from "./icons/MarketPlace.png";
 import PopupMinted from "./PopupMinted.png";
 import CrossPurchase from "./icons/crossPurchase.svg";
 export {
+  CapsuleDiamond,
+  CapsuleSilver,
+  CapsuleOr,
   logo,
   Back,
   Purchase,

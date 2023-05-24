@@ -1,5 +1,5 @@
 import React, { useState, FC, useContext } from "react";
-import { lock, eth } from "../assets";
+import { lock, eth, CapsuleDiamond, CapsuleOr, CapsuleSilver } from "../assets";
 import { capsulesDatas } from "../utils/constants/mockData";
 import PopUpCheckout from "./PopUpCheckout";
 import NotWhitelist from "./NoWhitelist";
@@ -27,7 +27,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
 
   const handleOpenPopup = (cap: any) => {
     // receive cap as parameter
-    setSelectedCap(cap); // set the selected cap in state
+    setSelectedCap(cap);
     setPopupOpen(true);
   };
 
@@ -71,20 +71,19 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
       ) : (
         <>
           {capsulesDatas.map((cap, index) => (
-            <div className="mb-8 flex justify-center" key={index}>
-              <div className="w-full sm:w-[640px] md:w-[768px] lg:w-[1024px]">
-                <div className="mt-4 flex h-[300px] w-full justify-center rounded-md border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:w-[1024px] ">
-                  <div className="relative">
-                    <img
+            <div className="mb-16 flex justify-center" key={index}>
+              <div className="w-full sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
+                <div className="flex h-[300px] w-full justify-center gap-1 rounded-md border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:w-[1024px] ">
+                  <div className="">
+                    {/* <img
                       src={cap.background}
                       alt="bg"
                       className="absolute h-auto w-full lg:h-auto lg:w-auto"
-                    />
+                    /> */}
                     <img
                       src={cap.image}
                       alt="img"
-                      className="relative bottom-1/2 left-1/2 top-20 z-10 h-auto w-[830px] 
-                      max-w-full -translate-x-1/2 transform xs:w-[280px] md:w-[330px] lg:w-[330px]"
+                      className="transform xs:w-[280px] md:w-[330px] lg:w-[330px]"
                     />
                   </div>
                   {popupOpen && (
@@ -104,8 +103,8 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                       />
                     </center>
                   ) : (
-                    <div className="flex w-full  flex-col">
-                      <div className="description-container h-full rounded-tr-lg border-solid border-black bg-white">
+                    <div className="flex w-full flex-col">
+                      <div className="description-container flex h-full items-center justify-between rounded-tr-lg border-solid border-black bg-white">
                         <p className="text-center text-4xl font-bold">
                           {cap.description}
                         </p>
@@ -126,10 +125,13 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                         </p>
                       </div>
                       <div className="description-wrapper">
+                        <button className="w-2/5 rounded-br-2xl bg-[#00FFAE] text-xl font-extrabold text-white">
+                          DROP RATE
+                        </button>
                         <div className=" flex justify-center ">
                           <div className="flex">
                             <img src={eth} alt="bg" className="w-[30px]" />
-                            <p className="ml-4 text-lg font-bold ">
+                            <p className="ml-4 text-2xl font-bold ">
                               {pricesCapsules[cap.title as keyof ShoppingCart]}
                               {""}
                               ETH
@@ -148,7 +150,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                           </p>
                         </div>
                         <center>
-                          <p className="font-bold text-[#999999]">
+                          <p className="text-xl font-bold text-[#999999]">
                             STILL XXX AVAILABLE
                           </p>
                           <div
@@ -177,7 +179,9 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                               +
                             </button>
                           </div>
-                          <div className="font-bold text-[#999999]">/ X</div>
+                          <div className="text-xl font-bold text-[#999999]">
+                            / X
+                          </div>
                         </center>
                       </div>
                     </div>
