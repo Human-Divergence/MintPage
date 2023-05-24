@@ -40,6 +40,12 @@ import ArrowHeader from "./icons/arrowHeader.svg";
 import MarketPlace from "./icons/MarketPlace.png";
 import PopupMinted from "./PopupMinted.png";
 import CrossPurchase from "./icons/crossPurchase.svg";
+import CapsuleOnyxPurchase from "./capsules/capsuleGreyPurchase.png";
+import CapsuleGoldPurchase from "./capsules/capsuleGoldPurchase.png";
+import CapsuleDiamondPurchase from "./capsules/capsuleBluePurchase.png";
+import CharacterModalMinted from "./Character/CharacterModalMinted.png";
+import CharaterModalPurchase from "./Character/CharaterModalPurchase.png";
+
 export {
   logo,
   Back,
@@ -81,4 +87,9 @@ export {
   MarketPlace,
   PopupMinted,
   CrossPurchase,
+  CapsuleOnyxPurchase,
+  CapsuleGoldPurchase,
+  CapsuleDiamondPurchase,
+  CharaterModalPurchase,
+  CharacterModalMinted,
 };
