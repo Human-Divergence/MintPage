@@ -99,6 +99,7 @@ const Amount: FC<AmountProps> = ({ capsuleCart }) => {
         }}
         priceEthCart={priceEthCart}
         priceUSDCart={priceUSDCart}
+        capsuleCart={capsuleCart}
       />
     </>
   );

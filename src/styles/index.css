@@ -24,30 +24,10 @@ body {
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f7f1f1;
-  /* background-image: radial-gradient(
-      at 0% 50%,
-      rgb(228, 183, 183) 0,
-      transparent 50%
-    ),
-    radial-gradient(at 100% 50%, rgb(236, 158, 158) 0, transparent 40%);
-  background-size: cover; */
-}
-
-.bg-capsule {
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    rgba(255, 0, 95, 0.5) 0%,
-    rgba(211, 202, 202, 0) 100%
-  );
-}
-
-.captime {
   background: linear-gradient(
-    270deg,
-    rgba(146, 83, 9, 0) 0%,
-    49.95%,
-    rgba(146, 83, 9, 0) 100%
+    1.95deg,
+    rgba(255, 0, 95, 0.5) 1.23%,
+    rgba(255, 0, 95, 0) 94.52%
   );
 }
 
@@ -83,46 +63,12 @@ body {
   text-fill-color: transparent;
 }
 
-.bg-blue-gradient {
-  background: linear-gradient(
-    157.81deg,
-    #def9fa -43.27%,
-    #bef3f5 -21.24%,
-    #9dedf0 12.19%,
-    #7de7eb 29.82%,
-    #5ce1e6 51.94%,
-    #33bbcf 90.29%
-  );
-}
-
-.bg-black-gradient {
-  background: linear-gradient(
-    144.39deg,
-    #ffffff -278.56%,
-    #6d6d6d -78.47%,
-    #11101d 91.61%
-  );
-}
-
-.bg-black-gradient-2 {
-  background: linear-gradient(
-    -168.39deg,
-    #ffffff -278.56%,
-    #6d6d6d -78.47%,
-    #11101d 91.61%
-  );
-}
-
 .bg-gray-gradient {
   background: linear-gradient(
     153.47deg,
     rgba(255, 255, 255, 0) -341.94%,
     #14101d 95.11%
   );
-}
-
-.bg-discount-gradient {
-  background: linear-gradient(125.17deg, #272727 0%, #11101d 100%);
 }
 
 .box-shadow {
@@ -181,11 +127,6 @@ body {
 .pink__gradient {
   background: linear-gradient(90deg, #f4c4f3 0%, #fc67fa 100%);
   filter: blur(900px);
-}
-
-.white__gradient {
-  background: rgba(255, 255, 255, 0.6);
-  filter: blur(750px);
 }
 
 /*
@@ -273,39 +214,6 @@ body {
   margin: auto;
   transform: rotateX(90deg) translateZ(-40px);
   filter: blur(12px);
-}
-
-.cap-description {
-  height: calc(
-    20% - 50px
-  ); /* 50px is the combined height of the two paragraphs inside the div */
-}
-
-/* .description-container {
-  height: 800px;
-} */
-.description-wrapper {
-  height: 800px;
-}
-
-.responsive-image {
-  width: 530px;
-  max-width: 100%;
-  height: auto;
-  margin-top: 20px;
-}
-
-/* Adjust the width for smaller screens */
-@media screen and (max-width: 768px) {
-  .responsive-image {
-    width: 280px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .responsive-image {
-    width: 200px;
-  }
 }
 
 .bg-ModalPurchase {

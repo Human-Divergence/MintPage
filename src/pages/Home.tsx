@@ -11,11 +11,9 @@ function Home() {
   });
 
   return (
-    <div className={`bg-capsule`}>
-      <div className="flex flex-col ">
-        <Amount capsuleCart={capsuleCart} />
-        <Capsules capsuleCart={capsuleCart} setCapsuleCart={setCapsuleCart} />
-      </div>
+    <div className="flex flex-col ">
+      <Amount capsuleCart={capsuleCart} />
+      <Capsules capsuleCart={capsuleCart} setCapsuleCart={setCapsuleCart} />
     </div>
   );
 }
