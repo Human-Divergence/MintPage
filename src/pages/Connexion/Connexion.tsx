@@ -5,7 +5,6 @@ import {
   MetaMaskLogo,
   CoinbaseLogo,
   WalletConnectLogo,
-  JupiterConnexion
 } from "../../assets";
 import ModalConnection from "../../components/Modals/ModalConnection";
 import { useAccount } from "wagmi";
@@ -16,17 +15,17 @@ function Connexion() {
 
   return (
     <>
-      <div className="height-page flex items-start justify-center">
-        <div className="flex flex-col items-center justify-end gap-12 p-10">
-          <h1 className="text-4xl font-bold">
+      <div className="height-page mt-[20vh] flex items-start justify-center">
+        <div className="flex w-[572px] flex-col justify-end gap-12 p-10">
+          <div className="text-4xl font-bold">
             YOUR CAPSULES
             <span className="text-[#FF005F]"> ARE READY !</span>
-          </h1>
-          <h1 className="text-4xl font-bold">
+          </div>
+          <div className="text-4xl font-bold">
             MINT, REVEAL & EMBODY YOUR
             <span className="text-[#FF005F]"> DIVERGENT </span>
             AVATAR
-          </h1>
+          </div>
         </div>
         <div className="flex flex-col gap-8">
           <img src={test} className="" />

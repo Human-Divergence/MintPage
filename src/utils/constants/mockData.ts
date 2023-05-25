@@ -1,10 +1,6 @@
 import {
   Diaground,
-  Diamond,
-  Or,
   Orground,
-  Unground,
-  Silver,
   OrBG,
   SilverBG,
   DiamondBG,

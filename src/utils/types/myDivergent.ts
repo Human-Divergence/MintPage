@@ -8,7 +8,7 @@ export type Character = {
 };
 
 export type Capsule = {
-  title: string;
+  title: "onyx" | "gold" | "diamond";
   image: string;
   imageBG: string;
   description: string;

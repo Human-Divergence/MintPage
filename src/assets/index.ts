@@ -51,6 +51,9 @@ import CharacterModalMinted from "./Character/CharacterModalMinted.png";
 import CharaterModalPurchase from "./Character/CharaterModalPurchase.png";
 import test from "./imagetest.png";
 import JupiterConnexion from "./JupiterTestsocle.png"
+import ArrowMyDiv from "./icons/arrowMydivergent.png";
+import logoVenus from "./logosFaction/logoVenus.png";
+import StatsCapsuleDiamond from "./capsules/statsCapsuleDiamond.png";
 
 export {
   CapsuleDiamond,
@@ -103,4 +106,7 @@ export {
   CharaterModalPurchase,
   CharacterModalMinted,
   JupiterConnexion,
+  ArrowMyDiv,
+  logoVenus,
+  StatsCapsuleDiamond,
 };
