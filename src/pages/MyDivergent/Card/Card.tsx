@@ -1,7 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Capsule, Character } from "../../../utils/types/myDivergent";
-import { reveal } from "../../../utils/ethers/ethers.utils";
-import { BsArrowUpRight } from "react-icons/bs";
+import ModalReveal from "../../../components/Modals/ModalReveal";
+import { ArrowMyDiv, logoVenus } from "../../../assets/index";
+
 type CardProps = {
   capsule?: Capsule;
   character?: Character;
@@ -9,6 +10,8 @@ type CardProps = {
 };
 
 const Card: FC<CardProps> = ({ capsule, character, onClick }) => {
+  const [showModalReveal, setShowModalReveal] = useState<boolean>(false);
+
   return (
     <div className="capsule-container small-capsule-container ">
       <img
@@ -24,36 +27,51 @@ const Card: FC<CardProps> = ({ capsule, character, onClick }) => {
           </p>
         )}
         {character !== undefined && (
-          <div className="flex w-full flex-row justify-between px-5 pb-4 pt-3">
-            <div>
-              <div className="text-xs font-extrabold text-[#FF005F]">
-                {character.faction}
+          <div className="relative flex w-full flex-col px-5 pb-4 pt-3">
+            <div className="absolute left-0 top-0 flex flex-row gap-1">
+              <img
+                src={logoVenus}
+                className="h-[32px] w-[32px] rounded-ee-xl bg-red"
+              />
+              <div className="flex flex-col">
+                <span className="text-[12px] font-bold text-red">GLINT</span>
+                <span className="text-[9px] font-medium text-red">
+                  Tier&nbsp;{character.tier}
+                </span>
               </div>
-              <div className=" text-lg font-extrabold text-[#FAB63B]">
-                {character.nom}
-              </div>
-              <div className="text-xs ">#{character.order}</div>
             </div>
-            <div className="flex">
-              <div className="flex h-[17px] w-[87px] items-center  justify-center self-center rounded-3xl bg-[#FFAF36] font-extrabold text-white">
-                Tier {character.tier}
-              </div>
+            <div className="self-end text-xs">#{character.order}</div>
+            <div className=" self-center text-lg font-extrabold text-[#FAB63B]">
+              {character.nom}
+            </div>
+            <div className="self-center text-[16px] font-medium text-[#FF005F]">
+              {character.faction}
             </div>
           </div>
         )}
       </div>
       <div className="capsule-buttons flex-col items-center justify-center gap-2">
-        <button className="capsule-button h-[31px] w-[80%] bg-[#00ffae] font-bold hover:scale-110">
+        <button className="capsule-button flex h-[31px] min-w-[92%]  flex-row items-center  justify-center gap-3 bg-[#00ffae] font-bold hover:scale-110">
           VIEW ON MARKETPLACE
+          <img src={ArrowMyDiv} />
         </button>
         <button
-          className="capsule-button flex h-[43px] w-[80%] items-center justify-center bg-[#FF2273] font-bold hover:scale-110 "
-          onClick={() => reveal()}
+          className="capsule-button flex h-[43px] w-[92%] items-center justify-center gap-3 bg-[#FF2273] font-bold hover:scale-110 "
+          onClick={() => {
+            setShowModalReveal(true);
+          }}
         >
-          REVEAL DIVERGENT
-          <BsArrowUpRight className="ml-2" />
+          {capsule !== undefined ? "REVEAL DIVERGENT" : "PUT ON SALE"}
+          {capsule === undefined && <img src={ArrowMyDiv} />}
         </button>
       </div>
+      <ModalReveal
+        showModal={showModalReveal}
+        onClick={() => {
+          setShowModalReveal(false);
+        }}
+        capsule={capsule}
+      />
     </div>
   );
 };
