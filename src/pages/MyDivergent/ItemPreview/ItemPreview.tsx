@@ -1,7 +1,5 @@
 import React, { FC } from "react";
 import { Capsule, Character } from "../../../utils/types/myDivergent";
-import { reveal } from "../../../utils/ethers/ethers.utils";
-import { Droprate } from "../../../components";
 
 type ItemPreviewProps = {
   selectedCapsule?: Capsule;
@@ -66,7 +64,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
               </button>
               <button
                 className="capsule-button h-[54px] bg-[#FF2273] font-bold hover:text-white"
-                onClick={reveal}
+                onClick={() => {}}
               >
                 Reveal
               </button>
@@ -74,9 +72,6 @@ const ItemPreview: FC<ItemPreviewProps> = ({
           </div>
         </div>
       </div>
-      {/* {selectedCapsule && (
-        <Droprate CharacterData={selectedCapsule?.character} />
-      )} */}
     </div>
   );
 };
