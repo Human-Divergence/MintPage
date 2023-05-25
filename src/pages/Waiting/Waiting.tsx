@@ -99,7 +99,6 @@ const Waiting = () => {
           className="absolute right-0 z-[51] h-[700px]"
         />
       </div>
-
       <ModalConnection
         showModal={showModal}
         onClick={() => {

@@ -49,6 +49,8 @@ import CapsuleGoldPurchase from "./capsules/capsuleGoldPurchase.png";
 import CapsuleDiamondPurchase from "./capsules/capsuleBluePurchase.png";
 import CharacterModalMinted from "./Character/CharacterModalMinted.png";
 import CharaterModalPurchase from "./Character/CharaterModalPurchase.png";
+import test from "./imagetest.png";
+import JupiterConnexion from "./JupiterTestsocle.png"
 
 export {
   CapsuleDiamond,
@@ -74,6 +76,7 @@ export {
   Diaground,
   lock,
   eth,
+  test,
   polygon,
   Unground,
   Minted,
@@ -99,4 +102,5 @@ export {
   CapsuleDiamondPurchase,
   CharaterModalPurchase,
   CharacterModalMinted,
+  JupiterConnexion,
 };
