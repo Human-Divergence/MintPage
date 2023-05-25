@@ -49,6 +49,9 @@ import CapsuleGoldPurchase from "./capsules/capsuleGoldPurchase.png";
 import CapsuleDiamondPurchase from "./capsules/capsuleBluePurchase.png";
 import CharacterModalMinted from "./Character/CharacterModalMinted.png";
 import CharaterModalPurchase from "./Character/CharaterModalPurchase.png";
+import ArrowMyDiv from "./icons/arrowMydivergent.png";
+import logoVenus from "./logosFaction/logoVenus.png";
+import StatsCapsuleDiamond from "./capsules/statsCapsuleDiamond.png";
 
 export {
   CapsuleDiamond,
@@ -99,4 +102,7 @@ export {
   CapsuleDiamondPurchase,
   CharaterModalPurchase,
   CharacterModalMinted,
+  ArrowMyDiv,
+  logoVenus,
+  StatsCapsuleDiamond,
 };
