@@ -1,17 +1,19 @@
-import React, { useState } from "react";
-import {
-  test,
-  ArrowWhiteBGBlack,
-  MetaMaskLogo,
-  CoinbaseLogo,
-  WalletConnectLogo,
-} from "../../assets";
+import React, { useEffect, useState } from "react";
+import { test, ArrowWhiteBGBlack } from "../../assets";
 import ModalConnection from "../../components/Modals/ModalConnection";
 import { useAccount } from "wagmi";
+import { useNavigate } from "react-router-dom";
 
 function Connexion() {
   const [showModal, setShowModal] = useState(false);
-  const { connector, isConnected } = useAccount();
+  const { isConnected } = useAccount();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isConnected) {
+      navigate("/human");
+    }
+  }, [isConnected]);
 
   return (
     <>
@@ -35,28 +37,14 @@ function Connexion() {
               !isConnected && setShowModal(true);
             }}
           >
-            {!isConnected ? (
-              <img src={ArrowWhiteBGBlack} />
-            ) : connector?.name === "MetaMask" ? (
-              <img src={MetaMaskLogo} className="h–[70px] w-[70px] bg-black" />
-            ) : connector?.name === "Coinbase Wallet" ? (
-              <img src={CoinbaseLogo} className="h–[70px] w-[70px] bg-black" />
-            ) : (
-              <img
-                src={WalletConnectLogo}
-                className="h–[70px]  w-[70px] bg-black"
-              />
-            )}
             <button
-              className={`flex  w-[400px] items-center justify-center  bg-red text-3xl font-bold hover:cursor-pointer${
-                isConnected ? "h-[70px]" : "h-[60px]"
-              }`}
+              className={`flex  items-center  justify-center bg-red text-3xl font-bold hover:cursor-pointer`}
             >
-              {!isConnected ? "CONNECT MY WALLET" : "YOUR WALLET IS CONNECTED"}
+              <img src={ArrowWhiteBGBlack} />
+              <span className="px-3">CONNECT MY WALLET</span>
             </button>
           </div>
         </div>
-        <img></img>
       </div>
       <ModalConnection
         showModal={showModal}
