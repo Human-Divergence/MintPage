@@ -16,7 +16,7 @@ const Card: FC<CardProps> = ({
   setShowModalReveal,
 }) => {
   return (
-    <div className="capsule-container small-capsule-container ">
+    <div className="capsule-container m-[2rem]  ">
       <img
         src={capsule?.imageBG || character?.image}
         alt={capsule?.title || character?.nom}

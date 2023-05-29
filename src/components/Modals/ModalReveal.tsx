@@ -8,22 +8,21 @@ import {
   CapsuleDiamondPurchase,
   StatsCapsuleDiamond,
 } from "../../assets";
-import { useNavigate } from "react-router-dom";
 import { Capsule } from "../../utils/types/myDivergent";
 
 type ModalConnectionProps = {
   showModal: boolean;
   onClick: () => void;
   capsule: Capsule | undefined;
+  reveal: () => void;
 };
 
 const ModalReveal: FC<ModalConnectionProps> = ({
   showModal,
   capsule,
   onClick,
+  reveal,
 }) => {
-  const navigate = useNavigate();
-
   return (
     <>
       <Modal showModal={showModal} closeFunction={onClick}>
@@ -60,9 +59,7 @@ const ModalReveal: FC<ModalConnectionProps> = ({
 
           <div
             className="mt-2 flex w-[270px] self-end bg-red hover:cursor-pointer"
-            onClick={() => {
-              navigate("/mydivergent");
-            }}
+            onClick={reveal}
           >
             <img src={ArrowWhiteBGBlack} alt="Purchase" />
             <div className="flex w-full items-center justify-center text-[24px] font-bold ">

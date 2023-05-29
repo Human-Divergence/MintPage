@@ -13,6 +13,7 @@ import ItemPreview from "./ItemPreview/ItemPreview";
 import { NFTContext } from "../../context/NFTContext";
 import ModalMinted from "../../components/Modals/ModalMinted";
 import ModalReveal from "../../components/Modals/ModalReveal";
+import ModalRevealResult from "../../components/Modals/ModalRevealResult";
 
 const MyDivergent = () => {
   const [selectedCapsule, setSelectedCapsule] = useState<Capsule | undefined>();
@@ -21,6 +22,8 @@ const MyDivergent = () => {
   >();
   const [hasNFT, setHasNFT] = useState<boolean>(false);
   const [showModalReveal, setShowModalReveal] = useState<boolean>(false);
+  const [showModalRevealResult, setShowModalRevealResult] =
+    useState<boolean>(false);
 
   const { showModalMinted, setShowModalMinted } = useContext(NFTContext);
 
@@ -96,6 +99,17 @@ const MyDivergent = () => {
           setShowModalReveal(false);
         }}
         capsule={selectedCapsule}
+        reveal={() => {
+          setShowModalRevealResult(true);
+          setShowModalReveal(false);
+        }}
+      />
+      <ModalRevealResult
+        showModal={showModalRevealResult}
+        onClick={() => {
+          setShowModalRevealResult(false);
+        }}
+        revealCharacter={characters_silver[0]}
       />
     </div>
   );
