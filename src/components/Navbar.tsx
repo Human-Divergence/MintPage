@@ -1,6 +1,12 @@
 import React, { useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { divg, Back, HDHeaderLogo, ArrowHeader, MarketPlace } from "../assets";
+import {
+  MydyvergentLogoNavbar,
+  Back,
+  HDHeaderLogo,
+  ArrowHeader,
+  MarketPlace,
+} from "../assets";
 import { getNavigationNames } from "../utils/helpers/global.helpers";
 import { useAccount } from "wagmi";
 
@@ -58,25 +64,35 @@ const Navbar = () => {
             <div className="flex h-[52px] w-[52px] items-center justify-center bg-black">
               <img src={MarketPlace} alt="HD" className="h-[38px] w-[38px] " />
             </div>
-            <div className=" flex h-[52px] w-[286px] flex-row items-center justify-center  gap-2  bg-[#00FFAE] ">
+            <div className=" flex h-[52px] w-[336px] flex-row items-center justify-center  gap-2  bg-[#00FFAE] ">
               <p className=" text-2xl font-bold">MARKETPLACE</p>
               <img src={ArrowHeader} className="w-[20px] " />
             </div>
           </div>
-          {pathName !== ("/waiting" && "/connexion") && (
+          {pathName !== "/" && pathName !== "/connexion" && (
             <>
               <div
                 onClick={() => navigate("/mydivergent")}
-                className="flex flex-row hover:cursor-pointer"
+                className="flex  flex-row hover:cursor-pointer"
               >
                 <img
-                  src={divg}
+                  src={MydyvergentLogoNavbar}
                   alt="HD"
-                  className="h-[52px] w-[52px] bg-black"
+                  className="h-[52px] w-[52px] bg-black "
                 />
-                <div className=" flex h-[52px] w-[286px] flex-row items-center justify-center  gap-2  bg-[#00FFAE] ">
-                  <p className=" text-2xl font-bold">MY DIVERGENT</p>
-                  <img src={ArrowHeader} className="w-[20px] " />
+                <div
+                  className={` flex h-[52px] w-[336px] flex-row items-center justify-center  gap-2  ${
+                    pathName === "/mydivergent" ? "bg-red" : "bg-[#00FFAE] "
+                  } `}
+                >
+                  <p className=" text-2xl font-bold">
+                    {pathName === "/mydivergent"
+                      ? "GET MORE DIVERGENT"
+                      : "MY DIVERGENT"}
+                  </p>
+                  {pathName !== "/mydivergent" && (
+                    <img src={ArrowHeader} className="w-[20px] " />
+                  )}
                 </div>
               </div>
               <div className=" text-center text-2xl font-bold">

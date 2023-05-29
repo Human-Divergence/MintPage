@@ -50,10 +50,13 @@ import CapsuleDiamondPurchase from "./capsules/capsuleBluePurchase.png";
 import CharacterModalMinted from "./Character/CharacterModalMinted.png";
 import CharaterModalPurchase from "./Character/CharaterModalPurchase.png";
 import test from "./imagetest.png";
-import JupiterConnexion from "./JupiterTestsocle.png"
+import JupiterConnexion from "./JupiterTestsocle.png";
 import ArrowMyDiv from "./icons/arrowMydivergent.png";
 import logoVenus from "./logosFaction/logoVenus.png";
 import StatsCapsuleDiamond from "./capsules/statsCapsuleDiamond.png";
+import CapsulebleuPreview from "./capsules/CapsulebleuPreview.png";
+import RarePannel from "./rarePannel.png";
+import MydyvergentLogoNavbar from "./logo/mydyvergentLogoNavbar.svg";
 
 export {
   CapsuleDiamond,
@@ -109,4 +112,7 @@ export {
   ArrowMyDiv,
   logoVenus,
   StatsCapsuleDiamond,
+  CapsulebleuPreview,
+  RarePannel,
+  MydyvergentLogoNavbar,
 };
