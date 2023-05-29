@@ -12,6 +12,7 @@ import Card from "./Card/Card";
 import ItemPreview from "./ItemPreview/ItemPreview";
 import { NFTContext } from "../../context/NFTContext";
 import ModalMinted from "../../components/Modals/ModalMinted";
+import ModalReveal from "../../components/Modals/ModalReveal";
 
 const MyDivergent = () => {
   const [selectedCapsule, setSelectedCapsule] = useState<Capsule | undefined>();
@@ -19,6 +20,7 @@ const MyDivergent = () => {
     Character | undefined
   >();
   const [hasNFT, setHasNFT] = useState<boolean>(false);
+  const [showModalReveal, setShowModalReveal] = useState<boolean>(false);
 
   const { showModalMinted, setShowModalMinted } = useContext(NFTContext);
 
@@ -45,43 +47,37 @@ const MyDivergent = () => {
     <div className={`height-page bg-capsule flex justify-center pt-32  `}>
       {hasNFT ? (
         <>
-          <div className="flex flex-col">
+          <div className="flex flex-wrap items-center ">
             {selectedCapsule === undefined &&
-              selectedCharacter === undefined && (
-                <p className=" ml-10 text-[40px] font-medium">Owned</p>
-              )}
-            <div className="flex flex-wrap items-center ">
-              {selectedCapsule === undefined &&
-                selectedCharacter === undefined &&
-                capsulesDatas.map((capsule: Capsule, index) => (
-                  <Card
-                    capsule={capsule}
-                    onClick={() => {
-                      handleViewClick(capsule, undefined);
-                    }}
-                    key={index}
-                  />
-                ))}
-              {selectedCapsule === undefined &&
-                selectedCharacter === undefined &&
-                characters_silver.map((character: Character, index) => (
-                  <Card
-                    character={character}
-                    onClick={() => {
-                      handleViewClick(undefined, character);
-                    }}
-                    key={index}
-                  />
-                ))}
-            </div>
+              selectedCharacter === undefined &&
+              capsulesDatas.map((capsule: Capsule, index) => (
+                <Card
+                  capsule={capsule}
+                  onClick={() => {
+                    handleViewClick(capsule, undefined);
+                  }}
+                  setShowModalReveal={setShowModalReveal}
+                  key={index}
+                />
+              ))}
+            {selectedCapsule === undefined &&
+              selectedCharacter === undefined &&
+              characters_silver.map((character: Character, index) => (
+                <Card
+                  character={character}
+                  onClick={() => {
+                    handleViewClick(undefined, character);
+                  }}
+                  key={index}
+                />
+              ))}
           </div>
+
           {(selectedCapsule || selectedCharacter) && (
             <ItemPreview
               selectedCapsule={selectedCapsule}
               selectedCharacter={selectedCharacter}
-              onClick={() => {
-                handleViewClick(undefined, undefined);
-              }}
+              setShowModalReveal={setShowModalReveal}
             />
           )}
         </>
@@ -93,6 +89,13 @@ const MyDivergent = () => {
         onClick={() => {
           setShowModalMinted(false);
         }}
+      />
+      <ModalReveal
+        showModal={showModalReveal}
+        onClick={() => {
+          setShowModalReveal(false);
+        }}
+        capsule={selectedCapsule}
       />
     </div>
   );

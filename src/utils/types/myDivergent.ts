@@ -10,6 +10,7 @@ export type Character = {
 export type Capsule = {
   title: "onyx" | "gold" | "diamond";
   image: string;
+  imagePreview?: string;
   imageBG: string;
   description: string;
   time: string;

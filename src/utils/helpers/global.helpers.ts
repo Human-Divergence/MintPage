@@ -2,13 +2,13 @@ import { CapsulePrices, ShoppingCart } from "../types/home";
 
 export const getNavigationNames = (pathName: string) => {
   if (pathName === "/human") {
-    return ["CAPSULES", "OPENING"];
+    return ["CAPSULE", "PRESALE"];
   }
   if (pathName === "/mydivergent") {
     return ["MY", "DIVERGENTS"];
   }
   if (pathName === "/") {
-    return ["CAPSULE", "PRE SALE"];
+    return ["CAPSULE", "PRESALE"];
   }
 };
 

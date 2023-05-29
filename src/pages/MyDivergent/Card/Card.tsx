@@ -1,17 +1,20 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { Capsule, Character } from "../../../utils/types/myDivergent";
-import ModalReveal from "../../../components/Modals/ModalReveal";
 import { ArrowMyDiv, logoVenus } from "../../../assets/index";
 
 type CardProps = {
   capsule?: Capsule;
   character?: Character;
+  setShowModalReveal?: Function;
   onClick: () => void;
 };
 
-const Card: FC<CardProps> = ({ capsule, character, onClick }) => {
-  const [showModalReveal, setShowModalReveal] = useState<boolean>(false);
-
+const Card: FC<CardProps> = ({
+  capsule,
+  character,
+  onClick,
+  setShowModalReveal,
+}) => {
   return (
     <div className="capsule-container small-capsule-container ">
       <img
@@ -58,20 +61,13 @@ const Card: FC<CardProps> = ({ capsule, character, onClick }) => {
         <button
           className="capsule-button flex h-[43px] w-[92%] items-center justify-center gap-3 bg-[#FF2273] font-bold hover:scale-110 "
           onClick={() => {
-            setShowModalReveal(true);
+            setShowModalReveal && setShowModalReveal(true);
           }}
         >
           {capsule !== undefined ? "REVEAL DIVERGENT" : "PUT ON SALE"}
           {capsule === undefined && <img src={ArrowMyDiv} />}
         </button>
       </div>
-      <ModalReveal
-        showModal={showModalReveal}
-        onClick={() => {
-          setShowModalReveal(false);
-        }}
-        capsule={capsule}
-      />
     </div>
   );
 };

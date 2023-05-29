@@ -1,75 +1,100 @@
 import React, { FC } from "react";
 import { Capsule, Character } from "../../../utils/types/myDivergent";
+import {
+  ArrowMyDiv,
+  StatsCapsuleDiamond,
+  RarePannel,
+  logoVenus,
+} from "../../../assets/index";
 
 type ItemPreviewProps = {
   selectedCapsule?: Capsule;
   selectedCharacter?: Character;
-  onClick: () => void;
+  setShowModalReveal?: Function;
 };
 
 const ItemPreview: FC<ItemPreviewProps> = ({
   selectedCapsule,
   selectedCharacter,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onClick,
+  setShowModalReveal,
 }) => {
   return (
     <div className="flex h-full flex-col justify-center ">
-      <div className=" mb-10 text-5xl font-bold">
-        <div>CONGRATS!</div>
-        <div className="text-[#FF005F]">EMBODY NOW!</div>
-      </div>
       <div
-        className="flex w-[1050px]  
+        className="flex   w-[1050px]
                 justify-between rounded-xl bg-[#FFFFFF40] lg:h-auto lg:flex-row"
       >
         <img
-          src={selectedCapsule?.imageBG || selectedCharacter?.image}
+          src={selectedCapsule?.imagePreview || selectedCharacter?.image}
           alt={selectedCapsule?.title}
-          className="h-[415px] scale-100 rounded-3xl object-cover lg:w-auto"
+          className=" h-[481px] scale-100 rounded-3xl object-cover lg:w-auto"
         />
-        <div className="flex w-full flex-col ">
-          {selectedCharacter !== undefined && (
-            <div className="mt-8 flex w-full flex-row justify-between px-10">
-              <div>
-                <div className=" text-3xl font-extrabold text-[#FAB63B]">
-                  {selectedCharacter.nom}
-                </div>
-                <div className="text-2xl font-extrabold text-[#FF005F]">
-                  {selectedCharacter.faction}
-                </div>
-                <div className="text-xs ">#{selectedCharacter.order}</div>
+        <div className="relative flex w-full flex-col ">
+          <div className="flex h-[138px] w-full flex-row  items-center  justify-between gap-8 bg-[#FFFFFF] pl-10">
+            {selectedCapsule ? (
+              <div className=" text-2xl font-bold">
+                {selectedCapsule.description} <br />
+                CAPSULE
               </div>
-              <div className="flex">
-                <div className="mt-2 flex h-[17px] w-[87px]  items-center justify-center rounded-3xl bg-[#FFAF36] font-extrabold text-white">
-                  Tier {selectedCharacter.tier}
+            ) : (
+              <div className="flex flex-col gap-1">
+                <div className=" text-4xl font-extrabold text-[#FAB63B]">
+                  {selectedCharacter?.nom}
+                </div>
+                <div className="text-3xl font-extrabold text-[#FF005F]">
+                  {selectedCharacter?.faction}
+                </div>
+              </div>
+            )}
+            <div className="capsule-buttons w-[282px] flex-col items-center  justify-center gap-2">
+              <button className="capsule-button flex h-[31px] w-full  flex-row items-center  justify-center gap-3 bg-[#00ffae] font-bold ">
+                VIEW ON MARKETPLACE
+                <img src={ArrowMyDiv} />
+              </button>
+              <button
+                className="capsule-button flex h-[43px] w-full items-center justify-center gap-3 bg-[#FF2273] font-bold"
+                onClick={() => {
+                  selectedCapsule !== undefined &&
+                    setShowModalReveal &&
+                    setShowModalReveal(true);
+                }}
+              >
+                {selectedCapsule !== undefined
+                  ? "REVEAL DIVERGENT"
+                  : "PUT ON SALE"}
+                {selectedCapsule === undefined && <img src={ArrowMyDiv} />}
+              </button>
+            </div>
+          </div>
+
+          {selectedCapsule && (
+            <>
+              <img
+                src={StatsCapsuleDiamond}
+                className="absolute bottom-8 left-0"
+              />
+              <img src={RarePannel} className="absolute bottom-5 right-4" />
+            </>
+          )}
+
+          {selectedCharacter && (
+            <div className="relative flex h-full items-center justify-center">
+              <div className=" text-5xl">#{selectedCharacter?.order}</div>
+
+              <div className="absolute left-0 top-0 flex flex-row gap-1">
+                <img
+                  src={logoVenus}
+                  className="h-[82px] w-[82px] rounded-ee-xl bg-red"
+                />
+                <div className="mt-2 flex flex-col">
+                  <span className="text-3xl font-bold text-red">GLINT</span>
+                  <span className="text-2xl font-medium text-red">
+                    Tier&nbsp;{selectedCharacter?.tier}
+                  </span>
                 </div>
               </div>
             </div>
           )}
-          <div className="flex h-[138px] w-full flex-row items-center gap-8 bg-[#FFFFFF]">
-            <div>
-              {selectedCapsule && (
-                <h2 className=" text-2xl font-bold">
-                  {selectedCapsule.description}
-                </h2>
-              )}
-            </div>
-            <div className="flex w-64 flex-col justify-end gap-4">
-              <button
-                className="capsule-button h-[38px] bg-[#00ffae] font-bold text-black hover:text-white"
-                onClick={() => window.open("https://opensea.io/", "_blank")}
-              >
-                Put on sale
-              </button>
-              <button
-                className="capsule-button h-[54px] bg-[#FF2273] font-bold hover:text-white"
-                onClick={() => {}}
-              >
-                Reveal
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
