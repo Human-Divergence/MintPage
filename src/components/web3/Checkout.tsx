@@ -1,9 +1,10 @@
 import React, { FC, useContext, useMemo, useState } from "react";
-import { eth, ArrowWhiteBGBlack } from "../../assets";
+import { eth } from "../../assets";
 import { ShoppingCart } from "../../utils/types/home";
 import { NFTContext } from "../../context/NFTContext";
 import { getPriceCart } from "../../utils/helpers/global.helpers";
 import ModalPurchase from "../Modals/ModalPurchase";
+import Button from "../Button/Button";
 
 type CheckoutProps = {
   capsuleCart: ShoppingCart;
@@ -79,17 +80,12 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
             <span className="text-xl font-bold text-[#999999]">XXXX USD</span>
           </div>
 
-          <div
-            className="mt-2 flex bg-red hover:cursor-pointer"
+          <Button
+            text={"PURCHASE"}
             onClick={() => {
               setShowPurchaseModal(true);
             }}
-          >
-            <img src={ArrowWhiteBGBlack} alt="Purchase" />
-            <div className="flex w-full items-center justify-center text-[24px] font-bold ">
-              PURCHASE
-            </div>
-          </div>
+          />
         </div>
       </div>
       <ModalPurchase

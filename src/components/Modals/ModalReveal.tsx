@@ -2,13 +2,13 @@ import React, { FC } from "react";
 import Modal from "../Modal/Modal";
 import {
   CrossPurchase,
-  ArrowWhiteBGBlack,
   CapsuleOnyxPurchase,
   CapsuleGoldPurchase,
   CapsuleDiamondPurchase,
   StatsCapsuleDiamond,
 } from "../../assets";
 import { Capsule } from "../../utils/types/myDivergent";
+import Button from "../Button/Button";
 
 type ModalConnectionProps = {
   showModal: boolean;
@@ -57,15 +57,7 @@ const ModalReveal: FC<ModalConnectionProps> = ({
             )}
           </div>
 
-          <div
-            className="mt-2 flex w-[270px] self-end bg-red hover:cursor-pointer"
-            onClick={reveal}
-          >
-            <img src={ArrowWhiteBGBlack} alt="Purchase" />
-            <div className="flex w-full items-center justify-center text-[24px] font-bold ">
-              CONFIRM
-            </div>
-          </div>
+          <Button text={"CONFIRM"} onClick={reveal} />
 
           <img src={StatsCapsuleDiamond} className="absolute bottom-6 left-0" />
         </div>

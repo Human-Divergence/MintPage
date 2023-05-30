@@ -1,8 +1,7 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useContext } from "react";
 import Modal from "../Modal/Modal";
 import {
   CrossPurchase,
-  ArrowWhiteBGBlack,
   CapsuleOnyxPurchase,
   CapsuleGoldPurchase,
   CapsuleDiamondPurchase,
@@ -11,6 +10,7 @@ import {
 import { NFTContext } from "../../context/NFTContext";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart } from "../../utils/types/home";
+import Button from "../Button/Button";
 
 type ModalConnectionProps = {
   showModal: boolean;
@@ -30,16 +30,6 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
   const { setShowModalMinted } = useContext(NFTContext);
 
   const navigate = useNavigate();
-
-  const [isActive, setIsActive] = useState(false);
-
-  const handleClick = () => {
-    setIsActive(true);
-    setTimeout(() => {
-      setIsActive(false);
-      navigate("/mydivergent");
-    }, 1000); // Adjust the delay time as needed
-  };
 
   return (
     <>
@@ -90,20 +80,15 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
             </span>
           </div>
 
-          <div
-            className="mt-2 flex w-[270px] flex-row self-end bg-red hover:cursor-pointer hover:flex-row-reverse hover:bg-black hover:text-[#FF005F] hover:duration-[10000] hover:ease-in-out duration-1000"
+          <Button
+            text={"CONFIRMATION"}
             onClick={() => {
               setShowModalMinted(true);
               setTimeout(() => {
                 navigate("/mydivergent");
               }, 1000);
             }}
-          >
-            <img src={ArrowWhiteBGBlack} alt="Purchase" />
-            <div className="flex w-full items-center justify-center text-[24px] font-bold ">
-              CONFIRMATION
-            </div>
-          </div>
+          />
         </div>
       </Modal>
       {showModal && (
