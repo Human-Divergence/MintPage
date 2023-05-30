@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useState } from "react";
 import Modal from "../Modal/Modal";
 import {
   CrossPurchase,
@@ -30,6 +30,16 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
   const { setShowModalMinted } = useContext(NFTContext);
 
   const navigate = useNavigate();
+
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    setIsActive(true);
+    setTimeout(() => {
+      setIsActive(false);
+      navigate("/mydivergent");
+    }, 1000); // Adjust the delay time as needed
+  };
 
   return (
     <>
@@ -81,10 +91,12 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
           </div>
 
           <div
-            className="mt-2 flex w-[270px] self-end bg-red hover:cursor-pointer"
+            className="mt-2 flex w-[270px] flex-row self-end bg-red hover:cursor-pointer hover:flex-row-reverse hover:bg-black hover:text-[#FF005F] hover:duration-[10000] hover:ease-in-out duration-1000"
             onClick={() => {
               setShowModalMinted(true);
-              navigate("/mydivergent");
+              setTimeout(() => {
+                navigate("/mydivergent");
+              }, 1000);
             }}
           >
             <img src={ArrowWhiteBGBlack} alt="Purchase" />
