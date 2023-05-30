@@ -5,11 +5,11 @@ import { NFTContext } from "../../context/NFTContext";
 import { getPriceCart } from "../../utils/helpers/global.helpers";
 import ModalPurchase from "../Modals/ModalPurchase";
 
-type AmountProps = {
+type CheckoutProps = {
   capsuleCart: ShoppingCart;
 };
 
-const Amount: FC<AmountProps> = ({ capsuleCart }) => {
+const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
   const { pricesCapsules, priceEth } = useContext(NFTContext);
   const [showPurchaseModal, setShowPurchaseModal] = useState<boolean>(false);
 
@@ -104,4 +104,4 @@ const Amount: FC<AmountProps> = ({ capsuleCart }) => {
     </>
   );
 };
-export default Amount;
+export default Checkout;

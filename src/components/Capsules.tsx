@@ -1,7 +1,6 @@
 import React, { useState, FC, useContext } from "react";
 import { lock, eth } from "../assets";
 import { capsulesDatas } from "../utils/constants/mockData";
-import PopUpCheckout from "./PopUpCheckout";
 import NotWhitelist from "./NoWhitelist";
 import { Capsule } from "../utils/types/myDivergent";
 import { ShoppingCart } from "../utils/types/home";
@@ -19,35 +18,30 @@ type CapsulesProps = {
 };
 
 const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
-  const [pricePolygon, setPrice] = useState(0);
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [selectedCap, setSelectedCap] = useState(null);
   const [isWhitelisted, setIsWhitelisted] = useState(true);
   const { pricesCapsules, priceEth } = useContext(NFTContext);
 
-  const handleOpenPopup = (cap: any) => {
-    // receive cap as parameter
-    setSelectedCap(cap);
-    setPopupOpen(true);
-  };
-
-  const handleClosePopup = () => {
-    setPopupOpen(false);
-  };
-
-  const handleConfirm = () => {
-    setPopupOpen(false);
+  const capsulesBought: ShoppingCart = {
+    onyx: 0,
+    gold: 0,
+    diamond: 0,
   };
 
   const addCapsule = (cap: Capsule) => {
-    if (amountCapsuleCart(capsuleCart) < 4) {
-      if (cap.title === "onyx") {
+    if (
+      amountCapsuleCart(capsuleCart) <
+      9 - amountCapsuleCart(capsulesBought)
+    ) {
+      if (cap.title === "onyx" && capsuleCart.onyx < 4 - capsulesBought.onyx) {
         setCapsuleCart({ ...capsuleCart, onyx: capsuleCart.onyx + 1 });
       }
-      if (cap.title === "gold") {
+      if (cap.title === "gold" && capsuleCart.gold < 3 - capsulesBought.gold) {
         setCapsuleCart({ ...capsuleCart, gold: capsuleCart.gold + 1 });
       }
-      if (cap.title === "diamond") {
+      if (
+        cap.title === "diamond" &&
+        capsuleCart.diamond < 2 - capsulesBought.diamond
+      ) {
         setCapsuleCart({ ...capsuleCart, diamond: capsuleCart.diamond + 1 });
       }
     }
@@ -81,14 +75,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                       className=" absolute bottom-[-1px] h-[121%]"
                     />
                   </div>
-                  {popupOpen && (
-                    <PopUpCheckout
-                      cap={selectedCap}
-                      pricePolygon={pricePolygon}
-                      onClose={handleClosePopup}
-                      onConfirm={handleConfirm}
-                    />
-                  )}
+
                   {!cap.open ? (
                     <center>
                       <img
@@ -121,8 +108,8 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                       </div>
 
                       <div className="description-wrapper">
-                        <button className="w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-extrabold text-white">
-                          DROP RATE
+                        <button className="w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-extrabold text-white ">
+                          <span className=" bg-dropRate"> DROP RATE</span>
                         </button>
                         <div className="flex flex-col gap-6 p-5">
                           <div className=" flex flex-col items-end justify-end">
@@ -154,7 +141,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                             <div className=" ml-7 flex h-[25%] w-[25%] flex-row items-center   justify-between rounded-[5px] bg-[#00FFAE]">
                               <div>
                                 <button
-                                  className=" rounded-[5px] bg-black px-3 text-[22px] text-white"
+                                  className=" rounded-[5px] bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"
                                   onClick={() => {
                                     removeCapsule(cap);
                                   }}
@@ -166,7 +153,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                                 {capsuleCart[cap.title as keyof ShoppingCart]}
                               </p>
                               <button
-                                className="rounded-[5px] bg-black px-3 text-[22px] text-white"
+                                className="rounded-[5px] bg-black px-3 text-[22px] text-white active:bg-[#00FFAE]"
                                 onClick={() => {
                                   addCapsule(cap);
                                 }}

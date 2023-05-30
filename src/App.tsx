@@ -12,7 +12,7 @@ import { WalletConnectConnector } from "@wagmi/core/connectors/walletConnect";
 import Home from "./pages/Home";
 import MyDivergent from "./pages/MyDivergent/MyDivergent";
 import Waiting from "./pages/Waiting/Waiting";
-import Connexion from "./pages/Connexion/Connexion"
+import Connexion from "./pages/Connexion/Connexion";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [polygonMumbai],
@@ -67,8 +67,8 @@ function App() {
               <Route path="/" element={<Waiting />} />
               <Route path="/human" element={<Home />} />
               <Route path="/mydivergent" element={<MyDivergent />} />
-              <Route path="/Waiting" element={<Waiting />} />
-              <Route path="/Connexion" element={<Connexion />} />
+              <Route path="/waiting" element={<Waiting />} />
+              <Route path="/connexion" element={<Connexion />} />
             </Routes>
             <Footer />
           </AccountProvider>

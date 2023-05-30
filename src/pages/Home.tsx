@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Capsules } from "../components";
-import Amount from "../components/web3/Amount";
+import Checkout from "../components/web3/Checkout";
 import { ShoppingCart } from "../utils/types/home";
 
 function Home() {
@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <div className="flex flex-col ">
-      <Amount capsuleCart={capsuleCart} />
+      <Checkout capsuleCart={capsuleCart} />
       <Capsules capsuleCart={capsuleCart} setCapsuleCart={setCapsuleCart} />
     </div>
   );

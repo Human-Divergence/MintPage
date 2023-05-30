@@ -223,3 +223,7 @@ body {
     #000000 100%
   );
 }
+
+.bg-dropRate {
+  text-shadow: #000000 1px 0 10px;
+}

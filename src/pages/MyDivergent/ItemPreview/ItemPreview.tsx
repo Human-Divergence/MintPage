@@ -5,6 +5,8 @@ import {
   StatsCapsuleDiamond,
   RarePannel,
   logoVenus,
+  statsOnyx,
+  statsGold,
 } from "../../../assets/index";
 
 type ItemPreviewProps = {
@@ -70,7 +72,13 @@ const ItemPreview: FC<ItemPreviewProps> = ({
           {selectedCapsule && (
             <>
               <img
-                src={StatsCapsuleDiamond}
+                src={
+                  selectedCapsule.title === "diamond"
+                    ? StatsCapsuleDiamond
+                    : selectedCapsule.title === "gold"
+                    ? statsGold
+                    : statsOnyx
+                }
                 className="absolute bottom-8 left-0"
               />
               <img src={RarePannel} className="absolute bottom-5 right-4" />
