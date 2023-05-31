@@ -58,7 +58,7 @@ const Navbar = () => {
             </p>
           </div>
 
-          <p className="  mt-[72px] pl-8 font-poppins text-[56px] font-medium leading-none text-black">
+          <p className="  mt-[72px] pl-12 font-poppins text-[56px] font-bold leading-none text-black">
             {navigationNames[0]}
             <br />
             <span className="text-[#00FFAE]"> {navigationNames[1]}</span>

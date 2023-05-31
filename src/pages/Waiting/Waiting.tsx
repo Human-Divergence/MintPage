@@ -66,7 +66,9 @@ const Waiting = () => {
           "s"
         }`}</h1>
         <div
-          className="flex flex-row bg-red hover:cursor-pointer"
+          className={`flex flex-row  hover:cursor-pointer ${
+            isConnected ? "bg-[#00FFAE]" : "bg-red"
+          }`}
           onClick={() => {
             !isConnected && setShowModal(true);
           }}

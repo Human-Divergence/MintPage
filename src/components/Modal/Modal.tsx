@@ -22,8 +22,10 @@ const Modal: React.FC<ModalProps> = ({
   useEffect(() => {
     if (showModal) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "auto";
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -35,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center  bg-gray-800 bg-opacity-75">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800  bg-opacity-75 backdrop-blur-md">
       <div ref={modalRef} className={`$ relative `}>
         {children}
       </div>

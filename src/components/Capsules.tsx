@@ -67,7 +67,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
           {capsulesDatas.map((cap, index) => (
             <div className="mb-16 flex justify-center" key={index}>
               <div className="w-full sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
-                <div className="relative flex h-[300px] w-full justify-center gap-1 rounded-md border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:w-[1024px] ">
+                <div className="relative flex h-[300px] w-full justify-center gap-1 rounded-bl-[250px] rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:w-[1024px] ">
                   <div className="">
                     <img
                       src={cap.image}
@@ -86,9 +86,9 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                     </center>
                   ) : (
                     <div className="flex w-full flex-col">
-                      <div className="description-container flex h-full items-center justify-end gap-8 rounded-tr-lg border-solid border-black  bg-white">
+                      <div className="description-container flex h-full items-center justify-between gap-8 rounded-tr-3xl border-solid  border-black bg-white pl-[25%]  pr-5">
                         <p className="text-center text-4xl font-bold">
-                          {cap.description}
+                          {cap.description} CAPSULE
                         </p>
                         <p
                           className="w-[250px] text-center text-[13px] font-bold text-white"
@@ -108,8 +108,8 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                       </div>
 
                       <div className="description-wrapper">
-                        <button className="w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-extrabold text-white ">
-                          <span className="textShadow"> DROP RATE</span>
+                        <button className="font w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white ">
+                          <span className="textShadow "> DROP RATE</span>
                         </button>
                         <div className="flex flex-col gap-6 p-5">
                           <div className=" flex flex-col items-end justify-end">

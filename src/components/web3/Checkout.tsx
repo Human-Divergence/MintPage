@@ -1,4 +1,4 @@
-import React, { FC, useContext, useMemo, useState } from "react";
+import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { eth } from "../../assets";
 import { ShoppingCart } from "../../utils/types/home";
 import { NFTContext } from "../../context/NFTContext";
@@ -13,6 +13,7 @@ type CheckoutProps = {
 const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
   const { pricesCapsules, priceEth } = useContext(NFTContext);
   const [showPurchaseModal, setShowPurchaseModal] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const priceEthCart: number = useMemo(() => {
     return getPriceCart(capsuleCart, pricesCapsules);
@@ -22,9 +23,32 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
     return priceEth * priceEthCart;
   }, [priceEth, priceEthCart]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 158) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // eslint-disable-next-line no-console
+  console.log(isScrolled);
+
   return (
     <>
-      <div className="absolute right-0 mt-10 flex  flex-col gap-1">
+      <div
+        className={` ${isScrolled ? "fixed" : "absolute"}  ${
+          isScrolled ? "top-10" : "mt-10"
+        } right-0  flex  flex-col gap-1`}
+      >
         <div className=" bg-opacity-45 z-10 min-h-[300px] w-[312px] rounded-bl-xl  border-y-[1px]  border-l-[1px]  border-black p-4 ">
           <div className="flex justify-between">
             <span className="text-[14px] font-bold">Capsules</span>
@@ -88,6 +112,7 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
           />
         </div>
       </div>
+
       <ModalPurchase
         showModal={showPurchaseModal}
         onClick={() => {

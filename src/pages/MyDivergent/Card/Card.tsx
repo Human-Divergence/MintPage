@@ -28,7 +28,7 @@ const Card: FC<CardProps> = ({
           alt={capsule?.title || character?.nom}
           className={`${
             capsule ? "-rotate-6 hover:-rotate-12" : ""
-          } transition-all duration-500 ease-in-out hover:scale-110`}
+          } transition-all duration-500 ease-in-out hover:scale-110 hover:cursor-pointer`}
           onClick={onClick}
         />
       </div>

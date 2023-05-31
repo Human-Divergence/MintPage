@@ -22,10 +22,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
 }) => {
   return (
     <div className="flex h-full flex-col justify-center ">
-      <div
-        className="flex   w-[1050px]
-                justify-between rounded-xl bg-[#FFFFFF40] lg:h-auto lg:flex-row"
-      >
+      <div className="flex w-[1050px] justify-between rounded-xl bg-[#FFFFFF40] lg:h-auto lg:flex-row">
         <div
           className={`flex h-[455px] w-[500px]  items-center justify-center rounded-tl-3xl rounded-tr-3xl
           ${selectedCapsule?.title === "onyx" ? "bg-capsule-silver" : ""}
@@ -37,7 +34,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
             alt={selectedCapsule?.title || selectedCharacter?.nom}
             className={`${
               selectedCapsule ? "h-80 w-[50%] -rotate-6 hover:-rotate-12" : ""
-            } mb-4 transition-all duration-500 ease-in-out hover:scale-110`}
+            } mb-4 transition-all duration-500 ease-in-out hover:scale-110 hover:cursor-pointer`}
           />
         </div>
         <div className="relative flex w-full flex-col ">

@@ -28,8 +28,8 @@ const ModalReveal: FC<ModalConnectionProps> = ({
       <Modal showModal={showModal} closeFunction={onClick}>
         <div className="bg-ModalPurchase  flex  h-[690px] w-[887px] flex-col justify-between rounded-3xl p-5 font-bold">
           <div className=" flex  justify-between text-white">
-            <div className="p-5 text-3xl">
-              YOUR <br /> <span className="text-red">CAPSULE</span>
+            <div className="p-5 pb-0  text-3xl">
+              REVEAL <br /> <span className="text-red">CAPSULE</span>
             </div>
             <img
               src={CrossPurchase}
@@ -41,7 +41,7 @@ const ModalReveal: FC<ModalConnectionProps> = ({
           <div className="flex flex-row justify-center px-10">
             {capsule?.title === "onyx" ? (
               <span className="relative text-center text-[24px] font-bold text-[#999999]">
-                <img src={CapsuleOnyxPurchase} />
+                <img src={CapsuleOnyxPurchase} className="  " />
                 <span>QUELOZ ONYX</span>
               </span>
             ) : capsule?.title === "gold" ? (
@@ -51,7 +51,7 @@ const ModalReveal: FC<ModalConnectionProps> = ({
               </span>
             ) : (
               <span className="relative text-center text-[24px] font-bold text-[#2B1E74] ">
-                <img src={CapsuleDiamondPurchase} />
+                <img src={CapsuleDiamondPurchase} className="h-[400px]" />
                 TRIA DIAMOND
               </span>
             )}
