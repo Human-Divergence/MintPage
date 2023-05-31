@@ -12,7 +12,7 @@
   width: 100%;
   height: auto;
   border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+  border-top-right-radius: 18px; 
 }
 
 .capsule-buttons {
@@ -44,4 +44,16 @@
   transform: rotate(90deg);
   background-color: rgba(255, 255, 255, 0.25);
   max-width: 100%;
+}
+
+.bg-capsule-blue {
+  background: linear-gradient(157.5deg, #082597 4.65%, #000000 97.99%);
+}
+
+.bg-capsule-silver {
+  background: linear-gradient(157.5deg, #838383 4.65%, #000000 97.99%);
+}
+
+.bg-capsule-gold {
+  background: linear-gradient(157.5deg, #AD7000  4.65%, #000000 97.99%);
 }

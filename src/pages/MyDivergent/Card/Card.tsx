@@ -17,12 +17,21 @@ const Card: FC<CardProps> = ({
 }) => {
   return (
     <div className="capsule-container m-[2rem]  ">
-      <img
-        src={capsule?.imageBG || character?.image}
-        alt={capsule?.title || character?.nom}
-        className="capsule-image transition-all duration-500 ease-in-out hover:rotate-3 hover:scale-110  "
-        onClick={onClick}
-      />
+      <div
+        className={`capsule-image flex h-[300px] items-end justify-center
+        ${capsule?.title === "onyx" ? "bg-capsule-silver" : ""}
+        ${capsule?.title === "gold" ? "bg-capsule-gold" : ""}
+        ${capsule?.title === "diamond" ? "bg-capsule-blue" : ""}`}
+      >
+        <img
+          src={capsule?.imageBG || character?.image}
+          alt={capsule?.title || character?.nom}
+          className={`${
+            capsule ? "-rotate-6 hover:-rotate-12" : ""
+          } mb-4 transition-all duration-500 ease-in-out hover:scale-110`}
+          onClick={onClick}
+        />
+      </div>
       <div className="w-full bg-white">
         {capsule !== undefined && (
           <p className="py-8 text-center text-lg font-extrabold">

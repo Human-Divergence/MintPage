@@ -27,6 +27,10 @@ import CapsuleDiamond from "./CapsuleDiamond1.png";
 import CapsuleSilver from "./CapsuleSilver1.png";
 import CapsuleOr from "./CapsuleGold1.png";
 
+import CapsulePreviewDiamond from "./capsules/CapsulePreviewDiam.png";
+import CapsulePreviewGold from "./capsules/CapsulePreviewGold.png";
+import CapsulePreviewSilver from "./capsules/CapsulePreviewSilver.png";
+
 import character1 from "./Character/Character1.png";
 import character2 from "./Character/Character2.png";
 import character3 from "./Character/Character3.png";
@@ -61,6 +65,9 @@ import statsGold from "./statsGold.png";
 import statsOnyx from "./statsOnyx.png";
 
 export {
+  CapsulePreviewDiamond,
+  CapsulePreviewSilver,
+  CapsulePreviewGold,
   CapsuleDiamond,
   CapsuleSilver,
   CapsuleOr,
