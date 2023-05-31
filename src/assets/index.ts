@@ -59,6 +59,7 @@ import RarePannel from "./rarePannel.png";
 import MydyvergentLogoNavbar from "./logo/mydyvergentLogoNavbar.svg";
 import statsGold from "./statsGold.png";
 import statsOnyx from "./statsOnyx.png";
+import ArrowBackNav from "./icons/ArrowBackNav.png";
 
 export {
   CapsuleDiamond,
@@ -119,4 +120,5 @@ export {
   MydyvergentLogoNavbar,
   statsOnyx,
   statsGold,
+  ArrowBackNav,
 };
