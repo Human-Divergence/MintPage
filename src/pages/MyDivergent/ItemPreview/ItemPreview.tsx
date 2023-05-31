@@ -2,10 +2,10 @@ import React, { FC } from "react";
 import { Capsule, Character } from "../../../utils/types/myDivergent";
 import {
   ArrowMyDiv,
-  StatsCapsuleDiamond,
   RarePannel,
   logoVenus,
   statsOnyx,
+  statsDiam,
   statsGold,
 } from "../../../assets/index";
 
@@ -26,11 +26,20 @@ const ItemPreview: FC<ItemPreviewProps> = ({
         className="flex   w-[1050px]
                 justify-between rounded-xl bg-[#FFFFFF40] lg:h-auto lg:flex-row"
       >
-        <img
-          src={selectedCapsule?.imagePreview || selectedCharacter?.image}
-          alt={selectedCapsule?.title}
-          className=" h-[481px] scale-100 rounded-3xl object-cover lg:w-auto"
-        />
+        <div
+          className={`flex h-[455px] w-[500px]  items-center justify-center rounded-tl-3xl rounded-tr-3xl
+          ${selectedCapsule?.title === "onyx" ? "bg-capsule-silver" : ""}
+          ${selectedCapsule?.title === "gold" ? "bg-capsule-gold" : ""}
+          ${selectedCapsule?.title === "diamond" ? "bg-capsule-blue" : ""}`}
+        >
+          <img
+            src={selectedCapsule?.imageBG || selectedCharacter?.image}
+            alt={selectedCapsule?.title || selectedCharacter?.nom}
+            className={`${
+              selectedCapsule ? "h-80 w-[50%] -rotate-6 hover:-rotate-12" : ""
+            } mb-4 transition-all duration-500 ease-in-out hover:scale-110`}
+          />
+        </div>
         <div className="relative flex w-full flex-col ">
           <div className="flex h-[138px] w-full flex-row  items-center  justify-between gap-8 bg-[#FFFFFF] pl-10">
             {selectedCapsule ? (
@@ -74,12 +83,12 @@ const ItemPreview: FC<ItemPreviewProps> = ({
               <img
                 src={
                   selectedCapsule.title === "diamond"
-                    ? StatsCapsuleDiamond
+                    ? statsDiam
                     : selectedCapsule.title === "gold"
                     ? statsGold
                     : statsOnyx
                 }
-                className="absolute bottom-8 left-0"
+                className="absolute bottom-8 left-0 h-3/5 w-5/6"
               />
               <img src={RarePannel} className="absolute bottom-5 right-4" />
             </>

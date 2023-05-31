@@ -18,7 +18,7 @@ const Card: FC<CardProps> = ({
   return (
     <div className="capsule-container m-[2rem]  ">
       <div
-        className={`capsule-image flex h-[300px] items-end justify-center
+        className={`capsule-image flex h-[300px] items-center justify-center
         ${capsule?.title === "onyx" ? "bg-capsule-silver" : ""}
         ${capsule?.title === "gold" ? "bg-capsule-gold" : ""}
         ${capsule?.title === "diamond" ? "bg-capsule-blue" : ""}`}
@@ -28,7 +28,7 @@ const Card: FC<CardProps> = ({
           alt={capsule?.title || character?.nom}
           className={`${
             capsule ? "-rotate-6 hover:-rotate-12" : ""
-          } mb-4 transition-all duration-500 ease-in-out hover:scale-110`}
+          } transition-all duration-500 ease-in-out hover:scale-110`}
           onClick={onClick}
         />
       </div>
