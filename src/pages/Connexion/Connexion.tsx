@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { test, ArrowWhiteBGBlack } from "../../assets";
+import { test } from "../../assets";
 import ModalConnection from "../../components/Modals/ModalConnection";
 import { useAccount } from "wagmi";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
 
 function Connexion() {
   const [showModal, setShowModal] = useState(false);
@@ -31,18 +32,13 @@ function Connexion() {
         </div>
         <div className="flex flex-col gap-8">
           <img src={test} className="" />
-          <div
-            className="flex flex-row items-center justify-center"
-            onClick={() => {
-              !isConnected && setShowModal(true);
-            }}
-          >
-            <button
-              className={`flex  items-center  justify-center bg-red text-3xl font-bold hover:cursor-pointer`}
-            >
-              <img src={ArrowWhiteBGBlack} />
-              <span className="px-3">CONNECT MY WALLET</span>
-            </button>
+          <div className="flex items-center justify-center">
+            <Button
+              onClick={() => {
+                !isConnected && setShowModal(true);
+              }}
+              text={"CONNECT MY WALLET"}
+            />
           </div>
         </div>
       </div>

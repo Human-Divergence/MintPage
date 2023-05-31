@@ -109,7 +109,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
 
                       <div className="description-wrapper">
                         <button className="w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-extrabold text-white ">
-                          <span className=" bg-dropRate"> DROP RATE</span>
+                          <span className="textShadow"> DROP RATE</span>
                         </button>
                         <div className="flex flex-col gap-6 p-5">
                           <div className=" flex flex-col items-end justify-end">
