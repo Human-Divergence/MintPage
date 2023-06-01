@@ -42,7 +42,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
           />
         </div>
         <div className="relative flex w-full flex-col ">
-          <div className="flex h-[138px] w-full flex-row  items-center  justify-between gap-8 bg-[#FFFFFF] pl-10">
+          <div className="w-fullplus20px relative  left-[-20px] flex h-[138px] flex-row  items-center  justify-between gap-8 bg-[#FFFFFF] pl-10">
             {selectedCapsule ? (
               <div className=" text-2xl font-bold">
                 {selectedCapsule.description} <br />

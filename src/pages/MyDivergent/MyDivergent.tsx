@@ -79,16 +79,18 @@ const MyDivergent = () => {
                 />
               ))}
 
-            {Array.from({ length: amountEmptyCard }, () => null).map(
-              (index) => {
-                return (
-                  <div
-                    key={index}
-                    className="empty-card self-start justify-self-start"
-                  ></div>
-                );
-              }
-            )}
+            {selectedCapsule === undefined &&
+              selectedCharacter === undefined &&
+              Array.from({ length: amountEmptyCard }, () => null).map(
+                (index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="empty-card self-start justify-self-start"
+                    ></div>
+                  );
+                }
+              )}
           </div>
 
           {(selectedCapsule || selectedCharacter) && (
