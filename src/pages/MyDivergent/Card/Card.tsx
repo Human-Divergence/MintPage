@@ -1,11 +1,15 @@
 import React, { FC } from "react";
-import { Capsule, Character } from "../../../utils/types/myDivergent";
+import {
+  Capsule,
+  Character,
+  IdCapsule,
+} from "../../../utils/types/myDivergent";
 import { ArrowMyDiv, logoVenus } from "../../../assets/index";
 
 type CardProps = {
   capsule?: Capsule;
   character?: Character;
-  setShowModalReveal?: Function;
+  onClickReveal?: (numCapsule: IdCapsule) => void;
   onClick: () => void;
 };
 
@@ -13,7 +17,7 @@ const Card: FC<CardProps> = ({
   capsule,
   character,
   onClick,
-  setShowModalReveal,
+  onClickReveal,
 }) => {
   return (
     <div className="capsule-container m-[2rem]  ">
@@ -70,7 +74,7 @@ const Card: FC<CardProps> = ({
         <button
           className="capsule-button flex h-[43px] w-[92%] items-center justify-center gap-3 bg-[#FF2273] font-bold hover:scale-110 "
           onClick={() => {
-            setShowModalReveal && setShowModalReveal(true);
+            onClickReveal && capsule && onClickReveal(capsule.id);
           }}
         >
           {capsule !== undefined ? "REVEAL DIVERGENT" : "PUT ON SALE"}

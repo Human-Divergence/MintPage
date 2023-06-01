@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Capsule, Character } from "../../utils/types/myDivergent";
+import { Capsule, Character, IdCapsule } from "../../utils/types/myDivergent";
 import { checkUserHasNFT } from "../../utils/ethers/hasNft";
 import {
   capsulesDatas,
@@ -24,6 +24,8 @@ const MyDivergent = () => {
   const [showModalReveal, setShowModalReveal] = useState<boolean>(false);
   const [showModalRevealResult, setShowModalRevealResult] =
     useState<boolean>(false);
+
+  const [numberCapsule, setNumberCapsule] = useState<IdCapsule>(0);
 
   const { showModalMinted, setShowModalMinted } = useContext(NFTContext);
 
@@ -59,7 +61,10 @@ const MyDivergent = () => {
                   onClick={() => {
                     handleViewClick(capsule, undefined);
                   }}
-                  setShowModalReveal={setShowModalReveal}
+                  onClickReveal={(numCapsule: IdCapsule) => {
+                    setNumberCapsule(numCapsule);
+                    setShowModalReveal(true);
+                  }}
                   key={index}
                 />
               ))}
@@ -80,7 +85,10 @@ const MyDivergent = () => {
             <ItemPreview
               selectedCapsule={selectedCapsule}
               selectedCharacter={selectedCharacter}
-              setShowModalReveal={setShowModalReveal}
+              onClickReveal={(numCapsule: IdCapsule) => {
+                setNumberCapsule(numCapsule);
+                setShowModalReveal(true);
+              }}
             />
           )}
         </>
@@ -98,7 +106,7 @@ const MyDivergent = () => {
         onClick={() => {
           setShowModalReveal(false);
         }}
-        capsule={selectedCapsule}
+        capsule={capsulesDatas[numberCapsule]}
         reveal={() => {
           setShowModalRevealResult(true);
           setShowModalReveal(false);

@@ -1,12 +1,6 @@
 import React, { FC } from "react";
 import Modal from "../Modal/Modal";
-import {
-  CrossPurchase,
-  CapsuleOnyxPurchase,
-  CapsuleGoldPurchase,
-  CapsuleDiamondPurchase,
-  StatsCapsuleDiamond,
-} from "../../assets";
+import { CrossPurchase } from "../../assets";
 import { Capsule } from "../../utils/types/myDivergent";
 import Button from "../Button/Button";
 
@@ -39,27 +33,15 @@ const ModalReveal: FC<ModalConnectionProps> = ({
           </div>
 
           <div className="flex flex-row justify-center px-10">
-            {capsule?.title === "onyx" ? (
-              <span className="relative text-center text-[24px] font-bold text-[#999999]">
-                <img src={CapsuleOnyxPurchase} className="  " />
-                <span>QUELOZ ONYX</span>
-              </span>
-            ) : capsule?.title === "gold" ? (
-              <span className=" relative text-center text-[24px] font-bold text-[#AD7000]">
-                <img src={CapsuleGoldPurchase} />
-                MELT GOLD
-              </span>
-            ) : (
-              <span className="relative text-center text-[24px] font-bold text-[#2B1E74] ">
-                <img src={CapsuleDiamondPurchase} className="h-[400px]" />
-                TRIA DIAMOND
-              </span>
-            )}
+            <span className="relative text-center text-[24px] font-bold text-[#999999]">
+              <img src={capsule?.imagePurchase} className=" h-[400px] " />
+              <span>QUELOZ ONYX</span>
+            </span>
           </div>
 
           <Button text={"CONFIRM"} onClick={reveal} />
 
-          <img src={StatsCapsuleDiamond} className="absolute bottom-6 left-0" />
+          <img src={capsule?.imageStats} className="absolute bottom-6 left-0" />
         </div>
       </Modal>
     </>
