@@ -68,6 +68,8 @@ import ArrowBackNav from "./icons/ArrowBackNav.png";
 
 import statsRevealOnyx from "./statsRevealOnyx.png";
 import statsRevealGold from "./statRevealSilver.png";
+import DropRateAnim from "./dropRateAnim.png";
+
 export {
   CapsulePreviewDiamond,
   CapsulePreviewSilver,
@@ -134,4 +136,5 @@ export {
   statsRevealOnyx,
   statsRevealGold,
   ArrowBackNav,
+  DropRateAnim,
 };

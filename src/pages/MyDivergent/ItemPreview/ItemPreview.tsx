@@ -37,8 +37,10 @@ const ItemPreview: FC<ItemPreviewProps> = ({
             src={selectedCapsule?.imageBG || selectedCharacter?.image}
             alt={selectedCapsule?.title || selectedCharacter?.nom}
             className={`${
-              selectedCapsule ? "h-80 w-[50%] -rotate-6 hover:-rotate-12" : ""
-            } mb-4 transition-all duration-500 ease-in-out hover:scale-110 hover:cursor-pointer`}
+              selectedCapsule
+                ? "h-80 w-[50%] -rotate-6 hover:-rotate-12 hover:scale-110 hover:cursor-pointer"
+                : "h-full w-full"
+            } rounded-t-[20px] transition-all duration-500 ease-in-out `}
           />
         </div>
         <div className="relative flex w-full flex-col ">

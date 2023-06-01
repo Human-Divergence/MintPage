@@ -50,7 +50,7 @@ const MyDivergent = () => {
   return (
     <div className={`height-page bg-capsule flex justify-center pt-32  `}>
       {hasNFT ? (
-        <div className=" mb-20 flex w-[90%] items-center justify-center ">
+        <div className=" mb-20 flex w-[1248px] items-center justify-center ">
           <div className=" flex flex-wrap ">
             {selectedCapsule === undefined &&
               selectedCharacter === undefined &&

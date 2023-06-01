@@ -31,8 +31,8 @@ const Card: FC<CardProps> = ({
           src={capsule?.imageBG || character?.image}
           alt={capsule?.title || character?.nom}
           className={`${
-            capsule ? "-rotate-6 hover:-rotate-12" : ""
-          } transition-all duration-500 ease-in-out hover:scale-110 hover:cursor-pointer`}
+            capsule ? "-rotate-6 hover:-rotate-12 hover:scale-110" : "h-full"
+          }  rounded-t-[20px] transition-all duration-500 ease-in-out  hover:cursor-pointer`}
           onClick={onClick}
         />
       </div>
