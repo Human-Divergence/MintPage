@@ -66,6 +66,8 @@ import statsOnyx from "./statsOnyx.png";
 import statsDiam from "./statsDiam.png";
 import ArrowBackNav from "./icons/ArrowBackNav.png";
 
+import statsRevealOnyx from "./statsRevealOnyx.png";
+import statsRevealGold from "./statRevealSilver.png";
 export {
   CapsulePreviewDiamond,
   CapsulePreviewSilver,
@@ -129,5 +131,7 @@ export {
   statsOnyx,
   statsGold,
   statsDiam,
+  statsRevealOnyx,
+  statsRevealGold,
   ArrowBackNav,
 };
