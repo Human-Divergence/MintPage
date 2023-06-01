@@ -8,9 +8,12 @@ export type Character = {
 };
 
 export type Capsule = {
+  id: IdCapsule;
   title: "onyx" | "gold" | "diamond";
   image: string;
   imagePreview?: string;
+  imagePurchase: string;
+  imageStats: string;
   imageBG: string;
   description: string;
   time: string;
@@ -21,3 +24,5 @@ export type Capsule = {
   open: boolean;
   character: Character[];
 };
+
+export type IdCapsule = 0 | 1 | 2;

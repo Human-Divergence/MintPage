@@ -13,6 +13,12 @@ import {
   CapsulePreviewSilver,
   CapsulePreviewGold,
   CapsulePreviewDiamond,
+  CapsuleOnyxPurchase,
+  CapsuleGoldPurchase,
+  CapsuleDiamondPurchase,
+  StatsCapsuleDiamond,
+  statsOnyx,
+  statsGold,
 } from "../../assets";
 import { Character, Capsule } from "../types/myDivergent";
 
@@ -118,9 +124,12 @@ export const characters_silver: Character[] = [
 
 export const capsulesDatas: Capsule[] = [
   {
+    id: 0,
     title: "onyx",
     image: CapsuleSilver,
     imagePreview: CapsulePreviewSilver,
+    imagePurchase: CapsuleOnyxPurchase,
+    imageStats: statsOnyx,
     imageBG: CapsulePreviewSilver,
     description: "QUELOZ ONYX",
     time: "23H:59M:59S",
@@ -157,9 +166,12 @@ export const capsulesDatas: Capsule[] = [
     ],
   },
   {
+    id: 1,
     title: "gold",
     image: CapsuleOr,
     imagePreview: CapsulePreviewGold,
+    imagePurchase: CapsuleGoldPurchase,
+    imageStats: statsGold,
     imageBG: CapsulePreviewGold,
     description: "MELT GOLD",
     time: "23H:59M:59S",
@@ -188,10 +200,13 @@ export const capsulesDatas: Capsule[] = [
     ],
   },
   {
+    id: 2,
     title: "diamond",
     image: CapsuleDiamond,
     imagePreview: CapsulebleuPreview,
+    imagePurchase: CapsuleDiamondPurchase,
     imageBG: CapsulePreviewDiamond,
+    imageStats: StatsCapsuleDiamond,
     description: "TRIA DIAMOND",
     time: "23H:59M:59S",
     color: "#004A8F",

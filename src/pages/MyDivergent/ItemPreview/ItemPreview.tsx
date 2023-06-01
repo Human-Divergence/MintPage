@@ -1,5 +1,9 @@
 import React, { FC } from "react";
-import { Capsule, Character } from "../../../utils/types/myDivergent";
+import {
+  Capsule,
+  Character,
+  IdCapsule,
+} from "../../../utils/types/myDivergent";
 import {
   ArrowMyDiv,
   RarePannel,
@@ -12,19 +16,19 @@ import {
 type ItemPreviewProps = {
   selectedCapsule?: Capsule;
   selectedCharacter?: Character;
-  setShowModalReveal?: Function;
+  onClickReveal?: (numCapsule: IdCapsule) => void;
 };
 
 const ItemPreview: FC<ItemPreviewProps> = ({
   selectedCapsule,
   selectedCharacter,
-  setShowModalReveal,
+  onClickReveal,
 }) => {
   return (
     <div className="flex h-full flex-col justify-center ">
       <div className="flex w-[1050px] justify-between rounded-xl bg-[#FFFFFF40] lg:h-auto lg:flex-row">
         <div
-          className={`flex h-[455px] w-[500px]  items-center justify-center rounded-tl-3xl rounded-tr-3xl
+          className={`relative z-10 flex h-[455px]  w-[500px]  items-center justify-center rounded-tl-3xl rounded-tr-3xl
           ${selectedCapsule?.title === "onyx" ? "bg-capsule-silver" : ""}
           ${selectedCapsule?.title === "gold" ? "bg-capsule-gold" : ""}
           ${selectedCapsule?.title === "diamond" ? "bg-capsule-blue" : ""}`}
@@ -62,9 +66,9 @@ const ItemPreview: FC<ItemPreviewProps> = ({
               <button
                 className="capsule-button flex h-[43px] w-full items-center justify-center gap-3 bg-[#FF2273] font-bold"
                 onClick={() => {
-                  selectedCapsule !== undefined &&
-                    setShowModalReveal &&
-                    setShowModalReveal(true);
+                  selectedCapsule &&
+                    onClickReveal &&
+                    onClickReveal(selectedCapsule.id);
                 }}
               >
                 {selectedCapsule !== undefined
@@ -85,7 +89,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
                     ? statsGold
                     : statsOnyx
                 }
-                className="absolute bottom-8 left-0 h-3/5 w-5/6"
+                className="absolute bottom-8 left-[-15%] z-0 h-3/5 w-5/6"
               />
               <img src={RarePannel} className="absolute bottom-5 right-4" />
             </>
