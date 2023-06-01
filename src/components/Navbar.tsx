@@ -50,7 +50,7 @@ const Navbar = () => {
               <img src={ArrowBackNav} alt="HD" className=" " />
             </div>
             <p
-              className={`  flex h-[52px] items-center justify-center  bg-[#00FFAE] text-2xl font-bold duration-300 ease-out  ${
+              className={`  flex h-[52px] items-center justify-center  bg-[#00FFAE] text-base md:text-2xl font-bold duration-300 ease-out  ${
                 hoverBack ? "w-[178px]" : "w-[163px]"
               }`}
             >
@@ -86,15 +86,14 @@ const Navbar = () => {
               <img src={MarketPlace} alt="HD" className="h-[38px] w-[38px] " />
             </div>
             <div
-              className={` flex h-[52px] w-[284px] flex-row items-center justify-center gap-2 bg-[#00FFAE]  duration-300  ease-in-out ${
+              className={` flex h-[52px] w-36 flex-row items-center justify-center gap-2 bg-[#00FFAE] duration-300  ease-in-out  md:w-[284px] ${
                 hoverMarketPlace ? "w-[324px]" : "w-[284px]"
               } ${hoverMarketPlace ? " pr-8" : "pr-0"}`}
             >
-              <p className=" text-2xl font-bold">MARKETPLACE</p>
+              <p className=" text-base md:text-2xl font-bold">MARKETPLACE</p>
               <img src={ArrowHeader} className="w-[20px] " />
             </div>
           </div>
-
           {pathName !== "/" && pathName !== "/connexion" && (
             <div className="flex flex-col self-end">
               <div
@@ -117,7 +116,9 @@ const Navbar = () => {
                 >
                   <p
                     className={` font-bold duration-300 ease-out ${
-                      hoverMyDiv ? " text-[24px]" : "text-[22px]"
+                      hoverMyDiv
+                        ? "text-[16px] md:text-[24px]"
+                        : "text-[16px] md:text-[24px]"
                     } `}
                   >
                     {pathName === "/mydivergent"
