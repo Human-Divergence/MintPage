@@ -26,3 +26,10 @@ export type Capsule = {
 };
 
 export type IdCapsule = 0 | 1 | 2;
+
+export type LimitsBuy = {
+  total: number;
+  onyx: number;
+  gold: number;
+  diamond: number;
+};

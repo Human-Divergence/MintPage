@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Capsule, Character, IdCapsule } from "../../utils/types/myDivergent";
-import { checkUserHasNFT } from "../../utils/ethers/hasNft";
 import {
   capsulesDatas,
   characters_silver,
@@ -20,7 +19,7 @@ const MyDivergent = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<
     Character | undefined
   >();
-  const [hasNFT, setHasNFT] = useState<boolean>(false);
+
   const [showModalReveal, setShowModalReveal] = useState<boolean>(false);
   const [showModalRevealResult, setShowModalRevealResult] =
     useState<boolean>(false);
@@ -37,12 +36,12 @@ const MyDivergent = () => {
     setSelectedCharacter(character);
   };
 
-  useEffect(() => {
-    const fetchUserNFTStatus = async () => {
-      await checkUserHasNFT(setHasNFT);
-    };
-    fetchUserNFTStatus();
+  const amountEmptyCard: number = useMemo(() => {
+    const maxCharacter = 9;
+    return maxCharacter - (capsulesDatas.length + characters_silver.length);
   }, []);
+
+  const hasNFT = true;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -51,8 +50,8 @@ const MyDivergent = () => {
   return (
     <div className={`height-page bg-capsule flex justify-center pt-32  `}>
       {hasNFT ? (
-        <>
-          <div className="flex flex-wrap items-center ">
+        <div className=" mb-20 flex w-[90%] items-center justify-center ">
+          <div className=" flex flex-wrap ">
             {selectedCapsule === undefined &&
               selectedCharacter === undefined &&
               capsulesDatas.map((capsule: Capsule, index) => (
@@ -79,6 +78,17 @@ const MyDivergent = () => {
                   key={index}
                 />
               ))}
+
+            {Array.from({ length: amountEmptyCard }, () => null).map(
+              (index) => {
+                return (
+                  <div
+                    key={index}
+                    className="empty-card self-start justify-self-start"
+                  ></div>
+                );
+              }
+            )}
           </div>
 
           {(selectedCapsule || selectedCharacter) && (
@@ -91,7 +101,7 @@ const MyDivergent = () => {
               }}
             />
           )}
-        </>
+        </div>
       ) : (
         <NoDivergent />
       )}
