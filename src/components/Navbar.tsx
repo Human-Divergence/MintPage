@@ -10,12 +10,6 @@ import {
 import { getNavigationNames } from "../utils/helpers/global.helpers";
 import { useAccount } from "wagmi";
 
-/**
- * @dev Shaan - CSN
- * @description Navbar component with connecton with a wallet and
- * the redirection to the mydivergent page
- */
-
 const Navbar = () => {
   const [hoverBack, setHoverBack] = useState<boolean>(false);
   const [hoverMarketPlace, setHoverMarketPlace] = useState<boolean>(false);
@@ -50,7 +44,7 @@ const Navbar = () => {
               <img src={ArrowBackNav} alt="HD" className=" " />
             </div>
             <p
-              className={`  flex h-[52px] items-center justify-center  bg-[#00FFAE] text-base md:text-2xl font-bold duration-300 ease-out  ${
+              className={`  flex h-[52px] items-center justify-center  bg-[#00FFAE] text-base font-bold duration-300 ease-out md:text-2xl  ${
                 hoverBack ? "w-[178px]" : "w-[163px]"
               }`}
             >
@@ -58,7 +52,7 @@ const Navbar = () => {
             </p>
           </div>
 
-          <p className="  mt-[72px] pl-12 font-poppins text-[56px] font-bold leading-none text-black">
+          <p className="  mt-[72px] pl-12 font-poppins text-[56px] font-semibold leading-none text-black">
             {navigationNames[0]}
             <br />
             <span className="text-[#00FFAE]"> {navigationNames[1]}</span>
@@ -90,7 +84,7 @@ const Navbar = () => {
                 hoverMarketPlace ? "w-[324px]" : "w-[284px]"
               } ${hoverMarketPlace ? " pr-8" : "pr-0"}`}
             >
-              <p className=" text-base md:text-2xl font-bold">MARKETPLACE</p>
+              <p className=" text-base font-bold md:text-2xl">MARKETPLACE</p>
               <img src={ArrowHeader} className="w-[20px] " />
             </div>
           </div>

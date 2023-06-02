@@ -1,14 +1,15 @@
 import { CapsulePrices, ShoppingCart } from "../types/home";
+import { useState, useEffect } from "react";
 
 export const getNavigationNames = (pathName: string) => {
   if (pathName === "/human") {
-    return ["CAPSULE", "PRESALE"];
+    return ["CAPSULES", "PRESALE"];
   }
   if (pathName === "/mydivergent") {
     return ["MY", "DIVERGENTS"];
   }
   if (pathName === "/") {
-    return ["CAPSULE", "PRESALE"];
+    return ["CAPSULES", "PRESALE"];
   }
 };
 
@@ -25,4 +26,32 @@ export const getPriceCart = (
     capsuleCart.gold * pricesCapsules.gold +
     capsuleCart.diamond * pricesCapsules.diamond
   );
+};
+
+export const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== "undefined" ? window.innerWidth : 0,
+    height: typeof window !== "undefined" ? window.innerHeight : 0,
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // eslint-disable-next-line no-inner-declarations
+      function handleResize() {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+
+      window.addEventListener("resize", handleResize);
+
+      // Call handler right away so state gets updated with initial window size
+      handleResize();
+
+      // Remove event listener on cleanup
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+  return windowSize;
 };

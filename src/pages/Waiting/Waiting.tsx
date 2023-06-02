@@ -3,6 +3,7 @@ import {
   AvatarWaiting,
   ArrowWhiteBGBlack,
   MetaMaskLogo,
+  meta,
   CoinbaseLogo,
   WalletConnectLogo,
 } from "../../assets";
@@ -76,7 +77,7 @@ const Waiting = () => {
           {!isConnected ? (
             <img src={ArrowWhiteBGBlack} />
           ) : connector?.name === "MetaMask" ? (
-            <img src={MetaMaskLogo} className="h–[70px] w-[70px] bg-black" />
+            <img src={meta} className="h–[70px] w-[70px] bg-black" />
           ) : connector?.name === "Coinbase Wallet" ? (
             <img src={CoinbaseLogo} className="h–[70px] w-[70px] bg-black" />
           ) : (
