@@ -1,5 +1,5 @@
-import React, { FC, useContext } from "react";
-import { lock, eth } from "../assets";
+import React, { FC, useContext, useState } from "react";
+import { lock, eth, DropRateAnim } from "../assets";
 import { capsulesDatas } from "../utils/constants/mockData";
 import { Capsule, LimitsBuy } from "../utils/types/myDivergent";
 import { ShoppingCart } from "../utils/types/home";
@@ -17,6 +17,8 @@ type CapsulesProps = {
 };
 
 const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
+  const [hoverDropRate, sethoverDropRate] = useState<boolean>(false);
+
   const { pricesCapsules, priceEth } = useContext(NFTContext);
 
   const capsulesBought: ShoppingCart = {
@@ -70,17 +72,27 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
   };
 
   return (
-    <div className="  mt-28 flex flex-col self-start pl-11 ">
+    <div className=" mt-40 flex flex-col gap-8 self-start pl-11 ">
       <>
         {capsulesDatas.map((cap, index) => (
           <div className="mb-16 flex justify-center" key={index}>
             <div className="w-full sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
-              <div className="relative flex h-[300px] w-full justify-center gap-1 rounded-bl-[250px] rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:w-[1024px] ">
+              <div className="relative  flex h-[300px] w-full justify-center gap-1  rounded-bl-[250px] rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:w-[1024px] ">
                 <div className="">
                   <img
                     src={cap.image}
-                    alt="img"
-                    className=" absolute bottom-[-1px] h-[121%]"
+                    alt="imgCap"
+                    className={`${
+                      hoverDropRate && "translate-y-[-5%] scale-110 "
+                    } md:r absolute bottom-[-1px] z-[11] h-[121%] duration-300 ease-out `}
+                  />
+                  <img
+                    onMouseLeave={() => sethoverDropRate(false)}
+                    src={DropRateAnim}
+                    alt="imgStats"
+                    className={`absolute bottom-0 left-[-20px] z-10 h-[300px] w-full translate-x-[-100%]  overflow-hidden rounded-bl-[250px] rounded-tr-3xl backdrop-blur-3xl duration-500 ease-out ${
+                      hoverDropRate && "translate-x-[20px]  "
+                    } `}
                   />
                 </div>
 
@@ -117,7 +129,13 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
 
                     <div className="description-wrapper">
                       <button className="font w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white ">
-                        <span className="textShadow "> DROP RATE</span>
+                        <span
+                          className="textShadow"
+                          onMouseEnter={() => sethoverDropRate(true)}
+                        >
+                          {" "}
+                          DROP RATE
+                        </span>
                       </button>
                       <div className="flex flex-col gap-6 p-5">
                         <div className=" flex flex-col items-end justify-end">

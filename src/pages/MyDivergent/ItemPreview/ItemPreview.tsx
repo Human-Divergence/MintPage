@@ -11,21 +11,48 @@ import {
   statsOnyx,
   statsDiam,
   statsGold,
+  ArrowPreview,
 } from "../../../assets/index";
 
 type ItemPreviewProps = {
   selectedCapsule?: Capsule;
   selectedCharacter?: Character;
   onClickReveal?: (numCapsule: IdCapsule) => void;
+  setNumberCapsule: Function;
+  numberCapsule: IdCapsule;
 };
 
 const ItemPreview: FC<ItemPreviewProps> = ({
   selectedCapsule,
   selectedCharacter,
   onClickReveal,
+  setNumberCapsule,
+  numberCapsule,
 }) => {
   return (
-    <div className="flex h-full flex-col justify-center ">
+    <div className=" flex h-[455px] ">
+      <div className="empty-card absolute left-0 m-0 flex h-[455px] translate-x-[-70%] items-center justify-end  border-white">
+        <img
+          src={ArrowPreview}
+          onClick={() => {
+            numberCapsule > 0 &&
+              setNumberCapsule((prev: IdCapsule) => prev - 1);
+          }}
+          alt=""
+          className="hover:cursor-pointer"
+        />
+      </div>
+      <div className="empty-card absolute right-0 m-0 flex h-[455px] translate-x-[70%] items-center justify-start border-white">
+        <img
+          src={ArrowPreview}
+          alt=""
+          className=" rotate-180  hover:cursor-pointer"
+          onClick={() => {
+            numberCapsule < 2 &&
+              setNumberCapsule((prev: IdCapsule) => prev + 1);
+          }}
+        />
+      </div>
       <div className="flex w-[1050px] justify-between rounded-xl bg-[#FFFFFF40] lg:h-auto lg:flex-row">
         <div
           className={`relative z-10 flex h-[455px]  w-[500px]  items-center justify-center rounded-tl-3xl rounded-tr-3xl

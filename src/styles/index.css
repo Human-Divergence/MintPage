@@ -24,6 +24,7 @@ body {
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   background: linear-gradient(
     1.95deg,
     rgba(255, 0, 95, 0.5) 1.23%,

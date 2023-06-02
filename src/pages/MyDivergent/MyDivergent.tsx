@@ -48,7 +48,9 @@ const MyDivergent = () => {
   }, []);
 
   return (
-    <div className={`height-page bg-capsule flex justify-center pt-32  `}>
+    <div
+      className={`height-page bg-capsule relative flex justify-center overflow-hidden  pt-32`}
+    >
       {hasNFT ? (
         <div className=" mb-20 flex w-[1248px] items-center justify-center ">
           <div className=" flex flex-wrap ">
@@ -58,6 +60,7 @@ const MyDivergent = () => {
                 <Card
                   capsule={capsule}
                   onClick={() => {
+                    setNumberCapsule(capsule.id);
                     handleViewClick(capsule, undefined);
                   }}
                   onClickReveal={(numCapsule: IdCapsule) => {
@@ -86,7 +89,7 @@ const MyDivergent = () => {
                   return (
                     <div
                       key={index}
-                      className="empty-card self-start justify-self-start"
+                      className="empty-card self-start justify-self-start border-white"
                     ></div>
                   );
                 }
@@ -95,12 +98,14 @@ const MyDivergent = () => {
 
           {(selectedCapsule || selectedCharacter) && (
             <ItemPreview
-              selectedCapsule={selectedCapsule}
+              selectedCapsule={capsulesDatas[numberCapsule]}
               selectedCharacter={selectedCharacter}
               onClickReveal={(numCapsule: IdCapsule) => {
                 setNumberCapsule(numCapsule);
                 setShowModalReveal(true);
               }}
+              numberCapsule={numberCapsule}
+              setNumberCapsule={setNumberCapsule}
             />
           )}
         </div>
