@@ -83,7 +83,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Mobile />} />
                   <Route path="/human" element={<HomeMobile />} />
-                  <Route path="/mydivergent" element={<MyDivergentMobile />} />
+                  <Route path="/mydivergent" element={<MyDivergent />} />
                 </Routes>
               </>
             )}

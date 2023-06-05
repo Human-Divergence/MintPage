@@ -34,7 +34,7 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
   return (
     <>
       <Modal showModal={showModal} closeFunction={onClick}>
-        <div className="bg-ModalPurchase  flex  h-[690px] w-[887px] flex-col justify-between rounded-3xl p-5 font-bold">
+        <div className="bg-ModalPurchase  flex  flex-col justify-between rounded-3xl p-5 font-bold lg:h-[690px] lg:w-[887px]">
           <div className=" flex  justify-between text-white">
             <div className="p-5 text-3xl">
               YOUR <br /> <span className="text-red">CAPSULES</span>
@@ -94,7 +94,7 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
       {showModal && (
         <img
           src={CharaterModalPurchase}
-          className="fixed bottom-0 left-0 z-50 translate-x-[-20%] translate-y-[20%]"
+          className="fixed bottom-0 left-0 z-50 hidden translate-x-[-20%]  translate-y-[20%] sm:block"
         />
       )}
     </>

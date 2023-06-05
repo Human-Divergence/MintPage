@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { HDHeaderLogo, ArrowHeader, MarketPlace } from "../../assets";
+import { HDHeaderLogo, ArrowHeader, MarketPlace, MydyvergentLogoNavbar } from "../../assets";
 import { getNavigationNames } from "../../utils/helpers/global.helpers";
 import { useAccount } from "wagmi";
 
@@ -31,7 +31,7 @@ const NavbarMobile = () => {
           />
         </div>
         <div className="col-span-1 flex flex-col justify-start">
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-row gap-3">
             <div
               onMouseEnter={() => setHoverMarketPlace(true)}
               onMouseLeave={() => setHoverMarketPlace(false)}
@@ -53,9 +53,35 @@ const NavbarMobile = () => {
                   />
                 </div>
               </div>
-              <div className=" text-2xl font-bold">
-                {isConnected &&
-                  address?.slice(0, 6) + "..." + address?.slice(38)}
+            </div>
+            <div className="flex flex-col">
+              <div
+                onClick={() => navigate("/mydivergent")}
+                className={`flex  flex-row duration-300  ease-out hover:cursor-pointer `}
+              >
+                <img
+                  src={MydyvergentLogoNavbar}
+                  alt="HD"
+                  className="h-[40px] w-[40px] bg-black "
+                />
+                <div
+                  className={` flex h-[40px] flex-row items-center justify-center gap-2  md:w-[284px]  ${
+                    pathName === "/mydivergent" ? "bg-red" : "bg-[#00FFAE] "
+                  } `}
+                >
+                  <p className={` font-bold duration-300 ease-out `}>
+                    {pathName === "/mydivergent"
+                      ? "GET MORE DIVERGENT"
+                      : "MY DIVERGENT"}
+                  </p>
+                  {pathName !== "/mydivergent" && (
+                    <img src={ArrowHeader} className="w-[20px] " />
+                  )}
+                </div>
+                <div className=" text-2xl font-bold">
+                  {isConnected &&
+                    address?.slice(0, 6) + "..." + address?.slice(38)}
+                </div>
               </div>
             </div>
           </div>
