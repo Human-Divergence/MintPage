@@ -1,13 +1,14 @@
 import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { eth } from "../../assets";
-import { ShoppingCart } from "../../utils/types/home";
+
 import { NFTContext } from "../../context/NFTContext";
 import { getPriceCart } from "../../utils/helpers/global.helpers";
 import ModalPurchase from "../Modals/ModalPurchase";
 import Button from "../Button/Button";
+import { Capsules } from "../../utils/types/myDivergent";
 
 type CheckoutProps = {
-  capsuleCart: ShoppingCart;
+  capsuleCart: Capsules;
 };
 
 const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
@@ -38,9 +39,6 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  // eslint-disable-next-line no-console
-  console.log(isScrolled);
 
   return (
     <>

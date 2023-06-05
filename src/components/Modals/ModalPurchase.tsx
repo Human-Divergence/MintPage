@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import {
   CrossPurchase,
@@ -9,15 +9,19 @@ import {
 } from "../../assets";
 import { NFTContext } from "../../context/NFTContext";
 import { useNavigate } from "react-router-dom";
-import { ShoppingCart } from "../../utils/types/home";
 import Button from "../Button/Button";
+import useMerklesValidation from "../../utils/hook/merkleRoute";
+import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
+import { HDContract } from "../../utils/constants/wagmiConfig/wagmiConfig";
+import { parseEther } from "viem";
+import { Capsules } from "../../utils/types/myDivergent";
 
 type ModalConnectionProps = {
   showModal: boolean;
   onClick: () => void;
   priceEthCart: number;
   priceUSDCart: number;
-  capsuleCart: ShoppingCart;
+  capsuleCart: Capsules;
 };
 
 const ModalPurchase: FC<ModalConnectionProps> = ({
@@ -27,7 +31,38 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
   priceUSDCart,
   capsuleCart,
 }) => {
-  const { setShowModalMinted } = useContext(NFTContext);
+  const { setShowModalMinted, merkelRootContract } = useContext(NFTContext);
+  const { address } = useAccount();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { merkleProof, merkleVerification } = useMerklesValidation({
+    userAddress: address,
+    phase: 1,
+    merkleRootFromContract: merkelRootContract.Whitelist,
+  });
+
+  const { config } = usePrepareContractWrite({
+    ...HDContract,
+    functionName: "mint",
+    args: [
+      address as `0x${string}`,
+      capsuleCart.onyx,
+      capsuleCart.gold,
+      capsuleCart.diamond,
+      merkleProof,
+    ],
+    value: parseEther(`${priceEthCart}`),
+  });
+
+  const { isSuccess, write } = useContractWrite(config);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setShowModalMinted(true);
+      navigate("/mydivergent");
+    } else {
+      onClick;
+    }
+  }, [isSuccess]);
 
   const navigate = useNavigate();
 
@@ -83,10 +118,7 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
           <Button
             text={"CONFIRMATION"}
             onClick={() => {
-              setShowModalMinted(true);
-              setTimeout(() => {
-                navigate("/mydivergent");
-              }, 1000);
+              write?.();
             }}
           />
         </div>

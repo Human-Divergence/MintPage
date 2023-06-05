@@ -27,9 +27,13 @@ export type Capsule = {
 
 export type IdCapsule = 0 | 1 | 2;
 
-export type LimitsBuy = {
-  total: number;
+export type Capsules = {
   onyx: number;
   gold: number;
   diamond: number;
+};
+
+export type MerkleRoots = {
+  Whitelist: string;
+  FreeMint: string;
 };

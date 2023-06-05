@@ -1,62 +1,50 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useContext, useMemo, useState } from "react";
 import { lock, eth, DropRateAnim } from "../assets";
 import { capsulesDatas } from "../utils/constants/mockData";
-import { Capsule, LimitsBuy } from "../utils/types/myDivergent";
-import { ShoppingCart } from "../utils/types/home";
-import { amountCapsuleCart } from "../utils/helpers/global.helpers";
+import { Capsule, Capsules } from "../utils/types/myDivergent";
 import { NFTContext } from "../context/NFTContext";
+import { getCapsulesLeftToBuy } from "../utils/helpers/global.helpers";
 
 /**
  * @dev Shaan - CSN
  * @notice This component is used to display the capsules set if the user is whitelisted
  */
 
-type CapsulesProps = {
+type ShopCapsulesProps = {
   setCapsuleCart: Function;
-  capsuleCart: ShoppingCart;
+  capsuleCart: Capsules;
 };
 
-const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
+const ShopCapsules: FC<ShopCapsulesProps> = ({
+  setCapsuleCart,
+  capsuleCart,
+}) => {
   const [hoverDropRate, sethoverDropRate] = useState<boolean>(false);
 
-  const { pricesCapsules, priceEth } = useContext(NFTContext);
+  const {
+    pricesCapsules,
+    priceEth,
+    capsulesBought,
+    limitCapsuleBuy,
+    stillAvalaibleCaps,
+  } = useContext(NFTContext);
 
-  const capsulesBought: ShoppingCart = {
-    onyx: 0,
-    gold: 0,
-    diamond: 0,
-  };
-
-  const limitCapsuleBuy: LimitsBuy = {
-    total: 9,
-    onyx: 4,
-    gold: 3,
-    diamond: 2,
-  };
+  const capsulesLeftToBuy = useMemo(() => {
+    return getCapsulesLeftToBuy(capsulesBought, limitCapsuleBuy);
+  }, [capsulesBought, limitCapsuleBuy]);
 
   const addCapsule = (cap: Capsule) => {
+    if (cap.title === "onyx" && capsuleCart.onyx < capsulesLeftToBuy.onyx) {
+      setCapsuleCart({ ...capsuleCart, onyx: capsuleCart.onyx + 1 });
+    }
+    if (cap.title === "gold" && capsuleCart.gold < capsulesLeftToBuy.gold) {
+      setCapsuleCart({ ...capsuleCart, gold: capsuleCart.gold + 1 });
+    }
     if (
-      amountCapsuleCart(capsuleCart) <
-      limitCapsuleBuy.total - amountCapsuleCart(capsulesBought)
+      cap.title === "diamond" &&
+      capsuleCart.diamond < capsulesLeftToBuy.diamond
     ) {
-      if (
-        cap.title === "onyx" &&
-        capsuleCart.onyx < limitCapsuleBuy.onyx - capsulesBought.onyx
-      ) {
-        setCapsuleCart({ ...capsuleCart, onyx: capsuleCart.onyx + 1 });
-      }
-      if (
-        cap.title === "gold" &&
-        capsuleCart.gold < limitCapsuleBuy.gold - capsulesBought.gold
-      ) {
-        setCapsuleCart({ ...capsuleCart, gold: capsuleCart.gold + 1 });
-      }
-      if (
-        cap.title === "diamond" &&
-        capsuleCart.diamond < limitCapsuleBuy.diamond - capsulesBought.diamond
-      ) {
-        setCapsuleCart({ ...capsuleCart, diamond: capsuleCart.diamond + 1 });
-      }
+      setCapsuleCart({ ...capsuleCart, diamond: capsuleCart.diamond + 1 });
     }
   };
   const removeCapsule = (cap: Capsule) => {
@@ -145,14 +133,14 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                               alt="bg"
                               className=" absolute w-[30px] translate-x-[-150%]"
                             />
-                            {pricesCapsules[cap.title as keyof ShoppingCart]}
+                            {pricesCapsules[cap.title as keyof Capsules]}
                             ETH
                           </div>
                           <div className="text-[20px] font-bold text-[#999999]">
                             {" "}
                             ≈{" "}
                             {(
-                              pricesCapsules[cap.title as keyof ShoppingCart] *
+                              pricesCapsules[cap.title as keyof Capsules] *
                               priceEth
                             ).toFixed(2)}{" "}
                             $
@@ -161,7 +149,9 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
 
                         <div className="flex flex-row items-center justify-end gap-4">
                           <p className="text-xl font-bold text-[#999999]">
-                            STILL XXX AVAILABLE
+                            STILL{" "}
+                            {stillAvalaibleCaps[cap.title as keyof Capsules]}{" "}
+                            AVAILABLE
                           </p>
                           <div className=" ml-7 flex h-[25%] w-[25%] flex-row items-center   justify-between rounded-[5px] bg-[#00FFAE]">
                             <div>
@@ -175,7 +165,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                               </button>
                             </div>
                             <p className="text-[22px] font-bold">
-                              {capsuleCart[cap.title as keyof ShoppingCart]}
+                              {capsuleCart[cap.title as keyof Capsules]}
                             </p>
                             <button
                               className="rounded-[5px] bg-black px-3 text-[22px] text-white active:bg-[#00FFAE]"
@@ -187,7 +177,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                             </button>
                           </div>
                           <div className="text-xl font-bold text-[#999999]">
-                            / X
+                            /{capsulesLeftToBuy[cap.title as keyof Capsules]}
                           </div>
                         </div>
                       </div>
@@ -203,4 +193,4 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
   );
 };
 
-export default Capsules;
+export default ShopCapsules;

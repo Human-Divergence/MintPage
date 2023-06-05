@@ -1,5 +1,5 @@
-import { CapsulePrices, ShoppingCart } from "../types/home";
 import { useState, useEffect } from "react";
+import { Capsules } from "../types/myDivergent";
 
 export const getNavigationNames = (pathName: string) => {
   if (pathName === "/human") {
@@ -13,13 +13,13 @@ export const getNavigationNames = (pathName: string) => {
   }
 };
 
-export const amountCapsuleCart = (capsuleCart: ShoppingCart) => {
+export const amountCapsuleCart = (capsuleCart: Capsules) => {
   return capsuleCart.diamond + capsuleCart.gold + capsuleCart.onyx;
 };
 
 export const getPriceCart = (
-  capsuleCart: ShoppingCart,
-  pricesCapsules: CapsulePrices
+  capsuleCart: Capsules,
+  pricesCapsules: Capsules
 ) => {
   return (
     capsuleCart.onyx * pricesCapsules.onyx +
@@ -54,4 +54,15 @@ export const useWindowSize = () => {
     }
   }, []);
   return windowSize;
+};
+
+export const getCapsulesLeftToBuy = (
+  capsulesBought: Capsules,
+  limitCapsuleBuy: Capsules
+): Capsules => {
+  return {
+    onyx: limitCapsuleBuy.onyx - capsulesBought.onyx,
+    gold: limitCapsuleBuy.gold - capsulesBought.gold,
+    diamond: limitCapsuleBuy.diamond - capsulesBought.diamond,
+  };
 };

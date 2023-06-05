@@ -15,6 +15,8 @@ import Waiting from "./pages/Waiting/Waiting";
 import Connexion from "./pages/Connexion/Connexion";
 import Mobile from "./pages/Waiting/Mobile";
 import { useWindowSize } from "./utils/helpers/global.helpers";
+import { NFTProvider } from "./context/NFTContext";
+
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [polygonMumbai],
   [
@@ -62,23 +64,25 @@ function App() {
     <>
       {ready ? (
         <WagmiConfig config={config}>
-          <AccountProvider>
-            <Navbar />
-            {size.width > 728 ? (
-              <Routes>
-                <Route path="/" element={<Waiting />} />
-                <Route path="/human" element={<Home />} />
-                <Route path="/mydivergent" element={<MyDivergent />} />
-                <Route path="/waiting" element={<Waiting />} />
-                <Route path="/connexion" element={<Connexion />} />
-              </Routes>
-            ) : (
-              <Routes>
-                <Route path="/" element={<Mobile />} />
-              </Routes>
-            )}
-            <Footer />
-          </AccountProvider>
+          <NFTProvider>
+            <AccountProvider>
+              <Navbar />
+              {size.width > 728 ? (
+                <Routes>
+                  <Route path="/" element={<Waiting />} />
+                  <Route path="/human" element={<Home />} />
+                  <Route path="/mydivergent" element={<MyDivergent />} />
+                  <Route path="/waiting" element={<Waiting />} />
+                  <Route path="/connexion" element={<Connexion />} />
+                </Routes>
+              ) : (
+                <Routes>
+                  <Route path="/" element={<Mobile />} />
+                </Routes>
+              )}
+              <Footer />
+            </AccountProvider>
+          </NFTProvider>
         </WagmiConfig>
       ) : null}
     </>
