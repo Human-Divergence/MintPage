@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   AvatarWaiting,
   ArrowWhiteBGBlack,
-  MetaMaskLogo,
   meta,
   CoinbaseLogo,
   WalletConnectLogo,
@@ -56,7 +55,7 @@ const Waiting = () => {
           YOUR DIVERGENTS <br />
           ARE NOT READY YET...
         </div>
-        <h1 className="text-6xl font-black">{`${
+        <h1 className="font-inter text-6xl font-black">{`${
           timeLeft?.days +
           "d:" +
           timeLeft?.hours +

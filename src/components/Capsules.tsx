@@ -74,16 +74,15 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
       <>
         {capsulesDatas.map((cap, index) => (
           <div className="mb-16 flex justify-center" key={index}>
-            <div className="w-full sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
-              <div className="relative flex h-[300px] w-full justify-center gap-1 rounded-bl-[250px] rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:w-[1024px] ">
+            <div className="w-full ss:w-[480px] sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
+              <div className="relative flex h-[200px] w-full justify-center gap-1 rounded-bl-[250px] rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:h-[300px] lg:w-[1024px] ">
                 <div className="">
                   <img
                     src={cap.image}
                     alt="img"
-                    className=" absolute bottom-[-1px] h-[121%]"
+                    className="absolute bottom-[-1px] h-[70%] lg:h-[121%]"
                   />
                 </div>
-
                 {!cap.open ? (
                   <center>
                     <img
@@ -94,12 +93,12 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                   </center>
                 ) : (
                   <div className="flex w-full flex-col">
-                    <div className="description-container flex h-full items-center justify-between gap-8 rounded-tr-3xl border-solid  border-black bg-white pl-[25%]  pr-5">
-                      <p className="text-center text-4xl font-bold">
+                    <div className="description-container flex h-full items-center justify-between gap-8 rounded-md border-solid border-black  bg-white pl-[25%] pr-5  lg:rounded-tr-3xl">
+                      <p className="text-center text-lg font-bold lg:text-4xl">
                         {cap.description} CAPSULE
                       </p>
                       <p
-                        className="w-[250px] text-center text-[13px] font-bold text-white"
+                        className="w-[150px] text-center text-[13px] font-bold text-white lg:w-[250px]"
                         style={{
                           background: `
                     linear-gradient(
@@ -114,18 +113,17 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                         Offer ends in {cap.time}
                       </p>
                     </div>
-
                     <div className="description-wrapper">
-                      <button className="font w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white ">
-                        <span className="textShadow "> DROP RATE</span>
+                      <button className="font hidden w-2/5 rounded-br-lg bg-[#00FFAE] pr-12 text-end text-xl font-black text-white sm:block">
+                        <span className="textShadow">DROP RATE</span>
                       </button>
                       <div className="flex flex-col gap-6 p-5">
                         <div className=" flex flex-col items-end justify-end">
-                          <div className=" relative  text-2xl font-bold ">
+                          <div className=" relative text-lg font-bold lg:text-2xl ">
                             <img
                               src={eth}
                               alt="bg"
-                              className=" absolute w-[30px] translate-x-[-150%]"
+                              className="absolute w-[30px] translate-x-[-150%]"
                             />
                             {pricesCapsules[cap.title as keyof ShoppingCart]}
                             ETH
@@ -142,7 +140,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                         </div>
 
                         <div className="flex flex-row items-center justify-end gap-4">
-                          <p className="text-xl font-bold text-[#999999]">
+                          <p className="text-xl hidden font-bold text-[#999999] sm:block">
                             STILL XXX AVAILABLE
                           </p>
                           <div className=" ml-7 flex h-[25%] w-[25%] flex-row items-center   justify-between rounded-[5px] bg-[#00FFAE]">

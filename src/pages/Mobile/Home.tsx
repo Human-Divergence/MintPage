@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Capsules } from "../components";
-import Checkout from "../components/web3/Checkout";
-import { ShoppingCart } from "../utils/types/home";
+import { Capsules } from "../../components";
+import Checkout from "../../components/web3/Checkout";
+import { ShoppingCart } from "../../utils/types/home";
 
 function Home() {
   const [capsuleCart, setCapsuleCart] = useState<ShoppingCart>({
@@ -16,8 +16,8 @@ function Home() {
 
   return (
     <div className="flex flex-col">
-      <Checkout capsuleCart={capsuleCart} />
       <Capsules capsuleCart={capsuleCart} setCapsuleCart={setCapsuleCart} />
+      <Checkout capsuleCart={capsuleCart} />
     </div>
   );
 }
