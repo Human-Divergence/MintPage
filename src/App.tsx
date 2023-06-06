@@ -15,7 +15,7 @@ import MyDivergent from "./pages/MyDivergent/MyDivergent";
 import Waiting from "./pages/Waiting/Waiting";
 import Connexion from "./pages/Connexion/Connexion";
 import Mobile from "./pages/Waiting/Mobile";
-import HomeMobile from "./pages/Mobile/Home"
+import HomeMobile from "./pages/Mobile/Home";
 import { useWindowSize } from "./utils/helpers/global.helpers";
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [polygonMumbai],
@@ -58,7 +58,7 @@ function App() {
     height: "70vh",
     background:
       "linear-gradient(1.95deg, rgba(255, 0, 95, 0.5) 1.23%, rgba(255, 0, 95, 0) 94.52%)",
-    zIndex: -1,
+    zIndex: -5,
   };
 
   useEffect(() => {

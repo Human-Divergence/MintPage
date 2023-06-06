@@ -28,7 +28,7 @@ const Mobile = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      var dateFin = new Date("2023-06-06T00:00:00").getTime();
+      var dateFin = new Date("2023-06-25T00:00:00").getTime();
       var maintenant = new Date().getTime();
       var difference = dateFin - maintenant;
       var days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -85,7 +85,7 @@ const Mobile = () => {
             />
           )}
           <button
-            className={`flex  w-[200px] items-center justify-center  text-xl font-bold ${
+            className={`z-[10]  flex w-[200px] items-center  justify-center text-xl font-bold ${
               isConnected ? "h-[70px]" : "h-[60px]"
             }`}
           >
@@ -97,7 +97,7 @@ const Mobile = () => {
         </div>
         <img
           src={AvatarWaiting}
-          className="absolute bottom-0 right-0 z-[51] h-[400px]"
+          className="absolute bottom-0 right-0 z-[0] h-[500px]"
         />
       </div>
       <ModalConnection

@@ -2,10 +2,7 @@ import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { eth } from "../../assets";
 import { ShoppingCart } from "../../utils/types/home";
 import { NFTContext } from "../../context/NFTContext";
-import {
-  getPriceCart,
-  useWindowSize,
-} from "../../utils/helpers/global.helpers";
+import { getPriceCart } from "../../utils/helpers/global.helpers";
 import ModalPurchase from "../Modals/ModalPurchase";
 import Button from "../Button/Button";
 type CheckoutProps = {
@@ -13,11 +10,10 @@ type CheckoutProps = {
 };
 
 const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
-  const { pricesCapsules, priceEth } = useContext(NFTContext);
+  const { pricesCapsules, priceEth, windowWidth } = useContext(NFTContext);
   const [showPurchaseModal, setShowPurchaseModal] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState<Boolean>(false);
-  const size = useWindowSize();
+
   const priceEthCart: number = useMemo(() => {
     return getPriceCart(capsuleCart, pricesCapsules);
   }, [capsuleCart]);
@@ -33,10 +29,6 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
       } else {
         setIsScrolled(false);
       }
-      if (size.width < 728) {
-        setIsMobile(true);
-        setIsScrolled(false);
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -45,16 +37,18 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <>
       <div
-        className={` ${isScrolled ? "fixed" : "absolute"}  ${
-          isScrolled ? "top-10" : "mt-10"
-        } 
-        ${isMobile ? "bottom-0" : "right-0"}  flex  flex-col gap-1`}
+        className={` ${
+          windowWidth <= 768 ? "relative" : isScrolled ? "fixed" : "absolute"
+        }  
+        ${isScrolled ? "top-10" : "mt-10"} 
+        ${
+          windowWidth <= 768 ? "bottom-0" : "right-0"
+        } mb-10 flex  flex-col gap-1`}
       >
-        <div className=" bg-opacity-45 z-10 min-h-[300px] w-[312px] rounded-bl-xl  border-y-[1px]  border-l-[1px]  border-black p-4 ">
+        <div className=" bg-opacity-45 z-10 min-h-[300px] border-y-[1px] border-l-[1px]  border-black  p-4  md:w-[312px] md:rounded-bl-xl ">
           <div className="flex justify-between">
             <span className="text-[14px] font-bold">Capsules</span>
             <span className="text-[14px] font-bold">Quantity</span>
@@ -82,8 +76,7 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
             </div>
           </div>
         </div>
-
-        <div className=" bg-opacity-45 w-[312px] rounded-tl-xl border-y-[1px] border-l-[1px] border-black p-5">
+        <div className=" bg-opacity-45 border-y-[1px] border-l-[1px] border-black p-5 md:w-[312px] md:rounded-tl-xl">
           <div className="flex items-start">
             <span className="text-[24px] font-bold">Total</span>
           </div>

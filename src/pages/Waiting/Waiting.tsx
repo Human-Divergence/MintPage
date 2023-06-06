@@ -98,7 +98,7 @@ const Waiting = () => {
         </div>
         <img
           src={AvatarWaiting}
-          className="absolute right-0 z-[51] h-[700px]"
+          className="absolute right-0 z-[-1] h-[700px]"
         />
       </div>
       <ModalConnection

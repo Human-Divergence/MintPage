@@ -28,7 +28,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
     <div className="flex h-full flex-col justify-center ">
       <div className="flex w-[1050px] justify-between rounded-xl bg-[#FFFFFF40] lg:h-auto lg:flex-row">
         <div
-          className={`relative z-10 flex h-[455px]  w-[500px]  items-center justify-center rounded-tl-3xl rounded-tr-3xl
+          className={`relative z-10 flex h-[455px]  w-[600px]  items-center justify-center rounded-tl-3xl rounded-tr-3xl
           ${selectedCapsule?.title === "onyx" ? "bg-capsule-silver" : ""}
           ${selectedCapsule?.title === "gold" ? "bg-capsule-gold" : ""}
           ${selectedCapsule?.title === "diamond" ? "bg-capsule-blue" : ""}`}
@@ -91,7 +91,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
                     ? statsGold
                     : statsOnyx
                 }
-                className="absolute bottom-8 left-[-15%] z-0 h-3/5 w-5/6"
+                className="absolute bottom-8 left-[-15%] z-0 h-[55%] w-5/6"
               />
               <img src={RarePannel} className="absolute bottom-5 right-4" />
             </>

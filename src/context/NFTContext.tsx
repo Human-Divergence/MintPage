@@ -19,6 +19,7 @@ interface NFTContextProps {
   priceEth: number;
   setShowModalMinted: Function;
   showModalMinted: boolean;
+  windowWidth: number;
 }
 
 export const NFTContext = createContext({} as NFTContextProps);
@@ -36,6 +37,8 @@ export const NFTProvider: FC<NFTProviderProps> = ({
   const [priceEth, setPriceEth] = useState<number>(0);
   const [showModalMinted, setShowModalMinted] = useState<boolean>(false);
 
+  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+
   const pricesCapsules: CapsulePrices = {
     onyx: 0.03,
     gold: 0.055,
@@ -51,6 +54,17 @@ export const NFTProvider: FC<NFTProviderProps> = ({
         setPriceEth(response.data["ethereum"].usd);
       });
   }, []);
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <NFTContext.Provider
       value={{
@@ -64,6 +78,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
         priceEth,
         showModalMinted,
         setShowModalMinted,
+        windowWidth,
       }}
     >
       {children}

@@ -60,10 +60,10 @@ const NavbarMobile = () => {
               </div>
             </div>
             {pathName !== "/" && pathName !== "/connexion" && (
-              <div className="right-0 flex flex-col justify-end items-end">
+              <div className="right-0 flex flex-col items-end justify-end">
                 <div
                   onClick={() => navigate("/mydivergent")}
-                  className={`flex  flex-row duration-300  ease-out hover:cursor-pointer`}
+                  className={`flex flex-row duration-300  ease-out hover:cursor-pointer`}
                 >
                   <img
                     src={MydyvergentLogoNavbar}

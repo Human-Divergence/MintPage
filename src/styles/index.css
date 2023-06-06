@@ -19,11 +19,6 @@ body {
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background: linear-gradient(
-    1.95deg,
-    rgba(255, 0, 95, 0.5) 1.23%,
-    rgba(255, 0, 95, 0) 94.52%
-  ); */
 }
 
 .capsule {
@@ -43,7 +38,7 @@ body {
 }
 
 .height-page-mobile {
-  min-height: calc(80vh);
+  min-height: calc(70vh);
 }
 
 .text-gradient {

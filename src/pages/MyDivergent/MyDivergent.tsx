@@ -48,10 +48,12 @@ const MyDivergent = () => {
   }, []);
 
   return (
-    <div className={`height-page bg-capsule flex justify-center pt-32  `}>
+    <div
+      className={`height-page bg-capsule flex items-center justify-center pt-32  `}
+    >
       {hasNFT ? (
-        <div className=" mb-20 flex w-[1248px] items-center justify-center ">
-          <div className=" flex flex-wrap ">
+        <div className="mb-20 flex w-[1248px] items-center justify-center ">
+          <div className=" flex flex-wrap  items-center justify-center">
             {selectedCapsule === undefined &&
               selectedCharacter === undefined &&
               capsulesDatas.map((capsule: Capsule, index) => (

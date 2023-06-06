@@ -75,7 +75,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
         {capsulesDatas.map((cap, index) => (
           <div className="mb-16 flex justify-center" key={index}>
             <div className="w-full ss:w-[480px] sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
-              <div className="relative flex h-[200px] w-full justify-center gap-1 rounded-bl-md rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:h-[300px] lg:w-[1024px] lg:rounded-bl-[250px] ">
+              <div className="relative flex h-[200px] w-full justify-center rounded-bl-md rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:h-[300px] lg:w-[1024px] lg:rounded-bl-[250px] ">
                 <div className="">
                   <img
                     src={cap.image}
