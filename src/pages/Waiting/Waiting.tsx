@@ -28,7 +28,7 @@ const Waiting = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      var dateFin = new Date("2023-06-06T00:00:00").getTime();
+      var dateFin = new Date("2023-06-25T00:00:00").getTime();
       var maintenant = new Date().getTime();
       var difference = dateFin - maintenant;
       var days = Math.floor(difference / (1000 * 60 * 60 * 24));

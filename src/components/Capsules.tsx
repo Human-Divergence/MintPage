@@ -137,7 +137,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                         <div className=" ml-7 flex h-[25%] w-[45%] flex-row items-center justify-between rounded-[5px] bg-[#00FFAE] sm:w-[25%]">
                           <div>
                             <button
-                              className=" rounded-[5px] bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"
+                              className="bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"
                               onClick={() => {
                                 removeCapsule(cap);
                               }}
@@ -149,7 +149,7 @@ const Capsules: FC<CapsulesProps> = ({ setCapsuleCart, capsuleCart }) => {
                             {capsuleCart[cap.title as keyof ShoppingCart]}
                           </p>
                           <button
-                            className="rounded-[5px] bg-black px-3 text-[22px] text-white active:bg-[#00FFAE]"
+                            className="bg-black px-3 text-[22px] text-white active:bg-[#00FFAE]"
                             onClick={() => {
                               addCapsule(cap);
                             }}

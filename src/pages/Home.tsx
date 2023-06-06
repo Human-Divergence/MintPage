@@ -15,7 +15,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <Checkout capsuleCart={capsuleCart} />
       <Capsules capsuleCart={capsuleCart} setCapsuleCart={setCapsuleCart} />
     </div>

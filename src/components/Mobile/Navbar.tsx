@@ -1,6 +1,11 @@
 import React, { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { HDHeaderLogo, ArrowHeader, MarketPlace, MydyvergentLogoNavbar } from "../../assets";
+import {
+  HDHeaderLogo,
+  ArrowHeader,
+  MarketPlace,
+  MydyvergentLogoNavbar,
+} from "../../assets";
 import { getNavigationNames } from "../../utils/helpers/global.helpers";
 import { useAccount } from "wagmi";
 
@@ -30,7 +35,7 @@ const NavbarMobile = () => {
             className="top-5 hover:cursor-pointer"
           />
         </div>
-        <div className="col-span-1 flex flex-col justify-start">
+        <div className="">
           <div className="flex flex-row gap-3">
             <div
               onMouseEnter={() => setHoverMarketPlace(true)}
@@ -40,7 +45,7 @@ const NavbarMobile = () => {
             >
               <div
                 className={` flex h-[40px] w-36 flex-row items-center justify-center gap-2 rounded-tr-2xl bg-[#00FFAE]  duration-300  ease-in-out md:w-[284px] ${
-                  hoverMarketPlace ? "w-[224px]" : "w-[184px]"
+                  hoverMarketPlace ? "w-[184px]" : "w-[184px]"
                 } ${hoverMarketPlace ? " pr-8" : "pr-0"}`}
               >
                 <p className=" text-base font-bold md:text-2xl">MARKETPLACE</p>
@@ -54,36 +59,38 @@ const NavbarMobile = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col">
-              <div
-                onClick={() => navigate("/mydivergent")}
-                className={`flex  flex-row duration-300  ease-out hover:cursor-pointer `}
-              >
-                <img
-                  src={MydyvergentLogoNavbar}
-                  alt="HD"
-                  className="h-[40px] w-[40px] bg-black "
-                />
+            {pathName !== "/" && pathName !== "/connexion" && (
+              <div className="right-0 flex flex-col justify-end items-end">
                 <div
-                  className={` flex h-[40px] flex-row items-center justify-center gap-2  md:w-[284px]  ${
-                    pathName === "/mydivergent" ? "bg-red" : "bg-[#00FFAE] "
-                  } `}
+                  onClick={() => navigate("/mydivergent")}
+                  className={`flex  flex-row duration-300  ease-out hover:cursor-pointer`}
                 >
-                  <p className={` font-bold duration-300 ease-out `}>
-                    {pathName === "/mydivergent"
-                      ? "GET MORE DIVERGENT"
-                      : "MY DIVERGENT"}
-                  </p>
-                  {pathName !== "/mydivergent" && (
-                    <img src={ArrowHeader} className="w-[20px] " />
-                  )}
+                  <img
+                    src={MydyvergentLogoNavbar}
+                    alt="HD"
+                    className="h-[40px] w-[40px] bg-black "
+                  />
+                  <div
+                    className={` flex h-[40px] flex-row items-center justify-center gap-2  md:w-[284px]  ${
+                      pathName === "/mydivergent" ? "bg-red" : "bg-[#00FFAE] "
+                    } `}
+                  >
+                    <p className={` font-bold duration-300 ease-out `}>
+                      {pathName === "/mydivergent"
+                        ? "GET MORE DIVERGENT"
+                        : "MY DIVERGENT"}
+                    </p>
+                    {pathName !== "/mydivergent" && (
+                      <img src={ArrowHeader} className="w-[20px] " />
+                    )}
+                  </div>
                 </div>
-                <div className=" text-2xl font-bold">
+                <div className="mt-2 flex text-xl font-bold">
                   {isConnected &&
                     address?.slice(0, 6) + "..." + address?.slice(38)}
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

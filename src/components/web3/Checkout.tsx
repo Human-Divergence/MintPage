@@ -2,10 +2,12 @@ import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { eth } from "../../assets";
 import { ShoppingCart } from "../../utils/types/home";
 import { NFTContext } from "../../context/NFTContext";
-import { getPriceCart } from "../../utils/helpers/global.helpers";
+import {
+  getPriceCart,
+  useWindowSize,
+} from "../../utils/helpers/global.helpers";
 import ModalPurchase from "../Modals/ModalPurchase";
 import Button from "../Button/Button";
-
 type CheckoutProps = {
   capsuleCart: ShoppingCart;
 };
@@ -14,7 +16,8 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
   const { pricesCapsules, priceEth } = useContext(NFTContext);
   const [showPurchaseModal, setShowPurchaseModal] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const [isMobile, setIsMobile] = useState<Boolean>(false);
+  const size = useWindowSize();
   const priceEthCart: number = useMemo(() => {
     return getPriceCart(capsuleCart, pricesCapsules);
   }, [capsuleCart]);
@@ -30,6 +33,10 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
       } else {
         setIsScrolled(false);
       }
+      if (size.width < 728) {
+        setIsMobile(true);
+        setIsScrolled(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -39,15 +46,13 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
     };
   }, []);
 
-  // eslint-disable-next-line no-console
-  console.log(isScrolled);
-
   return (
     <>
       <div
         className={` ${isScrolled ? "fixed" : "absolute"}  ${
           isScrolled ? "top-10" : "mt-10"
-        } right-0  flex  flex-col gap-1`}
+        } 
+        ${isMobile ? "bottom-0" : "right-0"}  flex  flex-col gap-1`}
       >
         <div className=" bg-opacity-45 z-10 min-h-[300px] w-[312px] rounded-bl-xl  border-y-[1px]  border-l-[1px]  border-black p-4 ">
           <div className="flex justify-between">
