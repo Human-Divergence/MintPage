@@ -19,7 +19,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
   setCapsuleCart,
   capsuleCart,
 }) => {
-  const [hoverDropRate, sethoverDropRate] = useState<boolean>(false);
+  const [hoverDropRate, sethoverDropRate] = useState<undefined | number>();
 
   const {
     pricesCapsules,
@@ -60,7 +60,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
   };
 
   return (
-    <div className=" mt-40 flex flex-col gap-8 self-start pl-11 ">
+    <div className=" mt-52 flex flex-col gap-20 self-start pl-11 ">
       <>
         {capsulesDatas.map((cap, index) => (
           <div className="mb-16 flex justify-center" key={index}>
@@ -71,15 +71,16 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                     src={cap.image}
                     alt="imgCap"
                     className={`${
-                      hoverDropRate && "translate-y-[-5%] scale-110 "
-                    } md:r absolute bottom-[-1px] z-[11] h-[121%] duration-300 ease-out `}
+                      hoverDropRate === index && "translate-y-[-12%] scale-125 "
+                    } md:r absolute bottom-[-1px] z-[11] h-[121%] duration-500 ease-out `}
                   />
                   <img
-                    onMouseLeave={() => sethoverDropRate(false)}
+                    key={index}
+                    onMouseLeave={() => sethoverDropRate(undefined)}
                     src={DropRateAnim}
                     alt="imgStats"
-                    className={`absolute bottom-0 left-[-20px] z-10 h-[300px] w-full translate-x-[-100%]  overflow-hidden rounded-bl-[250px] rounded-tr-3xl backdrop-blur-3xl duration-500 ease-out ${
-                      hoverDropRate && "translate-x-[20px]  "
+                    className={`absolute bottom-0 right-0 z-10  h-[0px] w-[85%]   overflow-hidden rounded-bl-[100px] rounded-tr-3xl backdrop-blur-3xl duration-1000 ease-out ${
+                      hoverDropRate === index && "  h-auto  "
                     } `}
                   />
                 </div>
@@ -119,7 +120,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                       <button className="font w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white ">
                         <span
                           className="textShadow"
-                          onMouseEnter={() => sethoverDropRate(true)}
+                          onMouseEnter={() => sethoverDropRate(index)}
                         >
                           {" "}
                           DROP RATE
