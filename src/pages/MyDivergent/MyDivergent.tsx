@@ -13,6 +13,7 @@ import { NFTContext } from "../../context/NFTContext";
 import ModalMinted from "../../components/Modals/ModalMinted";
 import ModalReveal from "../../components/Modals/ModalReveal";
 import ModalRevealResult from "../../components/Modals/ModalRevealResult";
+import { addCapsules } from "../../utils/helpers/global.helpers";
 
 const MyDivergent = () => {
   const [selectedCapsule, setSelectedCapsule] = useState<Capsule | undefined>();
@@ -26,7 +27,12 @@ const MyDivergent = () => {
 
   const [numberCapsule, setNumberCapsule] = useState<IdCapsule>(0);
 
-  const { showModalMinted, setShowModalMinted } = useContext(NFTContext);
+  const {
+    showModalMinted,
+    setShowModalMinted,
+    capsulesBought,
+    limitCapsuleBuy,
+  } = useContext(NFTContext);
 
   const handleViewClick = (
     capsule: Capsule | undefined,
@@ -37,15 +43,15 @@ const MyDivergent = () => {
   };
 
   const amountEmptyCard: number = useMemo(() => {
-    const maxCharacter = 9;
-    return maxCharacter - (capsulesDatas.length + characters_silver.length);
+    const maxCompartment = addCapsules(limitCapsuleBuy);
+    return maxCompartment - addCapsules(capsulesBought);
   }, []);
 
   const hasNFT = true;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [selectedCapsule]);
 
   return (
     <div
@@ -56,44 +62,92 @@ const MyDivergent = () => {
           <div className=" flex flex-wrap ">
             {selectedCapsule === undefined &&
               selectedCharacter === undefined &&
-              capsulesDatas.map((capsule: Capsule, index) => (
-                <Card
-                  capsule={capsule}
-                  onClick={() => {
-                    setNumberCapsule(capsule.id);
-                    handleViewClick(capsule, undefined);
-                  }}
-                  onClickReveal={(numCapsule: IdCapsule) => {
-                    setNumberCapsule(numCapsule);
-                    setShowModalReveal(true);
-                  }}
-                  key={index}
-                />
-              ))}
+              Array.from({ length: capsulesBought.onyx }, () => null).map(
+                () => {
+                  const capsuleOnyx = capsulesDatas[0];
+                  return (
+                    <Card
+                      capsule={capsuleOnyx}
+                      onClick={() => {
+                        setNumberCapsule(capsuleOnyx.id);
+                        handleViewClick(capsuleOnyx, undefined);
+                      }}
+                      onClickReveal={(numCapsule: IdCapsule) => {
+                        setNumberCapsule(numCapsule);
+                        setShowModalReveal(true);
+                      }}
+                      key={Math.random()}
+                    />
+                  );
+                }
+              )}
+
             {selectedCapsule === undefined &&
               selectedCharacter === undefined &&
-              characters_silver.map((character: Character, index) => (
+              Array.from({ length: capsulesBought.gold }, () => null).map(
+                () => {
+                  const capsuleGold = capsulesDatas[1];
+                  return (
+                    <Card
+                      capsule={capsuleGold}
+                      onClick={() => {
+                        setNumberCapsule(capsuleGold.id);
+                        handleViewClick(capsuleGold, undefined);
+                      }}
+                      onClickReveal={(numCapsule: IdCapsule) => {
+                        setNumberCapsule(numCapsule);
+                        setShowModalReveal(true);
+                      }}
+                      key={Math.random()}
+                    />
+                  );
+                }
+              )}
+
+            {selectedCapsule === undefined &&
+              selectedCharacter === undefined &&
+              Array.from({ length: capsulesBought.diamond }, () => null).map(
+                () => {
+                  const capsuleDiamond = capsulesDatas[2];
+                  return (
+                    <Card
+                      capsule={capsuleDiamond}
+                      onClick={() => {
+                        setNumberCapsule(capsuleDiamond.id);
+                        handleViewClick(capsuleDiamond, undefined);
+                      }}
+                      onClickReveal={(numCapsule: IdCapsule) => {
+                        setNumberCapsule(numCapsule);
+                        setShowModalReveal(true);
+                      }}
+                      key={Math.random()}
+                    />
+                  );
+                }
+              )}
+
+            {selectedCapsule === undefined &&
+              selectedCharacter === undefined &&
+              characters_silver.map((character: Character) => (
                 <Card
                   character={character}
                   onClick={() => {
                     handleViewClick(undefined, character);
                   }}
-                  key={index}
+                  key={Math.random()}
                 />
               ))}
 
             {selectedCapsule === undefined &&
               selectedCharacter === undefined &&
-              Array.from({ length: amountEmptyCard }, () => null).map(
-                (index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="empty-card self-start justify-self-start border-white"
-                    ></div>
-                  );
-                }
-              )}
+              Array.from({ length: amountEmptyCard }, () => null).map(() => {
+                return (
+                  <div
+                    key={Math.random()}
+                    className="empty-card self-start justify-self-start border-white"
+                  ></div>
+                );
+              })}
           </div>
 
           {(selectedCapsule || selectedCharacter) && (

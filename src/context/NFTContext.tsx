@@ -3,6 +3,7 @@ import React, {
   ReactNode,
   createContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import axios from "axios";
@@ -10,6 +11,7 @@ import { useContractReads, useAccount } from "wagmi";
 import { HDContract } from "../utils/constants/wagmiConfig/wagmiConfig";
 import { ethers } from "ethers";
 import { Capsules, MerkleRoots } from "../utils/types/myDivergent";
+import useMerklesValidation from "../utils/hook/merkleRoute";
 
 interface NFTContextProps {
   hasNFT: boolean;
@@ -26,6 +28,12 @@ interface NFTContextProps {
   limitCapsuleBuy: Capsules;
   merkelRootContract: MerkleRoots;
   stillAvalaibleCaps: Capsules;
+  freeMintClaimed: boolean;
+  merkleProofWhiteList: string[];
+  merkleProofFreeMint: string[];
+  merkleVerificationWhiteList: boolean;
+  merkleVerificationFreeMint: boolean;
+  freeDiamond: boolean;
 }
 
 export const NFTContext = createContext({} as NFTContextProps);
@@ -44,6 +52,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
   const [nftBalance, setNFTBalance] = useState(0);
   const [priceEth, setPriceEth] = useState<number>(0);
   const [showModalMinted, setShowModalMinted] = useState<boolean>(false);
+  const [freeMintClaimed, setFreeMintClaimed] = useState<boolean>(false);
 
   const [pricesCapsules, setPricesCapsules] = useState<Capsules>({
     onyx: 0,
@@ -74,6 +83,24 @@ export const NFTProvider: FC<NFTProviderProps> = ({
     diamond: 0,
   });
 
+  const {
+    merkleProof: merkleProofWhiteList,
+    merkleVerification: merkleVerificationWhiteList,
+  } = useMerklesValidation({
+    userAddress: address,
+    phase: 1,
+    merkleRootFromContract: merkelRootContract.Whitelist,
+  });
+
+  const {
+    merkleProof: merkleProofFreeMint,
+    merkleVerification: merkleVerificationFreeMint,
+  } = useMerklesValidation({
+    userAddress: address,
+    phase: 1,
+    merkleRootFromContract: merkelRootContract.FreeMint,
+  });
+
   const { data: contractData, isLoading } = useContractReads({
     contracts: [
       {
@@ -98,6 +125,11 @@ export const NFTProvider: FC<NFTProviderProps> = ({
         ...HDContract,
         functionName: "maxSupplyPerCategory",
       },
+      {
+        ...HDContract,
+        functionName: "freeMintClaimed",
+        args: [address as `0x${string}`],
+      },
     ],
     watch: true,
   }) as any;
@@ -113,15 +145,13 @@ export const NFTProvider: FC<NFTProviderProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && address) {
       const pricesData = contractData[0].result[5];
       const capsulesBoughtData = contractData[1].result;
       const maxCapsulePerAddressData = contractData[0].result[4];
       const stillCapsData = contractData[3].result;
       const maxSupplyData = contractData[4].result;
-
-      // eslint-disable-next-line no-console
-      console.log(maxSupplyData);
+      const freeMintClaimedData = contractData[5].result;
 
       setPricesCapsules({
         onyx: Number(ethers.utils.formatUnits(pricesData.Onyx, 18)),
@@ -159,8 +189,13 @@ export const NFTProvider: FC<NFTProviderProps> = ({
           Number(ethers.utils.formatUnits(maxSupplyData[2], 0)) -
           Number(ethers.utils.formatUnits(stillCapsData[2], 0)),
       });
+      setFreeMintClaimed(freeMintClaimedData);
     }
   }, [isLoading]);
+
+  const freeDiamond: boolean = useMemo(() => {
+    return merkleVerificationFreeMint && !freeMintClaimed;
+  }, [freeMintClaimed, merkleVerificationFreeMint]);
 
   return (
     <NFTContext.Provider
@@ -179,6 +214,12 @@ export const NFTProvider: FC<NFTProviderProps> = ({
         limitCapsuleBuy,
         merkelRootContract,
         stillAvalaibleCaps,
+        freeMintClaimed,
+        merkleProofWhiteList,
+        merkleProofFreeMint,
+        merkleVerificationWhiteList,
+        merkleVerificationFreeMint,
+        freeDiamond,
       }}
     >
       {children}

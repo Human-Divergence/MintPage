@@ -14,17 +14,25 @@ export const getNavigationNames = (pathName: string) => {
 };
 
 export const amountCapsuleCart = (capsuleCart: Capsules) => {
-  return capsuleCart.diamond + capsuleCart.gold + capsuleCart.onyx;
+  return addCapsules(capsuleCart);
+};
+
+export const addCapsules = (ArrayCapsule: Capsules) => {
+  return ArrayCapsule.diamond + ArrayCapsule.gold + ArrayCapsule.onyx;
 };
 
 export const getPriceCart = (
   capsuleCart: Capsules,
-  pricesCapsules: Capsules
+  pricesCapsules: Capsules,
+  freeDiamond: boolean
 ) => {
   return (
     capsuleCart.onyx * pricesCapsules.onyx +
     capsuleCart.gold * pricesCapsules.gold +
-    capsuleCart.diamond * pricesCapsules.diamond
+    (freeDiamond && capsuleCart.diamond > 0
+      ? capsuleCart.diamond - 1
+      : capsuleCart.diamond) *
+      pricesCapsules.diamond
   );
 };
 

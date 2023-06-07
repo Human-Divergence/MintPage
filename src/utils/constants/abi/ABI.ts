@@ -397,19 +397,20 @@ export const abiHD = [
     type: "function",
   },
   {
-    inputs: [
-      { internalType: "address", name: "_to", type: "address" },
-      { internalType: "bytes32[]", name: "_merkleProof", type: "bytes32[]" },
-    ],
-    name: "freeMintDiamond",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
     name: "getApproved",
     outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_amountOnyx", type: "uint256" },
+      { internalType: "uint256", name: "_amountGold", type: "uint256" },
+      { internalType: "uint256", name: "_amountDiamond", type: "uint256" },
+    ],
+    name: "getPrice",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
@@ -444,10 +445,19 @@ export const abiHD = [
   {
     inputs: [
       { internalType: "address", name: "_to", type: "address" },
+      {
+        internalType: "bytes32[]",
+        name: "_merkleProofWhitelist",
+        type: "bytes32[]",
+      },
       { internalType: "uint256", name: "_amountOnyx", type: "uint256" },
       { internalType: "uint256", name: "_amountGold", type: "uint256" },
       { internalType: "uint256", name: "_amountDiamond", type: "uint256" },
-      { internalType: "bytes32[]", name: "_merkleProof", type: "bytes32[]" },
+      {
+        internalType: "bytes32[]",
+        name: "_merkleProofFreeMint",
+        type: "bytes32[]",
+      },
     ],
     name: "mint",
     outputs: [],

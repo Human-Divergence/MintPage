@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from "react";
+import React, { FC, useContext } from "react";
 import Modal from "../Modal/Modal";
 import {
   CrossPurchase,
@@ -10,7 +10,6 @@ import {
 import { NFTContext } from "../../context/NFTContext";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
-import useMerklesValidation from "../../utils/hook/merkleRoute";
 import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
 import { HDContract } from "../../utils/constants/wagmiConfig/wagmiConfig";
 import { parseEther } from "viem";
@@ -31,38 +30,39 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
   priceUSDCart,
   capsuleCart,
 }) => {
-  const { setShowModalMinted, merkelRootContract } = useContext(NFTContext);
+  const {
+    setShowModalMinted,
+    merkleProofWhiteList,
+    merkleProofFreeMint,
+    merkleVerificationWhiteList,
+  } = useContext(NFTContext);
   const { address } = useAccount();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { merkleProof, merkleVerification } = useMerklesValidation({
-    userAddress: address,
-    phase: 1,
-    merkleRootFromContract: merkelRootContract.Whitelist,
-  });
 
   const { config } = usePrepareContractWrite({
     ...HDContract,
     functionName: "mint",
     args: [
       address as `0x${string}`,
+      merkleProofWhiteList,
       capsuleCart.onyx,
       capsuleCart.gold,
       capsuleCart.diamond,
-      merkleProof,
+      merkleProofFreeMint,
     ],
     value: parseEther(`${priceEthCart}`),
+    enabled: merkleVerificationWhiteList && showModal,
   });
 
-  const { isSuccess, write } = useContractWrite(config);
-
-  useEffect(() => {
-    if (isSuccess) {
+  const { write } = useContractWrite({
+    ...config,
+    onSuccess() {
       setShowModalMinted(true);
       navigate("/mydivergent");
-    } else {
+    },
+    onError() {
       onClick;
-    }
-  }, [isSuccess]);
+    },
+  });
 
   const navigate = useNavigate();
 

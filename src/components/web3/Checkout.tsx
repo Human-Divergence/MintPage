@@ -12,12 +12,12 @@ type CheckoutProps = {
 };
 
 const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
-  const { pricesCapsules, priceEth } = useContext(NFTContext);
+  const { pricesCapsules, priceEth, freeDiamond } = useContext(NFTContext);
   const [showPurchaseModal, setShowPurchaseModal] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const priceEthCart: number = useMemo(() => {
-    return getPriceCart(capsuleCart, pricesCapsules);
+    return getPriceCart(capsuleCart, pricesCapsules, freeDiamond);
   }, [capsuleCart]);
 
   const priceUSDCart: number = useMemo(() => {
