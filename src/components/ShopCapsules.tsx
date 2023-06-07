@@ -1,5 +1,5 @@
 import React, { FC, useContext, useMemo, useState } from "react";
-import { lock, eth, DropRateAnim } from "../assets";
+import { eth, DropRateAnim } from "../assets";
 import { capsulesDatas } from "../utils/constants/mockData";
 import { Capsule, Capsules } from "../utils/types/myDivergent";
 import { NFTContext } from "../context/NFTContext";
@@ -85,24 +85,15 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                   />
                 </div>
 
-                {!cap.open ? (
-                  <center>
-                    <img
-                      src={lock}
-                      alt="bg"
-                      className={`ml-32 mt-28 w-[100px]`}
-                    />
-                  </center>
-                ) : (
-                  <div className="flex w-full flex-col">
-                    <div className="description-container flex h-full items-center justify-between gap-8 rounded-tr-3xl border-solid  border-black bg-white pl-[25%]  pr-5">
-                      <p className="text-center text-4xl font-bold">
-                        {cap.description} CAPSULE
-                      </p>
-                      <p
-                        className="w-[250px] text-center text-[13px] font-bold text-white"
-                        style={{
-                          background: `
+                <div className="flex w-full flex-col">
+                  <div className="description-container flex h-full items-center justify-between gap-8 rounded-tr-3xl border-solid  border-black bg-white pl-[25%]  pr-5">
+                    <p className="text-center text-4xl font-bold">
+                      {cap.description} CAPSULE
+                    </p>
+                    <p
+                      className="w-[250px] text-center text-[13px] font-bold text-white"
+                      style={{
+                        background: `
                     linear-gradient(
                       270deg,
                       rgba(146, 83, 9, 0) 0%,
@@ -110,81 +101,87 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                       rgba(146, 83, 9, 0) 100%
                       )
                     `,
-                        }}
+                      }}
+                    >
+                      Offer ends in {cap.time}
+                    </p>
+                  </div>
+
+                  <div className="description-wrapper">
+                    <button className="font w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white ">
+                      <span
+                        className="textShadow"
+                        onMouseEnter={() => sethoverDropRate(index)}
                       >
-                        Offer ends in {cap.time}
-                      </p>
+                        {" "}
+                        DROP RATE
+                      </span>
+                    </button>
+                    <div className="flex flex-col gap-6 p-5">
+                      <div className=" flex flex-col items-end justify-end">
+                        <div className=" relative  text-2xl font-bold ">
+                          <img
+                            src={eth}
+                            alt="bg"
+                            className=" absolute w-[30px] translate-x-[-150%]"
+                          />
+                          {pricesCapsules[cap.title as keyof Capsules]}
+                          ETH
+                        </div>
+                        <div className="text-[20px] font-bold text-[#999999]">
+                          {" "}
+                          ≈{" "}
+                          {(
+                            pricesCapsules[cap.title as keyof Capsules] *
+                            priceEth
+                          ).toFixed(2)}{" "}
+                          $
+                        </div>
+                      </div>
+                      <div className="text-[20px] font-bold text-[#999999]">
+                        {" "}
+                        ≈{" "}
+                        {(
+                          pricesCapsules[cap.title as keyof Capsules] * priceEth
+                        ).toFixed(2)}{" "}
+                        $
+                      </div>
                     </div>
 
-                    <div className="description-wrapper">
-                      <button className="font w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white ">
-                        <span
-                          className="textShadow"
-                          onMouseEnter={() => sethoverDropRate(index)}
+                    <div className="flex flex-row items-center justify-end gap-4 p-4">
+                      <p className="text-xl font-bold text-[#999999]">
+                        STILL {stillAvalaibleCaps[cap.title as keyof Capsules]}{" "}
+                        AVAILABLE
+                      </p>
+                      <div className=" ml-7 flex h-[25%] w-[25%] flex-row items-center   justify-between rounded-[5px] bg-[#00FFAE]">
+                        <div>
+                          <button
+                            className=" rounded-[5px] bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"
+                            onClick={() => {
+                              removeCapsule(cap);
+                            }}
+                          >
+                            {"-"}
+                          </button>
+                        </div>
+                        <p className="text-[22px] font-bold">
+                          {capsuleCart[cap.title as keyof Capsules]}
+                        </p>
+                        <button
+                          className="bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"
+                          onClick={() => {
+                            addCapsule(cap);
+                          }}
                         >
-                          {" "}
-                          DROP RATE
-                        </span>
-                      </button>
-                      <div className="flex flex-col gap-6 p-5">
-                        <div className=" flex flex-col items-end justify-end">
-                          <div className=" relative  text-2xl font-bold ">
-                            <img
-                              src={eth}
-                              alt="bg"
-                              className=" absolute w-[30px] translate-x-[-150%]"
-                            />
-                            {pricesCapsules[cap.title as keyof Capsules]}
-                            ETH
-                          </div>
-                          <div className="text-[20px] font-bold text-[#999999]">
-                            {" "}
-                            ≈{" "}
-                            {(
-                              pricesCapsules[cap.title as keyof Capsules] *
-                              priceEth
-                            ).toFixed(2)}{" "}
-                            $
-                          </div>
-                        </div>
-
-                        <div className="flex flex-row items-center justify-end gap-4">
-                          <p className="text-xl font-bold text-[#999999]">
-                            STILL{" "}
-                            {stillAvalaibleCaps[cap.title as keyof Capsules]}{" "}
-                            AVAILABLE
-                          </p>
-                          <div className=" ml-7 flex h-[25%] w-[25%] flex-row items-center   justify-between rounded-[5px] bg-[#00FFAE]">
-                            <div>
-                              <button
-                                className=" rounded-[5px] bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"
-                                onClick={() => {
-                                  removeCapsule(cap);
-                                }}
-                              >
-                                {"-"}
-                              </button>
-                            </div>
-                            <p className="text-[22px] font-bold">
-                              {capsuleCart[cap.title as keyof Capsules]}
-                            </p>
-                            <button
-                              className="rounded-[5px] bg-black px-3 text-[22px] text-white active:bg-[#00FFAE]"
-                              onClick={() => {
-                                addCapsule(cap);
-                              }}
-                            >
-                              +
-                            </button>
-                          </div>
-                          <div className="text-xl font-bold text-[#999999]">
-                            /{capsulesLeftToBuy[cap.title as keyof Capsules]}
-                          </div>
-                        </div>
+                          {"-"}
+                        </button>
+                      </div>
+                      <div className="text-xl font-bold text-[#999999]">
+                        /{capsulesLeftToBuy[cap.title as keyof Capsules]}
                       </div>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             </div>
           </div>

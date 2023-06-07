@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Footer } from "./components";
+import NavbarMobile from "./components/Mobile/Navbar";
 import { Routes, Route } from "react-router-dom";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { polygonMumbai } from "wagmi/chains";
@@ -14,6 +15,7 @@ import MyDivergent from "./pages/MyDivergent/MyDivergent";
 import Waiting from "./pages/Waiting/Waiting";
 import Connexion from "./pages/Connexion/Connexion";
 import Mobile from "./pages/Waiting/Mobile";
+import HomeMobile from "./pages/Mobile/Home";
 import { useWindowSize } from "./utils/helpers/global.helpers";
 import { NFTProvider } from "./context/NFTContext";
 
@@ -46,45 +48,60 @@ const config = createConfig({
   webSocketPublicClient,
 });
 
-/*
-  ** @dev Shaan/CSN and Victor
-  ** @desc: mint site with 2 routes {Home and mydivergent}
-    - Home: Capsule
-    - mydivergent: Capsule or Nft owned
-*/
-
 function App() {
   const [ready, setReady] = useState(false);
   const size = useWindowSize();
+
+  const backgroundStyle: React.CSSProperties = {
+    position: "fixed",
+    bottom: 0,
+    left: 0,
+    width: "100%",
+    height: "70vh",
+    background:
+      "linear-gradient(1.95deg, rgba(255, 0, 95, 0.5) 1.23%, rgba(255, 0, 95, 0) 94.52%)",
+    zIndex: -5,
+  };
+
   useEffect(() => {
     setReady(true);
   }, []);
 
   return (
     <>
-      {ready ? (
-        <WagmiConfig config={config}>
-          <NFTProvider>
-            <AccountProvider>
-              <Navbar />
-              {size.width > 728 ? (
-                <Routes>
-                  <Route path="/" element={<Waiting />} />
-                  <Route path="/human" element={<Home />} />
-                  <Route path="/mydivergent" element={<MyDivergent />} />
-                  <Route path="/waiting" element={<Waiting />} />
-                  <Route path="/connexion" element={<Connexion />} />
-                </Routes>
-              ) : (
-                <Routes>
-                  <Route path="/" element={<Mobile />} />
-                </Routes>
-              )}
-              <Footer />
-            </AccountProvider>
-          </NFTProvider>
-        </WagmiConfig>
-      ) : null}
+      <div>
+        {ready ? (
+          <WagmiConfig config={config}>
+            <NFTProvider>
+              <AccountProvider>
+                {size.width > 768 ? (
+                  <>
+                    <Navbar />
+                    <Routes>
+                      <Route path="/" element={<Waiting />} />
+                      <Route path="/human" element={<Home />} />
+                      <Route path="/mydivergent" element={<MyDivergent />} />
+                      <Route path="/waiting" element={<Waiting />} />
+                      <Route path="/connexion" element={<Connexion />} />
+                    </Routes>
+                  </>
+                ) : (
+                  <>
+                    <NavbarMobile />
+                    <Routes>
+                      <Route path="/" element={<Mobile />} />
+                      <Route path="/human" element={<HomeMobile />} />
+                      <Route path="/mydivergent" element={<MyDivergent />} />
+                    </Routes>
+                  </>
+                )}
+                <Footer />
+              </AccountProvider>
+            </NFTProvider>
+          </WagmiConfig>
+        ) : null}
+      </div>
+      <div style={backgroundStyle}></div>
     </>
   );
 }

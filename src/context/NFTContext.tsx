@@ -34,6 +34,7 @@ interface NFTContextProps {
   merkleVerificationWhiteList: boolean;
   merkleVerificationFreeMint: boolean;
   freeDiamond: boolean;
+  windowWidth: number;
 }
 
 export const NFTContext = createContext({} as NFTContextProps);
@@ -53,6 +54,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
   const [priceEth, setPriceEth] = useState<number>(0);
   const [showModalMinted, setShowModalMinted] = useState<boolean>(false);
   const [freeMintClaimed, setFreeMintClaimed] = useState<boolean>(false);
+  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
 
   const [pricesCapsules, setPricesCapsules] = useState<Capsules>({
     onyx: 0,
@@ -197,6 +199,16 @@ export const NFTProvider: FC<NFTProviderProps> = ({
     return merkleVerificationFreeMint && !freeMintClaimed;
   }, [freeMintClaimed, merkleVerificationFreeMint]);
 
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <NFTContext.Provider
       value={{
@@ -220,6 +232,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
         merkleVerificationWhiteList,
         merkleVerificationFreeMint,
         freeDiamond,
+        windowWidth,
       }}
     >
       {children}

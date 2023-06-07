@@ -12,7 +12,8 @@ type CheckoutProps = {
 };
 
 const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
-  const { pricesCapsules, priceEth, freeDiamond } = useContext(NFTContext);
+  const { pricesCapsules, priceEth, freeDiamond, windowWidth } =
+    useContext(NFTContext);
   const [showPurchaseModal, setShowPurchaseModal] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -43,11 +44,15 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
   return (
     <>
       <div
-        className={` ${isScrolled ? "fixed" : "absolute"}  ${
-          isScrolled ? "top-10" : "mt-10"
-        } right-0  flex  flex-col gap-1`}
+        className={` ${
+          windowWidth <= 768 ? "relative" : isScrolled ? "fixed" : "absolute"
+        }  
+        ${isScrolled ? "top-10" : "mt-10"} 
+        ${
+          windowWidth <= 768 ? "bottom-0" : "right-0"
+        } mb-10 flex  flex-col gap-1`}
       >
-        <div className=" bg-opacity-45 z-10 min-h-[300px] w-[312px] rounded-bl-xl  border-y-[1px]  border-l-[1px]  border-black p-4 ">
+        <div className=" bg-opacity-45 z-10 min-h-[300px] border-y-[1px] border-l-[1px]  border-black  p-4  md:w-[312px] md:rounded-bl-xl ">
           <div className="flex justify-between">
             <span className="text-[14px] font-bold">Capsules</span>
             <span className="text-[14px] font-bold">Quantity</span>
@@ -75,8 +80,7 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
             </div>
           </div>
         </div>
-
-        <div className=" bg-opacity-45 w-[312px] rounded-tl-xl border-y-[1px] border-l-[1px] border-black p-5">
+        <div className=" bg-opacity-45 border-y-[1px] border-l-[1px] border-black p-5 md:w-[312px] md:rounded-tl-xl">
           <div className="flex items-start">
             <span className="text-[24px] font-bold">Total</span>
           </div>

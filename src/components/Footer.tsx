@@ -39,7 +39,7 @@ const Footer = () => {
             <BsLinkedin size={30} className="mr-10 text-white" />
           </a>
         </div>
-        <div className="flex flex-col justify-center md:flex-row">
+        <div className="flex flex-row justify-center">
           <div className="mb-4 mr-4 flex flex-col md:mb-0">
             <a
               href="https://www.humandivergence.com/"

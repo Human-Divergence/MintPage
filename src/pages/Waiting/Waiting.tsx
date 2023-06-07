@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   AvatarWaiting,
   ArrowWhiteBGBlack,
-  MetaMaskLogo,
   meta,
   CoinbaseLogo,
   WalletConnectLogo,
@@ -29,7 +28,7 @@ const Waiting = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      var dateFin = new Date("2023-06-06T00:00:00").getTime();
+      var dateFin = new Date("2023-06-25T00:00:00").getTime();
       var maintenant = new Date().getTime();
       var difference = dateFin - maintenant;
       var days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -56,7 +55,7 @@ const Waiting = () => {
           YOUR DIVERGENTS <br />
           ARE NOT READY YET...
         </div>
-        <h1 className="text-6xl font-black">{`${
+        <h1 className="font-inter text-6xl font-black">{`${
           timeLeft?.days +
           "d:" +
           timeLeft?.hours +
@@ -99,7 +98,7 @@ const Waiting = () => {
         </div>
         <img
           src={AvatarWaiting}
-          className="absolute right-0 z-[51] h-[700px]"
+          className="absolute right-0 z-[-1] h-[700px]"
         />
       </div>
       <ModalConnection
