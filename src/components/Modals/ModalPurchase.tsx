@@ -14,6 +14,7 @@ import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
 import { HDContract } from "../../utils/constants/wagmiConfig/wagmiConfig";
 import { parseEther } from "viem";
 import { Capsules } from "../../utils/types/myDivergent";
+import ButtonWinter from "../ButtonWinter/ButtonWinter";
 
 type ModalConnectionProps = {
   showModal: boolean;
@@ -69,7 +70,7 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
   return (
     <>
       <Modal showModal={showModal} closeFunction={onClick}>
-        <div className="bg-ModalPurchase  flex  flex-col justify-between rounded-3xl p-5 font-bold lg:h-[690px] lg:w-[887px]">
+        <div className="bg-ModalPurchase  flex  flex-col justify-between rounded-3xl p-5 font-bold lg:min-h-[690px] lg:w-[887px]">
           <div className=" flex  justify-between text-white">
             <div className="p-5 text-3xl">
               YOUR <br /> <span className="text-red">CAPSULES</span>
@@ -121,6 +122,9 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
               write?.();
             }}
           />
+          <div className="mt-4 flex min-w-[270px] justify-center self-end ">
+            <ButtonWinter capsuleCart={capsuleCart} />
+          </div>
         </div>
       </Modal>
       {showModal && (

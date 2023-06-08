@@ -12,6 +12,7 @@ import { HDContract } from "../utils/constants/wagmiConfig/wagmiConfig";
 import { ethers } from "ethers";
 import { Capsules, MerkleRoots } from "../utils/types/myDivergent";
 import useMerklesValidation from "../utils/hook/merkleRoute";
+import { WINTER_ADDRESS } from "../utils/constants/addresses/addresses";
 
 interface NFTContextProps {
   hasNFT: boolean;
@@ -35,6 +36,7 @@ interface NFTContextProps {
   merkleVerificationFreeMint: boolean;
   freeDiamond: boolean;
   windowWidth: number;
+  merkleProofWinter: string[];
 }
 
 export const NFTContext = createContext({} as NFTContextProps);
@@ -99,8 +101,14 @@ export const NFTProvider: FC<NFTProviderProps> = ({
     merkleVerification: merkleVerificationFreeMint,
   } = useMerklesValidation({
     userAddress: address,
-    phase: 1,
+    phase: 0,
     merkleRootFromContract: merkelRootContract.FreeMint,
+  });
+
+  const { merkleProof: merkleProofWinter } = useMerklesValidation({
+    userAddress: WINTER_ADDRESS,
+    phase: 1,
+    merkleRootFromContract: merkelRootContract.Whitelist,
   });
 
   const { data: contractData, isLoading } = useContractReads({
@@ -133,7 +141,6 @@ export const NFTProvider: FC<NFTProviderProps> = ({
         args: [address as `0x${string}`],
       },
     ],
-    watch: true,
   }) as any;
 
   useEffect(() => {
@@ -233,6 +240,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
         merkleVerificationFreeMint,
         freeDiamond,
         windowWidth,
+        merkleProofWinter,
       }}
     >
       {children}
