@@ -49,9 +49,10 @@ const Mobile = () => {
   }, []);
   return (
     <>
-      <div className="height-page-mobile flex flex-col items-center justify-start gap-7">
-        <div className="space-y-4 text-center text-[20px] font-bold">
-          YOUR DIVERGENTS <br />
+      <div className="height-page-mobile flex flex-col items-center justify-start gap-8 py-4">
+        <div className="space-y-4 text-center font-inter text-[20px] font-bold">
+          YOUR <span className="text-[#FF005F]">DIVERGENTS</span>
+          <br />
           ARE NOT READY YET...
         </div>
         <h1 className="font-inter text-4xl font-black">{`${
@@ -85,19 +86,19 @@ const Mobile = () => {
             />
           )}
           <button
-            className={`z-[10]  flex w-[200px] items-center  justify-center text-xl font-bold ${
-              isConnected ? "h-[70px]" : "h-[60px]"
+            className={`z-[10] flex h-[50px] w-[150px] items-center justify-center font-bold md:text-xl ${
+              isConnected ? "h-[70px]" : "h-[50px]"
             }`}
           >
             {!isConnected ? "CONNECT MY WALLET" : "YOUR WALLET IS CONNECTED"}
           </button>
         </div>
-        <div className="text-3xl font-bold">
+        <div className=" text-base font-bold md:text-3xl">
           {isConnected && address?.slice(0, 6) + "..." + address?.slice(38)}
         </div>
         <img
           src={AvatarWaiting}
-          className="absolute bottom-0 right-0 z-[0] h-[500px]"
+          className="absolute bottom-0 right-0 z-[-1] h-[450px] py-8"
         />
       </div>
       <ModalConnection

@@ -23,7 +23,7 @@ const ModalConnection: FC<ModalConnectionProps> = ({ showModal, onClick }) => {
   return (
     <Modal showModal={showModal} closeFunction={onClick}>
       {whiteListed && !isConnected ? (
-        <div className="h-[280px] w-[469px] rounded-3xl bg-[#161618] px-8 py-4  font-bold">
+        <div className="h-[280px] rounded-3xl bg-[#161618] px-8 py-4 font-bold  md:w-[469px]">
           <div className=" flex items-center justify-between text-2xl text-white">
             <div>Choose Your wallet</div>
             <img
