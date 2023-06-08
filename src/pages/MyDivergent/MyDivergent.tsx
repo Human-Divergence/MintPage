@@ -59,7 +59,7 @@ const MyDivergent = () => {
     >
       {hasNFT ? (
         <div className="mb-20 flex w-[1248px] items-center justify-center ">
-          <div className=" flex flex-wrap  items-center justify-center">
+          <div className=" flex flex-wrap ">
             {selectedCapsule === undefined &&
               selectedCharacter === undefined &&
               Array.from({ length: capsulesBought.onyx }, () => null).map(

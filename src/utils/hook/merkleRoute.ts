@@ -20,11 +20,11 @@ const useMerklesValidation = ({
   const selectedWhitelist = (phase: number) => {
     switch (phase) {
       case 0:
-        return [];
+        return freeMint_phase_2;
       case 1:
         return whitelisted_phase_1;
       default:
-        return freeMint_phase_2;
+        return whitelisted_phase_1;
     }
   };
 
@@ -51,7 +51,7 @@ const useMerklesValidation = ({
   };
 
   const merkleProof = useMemo(() => {
-    if (!phase || phase === 0 || phase === 2 || !userAddress) {
+    if (!phase || phase === 2 || !userAddress) {
       return [
         "0x0000000000000000000000000000000000000000000000000000000000000000",
       ];
