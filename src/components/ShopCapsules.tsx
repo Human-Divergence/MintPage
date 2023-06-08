@@ -60,38 +60,38 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
   };
 
   return (
-    <div className=" mt-52 flex flex-col gap-20 self-start pl-11 ">
+    <div className=" mt-28 flex flex-col gap-20 self-start lg:mt-52 lg:pl-11 ">
       <>
         {capsulesDatas.map((cap, index) => (
           <div className="mb-16 flex justify-center" key={index}>
-            <div className="w-full sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
-              <div className="relative  flex h-[300px] w-full justify-center gap-1  rounded-bl-[250px] rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:w-[1024px] ">
+            <div className="w-full ss:w-[480px] sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
+              <div className="relative  flex h-[200px] w-full justify-center gap-1 rounded-bl-md rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:h-[300px] lg:w-[1024px] lg:rounded-bl-[250px] ">
                 <div className="">
                   <img
                     src={cap.image}
+                    onMouseEnter={() => sethoverDropRate(index)}
                     alt="imgCap"
                     className={`${
                       hoverDropRate === index && "translate-y-[-12%] scale-125 "
-                    } md:r absolute bottom-[-1px] z-[11] h-[121%] duration-500 ease-out `}
+                    } absolute -left-5 bottom-[-1px] z-[11] h-[85%] duration-500 ease-out sm:-left-10 sm:h-[121%] `}
                   />
                   <img
                     key={index}
                     onMouseLeave={() => sethoverDropRate(undefined)}
                     src={DropRateAnim}
                     alt="imgStats"
-                    className={`absolute bottom-0 right-0 z-10  h-[0px] w-[85%]   overflow-hidden rounded-bl-[100px] rounded-tr-3xl backdrop-blur-3xl duration-1000 ease-out ${
+                    className={`absolute bottom-0 right-0 z-10  h-[0px] w-[85%] overflow-hidden rounded-bl-[100px] rounded-tr-3xl backdrop-blur-3xl duration-1000 ease-out ${
                       hoverDropRate === index && "  h-auto  "
                     } `}
                   />
                 </div>
-
                 <div className="flex w-full flex-col">
-                  <div className="description-container flex h-full items-center justify-between gap-8 rounded-tr-3xl border-solid  border-black bg-white pl-[25%]  pr-5">
-                    <p className="text-center text-4xl font-bold">
+                  <div className=" flex h-full items-center justify-between gap-8 rounded-tr-3xl border-solid  border-black bg-white pl-[25%]  pr-5">
+                    <p className="text-center text-lg font-bold lg:text-4xl">
                       {cap.description} CAPSULE
                     </p>
                     <p
-                      className="w-[250px] text-center text-[13px] font-bold text-white"
+                      className="w-[150px] text-center text-[13px] font-bold text-white lg:w-[250px]"
                       style={{
                         background: `
                     linear-gradient(
@@ -107,8 +107,8 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                     </p>
                   </div>
 
-                  <div className="description-wrapper">
-                    <button className="font w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white ">
+                  <div className="">
+                    <button className="font hidden w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white md:block">
                       <span
                         className="textShadow"
                         onMouseEnter={() => sethoverDropRate(index)}
@@ -119,7 +119,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                     </button>
                     <div className="flex flex-col gap-6 p-5">
                       <div className=" flex flex-col items-end justify-end">
-                        <div className=" relative  text-2xl font-bold ">
+                        <div className=" relative  text-lg font-bold lg:text-2xl">
                           <img
                             src={eth}
                             alt="bg"
@@ -128,7 +128,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                           {pricesCapsules[cap.title as keyof Capsules]}
                           ETH
                         </div>
-                        <div className="text-[20px] font-bold text-[#999999]">
+                        <div className="font-bold text-[#999999] sm:text-[20px]">
                           {" "}
                           ≈{" "}
                           {(
@@ -138,25 +138,17 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                           $
                         </div>
                       </div>
-                      <div className="text-[20px] font-bold text-[#999999]">
-                        {" "}
-                        ≈{" "}
-                        {(
-                          pricesCapsules[cap.title as keyof Capsules] * priceEth
-                        ).toFixed(2)}{" "}
-                        $
-                      </div>
                     </div>
 
                     <div className="flex flex-row items-center justify-end gap-4 p-4">
-                      <p className="text-xl font-bold text-[#999999]">
+                      <p className=" text-sm font-bold text-[#999999] lg:text-xl">
                         STILL {stillAvalaibleCaps[cap.title as keyof Capsules]}{" "}
                         AVAILABLE
                       </p>
-                      <div className=" ml-7 flex h-[25%] w-[25%] flex-row items-center   justify-between rounded-[5px] bg-[#00FFAE]">
+                      <div className=" ml-7 flex h-[25%] w-[45%] flex-row items-center justify-between rounded-[5px] bg-[#00FFAE] sm:w-[25%]">
                         <div>
                           <button
-                            className=" rounded-[5px] bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"
+                            className=" bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"
                             onClick={() => {
                               removeCapsule(cap);
                             }}
@@ -173,7 +165,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                             addCapsule(cap);
                           }}
                         >
-                          {"-"}
+                          {"+"}
                         </button>
                       </div>
                       <div className="text-xl font-bold text-[#999999]">

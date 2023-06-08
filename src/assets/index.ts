@@ -10,22 +10,20 @@ import Diamond from "./diamcap.svg";
 import Orground from "./orground.svg";
 import Diaground from "./diaground.svg";
 import Unground from "./unground.svg";
-import Darksule from "./DarkCapsule.png";
 import lock from "./logo/lock.png";
 import Back from "./logo/Back.png";
 import Purchase from "./logo/Purchase.png";
 import HDlogo from "./logo/HDlogo.png";
-import polygon from "./Polygon.png";
 import eth from "./logo/Ethereum.png";
 import Minted from "./Minted.jpg";
 
-import OrBG from "./CapsuleGoldBG.png";
-import SilverBG from "./CapsuleSilverBG.png";
-import DiamondBG from "./CapsuleDiamondBG.png";
+import NewPlatine from "./capsules/Newplatine.png";
+import NewDiamond from "./capsules/NewDiamond.png";
+import NewGold from "./capsules/Newgold.png";
 
-import CapsuleDiamond from "./CapsuleDiamond1.png";
-import CapsuleSilver from "./CapsuleSilver1.png";
-import CapsuleOr from "./CapsuleGold1.png";
+import CapsuleSilverBg from "./capsules/capsule+onyx.png";
+import CapsuleDiamondBg from "./capsules/capsule+diamond.png";
+import CapsuleGoldBg from "./capsules/capsule+gold.png";
 
 import CapsulePreviewDiamond from "./capsules/CapsulePreviewDiam.png";
 import CapsulePreviewGold from "./capsules/CapsulePreviewGold.png";
@@ -36,6 +34,7 @@ import character2 from "./Character/Character2.png";
 import character3 from "./Character/Character3.png";
 import character4 from "./Character/Character4.png";
 import character5 from "./Character/Character5.png";
+
 import AvatarWaiting from "./Character/AvatarWaiting.png";
 import MetaMaskLogo from "./logo/MetaMaskLogo.svg";
 import WalletConnectLogo from "./logo/wallet-connect-logo.svg";
@@ -75,9 +74,9 @@ export {
   CapsulePreviewDiamond,
   CapsulePreviewSilver,
   CapsulePreviewGold,
-  CapsuleDiamond,
-  CapsuleSilver,
-  CapsuleOr,
+  CapsuleSilverBg,
+  CapsuleGoldBg,
+  CapsuleDiamondBg,
   logo,
   Back,
   Purchase,
@@ -88,18 +87,13 @@ export {
   meta,
   divg,
   Or,
-  OrBG,
   Silver,
-  SilverBG,
-  Darksule,
   Diamond,
-  DiamondBG,
   Orground,
   Diaground,
   lock,
   eth,
   test,
-  polygon,
   Unground,
   Minted,
   character1,
@@ -139,4 +133,7 @@ export {
   ArrowBackNav,
   DropRateAnim,
   ArrowPreview,
+  NewGold,
+  NewPlatine,
+  NewDiamond,
 };
