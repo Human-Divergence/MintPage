@@ -81,7 +81,6 @@ function App() {
                       <Route path="/" element={<Waiting />} />
                       <Route path="/human" element={<Home />} />
                       <Route path="/mydivergent" element={<MyDivergent />} />
-                      <Route path="/waiting" element={<Waiting />} />
                       <Route path="/connexion" element={<Connexion />} />
                     </Routes>
                   </>

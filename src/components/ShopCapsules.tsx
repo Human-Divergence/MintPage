@@ -4,7 +4,6 @@ import { capsulesDatas } from "../utils/constants/mockData";
 import { Capsule, Capsules } from "../utils/types/myDivergent";
 import { NFTContext } from "../context/NFTContext";
 import { getCapsulesLeftToBuy } from "../utils/helpers/global.helpers";
-
 /**
  * @dev Shaan - CSN
  * @notice This component is used to display the capsules set if the user is whitelisted
@@ -80,8 +79,8 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                     onMouseLeave={() => sethoverDropRate(undefined)}
                     src={DropRateAnim}
                     alt="imgStats"
-                    className={`absolute bottom-0 right-0 z-10  h-[0px] w-[85%] overflow-hidden rounded-bl-[100px] rounded-tr-3xl backdrop-blur-3xl duration-1000 ease-out ${
-                      hoverDropRate === index && "  h-auto  "
+                    className={`absolute bottom-0 right-0 z-10  h-[0px] w-[82%] overflow-hidden rounded-bl-[100px] rounded-tr-3xl backdrop-blur-3xl duration-1000 ease-out ${
+                      hoverDropRate === index && "h-auto"
                     } `}
                   />
                 </div>
@@ -108,7 +107,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                   </div>
 
                   <div className="">
-                    <button className="font hidden w-2/5 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white md:block">
+                    <button className="font hidden w-5/12 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white md:block">
                       <span
                         className="textShadow"
                         onMouseEnter={() => sethoverDropRate(index)}

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   MydyvergentLogoNavbar,
@@ -27,6 +27,14 @@ const Navbar = () => {
   const navigationNames = useMemo(() => {
     return getNavigationNames(pathName) || "";
   }, [pathName]);
+
+  useEffect(() => {
+    if (!isConnected) {
+      new Date("2023-06-25T00:00:00").getTime() - new Date().getTime() > 0
+        ? navigate("/")
+        : navigate("/connexion");
+    }
+  }, [isConnected]);
 
   return (
     <div className=" mt-[42px] grid grid-cols-3 px-7">
