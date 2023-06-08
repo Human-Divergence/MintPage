@@ -52,7 +52,7 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
           windowWidth <= 768 ? "bottom-0" : "right-0"
         } mb-10 flex  flex-col gap-1`}
       >
-        <div className=" bg-opacity-45 z-10 min-h-[300px] border-y-[1px] border-l-[1px]  border-black  p-4  md:w-[312px] md:rounded-bl-xl ">
+        <div className=" bg-opacity-45 z-10 min-h-[300px] border-y-[1px] border-black  p-4  md:w-[312px]  md:rounded-bl-xl md:border-l-[1px] ">
           <div className="flex justify-between">
             <span className="text-[14px] font-bold">Capsules</span>
             <span className="text-[14px] font-bold">Quantity</span>
@@ -80,7 +80,7 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
             </div>
           </div>
         </div>
-        <div className=" bg-opacity-45 border-y-[1px] border-l-[1px] border-black p-5 md:w-[312px] md:rounded-tl-xl">
+        <div className=" bg-opacity-45 border-y-[1px] border-black p-5 md:w-[312px] md:rounded-tl-xl md:border-l-[1px]">
           <div className="flex items-start">
             <span className="text-[24px] font-bold">Total</span>
           </div>

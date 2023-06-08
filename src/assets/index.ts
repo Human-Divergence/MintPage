@@ -67,8 +67,11 @@ import ArrowBackNav from "./icons/ArrowBackNav.png";
 
 import statsRevealOnyx from "./statsRevealOnyx.png";
 import statsRevealGold from "./statRevealSilver.png";
-import DropRateAnim from "./dropRateAnim.png";
 import ArrowPreview from "./icons/arrowPreview.png";
+
+import DropRateSilver from "./dropRateAnim.png";
+import DropRateGold from "./texts/dropRateGold.png";
+import DropRateDiam from "./texts/dropRateDiamond.png";
 
 export {
   CapsulePreviewDiamond,
@@ -131,7 +134,9 @@ export {
   statsRevealOnyx,
   statsRevealGold,
   ArrowBackNav,
-  DropRateAnim,
+  DropRateSilver,
+  DropRateGold,
+  DropRateDiam,
   ArrowPreview,
   NewGold,
   NewPlatine,
