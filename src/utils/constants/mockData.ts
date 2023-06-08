@@ -18,6 +18,7 @@ import {
   DropRateDiam,
   DropRateGold,
   DropRateSilver,
+  NewPlatine,
   CapsuleGoldBg,
   CapsuleSilverBg,
   CapsuleDiamondBg,

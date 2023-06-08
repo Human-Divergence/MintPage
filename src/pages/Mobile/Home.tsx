@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Capsules } from "../../components";
 import Checkout from "../../components/web3/Checkout";
-import { ShoppingCart } from "../../utils/types/home";
+import { Capsules } from "../../utils/types/myDivergent";
+import ShopCapsules from "../../components/ShopCapsules";
 
 function Home() {
-  const [capsuleCart, setCapsuleCart] = useState<ShoppingCart>({
+  const [capsuleCart, setCapsuleCart] = useState<Capsules>({
     onyx: 0,
     gold: 0,
     diamond: 0,
@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <div className="flex flex-col">
-      <Capsules capsuleCart={capsuleCart} setCapsuleCart={setCapsuleCart} />
+      <ShopCapsules capsuleCart={capsuleCart} setCapsuleCart={setCapsuleCart} />
       <Checkout capsuleCart={capsuleCart} />
     </div>
   );

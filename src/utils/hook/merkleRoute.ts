@@ -32,7 +32,6 @@ const useMerklesValidation = ({
     const leaves = whitelisted.map((address) => keccak256(address));
     const tree = new MerkleTree(leaves, keccak256, { sort: true });
     const merkleRoot = tree.getHexRoot();
-    console.log("MERKLE ROOT GENERATED :", merkleRoot);
     return { tree, merkleRoot, leaves };
   };
 
@@ -42,16 +41,12 @@ const useMerklesValidation = ({
     setMerkletTreeParams(tree);
     // if (userAddress) {
     const merkleProof = tree.getHexProof(keccak256(userAddress));
-    console.log(
-      "TREE VERIFICATION : ",
-      tree.verify(merkleProof, keccak256(userAddress), merkleRoot)
-    );
     return { tree, merkleProof, merkleRoot };
     // }
   };
 
   const merkleProof = useMemo(() => {
-    if (!phase || phase === 2 || !userAddress) {
+    if (phase === 2 || !userAddress) {
       return [
         "0x0000000000000000000000000000000000000000000000000000000000000000",
       ];
@@ -66,11 +61,6 @@ const useMerklesValidation = ({
       return true;
     }
     if (merkletTreeParams && merkleRootFromContract) {
-      console.log("Merkle data =>", {
-        merkletTreeParams,
-        merkleRootFromContract,
-        phase,
-      });
       const verification = merkletTreeParams.verify(
         merkleProof,
         keccak256(userAddress),
