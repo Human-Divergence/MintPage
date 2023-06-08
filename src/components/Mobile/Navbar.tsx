@@ -44,7 +44,7 @@ const NavbarMobile = () => {
               className="flex  flex-row hover:cursor-pointer"
             >
               <div
-                className={` flex h-[40px] w-36 flex-row items-center justify-center gap-2 rounded-tr-2xl bg-[#00FFAE]  duration-300  ease-in-out md:w-[284px] ${
+                className={` flex h-[40px] w-36 flex-row items-center justify-center gap-2 rounded-tr-2xl bg-[#00FFAE] duration-300 ease-in-out md:w-[284px] ${
                   hoverMarketPlace ? "w-[184px]" : "w-[184px]"
                 } ${hoverMarketPlace ? " pr-8" : "pr-0"}`}
               >

@@ -92,6 +92,7 @@ function App() {
                       <Route path="/" element={<Mobile />} />
                       <Route path="/human" element={<HomeMobile />} />
                       <Route path="/mydivergent" element={<MyDivergent />} />
+                      <Route path="/connexion" element={<Connexion />} />
                     </Routes>
                   </>
                 )}
