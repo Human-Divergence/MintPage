@@ -17,8 +17,6 @@ import {
   statsRevealOnyx,
   statsRevealGold,
   NewPlatine,
-  NewDiamond,
-  NewGold,
   CapsuleGoldBg,
   CapsuleSilverBg,
   CapsuleDiamondBg,
