@@ -66,7 +66,7 @@ const Mobile = () => {
           "s"
         }`}</h1>
         <div
-          className={`mt-8 flex  flex-row hover:cursor-pointer ${
+          className={`mt-8 flex flex-row items-center justify-center hover:cursor-pointer ${
             isConnected ? "bg-[#00FFAE]" : "bg-red"
           }`}
           onClick={() => {

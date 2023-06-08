@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   HDHeaderLogo,
@@ -10,8 +10,6 @@ import { getNavigationNames } from "../../utils/helpers/global.helpers";
 import { useAccount } from "wagmi";
 
 const NavbarMobile = () => {
-  const [hoverMarketPlace, setHoverMarketPlace] = useState<boolean>(false);
-
   const location = useLocation();
   const { address, isConnected } = useAccount();
 
@@ -38,19 +36,17 @@ const NavbarMobile = () => {
         <div className="">
           <div className="flex flex-row gap-3">
             <div
-              onMouseEnter={() => setHoverMarketPlace(true)}
-              onMouseLeave={() => setHoverMarketPlace(false)}
               onClick={() => window.open("https://opensea.io/", "_blank")}
               className="flex  flex-row hover:cursor-pointer"
             >
               <div
-                className={` flex h-[40px] w-36 flex-row items-center justify-center gap-2 rounded-tr-2xl bg-[#00FFAE] duration-300 ease-in-out md:w-[284px] ${
-                  hoverMarketPlace ? "w-[184px]" : "w-[184px]"
-                } ${hoverMarketPlace ? " pr-8" : "pr-0"}`}
+                className={` flex h-[40px] w-[165px] flex-row items-center justify-center gap-2 rounded-tr-2xl bg-[#00FFAE] duration-300 ease-in-out md:w-[284px]`}
               >
-                <p className=" text-base font-bold md:text-2xl">MARKETPLACE</p>
-                <img src={ArrowHeader} className="w-[20px] " />
-                <div className="flex h-[40px] w-[52px] items-center justify-center bg-black">
+                <p className=" text-[13px] font-bold md:text-2xl">
+                  MARKETPLACE
+                </p>
+                <img src={ArrowHeader} className="w-[15px] " />
+                <div className="flex h-[40px] w-[40px] items-center justify-center bg-black">
                   <img
                     src={MarketPlace}
                     alt="HD"
@@ -60,7 +56,7 @@ const NavbarMobile = () => {
               </div>
             </div>
             {pathName !== "/" && pathName !== "/connexion" && (
-              <div className="right-0 flex flex-col items-end justify-end">
+              <div className="ml-auto flex flex-col">
                 <div
                   onClick={() => navigate("/mydivergent")}
                   className={`flex flex-row duration-300  ease-out hover:cursor-pointer`}
@@ -71,18 +67,15 @@ const NavbarMobile = () => {
                     className="h-[40px] w-[40px] bg-black "
                   />
                   <div
-                    className={` flex h-[40px] flex-row items-center justify-center gap-2  md:w-[284px]  ${
+                    className={`flex h-[40px] w-[125px] flex-row items-center justify-center gap-2  md:w-[284px]  ${
                       pathName === "/mydivergent" ? "bg-red" : "bg-[#00FFAE] "
                     } `}
                   >
-                    <p className={` font-bold duration-300 ease-out `}>
+                    <p className={` text-[13px] font-bold `}>
                       {pathName === "/mydivergent"
                         ? "GET MORE DIVERGENT"
                         : "MY DIVERGENT"}
                     </p>
-                    {pathName !== "/mydivergent" && (
-                      <img src={ArrowHeader} className="w-[20px] " />
-                    )}
                   </div>
                 </div>
                 <div className="mt-2 flex text-xl font-bold">

@@ -1,5 +1,5 @@
 import React, { FC, useContext, useMemo, useState } from "react";
-import { eth, DropRateAnim } from "../assets";
+import { eth } from "../assets";
 import { capsulesDatas } from "../utils/constants/mockData";
 import { Capsule, Capsules } from "../utils/types/myDivergent";
 import { NFTContext } from "../context/NFTContext";
@@ -63,7 +63,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
     <div className=" mt-28 flex flex-col gap-20 self-start lg:mt-52 lg:pl-11 ">
       <>
         {capsulesDatas.map((cap, index) => (
-          <div className="mb-16 flex justify-center" key={index}>
+          <div className="flex justify-center lg:mb-16" key={index}>
             <div className="w-full ss:w-[480px] sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
               <div className="relative  flex h-[200px] w-full justify-center gap-1 rounded-bl-md rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:h-[300px] lg:w-[1024px] lg:rounded-bl-[250px] ">
                 <div className="">
@@ -78,10 +78,10 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                   <img
                     key={index}
                     onMouseLeave={() => sethoverDropRate(undefined)}
-                    src={DropRateAnim}
+                    src={cap.imagePreview}
                     alt="imgStats"
                     className={`absolute bottom-0 right-0 z-10  h-[0px] w-[85%] overflow-hidden rounded-bl-[100px] rounded-tr-3xl backdrop-blur-3xl duration-1000 ease-out ${
-                      hoverDropRate === index && "  h-auto  "
+                      hoverDropRate === index && " h-full lg:h-auto  "
                     } `}
                   />
                 </div>
@@ -123,7 +123,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                           <img
                             src={eth}
                             alt="bg"
-                            className=" absolute w-[30px] translate-x-[-150%]"
+                            className="absolute w-[20px] translate-x-[-150%] lg:w-[30px]"
                           />
                           {pricesCapsules[cap.title as keyof Capsules]} ETH
                         </div>

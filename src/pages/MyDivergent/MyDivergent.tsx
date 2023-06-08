@@ -47,15 +47,13 @@ const MyDivergent = () => {
     return maxCompartment - addCapsules(capsulesBought);
   }, []);
 
-  const hasNFT = false;
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [selectedCapsule]);
 
   return (
     <>
-      {hasNFT ? (
+      {addCapsules(capsulesBought) !== 0 ? (
         <div
           className={`height-page bg-capsule relative flex justify-center overflow-hidden  pt-32`}
         >
