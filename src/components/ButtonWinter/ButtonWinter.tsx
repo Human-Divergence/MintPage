@@ -35,7 +35,9 @@ const ButtonWinter: FC<ButtonWinterProps> = ({ capsuleCart }) => {
           setShowModalMinted(true);
           navigate("/mydivergent");
         }}
-        onClose={() => setShowWinter(false)}
+        onClose={() => {
+          setShowWinter(false);
+        }}
         extraMintParams={{
           _merkleProofWhitelist: merkleProofWinter,
           _amountOnyx: capsuleCart.onyx,
