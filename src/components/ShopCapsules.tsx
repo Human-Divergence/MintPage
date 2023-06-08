@@ -125,8 +125,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                             alt="bg"
                             className=" absolute w-[30px] translate-x-[-150%]"
                           />
-                          {pricesCapsules[cap.title as keyof Capsules]}
-                          ETH
+                          {pricesCapsules[cap.title as keyof Capsules]} ETH
                         </div>
                         <div className="font-bold text-[#999999] sm:text-[20px]">
                           {" "}
