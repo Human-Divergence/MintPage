@@ -2,20 +2,33 @@ import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { eth } from "../../assets";
 
 import { NFTContext } from "../../context/NFTContext";
-import { getPriceCart } from "../../utils/helpers/global.helpers";
+import { addCapsules, getPriceCart } from "../../utils/helpers/global.helpers";
 import ModalPurchase from "../Modals/ModalPurchase";
 import Button from "../Button/Button";
 import { Capsules } from "../../utils/types/myDivergent";
+import { publicClient } from "../../utils/viem/config";
+import { abiHD } from "../../utils/constants/abi/ABI";
+import { HD_CONTRACT_ADDRESS } from "../../utils/constants/addresses/addresses";
+import { useAccount } from "wagmi";
+import { formatUnits, parseEther } from "viem";
 
 type CheckoutProps = {
   capsuleCart: Capsules;
 };
 
 const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
-  const { pricesCapsules, priceEth, freeDiamond, windowWidth } =
-    useContext(NFTContext);
+  const {
+    pricesCapsules,
+    priceEth,
+    freeDiamond,
+    windowWidth,
+    merkleProofWhiteList,
+    merkleProofFreeMint,
+  } = useContext(NFTContext);
   const [showPurchaseModal, setShowPurchaseModal] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [feesEth, setFeesEth] = useState<number>(0);
+  const { address } = useAccount();
 
   const priceEthCart: number = useMemo(() => {
     return getPriceCart(capsuleCart, pricesCapsules, freeDiamond);
@@ -40,6 +53,43 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const getFees = async () => {
+    const gasEstimate = await publicClient.estimateContractGas({
+      address: HD_CONTRACT_ADDRESS,
+      abi: abiHD,
+      functionName: "mint",
+      args: [
+        address,
+        merkleProofWhiteList,
+        addCapsules(capsuleCart) === 0 ? 1 : capsuleCart.onyx,
+        capsuleCart.gold,
+        capsuleCart.diamond,
+        merkleProofFreeMint,
+      ],
+      account: address as `0x${string}`,
+      value:
+        addCapsules(capsuleCart) === 0
+          ? parseEther(`${pricesCapsules.onyx}`)
+          : parseEther(`${priceEthCart}`),
+    });
+
+    const gasPrice = await publicClient.getGasPrice();
+
+    return (
+      Number(formatUnits(gasEstimate, 0)) * Number(formatUnits(gasPrice, 0))
+    );
+  };
+
+  useEffect(() => {
+    getFees().then((gasCost) => {
+      setFeesEth(gasCost * 10 ** -18);
+    });
+  }, [capsuleCart]);
+
+  const feesUsd = useMemo(() => {
+    return feesEth * priceEth;
+  }, [feesEth, priceEth]);
 
   return (
     <>
@@ -100,10 +150,12 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
           </div>
           <div className="flex items-center justify-end">
             <img src={eth} alt="ETH Logo" className="mr-2" />
-            <span className="text-2xl font-bold">{0} ETH</span>
+            <span className="text-2xl font-bold">{feesEth.toFixed(5)} ETH</span>
           </div>
           <div className="mt-2 flex items-center justify-end">
-            <span className="text-xl font-bold text-[#999999]">XXXX USD</span>
+            <span className="text-xl font-bold text-[#999999]">
+              {feesUsd.toFixed(5)} USD
+            </span>
           </div>
 
           <Button
