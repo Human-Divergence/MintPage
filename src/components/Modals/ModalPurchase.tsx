@@ -2,10 +2,10 @@ import React, { FC, useContext } from "react";
 import Modal from "../Modal/Modal";
 import {
   CrossPurchase,
-  CapsuleOnyxPurchase,
-  CapsuleGoldPurchase,
-  CapsuleDiamondPurchase,
   CharaterModalPurchase,
+  NewPlatine,
+  NewGold,
+  NewDiamond,
 } from "../../assets";
 import { NFTContext } from "../../context/NFTContext";
 import { useNavigate } from "react-router-dom";
@@ -83,35 +83,35 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
           </div>
 
           <div className="flex flex-row  justify-between px-10">
-            <span className="relative text-center text-[24px] font-bold text-[#999999]">
-              <img src={CapsuleOnyxPurchase} />
+            <span className="relative text-center font-bold text-[#999999] md:text-[24px]">
+              <img src={NewPlatine} />
               <span className=" absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-200%] text-white  ">
                 x {capsuleCart.onyx}
               </span>
               <span>QUELOZ ONYX</span>
             </span>
-            <span className=" relative text-center text-[24px] font-bold text-[#AD7000]">
+            <span className=" relative text-center font-bold text-[#AD7000] md:text-[24px]">
               <span className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-200%] text-white  ">
                 x {capsuleCart.gold}
               </span>
-              <img src={CapsuleGoldPurchase} />
+              <img src={NewGold} className="h-auto" />
               MELT GOLD
             </span>
-            <span className="relative text-center text-[24px] font-bold text-[#2B1E74] ">
+            <span className="relative text-center font-bold text-[#2B1E74] md:text-[24px] ">
               <span className=" absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-200%] text-white  ">
                 x{capsuleCart.diamond}
               </span>
-              <img src={CapsuleDiamondPurchase} />
+              <img src={NewDiamond} className="h-auto" />
               TRIA DIAMOND
             </span>
           </div>
 
           <div className="flex flex-col items-center">
-            <span className="text-[40px] font-bold text-white">
+            <span className="font-bold text-white md:text-[40px]">
               {priceEthCart.toFixed(3)}
               <span className=" font-semibold"> ETH</span>
             </span>
-            <span className="text-2xl font-bold text-[#999999]">
+            <span className="font-bold text-[#999999] md:text-2xl">
               = {priceUSDCart.toFixed(3)} USD
             </span>
           </div>

@@ -32,6 +32,7 @@ const MyDivergent = () => {
     setShowModalMinted,
     capsulesBought,
     limitCapsuleBuy,
+    windowWidth,
   } = useContext(NFTContext);
 
   const handleViewClick = (
@@ -53,7 +54,7 @@ const MyDivergent = () => {
 
   return (
     <>
-      {addCapsules(capsulesBought) !== 0 ? (
+      {addCapsules(capsulesBought) !== 1 ? (
         <div
           className={`height-page bg-capsule relative flex justify-center overflow-hidden  pt-32`}
         >
@@ -149,7 +150,7 @@ const MyDivergent = () => {
                 })}
             </div>
 
-            {(selectedCapsule || selectedCharacter) && (
+            {windowWidth > 768 && (selectedCapsule || selectedCharacter) && (
               <ItemPreview
                 selectedCapsule={capsulesDatas[numberCapsule]}
                 selectedCharacter={selectedCharacter}
