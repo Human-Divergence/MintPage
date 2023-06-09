@@ -65,7 +65,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
             alt={selectedCapsule?.title || selectedCharacter?.nom}
             className={`${
               selectedCapsule
-                ? "h-80 w-[50%] -rotate-6 hover:-rotate-12 hover:scale-110 hover:cursor-pointer"
+                ? "-rotate-6 hover:-rotate-12 hover:scale-110 hover:cursor-pointer"
                 : "h-full w-full"
             } rounded-t-[20px] transition-all duration-500 ease-in-out `}
           />

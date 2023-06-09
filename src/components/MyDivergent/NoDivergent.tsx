@@ -7,8 +7,8 @@ const NoDivergent = () => {
   return (
     <div className=" mt-16 flex flex-col items-center justify-center">
       <div>
-        <p className="mt-20 text-3xl font-bold lg:text-[50px]">
-          You don&apos;t have a divergent yet ...
+        <p className="mt-20 text-3xl font-bold lg:text-[40px]">
+          YOU DON&apos;T HAVE A DIVERGENT YET ...
         </p>
         <div className="mt-20 flex flex-col items-center justify-center px-6 py-6">
           <div

@@ -8,6 +8,7 @@ import {
 } from "../../assets";
 import ModalConnection from "../../components/Modals/ModalConnection";
 import { useAccount } from "wagmi";
+import Button from "../../components/Button/Button";
 
 type TimeLeft = {
   days: number;
@@ -65,34 +66,41 @@ const Waiting = () => {
           timeLeft?.seconds +
           "s"
         }`}</h1>
-        <div
-          className={`mt-16 flex  flex-row hover:cursor-pointer ${
-            isConnected ? "bg-[#00FFAE]" : "bg-red"
-          }`}
-          onClick={() => {
-            !isConnected && setShowModal(true);
-          }}
-        >
-          {!isConnected ? (
-            <img src={ArrowWhiteBGBlack} />
-          ) : connector?.name === "MetaMask" ? (
-            <img src={meta} className="h–[70px] w-[70px] bg-black" />
-          ) : connector?.name === "Coinbase Wallet" ? (
-            <img src={CoinbaseLogo} className="h–[70px] w-[70px] bg-black" />
-          ) : (
-            <img
-              src={WalletConnectLogo}
-              className="h–[70px]  w-[70px] bg-black"
-            />
-          )}
-          <button
-            className={`flex  w-[400px] items-center justify-center  text-3xl font-bold ${
-              isConnected ? "h-[70px]" : "h-[60px]"
-            }`}
+        {isConnected ? (
+          <div
+            className="mt-16  flex
+            flex-row bg-[#00FFAE] hover:cursor-pointer
+        "
+            onClick={() => {
+              !isConnected && setShowModal(true);
+            }}
           >
-            {!isConnected ? "CONNECT MY WALLET" : "YOUR WALLET IS CONNECTED"}
-          </button>
-        </div>
+            {!isConnected ? (
+              <img src={ArrowWhiteBGBlack} />
+            ) : connector?.name === "MetaMask" ? (
+              <img src={meta} className="h–[70px] w-[70px] bg-black" />
+            ) : connector?.name === "Coinbase Wallet" ? (
+              <img src={CoinbaseLogo} className="h–[70px] w-[70px] bg-black" />
+            ) : (
+              <img
+                src={WalletConnectLogo}
+                className="h–[70px]  w-[70px] bg-black"
+              />
+            )}
+            <button className="flex h-[60px] w-[400px] items-center  justify-center text-3xl font-bold">
+              YOUR WALLET IS CONNECTED
+            </button>
+          </div>
+        ) : (
+          <div className="mt-16 flex flex-row items-center justify-center">
+            <Button
+              text="CONNECT MY WALLET"
+              onClick={() => {
+                !isConnected && setShowModal(true);
+              }}
+            />
+          </div>
+        )}
         <div className=" text-3xl font-bold">
           {isConnected && address?.slice(0, 6) + "..." + address?.slice(38)}
         </div>
