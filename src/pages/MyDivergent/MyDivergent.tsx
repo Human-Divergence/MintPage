@@ -54,7 +54,7 @@ const MyDivergent = () => {
 
   return (
     <>
-      {addCapsules(capsulesBought) !== 1 ? (
+      {addCapsules(capsulesBought) !== 0 ? (
         <div
           className={`height-page bg-capsule relative flex justify-center overflow-hidden  pt-32`}
         >

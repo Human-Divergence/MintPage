@@ -84,23 +84,17 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
 
           <div className="flex flex-row  justify-between px-10">
             <span className="relative text-center font-bold text-[#999999] md:text-[24px]">
+              <span className="text-white">x {capsuleCart.onyx}</span>
               <img src={NewPlatine} />
-              <span className=" absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-200%] text-white  ">
-                x {capsuleCart.onyx}
-              </span>
               <span>QUELOZ ONYX</span>
             </span>
             <span className=" relative text-center font-bold text-[#AD7000] md:text-[24px]">
-              <span className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-200%] text-white  ">
-                x {capsuleCart.gold}
-              </span>
+              <span className=" text-white  ">x {capsuleCart.gold}</span>
               <img src={NewGold} className="h-auto" />
               MELT GOLD
             </span>
             <span className="relative text-center font-bold text-[#2B1E74] md:text-[24px] ">
-              <span className=" absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-200%] text-white  ">
-                x{capsuleCart.diamond}
-              </span>
+              <span className=" text-white ">x{capsuleCart.diamond}</span>
               <img src={NewDiamond} className="h-auto" />
               TRIA DIAMOND
             </span>

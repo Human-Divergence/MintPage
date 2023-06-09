@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  AvatarWaiting,
+  AvatarWaitingMobile,
   ArrowWhiteBGBlack,
   meta,
   CoinbaseLogo,
@@ -95,7 +95,7 @@ const Mobile = () => {
             </button>
           </div>
         ) : (
-          <div className="mt-16 flex w-1/5 flex-row items-center justify-center text-base">
+          <div className=" flex w-1/5 flex-row items-center justify-center text-base">
             <Button
               text="CONNECT MY WALLET"
               onClick={() => {
@@ -104,13 +104,13 @@ const Mobile = () => {
             />
           </div>
         )}
+        <img
+          src={AvatarWaitingMobile}
+          className="absolute bottom-0 right-0 z-[-1] h-[350px]"
+        />
         <div className=" text-base font-bold md:text-3xl">
           {isConnected && address?.slice(0, 6) + "..." + address?.slice(38)}
         </div>
-        <img
-          src={AvatarWaiting}
-          className="absolute bottom-0 right-0 z-[-1] h-[450px] py-8"
-        />
       </div>
       <ModalConnection
         showModal={showModal}

@@ -13,7 +13,7 @@ const Button: FC<ButtonProps> = ({ text, onClick }) => {
     <div
       onMouseEnter={() => setHoverActive(true)}
       onMouseLeave={() => setHoverActive(false)}
-      className={`relative mt-2 flex h-[60px] min-w-[270px]  flex-row self-end duration-700 ease-in-out  hover:cursor-pointer  ${
+      className={`relative mt-2 flex h-[40px] min-w-[190px] flex-row  self-end duration-700 ease-in-out hover:cursor-pointer  md:h-[60px]  ${
         hoverActive && "  text-[#FF005F]"
       } ${hoverActive ? " bg-black" : "bg-red"}  ${
         hoverActive ? " pl-[20px] pr-[80px] " : "pl-[80px] pr-[20px]"
@@ -23,11 +23,11 @@ const Button: FC<ButtonProps> = ({ text, onClick }) => {
       <img
         src={ArrowWhiteBGBlack}
         alt="Purchase"
-        className={`ease-in-outl absolute left-0 duration-500 hover:translate-x-[-100%] ${
+        className={`ease-in-outl absolute left-0 h-[40px] duration-500 hover:translate-x-[-100%] md:h-auto ${
           hoverActive && "left-full translate-x-[-100%]"
         }`}
       />
-      <div className="flex w-full items-center justify-center text-[24px] font-bold ">
+      <div className="flex w-full items-center justify-center text-sm font-bold md:text-[24px] ">
         {text}
       </div>
     </div>
