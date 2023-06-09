@@ -10,7 +10,12 @@ import {
 import { NFTContext } from "../../context/NFTContext";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
-import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
+import {
+  useAccount,
+  useContractWrite,
+  usePrepareContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
 import { HDContract } from "../../utils/constants/wagmiConfig/wagmiConfig";
 import { parseEther } from "viem";
 import { Capsules } from "../../utils/types/myDivergent";
@@ -39,6 +44,8 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
   } = useContext(NFTContext);
   const { address } = useAccount();
 
+  const navigate = useNavigate();
+
   const { config } = usePrepareContractWrite({
     ...HDContract,
     functionName: "mint",
@@ -54,8 +61,13 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
     enabled: merkleVerificationWhiteList && showModal,
   });
 
-  const { write } = useContractWrite({
+  const { data: mintData, write } = useContractWrite({
     ...config,
+  });
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { data } = useWaitForTransaction({
+    hash: mintData?.hash,
     onSuccess() {
       setShowModalMinted(true);
       navigate("/mydivergent");
@@ -64,8 +76,6 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
       onClick;
     },
   });
-
-  const navigate = useNavigate();
 
   return (
     <>

@@ -4,6 +4,7 @@ import { capsulesDatas } from "../utils/constants/mockData";
 import { Capsule, Capsules } from "../utils/types/myDivergent";
 import { NFTContext } from "../context/NFTContext";
 import { getCapsulesLeftToBuy } from "../utils/helpers/global.helpers";
+
 /**
  * @dev Shaan - CSN & Marco
  * @notice This component is used to display the capsules set if the user is whitelisted
