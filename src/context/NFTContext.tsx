@@ -141,6 +141,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
         args: [address as `0x${string}`],
       },
     ],
+    watch: true,
   }) as any;
 
   useEffect(() => {
