@@ -1,4 +1,4 @@
-import React, { FC, useContext, useMemo } from "react";
+import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import Modal from "../Modal/Modal";
 import {
   CrossPurchase,
@@ -21,6 +21,7 @@ import { HDContract } from "../../utils/constants/wagmiConfig/wagmiConfig";
 import { parseEther } from "viem";
 import { Capsules } from "../../utils/types/myDivergent";
 import ButtonWinter from "../ButtonWinter/ButtonWinter";
+import { toast } from "react-toastify";
 
 type ModalConnectionProps = {
   showModal: boolean;
@@ -37,6 +38,8 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
   priceUSDCart,
   capsuleCart,
 }) => {
+  const [toastId, setToastId] = useState<any>(null);
+
   const {
     setShowModalMinted,
     merkleProofWhiteList,
@@ -73,8 +76,11 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
     ...config,
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data } = useWaitForTransaction({
+  const {
+    isSuccess: mintSuccess,
+    isLoading: mintIsLoading,
+    isError: mintError,
+  } = useWaitForTransaction({
     hash: mintData?.hash,
     onSuccess() {
       setShowModalMinted(true);
@@ -84,6 +90,31 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
       onClick;
     },
   });
+
+  useEffect(() => {
+    if (mintIsLoading) {
+      let toastvalue = toast.loading("MINTING...");
+      setToastId(toastvalue);
+    }
+    if (mintSuccess) {
+      toast.update(toastId, {
+        render: "MINT SUCCESS",
+        type: "success",
+        isLoading: false,
+        className: "rotateY animated",
+        autoClose: 5000,
+      });
+    }
+    if (mintError) {
+      toast.update(toastId, {
+        render: "MINT ERROR",
+        type: "error",
+        isLoading: false,
+        className: "rotateY animated",
+        autoClose: 5000,
+      });
+    }
+  }, [mintSuccess, mintIsLoading, mintError]);
 
   return (
     <>

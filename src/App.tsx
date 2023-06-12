@@ -18,6 +18,8 @@ import HomeMobile from "./pages/Mobile/Home";
 import { useWindowSize } from "./utils/helpers/global.helpers";
 import { NFTProvider } from "./context/NFTContext";
 import { polygonMumbai } from "viem/chains";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [import.meta.env.VITE_NETWORK === "mainnet" ? mainnet : polygonMumbai],
@@ -74,6 +76,18 @@ function App() {
           <WagmiConfig config={config}>
             <NFTProvider>
               <AccountProvider>
+                <ToastContainer
+                  position="top-center"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="colored"
+                />
                 {size.width > 768 ? (
                   <>
                     <Navbar />
