@@ -66,48 +66,53 @@ const Waiting = () => {
           timeLeft?.seconds +
           "s"
         }`}</h1>
-        {isConnected ? (
-          <div
-            className="mt-16  flex
-            flex-row bg-[#00FFAE] hover:cursor-pointer 
-        "
-            onClick={() => {
-              !isConnected && setShowModal(true);
-            }}
-          >
-            {!isConnected ? (
-              <img src={ArrowWhiteBGBlack} />
-            ) : connector?.name === "MetaMask" ? (
-              <img src={meta} className="h–[70px] w-[70px] bg-black" />
-            ) : connector?.name === "Coinbase Wallet" ? (
-              <img src={CoinbaseLogo} className="h–[70px] w-[70px] bg-black" />
-            ) : (
-              <img
-                src={WalletConnectLogo}
-                className="h–[70px]  w-[70px] bg-black"
-              />
-            )}
-            <button className="flex h-[60px] w-[400px] text-3xl font-bold">
-              YOUR WALLET IS CONNECTED
-            </button>
-          </div>
-        ) : (
-          <div className="mt-16 flex flex-row items-center justify-center">
-            <Button
-              text="CONNECT MY WALLET"
+        <div className="mt-20 flex flex-col items-center justify-center gap-8">
+          {isConnected ? (
+            <div
+              className="mt-16  flex
+              flex-row bg-[#00FFAE] hover:cursor-pointer 
+          "
               onClick={() => {
                 !isConnected && setShowModal(true);
               }}
-            />
+            >
+              {!isConnected ? (
+                <img src={ArrowWhiteBGBlack} />
+              ) : connector?.name === "MetaMask" ? (
+                <img src={meta} className="h–[70px] w-[70px] bg-black" />
+              ) : connector?.name === "Coinbase Wallet" ? (
+                <img
+                  src={CoinbaseLogo}
+                  className="h–[70px] w-[70px] bg-black"
+                />
+              ) : (
+                <img
+                  src={WalletConnectLogo}
+                  className="h–[70px]  w-[70px] bg-black"
+                />
+              )}
+              <button className="flex h-[60px] w-[400px] text-3xl font-bold">
+                YOUR WALLET IS CONNECTED
+              </button>
+            </div>
+          ) : (
+            <div className="mt-16 flex flex-row items-center justify-center">
+              <Button
+                text="CONNECT MY WALLET"
+                onClick={() => {
+                  !isConnected && setShowModal(true);
+                }}
+              />
+            </div>
+          )}
+          <div className=" text-3xl font-bold">
+            {isConnected && address?.slice(0, 6) + "..." + address?.slice(38)}
           </div>
-        )}
-        <div className=" text-3xl font-bold">
-          {isConnected && address?.slice(0, 6) + "..." + address?.slice(38)}
+          <img
+            src={AvatarWaiting}
+            className="absolute right-0 z-[-1] h-[700px]"
+          />
         </div>
-        <img
-          src={AvatarWaiting}
-          className="absolute right-0 z-[-1] h-[700px]"
-        />
       </div>
       <ModalConnection
         showModal={showModal}
