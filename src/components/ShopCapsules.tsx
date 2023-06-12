@@ -88,7 +88,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                 </div>
                 <div className="flex w-full flex-col">
                   <div className=" flex h-full items-center justify-between gap-8 rounded-tr-3xl border-solid  border-black bg-white pl-[25%]  pr-5">
-                    <p className="text-center text-lg font-bold lg:text-4xl">
+                    <p className="text-center text-base font-bold lg:text-4xl">
                       {cap.description} CAPSULE
                     </p>
                     <p
@@ -145,22 +145,20 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                         STILL {stillAvalaibleCaps[cap.title as keyof Capsules]}{" "}
                         AVAILABLE
                       </p>
-                      <div className=" ml-7 flex h-[25%] w-[40%] flex-row items-center justify-between rounded-[5px] bg-[#00FFAE] sm:w-[25%]">
-                        <div>
-                          <button
-                            className=" bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"
-                            onClick={() => {
-                              removeCapsule(cap);
-                            }}
-                          >
-                            {"-"}
-                          </button>
-                        </div>
+                      <div className="ml-7 flex h-[25%] w-[40%] flex-row items-center justify-between bg-[#00FFAE] sm:w-[25%]">
+                        <button
+                          className="border border-[#00FFAE] bg-black px-3 text-[22px] text-white active:bg-[#00FFAE] lg:h-10 lg:w-10"
+                          onClick={() => {
+                            removeCapsule(cap);
+                          }}
+                        >
+                          {"-"}
+                        </button>
                         <p className="text-[22px] font-bold">
                           {capsuleCart[cap.title as keyof Capsules]}
                         </p>
                         <button
-                          className="bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"
+                          className="border border-[#00FFAE] bg-black px-3 text-[22px] text-white active:bg-[#00FFAE] lg:h-10 lg:w-10"
                           onClick={() => {
                             addCapsule(cap);
                           }}
