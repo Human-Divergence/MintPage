@@ -108,11 +108,11 @@ const Waiting = () => {
           <div className=" text-3xl font-bold">
             {isConnected && address?.slice(0, 6) + "..." + address?.slice(38)}
           </div>
-          <img
-            src={AvatarWaiting}
-            className="absolute right-0 z-[-1] h-[700px]"
-          />
         </div>
+        <img
+          src={AvatarWaiting}
+          className="absolute right-0 z-[-1] h-[700px]"
+        />
       </div>
       <ModalConnection
         showModal={showModal}

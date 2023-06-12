@@ -88,7 +88,7 @@ function App() {
                   pauseOnHover
                   theme="colored"
                 />
-                {size.width > 768 ? (
+                {size.width > 1000 ? (
                   <>
                     <Navbar />
                     <Routes>

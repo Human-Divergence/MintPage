@@ -109,7 +109,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                   </div>
 
                   <div className="">
-                    <button className="font hidden w-5/12 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white md:block">
+                    <button className="font hidden w-5/12 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white lg:block">
                       <span
                         className="textShadow"
                         onMouseEnter={() => sethoverDropRate(index)}

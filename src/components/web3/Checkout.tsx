@@ -90,11 +90,11 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
     <>
       <div
         className={` ${
-          windowWidth <= 768 ? "relative" : isScrolled ? "fixed" : "absolute"
+          windowWidth <= 1000 ? "relative" : isScrolled ? "fixed" : "absolute"
         }  
         ${isScrolled ? "top-10" : "mt-10"} 
         ${
-          windowWidth <= 768 ? "bottom-0" : "right-0"
+          windowWidth <= 1000 ? "bottom-0" : "right-0"
         } mb-10 flex  flex-col gap-1`}
       >
         <div className=" bg-opacity-45 z-10 min-h-[300px] border-y-[1px] border-black  p-4  md:w-[312px]  md:rounded-bl-xl md:border-l-[1px] ">
