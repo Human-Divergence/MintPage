@@ -74,6 +74,8 @@ import DropRateSilver from "./dropRateAnim.png";
 import DropRateGold from "./texts/dropRateGold.png";
 import DropRateDiam from "./texts/dropRateDiamond.png";
 
+import HDWaiting from "./logo/HD-logo.png";
+import WaitingButton from "./logo/WaitingButton.png";
 export {
   CapsulePreviewDiamond,
   CapsulePreviewSilver,
@@ -84,6 +86,8 @@ export {
   logo,
   Back,
   Purchase,
+  HDWaiting,
+  WaitingButton,
   HDlogo,
   close,
   menu,

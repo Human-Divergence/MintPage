@@ -5,7 +5,7 @@ import {
   MetaMaskLogo,
   CoinbaseLogo,
   WalletConnectLogo,
-  PopupWhiteListed,
+  WaitingButton,
 } from "../../assets";
 import { useConnect, useAccount } from "wagmi";
 
@@ -58,7 +58,22 @@ const ModalConnection: FC<ModalConnectionProps> = ({ showModal, onClick }) => {
           </div>
         </div>
       ) : (
-        <img src={PopupWhiteListed} />
+        // <img src={PopupWhiteListed} />
+        <div className="bg-ModalPurchase  h-[280px] rounded-3xl bg-[#161618] px-8 py-4 font-bold  md:w-[469px]">
+          <h1 className="text-2xl text-white lg:text-4xl">
+            CONGRATS!
+            <br />
+            YOU ARE NOW
+            <br />
+            <h1 className="text-red">WHITE-LISTED</h1>
+          </h1>
+          <div className="flex items-center justify-center">
+            <img
+              src={WaitingButton}
+              className="duration-300 ease-in-out hover:scale-105"
+            />
+          </div>
+        </div>
       )}
     </Modal>
   );

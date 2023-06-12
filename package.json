@@ -27,6 +27,7 @@
     "@usewinter/checkout": "^0.1.46",
     "@walletconnect/web3wallet": "^1.5.1",
     "axios": "^1.4.0",
+    "core-js": "^3.31.0",
     "dotenv": "^16.1.4",
     "ethers": "^5.7.2",
     "merkletreejs": "^0.3.10",
