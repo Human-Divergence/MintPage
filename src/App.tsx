@@ -74,7 +74,7 @@ function App() {
           <WagmiConfig config={config}>
             <NFTProvider>
               <AccountProvider>
-                {size.width > 768 ? (
+                {size.width > 1000 ? (
                   <>
                     <Navbar />
                     <Routes>
