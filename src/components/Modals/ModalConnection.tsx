@@ -8,6 +8,7 @@ import {
   PopupWhiteListed,
 } from "../../assets";
 import { useConnect, useAccount } from "wagmi";
+import { mainnet, polygonMumbai } from "wagmi/chains";
 
 type ModalConnectionProps = {
   showModal: boolean;
@@ -17,7 +18,12 @@ type ModalConnectionProps = {
 const ModalConnection: FC<ModalConnectionProps> = ({ showModal, onClick }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [whiteListed, setWhiteListed] = useState<boolean>(true);
-  const { connect, connectors, isLoading, pendingConnector } = useConnect();
+  const { connect, connectors, isLoading, pendingConnector } = useConnect({
+    chainId:
+      process.env.REACT_APP_ENVIRONMENT === "mainnet"
+        ? mainnet.id
+        : polygonMumbai.id,
+  });
   const { isConnected } = useAccount();
 
   return (
