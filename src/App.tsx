@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navbar, Footer } from "./components";
 import NavbarMobile from "./components/Mobile/Navbar";
 import { Routes, Route } from "react-router-dom";
-import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { polygonMumbai } from "wagmi/chains";
+import { configureChains, createConfig, mainnet, WagmiConfig } from "wagmi";
 import { AccountProvider } from "./context/AccountContext";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -18,9 +17,10 @@ import Mobile from "./pages/Waiting/Mobile";
 import HomeMobile from "./pages/Mobile/Home";
 import { useWindowSize } from "./utils/helpers/global.helpers";
 import { NFTProvider } from "./context/NFTContext";
+import { polygonMumbai } from "viem/chains";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [polygonMumbai],
+  [import.meta.env.VITE_NETWORK === "mainnet" ? mainnet : polygonMumbai],
   [
     alchemyProvider({ apiKey: import.meta.env.VITE_API_KEY_ALCHEMY || "" }),
     publicProvider(),

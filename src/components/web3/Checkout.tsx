@@ -8,7 +8,6 @@ import Button from "../Button/Button";
 import { Capsules } from "../../utils/types/myDivergent";
 import { publicClient } from "../../utils/viem/config";
 import { abiHD } from "../../utils/constants/abi/ABI";
-import { HD_CONTRACT_ADDRESS } from "../../utils/constants/addresses/addresses";
 import { useAccount } from "wagmi";
 import { formatUnits, parseEther } from "viem";
 
@@ -56,7 +55,7 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
 
   const getFees = async () => {
     const gasEstimate = await publicClient.estimateContractGas({
-      address: HD_CONTRACT_ADDRESS,
+      address: import.meta.env.VITE_HD_CONTRACT_ADDRESS as `0x${string}`,
       abi: abiHD,
       functionName: "mint",
       args: [

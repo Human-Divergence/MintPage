@@ -12,7 +12,6 @@ import { HDContract } from "../utils/constants/wagmiConfig/wagmiConfig";
 import { ethers } from "ethers";
 import { Capsules, MerkleRoots } from "../utils/types/myDivergent";
 import useMerklesValidation from "../utils/hook/merkleRoute";
-import { WINTER_ADDRESS } from "../utils/constants/addresses/addresses";
 
 interface NFTContextProps {
   hasNFT: boolean;
@@ -48,7 +47,9 @@ interface NFTProviderProps {
 export const NFTProvider: FC<NFTProviderProps> = ({
   children,
 }: NFTProviderProps) => {
-  const { address } = useAccount();
+  // eslint-disable-next-line no-console
+  console.log("VITE_NETWORK", import.meta);
+  const { address, isConnected } = useAccount();
 
   const [hasNFT, setHasNFT] = useState(false);
   const [isWhitelisted, setIsWhitelisted] = useState(false);
@@ -106,7 +107,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
   });
 
   const { merkleProof: merkleProofWinter } = useMerklesValidation({
-    userAddress: WINTER_ADDRESS,
+    userAddress: import.meta.env.VITE_WINTER_ADDRESS,
     phase: 1,
     merkleRootFromContract: merkelRootContract.Whitelist,
   });
@@ -155,7 +156,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!isLoading && address) {
+    if (!isLoading && isConnected) {
       const pricesData = contractData[0].result[5];
       const capsulesBoughtData = contractData[1].result;
       const maxCapsulePerAddressData = contractData[0].result[4];

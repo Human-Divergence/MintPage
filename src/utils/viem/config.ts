@@ -1,8 +1,8 @@
 import { createPublicClient, http } from "viem";
 
-import { polygonMumbai } from "viem/chains";
+import { polygonMumbai, mainnet } from "viem/chains";
 
 export const publicClient = createPublicClient({
-  chain: polygonMumbai,
+  chain: import.meta.env.VITE_NETWORK === "mainnet" ? mainnet : polygonMumbai,
   transport: http(),
 });
