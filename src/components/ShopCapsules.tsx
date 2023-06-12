@@ -70,6 +70,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                   <img
                     src={cap.image}
                     onMouseEnter={() => sethoverDropRate(index)}
+                    onMouseLeave={() => sethoverDropRate(undefined)}
                     alt="imgCap"
                     className={`${
                       hoverDropRate === index && "translate-y-[-12%] scale-125 "
@@ -140,11 +141,11 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                     </div>
 
                     <div className="flex flex-row items-center justify-end gap-4 p-4">
-                      <p className=" text-sm font-bold text-[#999999] lg:text-xl">
+                      <p className="hidden text-sm font-bold text-[#999999] md:block lg:text-xl">
                         STILL {stillAvalaibleCaps[cap.title as keyof Capsules]}{" "}
                         AVAILABLE
                       </p>
-                      <div className=" ml-7 flex h-[25%] w-[45%] flex-row items-center justify-between rounded-[5px] bg-[#00FFAE] sm:w-[25%]">
+                      <div className=" ml-7 flex h-[25%] w-[40%] flex-row items-center justify-between rounded-[5px] bg-[#00FFAE] sm:w-[25%]">
                         <div>
                           <button
                             className=" bg-black  px-3 text-[22px] text-white active:bg-[#00FFAE]"

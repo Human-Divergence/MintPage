@@ -30,7 +30,7 @@ const NavbarMobile = () => {
           <img
             src={HDHeaderLogo}
             onClick={() => navigate("/human")}
-            className="top-5 hover:cursor-pointer"
+            className="top-5 w-3/6 hover:cursor-pointer"
           />
         </div>
         <div className="">

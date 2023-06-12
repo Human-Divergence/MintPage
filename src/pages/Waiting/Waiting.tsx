@@ -69,7 +69,7 @@ const Waiting = () => {
         {isConnected ? (
           <div
             className="mt-16  flex
-            flex-row bg-[#00FFAE] hover:cursor-pointer
+            flex-row bg-[#00FFAE] hover:cursor-pointer 
         "
             onClick={() => {
               !isConnected && setShowModal(true);
@@ -87,7 +87,7 @@ const Waiting = () => {
                 className="h–[70px]  w-[70px] bg-black"
               />
             )}
-            <button className="flex h-[60px] w-[400px] items-center  justify-center text-3xl font-bold">
+            <button className="flex h-[60px] w-[400px] text-3xl font-bold">
               YOUR WALLET IS CONNECTED
             </button>
           </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  AvatarWaiting,
+  AvatarWaitingMobile,
   ArrowWhiteBGBlack,
   meta,
   CoinbaseLogo,
@@ -50,7 +50,7 @@ const Mobile = () => {
   }, []);
   return (
     <>
-      <div className="height-page-mobile flex flex-col items-center justify-start gap-8 py-4">
+      <div className="height-page-mobile flex flex-col items-center justify-center gap-8 py-4">
         <div className="space-y-4 text-center font-inter text-[20px] font-bold">
           YOUR <span className="text-[#FF005F]">DIVERGENTS</span>
           <br />
@@ -69,7 +69,7 @@ const Mobile = () => {
         {isConnected ? (
           <div
             className="mt-16  flex
-            flex-row bg-[#00FFAE] hover:cursor-pointer
+            flex-row items-center justify-center bg-[#00FFAE] hover:cursor-pointer
         "
             onClick={() => {
               !isConnected && setShowModal(true);
@@ -95,7 +95,7 @@ const Mobile = () => {
             </button>
           </div>
         ) : (
-          <div className="mt-16 flex w-1/5 flex-row items-center justify-center text-base">
+          <div className=" flex w-1/5 flex-row items-center justify-center text-base">
             <Button
               text="CONNECT MY WALLET"
               onClick={() => {
@@ -104,13 +104,13 @@ const Mobile = () => {
             />
           </div>
         )}
+        <img
+          src={AvatarWaitingMobile}
+          className="absolute -bottom-10 right-0  z-[-1] h-[350px]"
+        />
         <div className=" text-base font-bold md:text-3xl">
           {isConnected && address?.slice(0, 6) + "..." + address?.slice(38)}
         </div>
-        <img
-          src={AvatarWaiting}
-          className="absolute bottom-0 right-0 z-[-1] h-[450px] py-8"
-        />
       </div>
       <ModalConnection
         showModal={showModal}
