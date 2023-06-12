@@ -4,8 +4,6 @@ import dotenv from "dotenv";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // eslint-disable-next-line no-console
-  console.log(mode);
   dotenv.config({ path: `.env.${mode}` });
 
   return {
