@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useMemo } from "react";
 import Modal from "../Modal/Modal";
 import {
   CrossPurchase,
@@ -15,6 +15,7 @@ import {
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
+  useBalance,
 } from "wagmi";
 import { HDContract } from "../../utils/constants/wagmiConfig/wagmiConfig";
 import { parseEther } from "viem";
@@ -43,8 +44,15 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
     merkleVerificationWhiteList,
   } = useContext(NFTContext);
   const { address } = useAccount();
+  const { data: dataBalance } = useBalance({
+    address: address,
+  });
 
   const navigate = useNavigate();
+
+  const hasEnoughEth = useMemo(() => {
+    return Number(dataBalance?.formatted) >= priceEthCart;
+  }, []);
 
   const { config } = usePrepareContractWrite({
     ...HDContract,
@@ -58,7 +66,7 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
       merkleProofFreeMint,
     ],
     value: parseEther(`${priceEthCart}`),
-    enabled: merkleVerificationWhiteList && showModal,
+    enabled: merkleVerificationWhiteList && showModal && hasEnoughEth,
   });
 
   const { data: mintData, write } = useContractWrite({
@@ -120,12 +128,20 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
             </span>
           </div>
 
-          <Button
-            text={"CONFIRMATION"}
-            onClick={() => {
-              write?.();
-            }}
-          />
+          <div className="flex justify-center gap-5 self-end">
+            {!hasEnoughEth && (
+              <div className="flex items-center text-white">
+                {Number(dataBalance?.formatted).toFixed(3)} ETH not enough eth
+                in your wallet
+              </div>
+            )}
+            <Button
+              text={"CONFIRMATION"}
+              onClick={() => {
+                write?.();
+              }}
+            />
+          </div>
           <div className="mt-4 flex min-w-[270px] justify-center self-end ">
             <ButtonWinter capsuleCart={capsuleCart} />
           </div>
