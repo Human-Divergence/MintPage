@@ -57,9 +57,9 @@ function App() {
     bottom: 0,
     left: 0,
     width: "100%",
-    height: "70vh",
+    height: "100%",
     background:
-      "linear-gradient(1.95deg, rgba(255, 0, 95, 0.5) 1.23%, rgba(255, 0, 95, 0) 94.52%)",
+      "linear-gradient(1.95deg, rgba(255, 0, 95, 0.5) 1.23%, rgba(255, 0, 95, 0) 44.52%)",
     zIndex: -5,
   };
 
