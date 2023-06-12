@@ -47,8 +47,6 @@ interface NFTProviderProps {
 export const NFTProvider: FC<NFTProviderProps> = ({
   children,
 }: NFTProviderProps) => {
-  // eslint-disable-next-line no-console
-  console.log("VITE_NETWORK", import.meta);
   const { address, isConnected } = useAccount();
 
   const [hasNFT, setHasNFT] = useState(false);

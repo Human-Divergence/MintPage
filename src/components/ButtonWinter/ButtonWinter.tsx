@@ -27,7 +27,7 @@ const ButtonWinter: FC<ButtonWinterProps> = ({ capsuleCart }) => {
         Pay By Card
       </button>
       <WinterCheckout
-        projectId={13033}
+        projectId={import.meta.env.VITE_WINTER_PROJECT_ID}
         production={false}
         showModal={showWinter}
         walletAddress={address}

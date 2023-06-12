@@ -9,7 +9,7 @@ import { Capsules } from "../../utils/types/myDivergent";
 import { publicClient } from "../../utils/viem/config";
 import { abiHD } from "../../utils/constants/abi/ABI";
 import { useAccount } from "wagmi";
-import { formatUnits, parseEther } from "viem";
+import { formatUnits } from "viem";
 
 type CheckoutProps = {
   capsuleCart: Capsules;
@@ -67,10 +67,6 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
         merkleProofFreeMint,
       ],
       account: address as `0x${string}`,
-      value:
-        addCapsules(capsuleCart) === 0
-          ? parseEther(`${pricesCapsules.onyx}`)
-          : parseEther(`${priceEthCart}`),
     });
 
     const gasPrice = await publicClient.getGasPrice();
