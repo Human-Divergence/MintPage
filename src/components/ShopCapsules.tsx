@@ -65,7 +65,13 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
         {capsulesDatas.map((cap, index) => (
           <div className="flex justify-center lg:mb-16" key={index}>
             <div className="w-full ss:w-[480px] sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
-              <div className="relative  flex h-[200px] w-full justify-center gap-1 rounded-bl-md rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black ss:w-[640px] sm:w-[768px] lg:h-[300px] lg:w-[1024px] lg:rounded-bl-[250px] ">
+              <div
+                className={`relative flex h-[200px] w-full justify-center gap-1 ${
+                  hoverDropRate === index
+                    ? "rounded-none"
+                    : "rounded-bl-md rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black"
+                } ss:w-[640px] sm:w-[768px] lg:h-[300px] lg:w-[1024px] lg:rounded-bl-[250px]`}
+              >
                 <div className="">
                   <img
                     src={cap.image}
@@ -81,7 +87,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                     onMouseLeave={() => sethoverDropRate(undefined)}
                     src={cap.imagePreview}
                     alt="imgStats"
-                    className={`absolute bottom-0 right-0 z-10  h-[0px] w-[85%] overflow-hidden rounded-bl-[100px] rounded-tr-3xl backdrop-blur-3xl duration-1000 ease-out ${
+                    className={`absolute  bottom-0 right-0 z-10  h-[0px] w-[85%] overflow-hidden rounded-bl-[100px] rounded-tr-3xl backdrop-blur-3xl duration-1000 ease-out ${
                       hoverDropRate === index && " h-full lg:h-auto  "
                     } `}
                   />
@@ -108,8 +114,8 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                     </p>
                   </div>
 
-                  <div className="">
-                    <button className="font hidden w-5/12 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white lg:block">
+                  <div className="bg-white bg-opacity-30">
+                    <button className="hidden h-10 w-5/12 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white lg:block">
                       <span
                         className="textShadow"
                         onMouseEnter={() => sethoverDropRate(index)}
@@ -120,7 +126,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                     </button>
                     <div className="flex flex-col gap-6 p-5">
                       <div className=" flex flex-col items-end justify-end">
-                        <div className=" relative  text-lg font-bold lg:text-2xl">
+                        <div className=" relative  text-lg font-bold lg:text-3xl">
                           <img
                             src={eth}
                             alt="bg"
@@ -145,20 +151,20 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                         STILL {stillAvalaibleCaps[cap.title as keyof Capsules]}{" "}
                         AVAILABLE
                       </p>
-                      <div className="ml-7 flex h-[25%] w-[40%] flex-row items-center justify-between bg-[#00FFAE] sm:w-[25%]">
+                      <div className="ml-7 flex h-[20%] w-[40%] flex-row items-center justify-between bg-[#00FFAE] sm:w-[25%]">
                         <button
-                          className="border border-[#00FFAE] bg-black px-3 text-[22px] text-white active:bg-[#00FFAE] lg:h-10 lg:w-10"
+                          className="border border-[#00FFAE] bg-black px-3 text-[22px] text-white active:bg-[#00FFAE] lg:h-9 lg:w-10"
                           onClick={() => {
                             removeCapsule(cap);
                           }}
                         >
                           {"-"}
                         </button>
-                        <p className="text-[22px] font-bold">
+                        <p className="font-inter text-[22px] font-bold">
                           {capsuleCart[cap.title as keyof Capsules]}
                         </p>
                         <button
-                          className="border border-[#00FFAE] bg-black px-3 text-[22px] text-white active:bg-[#00FFAE] lg:h-10 lg:w-10"
+                          className="border border-[#00FFAE] bg-black px-3 text-[22px] text-white active:bg-[#00FFAE] lg:h-9 lg:w-10"
                           onClick={() => {
                             addCapsule(cap);
                           }}

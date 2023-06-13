@@ -132,7 +132,7 @@ export const capsulesDatas: Capsule[] = [
     imageBG: NewPlatine,
     description: "QUELOZ ONYX",
     time: "23H:59M:59S",
-    color: "#C6C9DC",
+    color: "#999999",
     background: NewPlatine,
     price: 0.03,
     count: 0,

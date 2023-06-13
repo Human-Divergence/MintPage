@@ -19,7 +19,7 @@ const ButtonWinter: FC<ButtonWinterProps> = ({ capsuleCart }) => {
     <>
       {" "}
       <button
-        className=" flex rounded-md bg-white p-1"
+        className=" flex rounded-md bg-red p-1"
         onClick={() => {
           setShowWinter(true);
         }}

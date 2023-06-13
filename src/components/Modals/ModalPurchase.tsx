@@ -133,19 +133,19 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
 
           <div className="flex flex-row  justify-between px-10">
             <span className="relative text-center font-bold text-[#999999] md:text-[24px]">
-              <span className="text-white">x {capsuleCart.onyx}</span>
               <img src={NewPlatine} />
               <span>QUELOZ ONYX</span>
+              <span className="ml-2 text-white">x {capsuleCart.onyx}</span>
             </span>
             <span className=" relative text-center font-bold text-[#AD7000] md:text-[24px]">
-              <span className=" text-white  ">x {capsuleCart.gold}</span>
               <img src={NewGold} className="h-auto" />
               MELT GOLD
+              <span className=" ml-2 text-white ">x {capsuleCart.gold}</span>
             </span>
             <span className="relative text-center font-bold text-[#2B1E74] md:text-[24px] ">
-              <span className=" text-white ">x{capsuleCart.diamond}</span>
-              <img src={NewDiamond} className="h-auto" />
+              <img src={NewDiamond} className="h-3/5 md:h-auto" />
               TRIA DIAMOND
+              <span className=" ml-2 text-white ">x{capsuleCart.diamond}</span>
             </span>
           </div>
 
@@ -167,7 +167,7 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
               </div>
             )}
             <Button
-              text={"CONFIRMATION"}
+              text={"PAY BY ETH"}
               onClick={() => {
                 write?.();
               }}
