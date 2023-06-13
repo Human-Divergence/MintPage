@@ -26,6 +26,7 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
   } = useContext(NFTContext);
   const [showPurchaseModal, setShowPurchaseModal] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolledBottom, setIsScrolledBottom] = useState(false);
   const [feesEth, setFeesEth] = useState<number>(0);
   const { address } = useAccount();
 
@@ -39,10 +40,15 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 158) {
+      if (window.scrollY > 190 && window.scrollY < 908) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
+      }
+      if (window.scrollY > 908) {
+        setIsScrolledBottom(true);
+      } else {
+        setIsScrolledBottom(false);
       }
     };
 
@@ -92,10 +98,10 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
         className={` ${
           windowWidth <= 1000 ? "relative" : isScrolled ? "fixed" : "absolute"
         }  
-        ${isScrolled ? "top-10" : "mt-10"} 
-        ${
-          windowWidth <= 1000 ? "bottom-0" : "right-0"
-        } mb-10 flex  flex-col gap-1`}
+        ${isScrolled ? "top-10" : " mt-10"} 
+        ${isScrolledBottom && "top-[128%]"}
+        ${windowWidth <= 1000 ? "bottom-0" : "right-0"} 
+          mb-10  flex flex-col gap-1`}
       >
         <div className=" bg-opacity-45 z-10 min-h-[300px] border-y-[1px] border-black  p-4  md:w-[312px]  md:rounded-bl-xl md:border-l-[1px] ">
           <div className="flex justify-between">
