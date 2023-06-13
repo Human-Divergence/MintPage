@@ -1,4 +1,4 @@
-import React, { FC, useContext, useMemo, useState } from "react";
+import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { eth } from "../assets";
 import { capsulesDatas } from "../utils/constants/mockData";
 import { Capsule, Capsules } from "../utils/types/myDivergent";
@@ -15,12 +15,24 @@ type ShopCapsulesProps = {
   capsuleCart: Capsules;
 };
 
+type TimeLeft = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
+
 const ShopCapsules: FC<ShopCapsulesProps> = ({
   setCapsuleCart,
   capsuleCart,
 }) => {
   const [hoverDropRate, sethoverDropRate] = useState<undefined | number>();
-
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
   const {
     pricesCapsules,
     priceEth,
@@ -29,6 +41,27 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
     stillAvalaibleCaps,
   } = useContext(NFTContext);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      var dateFin = new Date("2023-06-25T00:00:00").getTime();
+      var maintenant = new Date().getTime();
+      var difference = dateFin - maintenant;
+      var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      var hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      var secondes = Math.floor((difference % (1000 * 60)) / 1000);
+
+      setTimeLeft({
+        days: days,
+        hours: hours,
+        minutes: minutes,
+        seconds: secondes,
+      });
+      return () => clearInterval(interval);
+    }, 1000);
+  }, []);
   const capsulesLeftToBuy = useMemo(() => {
     return getCapsulesLeftToBuy(capsulesBought, limitCapsuleBuy);
   }, [capsulesBought, limitCapsuleBuy]);
@@ -110,7 +143,17 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                     `,
                       }}
                     >
-                      Offer ends in {cap.time}
+                      Offer ends in{" "}
+                      {`${
+                        timeLeft?.days +
+                        "d:" +
+                        timeLeft?.hours +
+                        "h:" +
+                        timeLeft?.minutes +
+                        "m:" +
+                        timeLeft?.seconds +
+                        "s"
+                      }`}
                     </p>
                   </div>
 

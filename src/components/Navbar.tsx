@@ -48,7 +48,7 @@ const Navbar = () => {
               hoverBack ? "left-[-15px]" : "left-0"
             } `}
           >
-            <div className="flex w-[52px] items-center justify-center bg-black">
+            <div className="flex w-[52px] items-center justify-center border border-[#00FFAE] bg-black">
               <img src={ArrowBackNav} alt="HD" className=" " />
             </div>
             <p
@@ -84,7 +84,7 @@ const Navbar = () => {
             onClick={() => window.open("https://opensea.io/", "_blank")}
             className="flex  flex-row hover:cursor-pointer"
           >
-            <div className="flex h-[52px] w-[52px] items-center justify-center bg-black">
+            <div className="flex h-[52px] w-[52px] items-center justify-center border border-[#00FFAE] bg-black">
               <img src={MarketPlace} alt="HD" className="h-[38px] w-[38px] " />
             </div>
             <div
@@ -113,7 +113,7 @@ const Navbar = () => {
                 />
                 <div
                   className={` flex h-[52px] w-[284px] flex-row items-center justify-center  gap-2  ${
-                    pathName === "/mydivergent" ? "bg-red" : "bg-[#00FFAE] "
+                    pathName === "/mydivergent" ? "bg-red " : "bg-[#00FFAE] "
                   } `}
                 >
                   <p
