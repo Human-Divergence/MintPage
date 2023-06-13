@@ -101,7 +101,11 @@ const Navbar = () => {
               <div
                 onMouseEnter={() => setHoverMyDiv(true)}
                 onMouseLeave={() => setHoverMyDiv(false)}
-                onClick={() => navigate("/mydivergent")}
+                onClick={() => {
+                  pathName === "/mydivergent"
+                    ? navigate("/human")
+                    : navigate("/mydivergent");
+                }}
                 className={`flex  flex-row duration-300  ease-out hover:cursor-pointer ${
                   hoverMyDiv ? "scale-[1.10]" : " scale-100"
                 }`}
