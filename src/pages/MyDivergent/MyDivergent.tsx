@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { Capsule, Character, IdCapsule } from "../../utils/types/myDivergent";
+import { Capsule, Character } from "../../utils/types/myDivergent";
 import {
   capsulesDatas,
   characters_silver,
@@ -13,7 +13,10 @@ import { NFTContext } from "../../context/NFTContext";
 import ModalMinted from "../../components/Modals/ModalMinted";
 import ModalReveal from "../../components/Modals/ModalReveal";
 import ModalRevealResult from "../../components/Modals/ModalRevealResult";
-import { addCapsules } from "../../utils/helpers/global.helpers";
+import {
+  addCapsules,
+  retrieveTypeCpasule,
+} from "../../utils/helpers/global.helpers";
 
 const MyDivergent = () => {
   const [selectedCapsule, setSelectedCapsule] = useState<Capsule | undefined>();
@@ -25,7 +28,7 @@ const MyDivergent = () => {
   const [showModalRevealResult, setShowModalRevealResult] =
     useState<boolean>(false);
 
-  const [numberCapsule, setNumberCapsule] = useState<IdCapsule>(0);
+  const [numberCapsule, setNumberCapsule] = useState<number>(0);
 
   const {
     showModalMinted,
@@ -34,6 +37,13 @@ const MyDivergent = () => {
     limitCapsuleBuy,
     windowWidth,
   } = useContext(NFTContext);
+
+  // eslint-disable-next-line no-console
+  console.log(
+    numberCapsule,
+    capsulesBought,
+    retrieveTypeCpasule(capsulesBought, 65)
+  );
 
   const handleViewClick = (
     capsule: Capsule | undefined,
@@ -63,17 +73,16 @@ const MyDivergent = () => {
               {selectedCapsule === undefined &&
                 selectedCharacter === undefined &&
                 Array.from({ length: capsulesBought.onyx }, () => null).map(
-                  () => {
+                  (capOnyx, index) => {
                     const capsuleOnyx = capsulesDatas[0];
                     return (
                       <Card
                         capsule={capsuleOnyx}
                         onClick={() => {
-                          setNumberCapsule(capsuleOnyx.id);
+                          setNumberCapsule(index + 1);
                           handleViewClick(capsuleOnyx, undefined);
                         }}
-                        onClickReveal={(numCapsule: IdCapsule) => {
-                          setNumberCapsule(numCapsule);
+                        onClickReveal={() => {
                           setShowModalReveal(true);
                         }}
                         key={Math.random()}
@@ -85,17 +94,16 @@ const MyDivergent = () => {
               {selectedCapsule === undefined &&
                 selectedCharacter === undefined &&
                 Array.from({ length: capsulesBought.gold }, () => null).map(
-                  () => {
+                  (capGold, index) => {
                     const capsuleGold = capsulesDatas[1];
                     return (
                       <Card
                         capsule={capsuleGold}
                         onClick={() => {
-                          setNumberCapsule(capsuleGold.id);
+                          setNumberCapsule(capsulesBought.onyx + 1 + index);
                           handleViewClick(capsuleGold, undefined);
                         }}
-                        onClickReveal={(numCapsule: IdCapsule) => {
-                          setNumberCapsule(numCapsule);
+                        onClickReveal={() => {
                           setShowModalReveal(true);
                         }}
                         key={Math.random()}
@@ -107,17 +115,21 @@ const MyDivergent = () => {
               {selectedCapsule === undefined &&
                 selectedCharacter === undefined &&
                 Array.from({ length: capsulesBought.diamond }, () => null).map(
-                  () => {
+                  (capDiamond, index) => {
                     const capsuleDiamond = capsulesDatas[2];
                     return (
                       <Card
                         capsule={capsuleDiamond}
                         onClick={() => {
-                          setNumberCapsule(capsuleDiamond.id);
+                          setNumberCapsule(
+                            capsulesBought.onyx +
+                              capsulesBought.gold +
+                              1 +
+                              index
+                          );
                           handleViewClick(capsuleDiamond, undefined);
                         }}
-                        onClickReveal={(numCapsule: IdCapsule) => {
-                          setNumberCapsule(numCapsule);
+                        onClickReveal={() => {
                           setShowModalReveal(true);
                         }}
                         key={Math.random()}
@@ -152,14 +164,18 @@ const MyDivergent = () => {
 
             {windowWidth > 768 && (selectedCapsule || selectedCharacter) && (
               <ItemPreview
-                selectedCapsule={capsulesDatas[numberCapsule]}
+                selectedCapsule={
+                  capsulesDatas[
+                    retrieveTypeCpasule(capsulesBought, numberCapsule) || 0
+                  ]
+                }
                 selectedCharacter={selectedCharacter}
-                onClickReveal={(numCapsule: IdCapsule) => {
-                  setNumberCapsule(numCapsule);
+                onClickReveal={() => {
                   setShowModalReveal(true);
                 }}
                 numberCapsule={numberCapsule}
                 setNumberCapsule={setNumberCapsule}
+                capsulesBought={capsulesBought}
               />
             )}
           </div>
@@ -174,7 +190,11 @@ const MyDivergent = () => {
             onClick={() => {
               setShowModalReveal(false);
             }}
-            capsule={capsulesDatas[numberCapsule]}
+            capsule={
+              capsulesDatas[
+                retrieveTypeCpasule(capsulesBought, numberCapsule) || 0
+              ]
+            }
             reveal={() => {
               setShowModalRevealResult(true);
               setShowModalReveal(false);

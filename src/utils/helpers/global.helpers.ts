@@ -74,3 +74,17 @@ export const getCapsulesLeftToBuy = (
     diamond: limitCapsuleBuy.diamond - capsulesBought.diamond,
   };
 };
+
+export const retrieveTypeCpasule = (capsulesBought: Capsules, num: number) => {
+  const amountCaps = addCapsules(capsulesBought);
+  if (num > amountCaps || num < 1) {
+    return undefined;
+  }
+  if (num <= capsulesBought.onyx) {
+    return 0;
+  }
+  if (num <= capsulesBought.onyx + capsulesBought.gold) {
+    return 1;
+  }
+  return 2;
+};

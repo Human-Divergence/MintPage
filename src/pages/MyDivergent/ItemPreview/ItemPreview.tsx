@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import {
   Capsule,
+  Capsules,
   Character,
   IdCapsule,
 } from "../../../utils/types/myDivergent";
@@ -13,13 +14,15 @@ import {
   statsGold,
   ArrowPreview,
 } from "../../../assets/index";
+import { addCapsules } from "../../../utils/helpers/global.helpers";
 
 type ItemPreviewProps = {
   selectedCapsule?: Capsule;
   selectedCharacter?: Character;
   onClickReveal?: (numCapsule: IdCapsule) => void;
   setNumberCapsule: Function;
-  numberCapsule: IdCapsule;
+  numberCapsule: number;
+  capsulesBought: Capsules;
 };
 
 const ItemPreview: FC<ItemPreviewProps> = ({
@@ -28,6 +31,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
   onClickReveal,
   setNumberCapsule,
   numberCapsule,
+  capsulesBought,
 }) => {
   return (
     <div className=" flex h-[455px] ">
@@ -35,7 +39,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
         <img
           src={ArrowPreview}
           onClick={() => {
-            numberCapsule > 0 &&
+            numberCapsule > 1 &&
               setNumberCapsule((prev: IdCapsule) => prev - 1);
           }}
           alt=""
@@ -48,14 +52,14 @@ const ItemPreview: FC<ItemPreviewProps> = ({
           alt=""
           className=" rotate-180  hover:cursor-pointer"
           onClick={() => {
-            numberCapsule < 2 &&
+            numberCapsule < addCapsules(capsulesBought) &&
               setNumberCapsule((prev: IdCapsule) => prev + 1);
           }}
         />
       </div>
       <div className="flex w-[1050px] justify-between rounded-xl bg-[#FFFFFF40] lg:h-auto lg:flex-row">
         <div
-          className={`relative z-10 flex h-[455px]  w-[600px]  items-center justify-center rounded-tl-3xl rounded-tr-3xl
+          className={`relative z-10 flex h-[455px]  w-[700px]  items-center justify-center rounded-tl-3xl rounded-tr-3xl
           ${selectedCapsule?.title === "onyx" ? "bg-capsule-silver" : ""}
           ${selectedCapsule?.title === "gold" ? "bg-capsule-gold" : ""}
           ${selectedCapsule?.title === "diamond" ? "bg-capsule-blue" : ""}`}
@@ -65,7 +69,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
             alt={selectedCapsule?.title || selectedCharacter?.nom}
             className={`${
               selectedCapsule
-                ? "-rotate-6 hover:-rotate-12 hover:scale-110 hover:cursor-pointer"
+                ? "h-[83%] w-[88%]  hover:-rotate-12 hover:scale-110 hover:cursor-pointer"
                 : "h-full w-full"
             } rounded-t-[20px] transition-all duration-500 ease-in-out `}
           />
