@@ -99,7 +99,7 @@ const Checkout: FC<CheckoutProps> = ({ capsuleCart }) => {
           windowWidth <= 1000 ? "relative" : isScrolled ? "fixed" : "absolute"
         }  
         ${isScrolled ? "top-10" : " mt-10"} 
-        ${isScrolledBottom && "top-[128%]"}
+        ${isScrolledBottom && "top-[49%]"}
         ${windowWidth <= 1000 ? "bottom-0" : "right-0"} 
           mb-10  flex flex-col gap-1`}
       >
