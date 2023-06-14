@@ -159,7 +159,7 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
             </span>
           </div>
 
-          <div className="flex justify-center gap-5 self-end">
+          <div className="flex flex-col justify-center gap-5 self-end">
             {!hasEnoughEth && (
               <div className="flex items-center text-white">
                 {Number(dataBalance?.formatted).toFixed(3)} ETH not enough eth
@@ -172,8 +172,6 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
                 write?.();
               }}
             />
-          </div>
-          <div className="mt-4 flex min-w-[270px] justify-center self-end ">
             <ButtonWinter capsuleCart={capsuleCart} />
           </div>
         </div>

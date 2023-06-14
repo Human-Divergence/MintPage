@@ -21,7 +21,7 @@ function Connexion() {
   return (
     <>
       <div
-        className={` height-page flex  items-start justify-center lg:mt-[20vh] ${
+        className={` height-page flex items-start justify-center lg:mt-[8vh] ${
           windowWidth < 768 && "height-page-mobile mb-6 flex-col"
         }`}
       >

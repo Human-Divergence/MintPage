@@ -23,7 +23,7 @@ const Button: FC<ButtonProps> = ({ text, onClick }) => {
       <img
         src={ArrowWhiteBGBlack}
         alt="Purchase"
-        className={`ease-in-outl absolute left-0 h-[40px] duration-500 hover:translate-x-[-100%] md:h-auto ${
+        className={`absolute left-0 h-[40px] duration-500 ease-in-out hover:translate-x-[-100%] md:h-auto ${
           hoverActive && "left-full translate-x-[-100%]"
         }`}
       />

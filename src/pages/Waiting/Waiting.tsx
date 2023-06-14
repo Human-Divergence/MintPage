@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   AvatarWaiting,
   ArrowWhiteBGBlack,
-  meta,
+  met,
   CoinbaseLogo,
   WalletConnectLogo,
 } from "../../assets";
@@ -79,16 +79,19 @@ const Waiting = () => {
               {!isConnected ? (
                 <img src={ArrowWhiteBGBlack} />
               ) : connector?.name === "MetaMask" ? (
-                <img src={meta} className="h–[70px] w-[70px] bg-black" />
+                <img
+                  src={met}
+                  className="h–[70px] w-[70px] border border-[#00FFAE] bg-black"
+                />
               ) : connector?.name === "Coinbase Wallet" ? (
                 <img
                   src={CoinbaseLogo}
-                  className="h–[70px] w-[70px] bg-black"
+                  className="h–[70px] w-[70px] border border-[#00FFAE] bg-black"
                 />
               ) : (
                 <img
                   src={WalletConnectLogo}
-                  className="h–[70px]  w-[70px] bg-black"
+                  className="h–[70px]  w-[70px] border border-[#00FFAE] bg-black"
                 />
               )}
               <button className="flex h-[60px] w-[400px] text-3xl font-bold">

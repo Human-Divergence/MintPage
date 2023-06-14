@@ -4,6 +4,7 @@ import { useAccount } from "wagmi";
 import { NFTContext } from "../../context/NFTContext";
 import { useNavigate } from "react-router-dom";
 import { Capsules } from "../../utils/types/myDivergent";
+import { Bluecard } from "../../assets";
 
 type ButtonWinterProps = {
   capsuleCart: Capsules;
@@ -18,14 +19,21 @@ const ButtonWinter: FC<ButtonWinterProps> = ({ capsuleCart }) => {
   return (
     <>
       {" "}
-      <button
-        className=" flex rounded-md bg-red p-1"
+      <div
+        className={`relative mt-2 flex h-[40px] w-[190px] flex-row self-end  bg-[#FF005F] text-black duration-700 ease-in-out hover:cursor-pointer md:h-[60px] md:w-[240px]`}
         onClick={() => {
           setShowWinter(true);
         }}
       >
-        Pay By Card
-      </button>
+        <img
+          src={Bluecard}
+          alt="Purchase"
+          className={` absolute left-0 h-[40px] w-[40px] border border-[#FF005F] bg-black md:h-[60px] md:w-[60px]`}
+        />
+        <div className="mr-3 flex w-full items-center justify-end text-sm font-bold md:text-[24px] ">
+          PAY BY CARD
+        </div>
+      </div>
       <WinterCheckout
         projectId={import.meta.env.VITE_WINTER_PROJECT_ID}
         production={false}

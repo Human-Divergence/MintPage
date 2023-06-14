@@ -1,7 +1,7 @@
 import logo from "./Logo.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
-import met from "./logo/met.svg";
+import met from "./logo/met.png";
 import meta from "./logo/meta.png";
 import divg from "./divg.svg";
 import Or from "./CapsuleOr.png";
@@ -15,6 +15,7 @@ import Back from "./logo/Back.png";
 import Purchase from "./logo/Purchase.png";
 import HDlogo from "./logo/HDlogo.png";
 import eth from "./logo/Ethereum.png";
+import Bluecard from "./logo/Bluecard.png";
 import Minted from "./Minted.jpg";
 
 import NewPlatine from "./capsules/Newplatine.png";
@@ -86,6 +87,7 @@ export {
   CapsuleDiamondBg,
   logo,
   Back,
+  Bluecard,
   Purchase,
   HDWaiting,
   WaitingButton,

@@ -49,7 +49,7 @@ const Navbar = () => {
             } `}
           >
             <div className="flex w-[52px] items-center justify-center border border-[#00FFAE] bg-black">
-              <img src={ArrowBackNav} alt="HD" className=" " />
+              <img src={ArrowBackNav} alt="HD" className="h-5/6" />
             </div>
             <p
               className={`  flex h-[52px] items-center justify-center  bg-[#00FFAE] text-base font-bold duration-300 ease-out md:text-2xl  ${
@@ -72,7 +72,7 @@ const Navbar = () => {
         <img
           src={HDHeaderLogo}
           onClick={() => navigate("/human")}
-          className="absolute top-5 hover:cursor-pointer"
+          className="absolute top-5 h-[130px] w-[278px] hover:cursor-pointer"
         />
       </div>
 

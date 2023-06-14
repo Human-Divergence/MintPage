@@ -96,7 +96,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
     <div className=" mt-28 flex flex-col gap-20 self-start lg:mt-52 lg:pl-11 ">
       <>
         {capsulesDatas.map((cap, index) => (
-          <div className="flex justify-center lg:mb-16" key={index}>
+          <div className="flex justify-center lg:mb-16 lg:px-10" key={index}>
             <div className="w-full ss:w-[480px] sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1278px]">
               <div
                 className={`relative flex h-[200px] w-full justify-center gap-1 ${
@@ -157,7 +157,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                     </p>
                   </div>
 
-                  <div className="bg-white bg-opacity-30">
+                  <div className="lg:bg-white lg:bg-opacity-30">
                     <button className="hidden h-10 w-5/12 rounded-br-2xl bg-[#00FFAE] pr-12 text-end text-xl font-black text-white lg:block">
                       <span
                         className="textShadow"
