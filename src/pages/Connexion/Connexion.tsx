@@ -11,13 +11,13 @@ function Connexion() {
   const { isConnected } = useAccount();
 
   const { windowWidth } = useContext(NFTContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isConnected) {
-      navigate("/human");
-    }
-  }, [isConnected]);
+  // useEffect(() => {
+  //   if (isConnected) {
+  //     navigate("/human");
+  //   }
+  // }, [isConnected]);
   return (
     <>
       <div
@@ -38,7 +38,15 @@ function Connexion() {
         </div>
 
         <div className="flex flex-col gap-8">
-          <img src={test} className="" />
+          <iframe
+            width="723"
+            height="382"
+            src="https://www.youtube.com/embed/1CGoHdimbpQ"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
           <div className="flex items-center justify-center">
             <Button
               onClick={() => {

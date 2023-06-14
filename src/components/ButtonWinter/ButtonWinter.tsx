@@ -20,7 +20,7 @@ const ButtonWinter: FC<ButtonWinterProps> = ({ capsuleCart }) => {
     <>
       {" "}
       <div
-        className={`relative mt-2 flex h-[40px] w-[190px] flex-row self-end  bg-[#FF005F] text-black duration-700 ease-in-out hover:cursor-pointer md:h-[60px] md:w-[240px]`}
+        className={`relative mt-2 flex h-[40px] w-[190px] flex-row self-end  bg-[#FF005F] text-black duration-700 ease-in-out hover:scale-105 hover:cursor-pointer md:h-[60px] md:w-[240px]`}
         onClick={() => {
           setShowWinter(true);
         }}
