@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { test } from "../../assets";
 import ModalConnection from "../../components/Modals/ModalConnection";
 import { useAccount } from "wagmi";
 import { useNavigate } from "react-router-dom";
@@ -11,13 +10,13 @@ function Connexion() {
   const { isConnected } = useAccount();
 
   const { windowWidth } = useContext(NFTContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (isConnected) {
-  //     navigate("/human");
-  //   }
-  // }, [isConnected]);
+  useEffect(() => {
+    if (isConnected) {
+      navigate("/human");
+    }
+  }, [isConnected]);
   return (
     <>
       <div
