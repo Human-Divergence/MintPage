@@ -21,7 +21,7 @@ function Connexion() {
     <>
       <div
         className={` height-page flex items-start justify-center lg:mt-[8vh] ${
-          windowWidth < 768 && "height-page-mobile mb-6 flex-col"
+          windowWidth < 1000 && "height-page-mobile mb-6 flex-col"
         }`}
       >
         <div className="flex flex-col justify-end gap-12 p-10 lg:w-[572px]">
@@ -37,15 +37,15 @@ function Connexion() {
         </div>
 
         <div className="flex flex-col gap-8">
-          <iframe
-            width="723"
-            height="382"
-            src="https://www.youtube.com/embed/1CGoHdimbpQ"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
+          <div className="aspect-h-9 aspect-w-16 aspect-16 w-[350px] md:w-[723px]">
+            <iframe
+              src="https://www.youtube.com/embed/1CGoHdimbpQ"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="mx-auto aspect-16"
+            ></iframe>
+          </div>
           <div className="flex items-center justify-center">
             <Button
               onClick={() => {

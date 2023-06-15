@@ -24,6 +24,7 @@
     "@heroicons/react": "^2.0.16",
     "@mantine/core": "^6.0.4",
     "@mantine/hooks": "^6.0.4",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@usewinter/checkout": "^0.1.46",
     "@walletconnect/web3wallet": "^1.5.1",
     "axios": "^1.4.0",
