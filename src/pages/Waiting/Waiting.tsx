@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   AvatarWaiting,
   ArrowWhiteBGBlack,
@@ -18,6 +19,7 @@ type TimeLeft = {
 };
 
 const Waiting = () => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
@@ -30,24 +32,29 @@ const Waiting = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       var dateFin = new Date("2023-06-25T00:00:00").getTime();
-      var maintenant = new Date().getTime();
-      var difference = dateFin - maintenant;
-      var days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      var hours = Math.floor(
-        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      var secondes = Math.floor((difference % (1000 * 60)) / 1000);
+      var now = new Date().getTime();
+      var difference = dateFin - now;
 
-      setTimeLeft({
-        days: days,
-        hours: hours,
-        minutes: minutes,
-        seconds: secondes,
-      });
-      return () => clearInterval(interval);
+      if (difference <= 0) {
+        clearInterval(interval);
+        navigate("/connexion");}
+      else {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        setTimeLeft({
+          days,
+          hours,
+          minutes,
+          seconds,
+        });
+      }
     }, 1000);
-  }, []);
+
+    return () => clearInterval(interval);
+  }, [history]);
 
   return (
     <>

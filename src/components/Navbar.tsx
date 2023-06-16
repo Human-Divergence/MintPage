@@ -93,7 +93,7 @@ const Navbar = () => {
               } ${hoverMarketPlace ? " pr-8" : "pr-0"}`}
             >
               <p className=" text-base font-bold md:text-2xl">MARKETPLACE</p>
-              <img src={ArrowHeader} className="w-[20px] " />
+              <img src={ArrowHeader} className="w-[16px] " />
             </div>
           </div>
           {pathName !== "/" && pathName !== "/connexion" && (
@@ -123,16 +123,16 @@ const Navbar = () => {
                   <p
                     className={` font-bold duration-300 ease-out ${
                       hoverMyDiv
-                        ? "text-[16px] md:text-[24px]"
-                        : "text-[16px] md:text-[24px]"
+                        ? "text-[16px] md:text-[22px]"
+                        : "text-[16px] md:text-[22px]"
                     } `}
                   >
                     {pathName === "/mydivergent"
                       ? "GET MORE DIVERGENT"
-                      : "MY DIVERGENT"}
+                      : "MY DIVERGENTS"}
                   </p>
                   {pathName !== "/mydivergent" && (
-                    <img src={ArrowHeader} className="w-[20px] " />
+                    <img src={ArrowHeader} className="w-[16px] " />
                   )}
                 </div>
               </div>
