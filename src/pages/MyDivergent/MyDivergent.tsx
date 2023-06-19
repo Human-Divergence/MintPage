@@ -54,10 +54,9 @@ const MyDivergent = () => {
   };
 
   const amountEmptyCard: number = useMemo(() => {
-    const moduloFour = addCapsules(capsulesBought)%4;
+    const moduloFour = addCapsules(capsulesBought) % 4;
     return 4 - moduloFour;
   }, [capsulesBought]);
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
