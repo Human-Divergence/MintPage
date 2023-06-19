@@ -103,7 +103,7 @@ const ShopCapsules: FC<ShopCapsulesProps> = ({
                   hoverDropRate === index
                     ? "rounded-none"
                     : "rounded-bl-md rounded-tr-3xl border-b-[1px] border-r-[1px] border-t-[1px] border-solid border-black"
-                } ss:w-[640px] sm:w-[768px] lg:h-[300px] lg:w-[1024px] lg:rounded-bl-[250px]`}
+                } ss:w-[640px] sm:w-[768px] md:h-[250px] lg:h-[300px] lg:w-[824px] lg:rounded-bl-[250px] llg:w-[1024px]`}
               >
                 <div className="">
                   <img

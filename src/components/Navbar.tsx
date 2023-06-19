@@ -113,7 +113,11 @@ const Navbar = () => {
                 <img
                   src={MydyvergentLogoNavbar}
                   alt="HD"
-                  className="h-[52px] w-[52px] bg-black "
+                  className={`h-[52px] w-[52px] border bg-black ${
+                    pathName === "/mydivergent"
+                      ? "border-red "
+                      : "border-[#00FFAE] "
+                  }`}
                 />
                 <div
                   className={` flex h-[52px] w-[284px] flex-row items-center justify-center  gap-2  ${
