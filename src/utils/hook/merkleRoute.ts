@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useMemo, useState } from "react";
 import { ethers } from "ethers";
 import { MerkleTree } from "merkletreejs";

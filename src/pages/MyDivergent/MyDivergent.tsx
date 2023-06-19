@@ -30,20 +30,8 @@ const MyDivergent = () => {
 
   const [numberCapsule, setNumberCapsule] = useState<number>(0);
 
-  const {
-    showModalMinted,
-    setShowModalMinted,
-    capsulesBought,
-    limitCapsuleBuy,
-    windowWidth,
-  } = useContext(NFTContext);
-
-  // eslint-disable-next-line no-console
-  console.log(
-    numberCapsule,
-    capsulesBought,
-    retrieveTypeCpasule(capsulesBought, 65)
-  );
+  const { showModalMinted, setShowModalMinted, capsulesBought, windowWidth } =
+    useContext(NFTContext);
 
   const handleViewClick = (
     capsule: Capsule | undefined,
