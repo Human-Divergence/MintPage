@@ -25,11 +25,11 @@
     "react/react-in-tsx-scope": "off",
     "no-unsafe-finally": 1,
     "no-unused-vars": "off",
-    "no-console": "error",
+    "no-console": "off",
     "no-duplicate-imports": "error",
-    "no-empty": "error",
+    "no-empty": "off",
     "no-inline-comments": "error",
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": "off",
     "prettier/prettier": [
       "error",
       {

@@ -20,8 +20,9 @@ import {
 import { HDContract } from "../../utils/constants/wagmiConfig/wagmiConfig";
 import { parseEther } from "viem";
 import { Capsules } from "../../utils/types/myDivergent";
-import ButtonWinter from "../ButtonWinter/ButtonWinter";
+// import ButtonWinter from "../ButtonWinter/ButtonWinter";
 import { toast } from "react-toastify";
+import ButtonPaper from "../ButtonPaper/ButtonPaper";
 
 type ModalConnectionProps = {
   showModal: boolean;
@@ -172,7 +173,8 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
                 write?.();
               }}
             />
-            <ButtonWinter capsuleCart={capsuleCart} />
+            {/* <ButtonWinter capsuleCart={capsuleCart} /> */}
+            <ButtonPaper capsuleCart={capsuleCart} />
           </div>
         </div>
       </Modal>

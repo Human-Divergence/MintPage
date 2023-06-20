@@ -154,7 +154,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!isLoading && isConnected) {
+    if (!isLoading && isConnected && contractData) {
       const pricesData = contractData[0].result[5];
       const capsulesBoughtData = contractData[1].result;
       const maxCapsulePerAddressData = contractData[0].result[4];
