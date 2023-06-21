@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://api.intercellar.io";
+const API_URL = "0x686c1D364Fb4Ff4d0cA3F40dEC74E3Ae3cA427ca";
 const instance = axios.create({
   baseURL: API_URL,
   headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -14,7 +14,7 @@ export const getSdkPaperKey = async (data: any) => {
     },
   };
   try {
-    return await instance.post(`${API_URL}/checkout/`, data, config);
+    return await instance.post(`${API_URL}/assets/${data._to}`, data, config);
   } catch (error) {
     console.error(error);
     throw error;

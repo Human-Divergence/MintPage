@@ -11,7 +11,7 @@ import { useContractReads, useAccount } from "wagmi";
 import { HDContract } from "../utils/constants/wagmiConfig/wagmiConfig";
 import { ethers } from "ethers";
 import { Capsules, MerkleRoots } from "../utils/types/myDivergent";
-import useMerklesValidation from "../utils/hook/merkleRoute";
+import useMerklesValidation from "../utils/hook/merkleRoot";
 
 interface NFTContextProps {
   hasNFT: boolean;
@@ -163,26 +163,41 @@ export const NFTProvider: FC<NFTProviderProps> = ({
       const freeMintClaimedData = contractData[5].result;
 
       setPricesCapsules({
-        onyx: Number(ethers.utils.formatUnits(pricesData.Onyx, 18)),
-        gold: Number(ethers.utils.formatUnits(pricesData.Gold, 18)),
-        diamond: Number(ethers.utils.formatUnits(pricesData.Diamond, 18)),
+        onyx: Number(BigInt(pricesData.Onyx)) / (10 ^ 18),
+        gold: Number(BigInt(pricesData.Gold)) / (10 ^ 18),
+        diamond: Number(BigInt(pricesData.Diamond)) / (10 ^ 18),
       });
+      // setPricesCapsules({
+      //   onyx: Number(ethers.utils.formatUnits(pricesData.Onyx, "18")),
+      //   gold: Number(ethers.utils.formatUnits(pricesData.Gold, "18")),
+      //   diamond: Number(ethers.utils.formatUnits(pricesData.Diamond, "18")),
+      // });
       setCapsulesBought({
-        onyx: Number(ethers.utils.formatUnits(capsulesBoughtData[0], 0)),
-        gold: Number(ethers.utils.formatUnits(capsulesBoughtData[1], 0)),
-        diamond: Number(ethers.utils.formatUnits(capsulesBoughtData[2], 0)),
+        onyx: Number(BigInt(capsulesBoughtData[0])),
+        gold: Number(BigInt(capsulesBoughtData[1])),
+        diamond: Number(BigInt(capsulesBoughtData[2])),
       });
+      // setCapsulesBought({
+      //   onyx: Number(ethers.utils.formatUnits(capsulesBoughtData[0], 0)),
+      //   gold: Number(ethers.utils.formatUnits(capsulesBoughtData[1], 0)),
+      //   diamond: Number(ethers.utils.formatUnits(capsulesBoughtData[2], 0)),
+      // });
       setLimitCapsuleBuy({
-        onyx: Number(
-          ethers.utils.formatUnits(maxCapsulePerAddressData.Onyx, 0)
-        ),
-        gold: Number(
-          ethers.utils.formatUnits(maxCapsulePerAddressData.Gold, 0)
-        ),
-        diamond: Number(
-          ethers.utils.formatUnits(maxCapsulePerAddressData.Diamond, 0)
-        ),
+        onyx: Number(BigInt(maxCapsulePerAddressData.Onyx)),
+        gold: Number(BigInt(maxCapsulePerAddressData.Gold)),
+        diamond: Number(BigInt(maxCapsulePerAddressData.Diamond)),
       });
+      // setLimitCapsuleBuy({
+      //   onyx: Number(
+      //     ethers.utils.formatUnits(maxCapsulePerAddressData.Onyx, 0)
+      //   ),
+      //   gold: Number(
+      //     ethers.utils.formatUnits(maxCapsulePerAddressData.Gold, 0)
+      //   ),
+      //   diamond: Number(
+      //     ethers.utils.formatUnits(maxCapsulePerAddressData.Diamond, 0)
+      //   ),
+      // });
       setMerkelRootContract({
         Whitelist: contractData[0].result[2],
         FreeMint: contractData[0].result[3],
@@ -199,6 +214,14 @@ export const NFTProvider: FC<NFTProviderProps> = ({
           Number(ethers.utils.formatUnits(stillCapsData[2], 0)),
       });
       setFreeMintClaimed(freeMintClaimedData);
+
+      console.log("contractData", contractData);
+      console.log("pricesCapsules", pricesCapsules);
+      console.log("capsulesBought", capsulesBought);
+      console.log("limitCapsuleBuy", limitCapsuleBuy);
+      console.log("merkelRootContract", merkelRootContract);
+      console.log("stillAvalaibleCaps", stillAvalaibleCaps);
+      console.log("freeMintClaimed", freeMintClaimed);
     }
   }, [isLoading]);
 

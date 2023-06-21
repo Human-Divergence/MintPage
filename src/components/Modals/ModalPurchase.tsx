@@ -23,6 +23,7 @@ import { Capsules } from "../../utils/types/myDivergent";
 // import ButtonWinter from "../ButtonWinter/ButtonWinter";
 import { toast } from "react-toastify";
 import ButtonPaper from "../ButtonPaper/ButtonPaper";
+import useMerklesValidation from "../../utils/hook/merkleRoot";
 
 type ModalConnectionProps = {
   showModal: boolean;
@@ -58,19 +59,35 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
     return Number(dataBalance?.formatted) >= priceEthCart;
   }, []);
 
+  // MERKLE PROOF
+  const { merkleProof, merkleVerification } = useMerklesValidation({
+    userAddress: address as `0x${string}`,
+    phase: 1,
+    merkleRootFromContract:
+      "0x8a656bac75abec6b90f2fd8789cfbb9486354de0805613c66be15e9ca94e4839",
+  });
+  // merkleRootFromContract:0xaeae7b3334f50e7ec3d515fe46bb58ce5e8b6099c9b82439b9f5a09655d34ca4
+
+  useEffect(() => {
+    console.log("address", address);
+    console.log("merkleProof", merkleProof);
+    console.log("merkleVerification", merkleVerification);
+  }, []);
+  // MERKLE PROOF
+
   const { config } = usePrepareContractWrite({
     ...HDContract,
     functionName: "mint",
     args: [
       address as `0x${string}`,
-      merkleProofWhiteList,
+      merkleProof,
       capsuleCart.onyx,
       capsuleCart.gold,
       capsuleCart.diamond,
       merkleProofFreeMint,
     ],
     value: parseEther(`${priceEthCart}`),
-    enabled: merkleVerificationWhiteList && showModal && hasEnoughEth,
+    enabled: showModal && hasEnoughEth,
   });
 
   const { data: mintData, write } = useContractWrite({
