@@ -66,7 +66,6 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
     merkleRootFromContract:
       "0x8a656bac75abec6b90f2fd8789cfbb9486354de0805613c66be15e9ca94e4839",
   });
-  // merkleRootFromContract:0xaeae7b3334f50e7ec3d515fe46bb58ce5e8b6099c9b82439b9f5a09655d34ca4
 
   useEffect(() => {
     console.log("address", address);

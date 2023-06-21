@@ -162,42 +162,42 @@ export const NFTProvider: FC<NFTProviderProps> = ({
       const maxSupplyData = contractData[4].result;
       const freeMintClaimedData = contractData[5].result;
 
-      setPricesCapsules({
-        onyx: Number(BigInt(pricesData.Onyx)) / (10 ^ 18),
-        gold: Number(BigInt(pricesData.Gold)) / (10 ^ 18),
-        diamond: Number(BigInt(pricesData.Diamond)) / (10 ^ 18),
-      });
       // setPricesCapsules({
-      //   onyx: Number(ethers.utils.formatUnits(pricesData.Onyx, "18")),
-      //   gold: Number(ethers.utils.formatUnits(pricesData.Gold, "18")),
-      //   diamond: Number(ethers.utils.formatUnits(pricesData.Diamond, "18")),
+      //   onyx: Number(BigInt(pricesData.Onyx)) / (10 ^ 18),
+      //   gold: Number(BigInt(pricesData.Gold)) / (10 ^ 18),
+      //   diamond: Number(BigInt(pricesData.Diamond)) / (10 ^ 18),
       // });
-      setCapsulesBought({
-        onyx: Number(BigInt(capsulesBoughtData[0])),
-        gold: Number(BigInt(capsulesBoughtData[1])),
-        diamond: Number(BigInt(capsulesBoughtData[2])),
+      setPricesCapsules({
+        onyx: Number(ethers.utils.formatUnits(pricesData.Onyx, "18")),
+        gold: Number(ethers.utils.formatUnits(pricesData.Gold, "18")),
+        diamond: Number(ethers.utils.formatUnits(pricesData.Diamond, "18")),
       });
       // setCapsulesBought({
-      //   onyx: Number(ethers.utils.formatUnits(capsulesBoughtData[0], 0)),
-      //   gold: Number(ethers.utils.formatUnits(capsulesBoughtData[1], 0)),
-      //   diamond: Number(ethers.utils.formatUnits(capsulesBoughtData[2], 0)),
+      //   onyx: Number(BigInt(capsulesBoughtData[0])),
+      //   gold: Number(BigInt(capsulesBoughtData[1])),
+      //   diamond: Number(BigInt(capsulesBoughtData[2])),
       // });
-      setLimitCapsuleBuy({
-        onyx: Number(BigInt(maxCapsulePerAddressData.Onyx)),
-        gold: Number(BigInt(maxCapsulePerAddressData.Gold)),
-        diamond: Number(BigInt(maxCapsulePerAddressData.Diamond)),
+      setCapsulesBought({
+        onyx: Number(ethers.utils.formatUnits(capsulesBoughtData[0], 0)),
+        gold: Number(ethers.utils.formatUnits(capsulesBoughtData[1], 0)),
+        diamond: Number(ethers.utils.formatUnits(capsulesBoughtData[2], 0)),
       });
       // setLimitCapsuleBuy({
-      //   onyx: Number(
-      //     ethers.utils.formatUnits(maxCapsulePerAddressData.Onyx, 0)
-      //   ),
-      //   gold: Number(
-      //     ethers.utils.formatUnits(maxCapsulePerAddressData.Gold, 0)
-      //   ),
-      //   diamond: Number(
-      //     ethers.utils.formatUnits(maxCapsulePerAddressData.Diamond, 0)
-      //   ),
+      //   onyx: Number(BigInt(maxCapsulePerAddressData.Onyx)),
+      //   gold: Number(BigInt(maxCapsulePerAddressData.Gold)),
+      //   diamond: Number(BigInt(maxCapsulePerAddressData.Diamond)),
       // });
+      setLimitCapsuleBuy({
+        onyx: Number(
+          ethers.utils.formatUnits(maxCapsulePerAddressData.Onyx, 0)
+        ),
+        gold: Number(
+          ethers.utils.formatUnits(maxCapsulePerAddressData.Gold, 0)
+        ),
+        diamond: Number(
+          ethers.utils.formatUnits(maxCapsulePerAddressData.Diamond, 0)
+        ),
+      });
       setMerkelRootContract({
         Whitelist: contractData[0].result[2],
         FreeMint: contractData[0].result[3],

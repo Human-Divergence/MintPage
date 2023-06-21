@@ -6,7 +6,7 @@ const instance = axios.create({
   headers: { Accept: "application/json", "Content-Type": "application/json" },
 });
 
-export const getSdkPaperKey = async (data: any) => {
+export const getSdkPaperKey = async (data: any, address: any) => {
   const config = {
     headers: {
       Accept: "application/json",
@@ -14,7 +14,7 @@ export const getSdkPaperKey = async (data: any) => {
     },
   };
   try {
-    return await instance.post(`${API_URL}/assets/${data._to}`, data, config);
+    return await instance.post(`${API_URL}/assets/${address}`, data, config);
   } catch (error) {
     console.error(error);
     throw error;
