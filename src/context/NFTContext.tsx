@@ -12,6 +12,7 @@ import { HDContract } from "../utils/constants/wagmiConfig/wagmiConfig";
 import { ethers } from "ethers";
 import { Capsules, MerkleRoots } from "../utils/types/myDivergent";
 import useMerklesValidation from "../utils/hook/merkleRoot";
+import apiBackHD from "../utils/services/apiBackHD";
 
 interface NFTContextProps {
   hasNFT: boolean;
@@ -36,6 +37,7 @@ interface NFTContextProps {
   freeDiamond: boolean;
   windowWidth: number;
   merkleProofWinter: string[];
+  listNfts: number[];
 }
 
 export const NFTContext = createContext({} as NFTContextProps);
@@ -85,6 +87,8 @@ export const NFTProvider: FC<NFTProviderProps> = ({
     gold: 0,
     diamond: 0,
   });
+
+  const [listNfts, setListNfts] = useState<number[]>([]);
 
   const {
     merkleProof: merkleProofWhiteList,
@@ -239,6 +243,14 @@ export const NFTProvider: FC<NFTProviderProps> = ({
     };
   }, []);
 
+  useEffect(() => {
+    if (isConnected && address) {
+      apiBackHD.retrieveListNFT(address).then((list) => {
+        setListNfts(list.data);
+      });
+    }
+  }, [isConnected]);
+
   return (
     <NFTContext.Provider
       value={{
@@ -264,6 +276,7 @@ export const NFTProvider: FC<NFTProviderProps> = ({
         freeDiamond,
         windowWidth,
         merkleProofWinter,
+        listNfts,
       }}
     >
       {children}
