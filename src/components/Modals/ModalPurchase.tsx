@@ -64,7 +64,7 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
     userAddress: address as `0x${string}`,
     phase: 1,
     merkleRootFromContract:
-      "0x8a656bac75abec6b90f2fd8789cfbb9486354de0805613c66be15e9ca94e4839",
+      "0xae62788f9df261024b25fa3219fa43933c6116403b91a067204b55b9800dccca",
   });
 
   useEffect(() => {
