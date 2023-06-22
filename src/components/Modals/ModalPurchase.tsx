@@ -62,14 +62,6 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
       "0xae62788f9df261024b25fa3219fa43933c6116403b91a067204b55b9800dccca",
   });
 
-  useEffect(() => {
-    console.log("address", address);
-    console.log("mn merkleProof", merkleProof);
-    console.log("mn merkleVerification", merkleVerification);
-    console.log("marco merkleVerification", merkleVerificationWhiteList);
-  }, []);
-  // MERKLE PROOF
-
   const { config } = usePrepareContractWrite({
     ...HDContract,
     functionName: "mint",
