@@ -41,7 +41,6 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
   capsuleCart,
 }) => {
   const [toastId, setToastId] = useState<any>(null);
-
   const { setShowModalMinted } = useContext(NFTContext);
   const { address } = useAccount();
   const { data: dataBalance } = useBalance({
