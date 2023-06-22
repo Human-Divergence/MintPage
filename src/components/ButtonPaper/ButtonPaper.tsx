@@ -19,19 +19,12 @@ type Props = {
   capsuleCart: Capsules;
 };
 
-const CurrencyState =
-  import.meta.env.VITE_ENVIRONMENT === "prod" ? "ETH" : "MATIC";
-const ContractID =
-  import.meta.env.VITE_ENVIRONMENT === "prod"
-    ? ""
-    : "1fa2a60a-5d7e-4bb7-aed3-415fadc7d29b";
-//todo
-
 const ButtonPaper: FC<Props> = ({ capsuleCart }) => {
   const navigate = useNavigate();
   const { address: userAddress } = useAccount();
   const [sdkSecret, setSdkSecret] = useState<string>();
   const [transactionId, setTransactionData] = useState<string>();
+  const [showPaper, setShowPaper] = useState<boolean>(false);
   const { pricesCapsules, freeDiamond, merkleRoot } = useContext(NFTContext);
 
   const priceEthCart: number = useMemo(() => {
@@ -45,15 +38,14 @@ const ButtonPaper: FC<Props> = ({ capsuleCart }) => {
       "0x5e01a33C75931aD0A91A12Ee016Be8D61b24ADEB" ||
       "0x9E733848061e4966c4a920d5b99a123459670aEe",
     phase: 1,
-    merkleRootFromContract:
-      "0xae62788f9df261024b25fa3219fa43933c6116403b91a067204b55b9800dccca",
+    merkleRootFromContract: import.meta.env.VITE_MERKLEROOT,
   });
 
   useEffect(() => {
     (async () => {
       const data = {
         sdkClientSecret: sdkSecret,
-        contractId: ContractID,
+        contractId: import.meta.env.VITE_PAPER_CONTRACT_ID,
         walletAddress: userAddress,
         mintMethod: {
           name: "mint",
@@ -67,7 +59,7 @@ const ButtonPaper: FC<Props> = ({ capsuleCart }) => {
           },
           payment: {
             value: String(priceEthCart),
-            currency: CurrencyState,
+            currency: import.meta.env.VITE_CURRENCY,
           },
         },
       };
