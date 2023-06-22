@@ -42,8 +42,7 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
 }) => {
   const [toastId, setToastId] = useState<any>(null);
 
-  const { setShowModalMinted, merkleVerificationWhiteList, merkleRoot } =
-    useContext(NFTContext);
+  const { setShowModalMinted } = useContext(NFTContext);
   const { address } = useAccount();
   const { data: dataBalance } = useBalance({
     address: address,
@@ -53,13 +52,12 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
 
   const hasEnoughEth = useMemo(() => {
     return Number(dataBalance?.formatted) >= priceEthCart;
-  }, []);
+  }, [dataBalance, priceEthCart]);
 
   const { merkleProof, merkleVerification } = useMerklesValidation({
     userAddress: address as `0x${string}`,
     phase: 1,
-    merkleRootFromContract:
-      "0xae62788f9df261024b25fa3219fa43933c6116403b91a067204b55b9800dccca",
+    merkleRootFromContract: import.meta.env.VITE_MERKLEROOT,
   });
 
   const { config } = usePrepareContractWrite({

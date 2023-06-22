@@ -4,7 +4,7 @@
 // import { MerkleTree } from "merkletreejs";
 // const { keccak256 } = ethers.utils;
 
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { ethers } from "ethers";
 import { MerkleTree } from "merkletreejs";
 import { freeMint_phase_2, whitelisted_phase_1 } from "../constants/whitelist";
@@ -35,12 +35,10 @@ const useMerklesValidation = ({
   };
 
   const generateMerkleTree = (whitelisted: Array<string>) => {
-    const { setMerkleRoot } = useContext(NFTContext);
-
     const leaves = whitelisted.map((address) => keccak256(address));
     const tree = new MerkleTree(leaves, keccak256, { sort: true });
     const merkleRoot = tree.getHexRoot();
-    // setMerkleRoot(merkleRoot);
+
     return { tree, merkleRoot, leaves };
   };
 
