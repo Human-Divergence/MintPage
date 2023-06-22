@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useContext, useMemo, FC } from "react";
-import { CheckoutWithCard } from "@paperxyz/react-client-sdk";
+import { CheckoutWithCard, PaperSDKProvider } from "@paperxyz/react-client-sdk";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "wagmi";
 import { toast } from "react-toastify";
-import { getSdkPaperKey, getTransactionData } from "../../backend/backend";
+import {
+  getSdkPaperKey,
+  getTransactionData,
+  getTransactionStatus,
+} from "../../backend/backend";
 import { NFTContext } from "../../context/NFTContext";
 import { Capsules } from "../../utils/types/myDivergent";
 import { getPriceCart } from "../../utils/helpers/global.helpers";
@@ -16,74 +20,80 @@ type Props = {
 };
 
 const CurrencyState =
-  import.meta.env.VITE_NETWORK === "polygonMumbai" ? "MATIC" : "ETH";
-const NetworkState =
-  import.meta.env.VITE_NETWORK === "polygonMumbai" ? "Mumbai" : "Ethereum";
-const currencyAddress = "0x0000000000000000000000000000000000001010";
+  import.meta.env.VITE_ENVIRONMENT === "prod" ? "ETH" : "MATIC";
+const ContractID =
+  import.meta.env.VITE_ENVIRONMENT === "prod"
+    ? ""
+    : "1fa2a60a-5d7e-4bb7-aed3-415fadc7d29b";
+//todo
 
 const ButtonPaper: FC<Props> = ({ capsuleCart }) => {
   const navigate = useNavigate();
   const { address: userAddress } = useAccount();
   const [sdkSecret, setSdkSecret] = useState<string>();
   const [transactionId, setTransactionData] = useState<string>();
-  const {
-    merkleProofWhiteList,
-    merkleProofFreeMint,
-    pricesCapsules,
-    freeDiamond,
-  } = useContext(NFTContext);
+  const { pricesCapsules, freeDiamond, merkleRoot } = useContext(NFTContext);
 
   const priceEthCart: number = useMemo(() => {
     return getPriceCart(capsuleCart, pricesCapsules, freeDiamond);
   }, [capsuleCart]);
 
-  // MERKLE PROOF
   const { merkleProof, merkleVerification } = useMerklesValidation({
-    userAddress: userAddress as `0x${string}`,
+    userAddress:
+      "0x7754b94345bce520f8dd4f6a5642567603e90e10" ||
+      "0xf3DB642663231887E2Ff3501da6E3247D8634A6D" ||
+      "0x5e01a33C75931aD0A91A12Ee016Be8D61b24ADEB" ||
+      "0x9E733848061e4966c4a920d5b99a123459670aEe",
     phase: 1,
     merkleRootFromContract:
       "0xae62788f9df261024b25fa3219fa43933c6116403b91a067204b55b9800dccca",
   });
 
   useEffect(() => {
-    console.log("userAddress", userAddress);
-    console.log("merkleProof", merkleProof);
-    console.log("merkleVerification", merkleVerification);
-  }, []);
-  // MERKLE PROOF
-
-  useEffect(() => {
     (async () => {
       const data = {
-        contractId: "1bd013d0-323f-49bb-844c-88b33839154d",
+        sdkClientSecret: sdkSecret,
+        contractId: ContractID,
         walletAddress: userAddress,
         mintMethod: {
           name: "mint",
           args: {
             _to: userAddress,
             _merkleProofWhitelist: merkleProof,
-            _amountOnyx: capsuleCart.onyx,
-            _amountGold: capsuleCart.gold,
-            _amountDiamond: capsuleCart.diamond,
-            _merkleProofFreeMint: merkleProofFreeMint,
+            _amountOnyx: capsuleCart.onyx ? capsuleCart.onyx : 0,
+            _amountGold: capsuleCart.gold ? capsuleCart.gold : 0,
+            _amountDiamond: capsuleCart.diamond ? capsuleCart.diamond : 0,
+            _merkleProofFreeMint: merkleProof,
           },
           payment: {
-            value: String(parseEther(`${priceEthCart}`)),
+            value: String(priceEthCart),
             currency: CurrencyState,
           },
         },
       };
-      const response = await getSdkPaperKey(data, userAddress);
+      console.log("data", data);
+      const response = await getSdkPaperKey(data);
       console.log("response", response);
       setSdkSecret(response.data.sdkClientSecret);
       console.log("sdkSecret", sdkSecret);
     })();
-  }, [priceEthCart, priceEthCart, currencyAddress, userAddress]);
+  }, [priceEthCart, priceEthCart, userAddress]);
+
+  useEffect(() => {
+    (async () => {
+      const data = {
+        txId: transactionId,
+      };
+      const responseTx = await getTransactionStatus(data);
+      setTransactionData(responseTx.data.transactionId);
+      console.log("transactionId", transactionId);
+    })();
+  }, [transactionId]);
 
   useEffect(() => {
     (async () => {
       const receivedTxData = await getTransactionData(transactionId);
-
+      console.log("receivedTxData", receivedTxData);
       if (receivedTxData?.status === "PAYMENT_SUCCEEDED") {
         console.log("receivedTxData", receivedTxData);
         console.log("receivedTxData?.status", receivedTxData?.status);
@@ -106,41 +116,28 @@ const ButtonPaper: FC<Props> = ({ capsuleCart }) => {
           alt="Purchase"
           className={` absolute left-0 h-[40px] w-[40px] border border-[#FF005F] bg-black md:h-[60px] md:w-[60px]`}
         />
-        <div className="mr-3 flex w-full cursor-not-allowed items-center justify-end text-sm font-bold md:text-[24px] ">
+        <div className="mr-3 flex w-full items-center justify-end text-sm font-bold md:text-[24px] ">
           PAY BY CARD
         </div>
       </div>
-
-      <CheckoutWithCard
-        sdkClientSecret={sdkSecret}
-        configs={{
-          contractId: "1bd013d0-323f-49bb-844c-88b33839154d",
-          walletAddress: userAddress as `0x${string}`,
-          mintMethod: {
-            name: "mint",
-            args: [
-              {
-                _to: userAddress,
-                _merkleProofWhitelist: merkleProofWhiteList,
-                _amountOnyx: capsuleCart.onyx,
-                _amountGold: capsuleCart.gold,
-                _amountDiamond: capsuleCart.diamond,
-                _merkleProofFreeMint: merkleProofFreeMint,
-              },
-            ],
-            payment: {
-              value: String(parseEther(`${priceEthCart}`)),
-              currency: CurrencyState,
-            },
-          },
-        }}
-        onPaymentSuccess={(result) => {
-          console.log("Payment successful:", result);
-        }}
-        onError={(error) => {
-          console.error("error paper", error);
-        }}
-      />
+      {sdkSecret && (
+        <CheckoutWithCard
+          sdkClientSecret={sdkSecret}
+          onPaymentSuccess={(result) => {
+            console.log("Payment successful:", result);
+            setTransactionData(result?.id);
+          }}
+          onError={(error) => {
+            console.error("error paper", error);
+          }}
+          options={{
+            colorBackground: "#ffffff",
+            colorPrimary: "#19A8D6",
+            colorText: "#ffffff",
+            borderRadius: 24,
+          }}
+        />
+      )}
     </div>
   );
 };

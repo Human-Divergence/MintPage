@@ -42,12 +42,8 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
 }) => {
   const [toastId, setToastId] = useState<any>(null);
 
-  const {
-    setShowModalMinted,
-    merkleProofWhiteList,
-    merkleProofFreeMint,
-    merkleVerificationWhiteList,
-  } = useContext(NFTContext);
+  const { setShowModalMinted, merkleVerificationWhiteList, merkleRoot } =
+    useContext(NFTContext);
   const { address } = useAccount();
   const { data: dataBalance } = useBalance({
     address: address,
@@ -59,7 +55,6 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
     return Number(dataBalance?.formatted) >= priceEthCart;
   }, []);
 
-  // MERKLE PROOF
   const { merkleProof, merkleVerification } = useMerklesValidation({
     userAddress: address as `0x${string}`,
     phase: 1,
@@ -69,8 +64,9 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
 
   useEffect(() => {
     console.log("address", address);
-    console.log("merkleProof", merkleProof);
-    console.log("merkleVerification", merkleVerification);
+    console.log("mn merkleProof", merkleProof);
+    console.log("mn merkleVerification", merkleVerification);
+    console.log("marco merkleVerification", merkleVerificationWhiteList);
   }, []);
   // MERKLE PROOF
 
@@ -80,10 +76,10 @@ const ModalPurchase: FC<ModalConnectionProps> = ({
     args: [
       address as `0x${string}`,
       merkleProof,
-      capsuleCart.onyx,
-      capsuleCart.gold,
-      capsuleCart.diamond,
-      merkleProofFreeMint,
+      capsuleCart.onyx ? capsuleCart.onyx : 0,
+      capsuleCart.gold ? capsuleCart.gold : 0,
+      capsuleCart.diamond ? capsuleCart.diamond : 0,
+      merkleProof,
     ],
     value: parseEther(`${priceEthCart}`),
     enabled: showModal && hasEnoughEth,

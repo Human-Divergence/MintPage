@@ -1,12 +1,13 @@
 import axios from "axios";
 
-const API_URL = "0x686c1D364Fb4Ff4d0cA3F40dEC74E3Ae3cA427ca";
+const API_URL = "https://back.humandivergence.com";
+
 const instance = axios.create({
   baseURL: API_URL,
   headers: { Accept: "application/json", "Content-Type": "application/json" },
 });
 
-export const getSdkPaperKey = async (data: any, address: any) => {
+export const getSdkPaperKey = async (data: any) => {
   const config = {
     headers: {
       Accept: "application/json",
@@ -14,7 +15,25 @@ export const getSdkPaperKey = async (data: any, address: any) => {
     },
   };
   try {
-    return await instance.post(`${API_URL}/assets/${address}`, data, config);
+    return await instance.post(`${API_URL}/checkout/`, data, config);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const getTransactionStatus = async (transactionId: any) => {
+  const config = {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    return await instance.get(
+      `${API_URL}/transaction-status/${transactionId}/`,
+      config
+    );
   } catch (error) {
     console.error(error);
     throw error;
